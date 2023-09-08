@@ -1,0 +1,298 @@
+{
+    "ElectricPowerPlant": {
+        "ComponentClass": "StandardiReCoDeSComponent",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 100}}   
+                }     
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseLinear"
+            }
+        },
+        "Supply": {
+            "ElectricPower": {
+                "Amount": 40,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        },
+        "OperationDemand": {
+            "ElectricPower": {
+                "Amount": 0.2,
+                "FunctionalityToAmountRelation": "Constant"                
+            },
+            "LowLevelCommunication": {
+                "Amount": 0.001,
+                "FunctionalityToAmountRelation": "Constant"                
+            },
+            "CoolingWater": {
+                "Amount": 0.05,
+                "FunctionalityToAmountRelation": "Constant"               
+            }
+        }
+    },
+
+    "BaseStationController": {
+        "ComponentClass": "StandardiReCoDeSComponent",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 100}} 
+                }       
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseLinear"
+            }
+        },       
+        "Supply": {
+            "HighLevelCommunication": {
+                "Amount": 300,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        },
+        "OperationDemand": {
+            "ElectricPower": {
+                "Amount": 0.2,
+                "FunctionalityToAmountRelation": "Constant"                
+            },          
+            "CoolingWater": {
+                "Amount": 0.05,
+                "FunctionalityToAmountRelation": "Constant"                
+            }         
+        }
+    },
+
+    "BaseTransceiverStation": {
+        "ComponentClass": "StandardiReCoDeSComponent",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 20}}   
+                }                
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },       
+        "Supply": {
+            "LowLevelCommunication": {
+                "Amount": 45,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        },
+        "OperationDemand": {
+            "ElectricPower": {
+                "Amount": 0.1,
+                "FunctionalityToAmountRelation": "Linear"                
+            },
+            "HighLevelCommunication": {
+                "Amount": 50,
+                "FunctionalityToAmountRelation": "Linear"                
+            }
+        }
+    },
+    
+    "PotableWaterFacility": {
+        "ComponentClass": "StandardiReCoDeSComponent",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 100}}  
+                }      
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "PotableWater": {
+                "Amount": 0.2,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        },
+        "OperationDemand": {            
+            "ElectricPower": {
+                "Amount": 0.1,
+                "FunctionalityToAmountRelation": "Constant"
+            }
+        }
+    },
+
+    "CoolingWaterFacility": {
+        "ComponentClass": "StandardiReCoDeSComponent",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 20}}  
+                }      
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseLinear"
+            }
+        },
+        "Supply": {
+            "CoolingWater": {
+                "Amount": 0.06,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        },
+        "OperationDemand": {            
+            "ElectricPower": {
+                "Amount": 0.2,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "LowLevelCommunication": {
+                "Amount": 0.001,
+                "FunctionalityToAmountRelation": "Constant"
+            }
+        }
+    },
+
+    "BuildingStockUnit": {
+        "ComponentClass": "BuildingStockUnitWithEmergencyCalls",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 100}}  
+                }      
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseLinear"
+            }   
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 400,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 400,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        },
+        "OperationDemand": {
+            "ElectricPower": {
+                "Amount": 7.7,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "LowLevelCommunication": {
+                "Amount": 33.3,
+                "FunctionalityToAmountRelation": "Constant",
+                "PostDisasterIncreaseDueToEmergencyCalls": "True"
+            },
+            "PotableWater": {
+                "Amount": 0.086,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "Shelter": {
+                "Amount": 400,
+                "FunctionalityToAmountRelation": "Constant"            
+            },
+            "FunctionalHousing": {
+                "Amount": 400,
+                "FunctionalityToAmountRelation": "Constant"           
+            }            
+        }
+    },
+    "ElectricPowerTransmissionLine": {
+        "ComponentClass": "StandardiReCoDeSComponent",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 20}}    
+                }    
+            },           
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseLinear"
+            }   
+        },
+        "Supply": {
+            "ElectricPowerTransferService": {
+                "Amount": 1000,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }   
+    },
+
+    "PotableWaterPipe": {
+        "ComponentClass": "StandardiReCoDeSComponent",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 20}}    
+                }    
+            },           
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseLinear"
+            }   
+        },
+        "Supply": {
+            "PotableWaterTransferService": {
+                "Amount": 1000,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }   
+    },
+
+    "CoolingWaterPipe": {
+        "ComponentClass": "StandardiReCoDeSComponent",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 20}}    
+                }    
+            },           
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseLinear"
+            }   
+        },
+        "Supply": {
+            "CoolingWaterTransferService": {
+                "Amount": 1000,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }   
+    },
+
+    "Bridge": {
+        "ComponentClass": "StandardiReCoDeSComponent",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 100}}    
+                }    
+            },           
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseLinear"
+            }   
+        },
+        "Supply": {
+            "CarrierService": {
+                "Amount": 1000,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }   
+    }
+}

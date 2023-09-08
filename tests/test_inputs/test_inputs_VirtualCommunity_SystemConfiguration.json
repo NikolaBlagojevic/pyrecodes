@@ -1,0 +1,728 @@
+{
+    "Constants": {
+        "START_TIME_STEP": 0,
+        "MAX_TIME_STEP": 500,
+        "DISASTER_TIME_STEP": 1
+    },
+    "Content": {
+        "Locality 101": {
+            "Coordinates": {
+                "X": 1,
+                "Y": 1
+            },
+            "LinkTo": {
+                "Locality 201": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 102": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 102": {
+            "Coordinates": {
+                "X": 2,
+                "Y": 1
+            },
+            "LinkTo": {
+                "Locality 101": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 202": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 103": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 103": {
+            "Coordinates": {
+                "X": 3,
+                "Y": 1
+            },
+            "ComponentsInLocality": {
+                "BuildingStockUnit": 2,
+                "BaseTransceiverStation": 2,
+                "PotableWaterFacility": 1
+            },
+            "LinkTo": {
+                "Locality 102": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 203": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 104": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 104": {
+            "Coordinates": {
+                "X": 4,
+                "Y": 1
+            },
+            "LinkTo": {
+                "Locality 103": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 105": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 105": {
+            "Coordinates": {
+                "X": 5,
+                "Y": 1
+            },
+            "ComponentsInLocality": {
+                "BuildingStockUnit": 3,
+                "BaseTransceiverStation": 3,
+                "PotableWaterFacility": 1,
+                "CoolingWaterFacility": 1,
+                "BaseStationController": 1
+            },
+            "LinkTo": {
+                "Locality 104": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 205": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 106": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 106": {
+            "Coordinates": {
+                "X": 6,
+                "Y": 1
+            },
+            "LinkTo": {
+                "Locality 105": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 206": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 107": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 107": {
+            "Coordinates": {
+                "X": 7,
+                "Y": 1
+            },
+            "LinkTo": {
+                "Locality 106": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 207": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 201": {
+            "Coordinates": {
+                "X": 1,
+                "Y": 2
+            },
+            "LinkTo": {
+                "Locality 101": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 202": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 301": [
+                    "Bridge",
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 202": {
+            "Coordinates": {
+                "X": 2,
+                "Y": 2
+            },
+            "LinkTo": {
+                "Locality 201": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 203": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 102": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 203": {
+            "Coordinates": {
+                "X": 3,
+                "Y": 2
+            },
+            "LinkTo": {
+                "Locality 202": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 103": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 303": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 205": {
+            "Coordinates": {
+                "X": 5,
+                "Y": 2
+            },
+            "LinkTo": {
+                "Locality 105": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 206": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 305": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 206": {
+            "Coordinates": {
+                "X": 6,
+                "Y": 2
+            },
+            "LinkTo": {
+                "Locality 106": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 205": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 306": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 207": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 207": {
+            "Coordinates": {
+                "X": 7,
+                "Y": 2
+            },
+            "LinkTo": {
+                "Locality 107": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 206": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 307": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 301": {
+            "Coordinates": {
+                "X": 1,
+                "Y": 3
+            },
+            "ComponentsInLocality": {
+                "ElectricPowerPlant": 1,
+                "BaseTransceiverStation": 1,
+                "CoolingWaterFacility": 1
+            },
+            "LinkTo": {
+                "Locality 201": [
+                    "Bridge",
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 302": [
+                    "Bridge",
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 302": {
+            "Coordinates": {
+                "X": 2,
+                "Y": 3
+            },
+            "LinkTo": {
+                "Locality 301": [
+                    "Bridge",
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 303": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 303": {
+            "Coordinates": {
+                "X": 3,
+                "Y": 3
+            },
+            "ComponentsInLocality": {
+                "BuildingStockUnit": 3,
+                "BaseTransceiverStation": 3,
+                "CoolingWaterFacility": 1,
+                "PotableWaterFacility": 1,
+                "BaseStationController": 1
+            },
+            "LinkTo": {
+                "Locality 302": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 203": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 304": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 304": {
+            "Coordinates": {
+                "X": 4,
+                "Y": 3
+            },
+            "LinkTo": {
+                "Locality 303": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 305": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 305": {
+            "Coordinates": {
+                "X": 5,
+                "Y": 3
+            },
+            "ComponentsInLocality": {
+                "ElectricPowerPlant": 1,
+                "BaseTransceiverStation": 1,
+                "CoolingWaterFacility": 1
+            },
+            "LinkTo": {
+                "Locality 304": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 205": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 306": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 306": {
+            "Coordinates": {
+                "X": 6,
+                "Y": 3
+            },
+            "LinkTo": {
+                "Locality 305": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 307": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        },
+        "Locality 307": {
+            "Coordinates": {
+                "X": 7,
+                "Y": 3
+            },
+            "ComponentsInLocality": {
+                "BuildingStockUnit": 1,
+                "BaseTransceiverStation": 1,
+                "PotableWaterFacility": 1
+            },
+            "LinkTo": {
+                "Locality 306": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ],
+                "Locality 207": [
+                    "ElectricPowerTransmissionLine",
+                    "PotableWaterPipe",
+                    "CoolingWaterPipe"
+                ]
+            }
+        }
+    },
+    "DamageInput": {
+        "Type": "FileDamageInput",
+        "Parameters": "./Example 2/example_2_damage_input.txt"
+    },
+    "Resources": {
+        "ElectricPower": {
+            "Group": "Utilities",
+            "DistributionModel": {
+                "Type": "UtilityDistributionModel",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "Type": "ComponentTypeBasedPriority",
+                        "Parameters": [
+                            [
+                                "ElectricPowerPlant",
+                                "OperationDemand"
+                            ],
+                            [
+                                "BaseStationController",
+                                "OperationDemand"
+                            ],
+                            [
+                                "BaseTransceiverStation",
+                                "OperationDemand"
+                            ],
+                            [
+                                "CoolingWaterFacility",
+                                "OperationDemand"
+                            ],
+                            [
+                                "PotableWaterFacility",
+                                "OperationDemand"
+                            ],
+                            [
+                                "BuildingStockUnit",
+                                "OperationDemand"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "HighLevelCommunication": {
+            "Group": "Utilities",
+            "DistributionModel": {
+                "Type": "UtilityDistributionModel",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "Type": "ComponentTypeBasedPriority",
+                        "Parameters": [
+                            [
+                                "BaseStationController",
+                                "OperationDemand"
+                            ],
+                            [
+                                "BaseTransceiverStation",
+                                "OperationDemand"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "LowLevelCommunication": {
+            "Group": "Utilities",
+            "DistributionModel": {
+                "Type": "UtilityDistributionModel",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "Type": "ComponentTypeBasedPriority",
+                        "Parameters": [
+                            [
+                                "BaseTransceiverStation",
+                                "OperationDemand"
+                            ],
+                            [
+                                "ElectricPowerPlant",
+                                "OperationDemand"
+                            ],
+                            [
+                                "CoolingWaterFacility",
+                                "OperationDemand"
+                            ],
+                            [
+                                "BuildingStockUnit",
+                                "OperationDemand"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "PotableWater": {
+            "Group": "Utilities",
+            "DistributionModel": {
+                "Type": "UtilityDistributionModel",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "Type": "ComponentTypeBasedPriority",
+                        "Parameters": [
+                            [
+                                "PotableWaterFacility",
+                                "OperationDemand"
+                            ],
+                            [
+                                "BuildingStockUnit",
+                                "OperationDemand"
+                            ]
+                        ]
+                    },
+                    "TransferService": "PotableWaterTransferService"
+                }
+            }
+        },
+        "CoolingWater": {
+            "Group": "Utilities",
+            "DistributionModel": {
+                "Type": "UtilityDistributionModel",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "Type": "ComponentTypeBasedPriority",
+                        "Parameters": [
+                            [
+                                "CoolingWaterFacility",
+                                "OperationDemand"
+                            ],
+                            [
+                                "ElectricPowerPlant",
+                                "OperationDemand"
+                            ],
+                            [
+                                "BaseStationController",
+                                "OperationDemand"
+                            ]
+                        ]
+                    },
+                    "TransferService": "CoolingWaterTransferService"
+                }
+            }
+        },
+        "Shelter": {
+            "Group": "Utilities",
+            "DistributionModel": {
+                "Type": "UtilityDistributionModel",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "Type": "ComponentTypeBasedPriority",
+                        "Parameters": [
+                            [
+                                "BuildingStockUnit",
+                                "OperationDemand"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "FunctionalHousing": {
+            "Group": "Utilities",
+            "DistributionModel": {
+                "Type": "UtilityDistributionModel",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "Type": "ComponentTypeBasedPriority",
+                        "Parameters": [
+                            [
+                                "BuildingStockUnit",
+                                "OperationDemand"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "ElectricPowerTransferService": {
+            "Group": "TransferService",
+            "DistributionModel": {
+                "Type": "TransferServiceDistributionModelPotentialPathSets",
+                "Parameters": {
+                    "PathSetsFile": "./Example 2/potential_path_sets.json"
+                }
+            }
+        },
+        "PotableWaterTransferService": {
+            "Group": "TransferService",
+            "DistributionModel": {
+                "Type": "TransferServiceDistributionModelPotentialPathSets",
+                "Parameters": {
+                    "PathSetsFile": "./Example 2/potential_path_sets.json"
+                }
+            }
+        },
+        "CoolingWaterTransferService": {
+            "Group": "TransferService",
+            "DistributionModel": {
+                "Type": "TransferServiceDistributionModelPotentialPathSets",
+                "Parameters": {
+                    "PathSetsFile": "./Example 2/potential_path_sets.json"
+                }
+            }
+        },
+        "BridgeService": {
+            "Group": "BridgeService",
+            "DistributionModel": {
+                "Type": "BridgeServiceDistributionModel",
+                "Parameters": {}
+            }
+        }
+    },
+    "ResilienceCalculator": [
+        {
+            "Type": "ReCoDeSResilienceCalculator",
+            "Parameters": {
+                "Scope": "All",
+                "Resources": [
+                    "ElectricPower",
+                    "CoolingWater",
+                    "LowLevelCommunication",
+                    "HighLevelCommunication",
+                    "PotableWater",
+                    "CoolingWater",
+                    "Shelter"
+                ]
+            }
+        },
+        {
+            "Type": "NISTGoalsResilienceCalculator",
+            "Parameters": [
+                {
+                    "Resource": "ElectricPower",
+                    "Scope": "All",
+                    "DesiredFunctionalityLevel": 0.95
+                },
+                {
+                    "Resource": "CoolingWater",
+                    "Scope": "All",
+                    "DesiredFunctionalityLevel": 0.9
+                },
+                {
+                    "Resource": "HighLevelCommunication",
+                    "Scope": "All",
+                    "DesiredFunctionalityLevel": 0.9
+                },
+                {
+                    "Resource": "LowLevelCommunication",
+                    "Scope": "All",
+                    "DesiredFunctionalityLevel": 0.8
+                },
+                {
+                    "Resource": "Shelter",
+                    "Scope": "All",
+                    "DesiredFunctionalityLevel": 0.9
+                }
+            ]
+        }
+    ]
+}

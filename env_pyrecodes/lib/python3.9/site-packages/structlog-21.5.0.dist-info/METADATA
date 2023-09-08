@@ -1,0 +1,111 @@
+Metadata-Version: 2.1
+Name: structlog
+Version: 21.5.0
+Summary: Structured Logging for Python
+Keywords: logging,structured,structure,log
+Author-email: Hynek Schlawack <hs@ox.cx>
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Logging
+Requires-Dist: typing-extensions; python_version<'3.8'
+Requires-Dist: pre-commit ; extra == "dev"
+Requires-Dist: rich ; extra == "dev"
+Requires-Dist: cogapp ; extra == "dev"
+Requires-Dist: tomli ; extra == "dev"
+Requires-Dist: coverage[toml] ; extra == "dev"
+Requires-Dist: freezegun>=0.2.8 ; extra == "dev"
+Requires-Dist: pretend ; extra == "dev"
+Requires-Dist: pytest-asyncio ; extra == "dev"
+Requires-Dist: pytest>=6.0 ; extra == "dev"
+Requires-Dist: simplejson ; extra == "dev"
+Requires-Dist: furo ; extra == "dev"
+Requires-Dist: sphinx ; extra == "dev"
+Requires-Dist: sphinx-notfound-page ; extra == "dev"
+Requires-Dist: sphinxcontrib-mermaid ; extra == "dev"
+Requires-Dist: twisted ; extra == "dev"
+Requires-Dist: furo ; extra == "docs"
+Requires-Dist: sphinx ; extra == "docs"
+Requires-Dist: sphinx-notfound-page ; extra == "docs"
+Requires-Dist: sphinxcontrib-mermaid ; extra == "docs"
+Requires-Dist: twisted ; extra == "docs"
+Requires-Dist: coverage[toml] ; extra == "tests"
+Requires-Dist: freezegun>=0.2.8 ; extra == "tests"
+Requires-Dist: pretend ; extra == "tests"
+Requires-Dist: pytest-asyncio ; extra == "tests"
+Requires-Dist: pytest>=6.0 ; extra == "tests"
+Requires-Dist: simplejson ; extra == "tests"
+Project-URL: Bug Tracker, https://github.com/hynek/structlog/issues
+Project-URL: Changelog, https://www.structlog.org/en/stable/changelog.html
+Project-URL: Documentation, https://www.structlog.org/
+Project-URL: Funding, https://github.com/sponsors/hynek
+Project-URL: Ko-fi, https://ko-fi.com/the_hynek
+Project-URL: Source Code, https://github.com/hynek/structlog
+Project-URL: Tidelift, https://tidelift.com/subscription/pkg/pypi-structlog?utm_source=pypi-structlog&utm_medium=pypi
+Provides-Extra: dev
+Provides-Extra: docs
+Provides-Extra: tests
+
+.. image:: https://www.structlog.org/en/stable/_static/structlog_logo_small_transparent.png
+   :alt: structlog mascot
+   :align: center
+
+``structlog`` makes logging in Python **faster**, **less painful**, and **more powerful** by adding **structure** to your log entries.
+It has been successfully used in production at every scale since **2013**, while embracing cutting-edge technologies like *asyncio* or type hints along the way, and `influenced the design <https://twitter.com/sirupsen/status/638330548361019392>`_ of `structured logging packages in other ecosystems <https://github.com/sirupsen/logrus>`_.
+
+Thanks to its highly flexible design, it's up to you whether you want ``structlog`` to take care about the **output** of your log entries or whether you prefer to **forward** them to an existing logging system like the standard library's ``logging`` module.
+
+.. image:: https://github.com/hynek/structlog/blob/main/docs/_static/console_renderer.png?raw=true
+
+.. -end-short-
+
+A short explanation on *why* structured logging is good for you, and why ``structlog`` is the right tool for the job can be found in the `Why chapter <https://www.structlog.org/en/stable/why.html>`_ of our documentation.
+
+Once you feel inspired to try it out, check out our friendly `Getting Started tutorial <https://www.structlog.org/en/stable/getting-started.html>`_ that also contains detailed installation instructions!
+
+If you prefer videos over reading, check out `Markus Holtermann <https://twitter.com/m_holtermann>`_'s DjangoCon Europe 2019 talk: `Logging Rethought 2: The Actions of Frank Taylor Jr. <https://www.youtube.com/watch?v=Y5eyEgyHLLo>`_
+
+.. -begin-meta-
+
+Getting Help
+============
+
+Please use the ``structlog`` tag on `StackOverflow <https://stackoverflow.com/questions/tagged/structlog>`_ to get help.
+
+Answering questions of your fellow developers is also a great way to help the project!
+
+
+Project Information
+===================
+
+``structlog`` is dual-licensed under `Apache License, version 2 <https://choosealicense.com/licenses/apache/>`_ and `MIT <https://choosealicense.com/licenses/mit/>`_, available from `PyPI <https://pypi.org/project/structlog/>`_, the source code can be found on `GitHub <https://github.com/hynek/structlog>`_, the documentation at https://www.structlog.org/.
+
+We collect useful third-party extension in `our wiki <https://github.com/hynek/structlog/wiki/Third-party-Extensions>`_.
+
+``structlog`` targets Python 3.6 and later.
+PyPy3 is known to work, but is not tested anymore.
+
+
+``structlog`` for Enterprise
+----------------------------
+
+Available as part of the Tidelift Subscription.
+
+The maintainers of structlog and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source packages you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact packages you use.
+`Learn more. <https://tidelift.com/subscription/pkg/pypi-structlog?utm_source=pypi-structlog&utm_medium=referral&utm_campaign=readme>`_
+

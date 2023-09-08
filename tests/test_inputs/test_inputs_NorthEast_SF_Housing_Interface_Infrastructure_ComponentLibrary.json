@@ -1,0 +1,875 @@
+{
+    "EmergencyResponseCenter": {
+        "ComponentClass": "StandardiReCoDeSComponent",
+        "RecoveryModel": {
+            "Type": "NoRecoveryActivityModel",
+            "Parameters": {},
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "FirstResponderEngineer": {
+                "Amount": 50,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "SeniorEngineer": {
+                "Amount": 50,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "Contractor": {
+                "Amount": 50,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "Money": {
+                "Amount": 5500000000,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PlanCheckEngineeringTeam": {
+                "Amount": 20,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "SitePreparationCrew": {
+                "Amount": 20,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CleanUpCrew": {
+                "Amount": 20,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "EngineeringDesignTeam": {
+                "Amount": 50,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "DemolitionCrew": {
+                "Amount": 10,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "RepairCrew": {
+                "Amount": 400,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS0_ResidentialBuilding": {
+        "ComponentClass": "StandardiReCoDeSComponent",
+        "RecoveryModel": {
+            "Type": "NoRecoveryActivityModel",
+            "Parameters": {},
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CellularCommunication": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS1_ResidentialBuilding": {
+        "ComponentClass": "BuildingStockUnitWithEmergencyCalls",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "RapidInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 0.1
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "ContractorMobilization": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 7,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Contractor",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew",
+                            "Amount": 10
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "ContractorMobilization"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CellularCommunication": {
+                "Amount": 0,
+                "PostDisasterIncreaseDueToEmergencyCalls": "True",
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS2_ResidentialBuilding": {
+        "ComponentClass": "BuildingStockUnitWithEmergencyCalls",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "RapidInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 0.1
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "DetailedInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 7,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "SeniorEngineer",
+                            "Amount": 2
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "CleanUp": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 3,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "CleanUpCrew",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "Financing": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 7,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Money",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection"
+                    ]
+                },
+                "ArchAndEngDesign": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 21,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "EngineeringDesignTeam",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection"
+                    ]
+                },
+                "ContractorMobilization": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 7,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Contractor",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection",
+                        "ArchAndEngDesign"
+                    ]
+                },
+                "Permitting": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 14,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "PlanCheckEngineeringTeam",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection",
+                        "ArchAndEngDesign"
+                    ]
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection",
+                        "CleanUp",
+                        "Financing",
+                        "ArchAndEngDesign",
+                        "ContractorMobilization",
+                        "Permitting"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CellularCommunication": {
+                "Amount": 0,
+                "PostDisasterIncreaseDueToEmergencyCalls": "True",
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS3_ResidentialBuilding": {
+        "ComponentClass": "BuildingStockUnitWithEmergencyCalls",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "RapidInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 0.1
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "DetailedInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 14,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "SeniorEngineer",
+                            "Amount": 2
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "CleanUp": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 7,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "CleanUpCrew",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "SitePreparation": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 7,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "SitePreparationCrew",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "Financing": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 42,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Money",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection"
+                    ]
+                },
+                "ArchAndEngDesign": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 42,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "EngineeringDesignTeam",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection"
+                    ]
+                },
+                "ContractorMobilization": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 14,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Contractor",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection",
+                        "ArchAndEngDesign"
+                    ]
+                },
+                "Permitting": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 28,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "PlanCheckEngineeringTeam",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection",
+                        "ArchAndEngDesign"
+                    ]
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection",
+                        "CleanUp",
+                        "SitePreparation",
+                        "Financing",
+                        "ArchAndEngDesign",
+                        "ContractorMobilization",
+                        "Permitting"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CellularCommunication": {
+                "Amount": 0,
+                "PostDisasterIncreaseDueToEmergencyCalls": "True",
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS4_ResidentialBuilding": {
+        "ComponentClass": "BuildingStockUnitWithEmergencyCalls",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "RapidInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 0.1
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "CleanUp": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 7,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "CleanUpCrew",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "SitePreparation": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 7,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "SitePreparationCrew",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "Demolition": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 10,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "DemolitionCrew",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "SitePreparation",
+                        "CleanUp"
+                    ]
+                },
+                "Financing": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 42,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Money",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "ArchAndEngDesign": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 42,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "EngineeringDesignTeam",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "ContractorMobilization": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 14,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Contractor",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "ArchAndEngDesign"
+                    ]
+                },
+                "Permitting": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 28,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "PlanCheckEngineeringTeam",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "ArchAndEngDesign"
+                    ]
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "CleanUp",
+                        "SitePreparation",
+                        "Financing",
+                        "ArchAndEngDesign",
+                        "ContractorMobilization",
+                        "Permitting",
+                        "Demolition"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CellularCommunication": {
+                "Amount": 0,
+                "PostDisasterIncreaseDueToEmergencyCalls": "True",
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "ElectricPowerSupplySystem": {
+        "ComponentClass": "InfrastructureInterface",
+        "RecoveryModel": {
+            "Type": "InfrastructureInterfaceRecoveryModel",
+            "Parameters": {},
+            "DamageFunctionalityRelation": "MultipleSteps"
+        },
+        "Supply": {
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Binary"
+            }
+        },
+        "OperationDemand": {
+            "CellularCommunication": {
+                "Amount": 0.0,
+                "FunctionalityToAmountRelation": "Constant"
+            }
+        }
+    },
+    "WaterSupplySystem": {
+        "ComponentClass": "InfrastructureInterface",
+        "RecoveryModel": {
+            "Type": "InfrastructureInterfaceRecoveryModel",
+            "Parameters": {},
+            "DamageFunctionalityRelation": ""
+        },
+        "Supply": {
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Binary"
+            }
+        },
+        "OperationDemand": {
+            "ElectricPower": {
+                "Amount": 0.0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "CellularCommunication": {
+                "Amount": 0.0,
+                "FunctionalityToAmountRelation": "Binary"
+            }
+        }
+    },
+    "CellularCommunicationSystem": {
+        "ComponentClass": "InfrastructureInterface",
+        "RecoveryModel": {
+            "Type": "InfrastructureInterfaceRecoveryModel",
+            "Parameters": {},
+            "DamageFunctionalityRelation": ""
+        },
+        "Supply": {
+            "CellularCommunication": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Binary"
+            }
+        },
+        "OperationDemand": {
+            "ElectricPower": {
+                "Amount": 0.0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "CellularCommunication": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Binary"
+            }
+        }
+    }
+}

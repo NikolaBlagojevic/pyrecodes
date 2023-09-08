@@ -1,0 +1,922 @@
+#!/usr/bin/env python3
+#
+#  autodoc_typehints.py
+r"""
+| Enhanced version of `sphinx-autodoc-typehints <https://pypi.org/project/sphinx-autodoc-typehints/>`_.
+| Copyright (c) Alex Grönholm
+
+The changes are:
+
+* *None* is formatted as :py:obj:`None` and not ``None``.
+  If `intersphinx <https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html>`_
+  is used this will now be a link to the Python documentation.
+
+  Since :github:pull:`154 <agronholm/sphinx-autodoc-typehints>` this feature is now available upstream.
+
+* If the signature of the object cannot be read, the signature provided by Sphinx will be used
+  rather than raising an error.
+
+  This usually occurs for methods of builtin types.
+
+* :class:`typing.TypeVar`\s are linked to if they have been included in the documentation.
+
+* If a function/method argument has a :class:`module <types.ModuleType>`, :class:`class <typing.Type>`
+  or :py:obj:`function <types.FunctionType>` object as its default value a better
+  representation will be shown in the signature.
+
+  For example:
+
+	.. autofunction:: sphinx_toolbox.more_autodoc.typehints.serialise
+		:noindex:
+
+  Previously this would have shown the full path to the source file. Now it displays ``<module 'json'>``.
+
+* The ability to hook into the :func:`~.process_docstring` function to edit the object's properties before the
+  annotations are added to the docstring.
+
+  This is used by `attr-utils <https://attr-utils.readthedocs.io>`_
+  to add annotations based on converter functions in `attrs <https://www.attrs.org>`_ classes.
+
+  To use this, in your extension's ``setup`` function:
+
+  .. code-block:: python
+
+      def setup(app: Sphinx) -> Dict[str, Any]:
+          from sphinx_toolbox.more_autodoc.typehints import docstring_hooks
+          docstring_hooks.append((my_hook, 75))
+          return {}
+
+  .. latex:clearpage::
+
+  ``my_hook`` is a function that takes the object being documented as its only argument
+  and returns that object after modification. The ``75`` is the priority of the hook:
+
+   * ``< 20`` runs before ``fget`` functions are extracted from properties
+   * ``< 90`` runs before ``__new__`` functions are extracted from :class:`~typing.NamedTuple`\s.
+   * ``< 100`` runs before ``__init__`` functions are extracted from classes.
+
+* Unresolved forward references are handled better.
+
+* Many of the built in types from the :mod:`types` module are now formatted and linked to correctly.
+
+-----
+
+.. versionadded:: 0.4.0
+.. versionchanged:: 0.6.0  Moved from :mod:`sphinx_toolbox.autodoc_typehints`.
+.. versionchanged:: 0.8.0  Added support for :func:`collections.namedtuple`.
+
+-----
+
+.. extensions:: sphinx_toolbox.more_autodoc.typehints
+
+.. latex:vspace:: -20px
+
+| For configuration information see https://github.com/agronholm/sphinx-autodoc-typehints
+| In addition, the following configuration value is added by this extension:
+
+.. latex:vspace:: -20px
+
+.. confval:: hide_none_rtype
+	:type: :class:`bool`
+	:default: :py:obj:`False`
+
+	Hides return types of :py:obj:`None`.
+
+
+API Reference
+-----------------
+
+"""  # noqa: SXL001
+#
+#  Copyright (c) Alex Grönholm
+#  Changes copyright © 2020-2022 Dominic Davis-Foster <dominic@davis-foster.co.uk>
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy
+#  of this software and associated documentation files (the "Software"), to deal
+#  in the Software without restriction, including without limitation the rights
+#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#  copies of the Software, and to permit persons to whom the Software is
+#  furnished to do so, subject to the following conditions:
+#
+#  The above copyright notice and this permission notice shall be included in all
+#  copies or substantial portions of the Software.
+#
+#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+#  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+#  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+#  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+#  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+#  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+#  OR OTHER DEALINGS IN THE SOFTWARE.
+#
+
+# stdlib
+import inspect
+import itertools
+import json
+import re
+import sys
+import types
+from contextlib import suppress
+from operator import itemgetter
+from tempfile import TemporaryDirectory
+from types import FunctionType, ModuleType
+from typing import (
+		Any,
+		AnyStr,
+		Callable,
+		Dict,
+		ForwardRef,
+		List,
+		Mapping,
+		NewType,
+		Optional,
+		Tuple,
+		Type,
+		TypeVar,
+		Union,
+		get_type_hints
+		)
+
+# 3rd party
+import sphinx.util.typing
+import sphinx_autodoc_typehints
+from domdf_python_tools.stringlist import DelimitedList
+from domdf_python_tools.typing import (
+		ClassMethodDescriptorType,
+		MethodDescriptorType,
+		MethodWrapperType,
+		WrapperDescriptorType
+		)
+from domdf_python_tools.utils import etc
+from sphinx.application import Sphinx
+from sphinx.errors import ExtensionError
+from sphinx.util.inspect import signature as Signature
+from sphinx.util.inspect import stringify_signature
+
+# this package
+from sphinx_toolbox.utils import (
+		SphinxExtMetadata,
+		code_repr,
+		escape_trailing__,
+		is_namedtuple,
+		metadata_add_version
+		)
+
+try:
+	# 3rd party
+	import attr
+except ImportError:  # pragma: no cover
+	# attrs is used in a way that it is only required in situations
+	# where it is available to import, so it is fine to do this.
+	pass
+
+try:
+	# 3rd party
+	from sphinx_autodoc_typehints import logger as sat_logger  # type: ignore[attr-defined]
+	from sphinx_autodoc_typehints import pydata_annotations  # type: ignore[attr-defined]
+except ImportError:
+	# Privatised in 1.14.1
+	# 3rd party
+	from sphinx_autodoc_typehints import _LOGGER as sat_logger
+	from sphinx_autodoc_typehints import _PYDATA_ANNOTATIONS as pydata_annotations
+
+try:
+	# 3rd party
+	from sphinx_autodoc_typehints import _future_annotations_imported
+except ImportError:
+
+	def _future_annotations_imported(obj: Any) -> bool:
+		if sys.version_info < (3, 7):  # pragma: no cover (py37+)
+			# Only Python ≥ 3.7 supports PEP563.
+			return False
+
+		_annotations = getattr(inspect.getmodule(obj), "annotations", None)
+		if _annotations is None:
+			return False
+
+		# Make sure that annotations is imported from __future__ - defined in cpython/Lib/__future__.py
+		# annotations become strings at runtime
+		CO_FUTURE_ANNOTATIONS = 0x100000 if sys.version_info[0:2] == (3, 7) else 0x1000000
+		return _annotations.compiler_flag == CO_FUTURE_ANNOTATIONS
+
+
+__all__ = (
+		"ObjectAlias",
+		"Module",
+		"Function",
+		"Class",
+		"process_signature",
+		"process_docstring",
+		"format_annotation",
+		"get_all_type_hints",
+		"docstring_hooks",
+		"setup",
+		"get_annotation_module",
+		"get_annotation_class_name",
+		"get_annotation_args",
+		"backfill_type_hints",
+		"load_args",
+		"split_type_comment_args",
+		"default_preprocessors",
+		"Preprocessor",
+		)
+
+get_annotation_module = sphinx_autodoc_typehints.get_annotation_module
+get_annotation_class_name = sphinx_autodoc_typehints.get_annotation_class_name
+get_annotation_args = sphinx_autodoc_typehints.get_annotation_args
+backfill_type_hints = sphinx_autodoc_typehints.backfill_type_hints
+load_args = sphinx_autodoc_typehints.load_args
+split_type_comment_args = sphinx_autodoc_typehints.split_type_comment_args
+
+
+# Demonstration of module default argument in signature
+def serialise(obj: Any, library=json) -> str:  # noqa: MAN001
+	"""
+	Serialise an object into a JSON string.
+
+	:param obj: The object to serialise.
+	:param library: The JSON library to use.
+	:no-default library:
+
+	:return: The JSON string.
+	"""
+
+
+class ObjectAlias:
+	"""
+	Used to represent a module, class, function etc in a Sphinx function/class signature.
+
+	.. versionadded:: 0.9.0
+
+	:param name: The name of the object being aliased.
+	"""
+
+	_alias_type: str
+
+	def __init__(self, name: str):
+		self.name: str = name
+
+	def __repr__(self) -> str:
+		"""
+		Returns a string representation of the :class:`~.ObjectAlias`.
+		"""
+
+		return f"<{self._alias_type} {self.name!r}>"
+
+
+class Module(ObjectAlias):
+	"""
+	Used to represent a module in a Sphinx function/class signature.
+
+	:param name: The name of the module.
+	"""
+
+	_alias_type = "module"
+
+
+class Function(ObjectAlias):
+	"""
+	Used to represent a function in a Sphinx function/class signature.
+
+	.. versionadded:: 0.9.0
+
+	:param name: The name of the function.
+	"""
+
+	_alias_type = "function"
+
+
+class Class(ObjectAlias):
+	"""
+	Used to represent a class in a Sphinx function/class signature.
+
+	.. versionadded:: 0.9.0
+
+	:param name: The name of the class.
+	"""
+
+	_alias_type = "class"
+
+
+def format_annotation(annotation: Any, fully_qualified: bool = False) -> str:
+	"""
+	Format a type annotation.
+
+	:param annotation:
+	:param fully_qualified: Whether the fully qualified name should be shown (e.g. ``typing.List``)
+		or only the object name (e.g. ``List``).
+
+	:rtype:
+
+	.. versionchanged:: 2.13.0  Added support for :py:obj:`True` and :py:obj:`False`
+
+	.. latex:clearpage::
+	"""
+
+	prefix = '' if fully_qualified else '~'
+
+	# Special cases
+	if annotation is None or annotation is type(None):  # noqa: E721
+		return ":py:obj:`None`"
+	elif isinstance(annotation, bool):
+		return f":py:obj:`{annotation}`"
+	elif annotation is Ellipsis:
+		return "..."
+	elif annotation is itertools.cycle:
+		return f":func:`{prefix}itertools.cycle`"
+	elif annotation is types.GetSetDescriptorType:  # noqa: E721
+		return f":py:data:`{prefix}types.GetSetDescriptorType`"
+	elif annotation is types.MemberDescriptorType:  # noqa: E721
+		return f":py:data:`{prefix}types.MemberDescriptorType`"
+	elif annotation is types.MappingProxyType:  # noqa: E721
+		return f":py:class:`{prefix}types.MappingProxyType`"
+	elif annotation is types.ModuleType:  # noqa: E721
+		return f":py:class:`{prefix}types.ModuleType`"
+	elif annotation is types.FunctionType:  # noqa: E721
+		return f":py:data:`{prefix}types.FunctionType`"
+	elif annotation is types.BuiltinFunctionType:  # noqa: E721
+		return f":py:data:`{prefix}types.BuiltinFunctionType`"
+	elif annotation is types.MethodType:  # noqa: E721
+		return f":py:data:`{prefix}types.MethodType`"
+	elif annotation is MethodDescriptorType:
+		return f":py:data:`{prefix}types.MethodDescriptorType`"
+	elif annotation is ClassMethodDescriptorType:
+		return f":py:data:`{prefix}types.ClassMethodDescriptorType`"
+	elif annotation is MethodWrapperType:
+		return f":py:data:`{prefix}types.MethodWrapperType`"
+	elif annotation is WrapperDescriptorType:
+		return f":py:data:`{prefix}types.WrapperDescriptorType`"
+	elif isinstance(annotation, ForwardRef):
+		# Unresolved forward ref
+		return f":py:obj:`{prefix}.{annotation.__forward_arg__}`"
+	elif annotation is type(re.compile('')):  # noqa: E721
+		return f":py:class:`{prefix}typing.Pattern`"
+	elif annotation is TemporaryDirectory:
+		return f":py:obj:`{prefix}tempfile.TemporaryDirectory`"
+	elif sys.version_info >= (3, 10):  # pragma: no cover (<py310)
+		if annotation is types.UnionType:  # noqa: E721
+			return f":py:data:`{prefix}types.UnionType`"
+
+	try:
+		module = get_annotation_module(annotation)
+		class_name = get_annotation_class_name(annotation, module)
+
+		# Special case for typing.NewType being a class in 3.10
+		# Fixed upstream in 1.13.0
+		if sys.version_info >= (3, 10) and isinstance(annotation, NewType):  # pragma: no cover (<py310)
+			module, class_name = "typing", "NewType"
+
+		args = get_annotation_args(annotation, module, class_name)
+	except ValueError:
+		return f":py:obj:`~.{annotation}`"
+
+	if module == "_io":
+		module = "io"
+	elif module == "_ast":
+		module = "ast"
+	# Redirect all typing_extensions types to the stdlib typing module
+	elif module == "typing_extensions":
+		module = "typing"
+	elif module == "typing" and class_name == "AbstractContextManager":
+		module = "contextlib"
+
+	full_name = (f"{module}.{class_name}") if module != "builtins" else class_name
+	prefix = '' if fully_qualified or full_name == class_name else '~'
+	role = "data" if class_name in pydata_annotations else "class"
+	args_format = "\\[{}]"
+	formatted_args = ''
+
+	# Type variables are also handled specially
+	with suppress(TypeError):
+		if isinstance(annotation, TypeVar) and annotation is not AnyStr:
+			typevar_name = (annotation.__module__ + '.' + annotation.__name__)
+			return f":py:data:`{repr(annotation)} <{typevar_name}>`"
+
+	# Some types require special handling
+	if full_name == "typing.NewType":
+		args_format = f"\\(:py:data:`~{annotation.__name__}`, {{}})"
+		role = "class" if sys.version_info > (3, 10) else "func"
+	elif full_name in {"typing.Union", "types.UnionType"} and len(args) == 2 and type(None) in args:
+		full_name = "typing.Optional"
+	elif full_name == "types.UnionType":
+		full_name = "typing.Union"
+		role = "data"
+	elif full_name == "typing.Callable" and args and args[0] is not ...:
+		formatted_args = "\\[\\[" + ", ".join(format_annotation(arg) for arg in args[:-1]) + ']'
+		formatted_args += ", " + format_annotation(args[-1]) + ']'
+	elif full_name == "typing.Literal":
+		# TODO: Enums?
+		formatted_arg_list: DelimitedList[str] = DelimitedList()
+		for arg in args:
+			if isinstance(arg, bool):
+				formatted_arg_list.append(format_annotation(arg))
+			else:
+				formatted_arg_list.append(code_repr(arg))
+
+		formatted_args = f"\\[{formatted_arg_list:, }]"
+
+	if full_name == "typing.Optional":
+		args = tuple(x for x in args if x is not type(None))  # noqa: E721
+
+	# TODO: unions with one or more forward refs
+
+	if args and not formatted_args:
+		formatted_args = args_format.format(", ".join(format_annotation(arg, fully_qualified) for arg in args))
+
+	return f":py:{role}:`{prefix}{full_name}`{formatted_args}"
+
+
+#: Type hint for default preprocessor functions.
+Preprocessor = Callable[[Type], Any]
+
+default_preprocessors: List[Tuple[Callable[[Type], bool], Preprocessor]] = [
+		(lambda d: isinstance(d, ModuleType), lambda d: Module(d.__name__)),
+		(lambda d: isinstance(d, FunctionType), lambda d: Function(d.__name__)),
+		(inspect.isclass, lambda d: Class(d.__name__)),
+		(lambda d: d is Ellipsis, lambda d: etc),
+		(lambda d: d == "...", lambda d: etc),
+		]
+"""
+A list of 2-element tuples, comprising a function to check the default value against and a preprocessor to
+pass the function to if True.
+"""
+
+
+def preprocess_function_defaults(obj: Callable) -> Tuple[Optional[inspect.Signature], List[inspect.Parameter]]:
+	"""
+	Pre-processes the default values for the arguments of a function.
+
+	.. versionadded:: 0.8.0
+
+	:param obj: The function.
+
+	:return: The function signature and a list of arguments/parameters.
+	"""
+
+	try:
+		signature = Signature(inspect.unwrap(obj))
+	except ValueError:  # pragma: no cover
+		return None, []
+
+	parameters = []
+	preprocessor_list = default_preprocessors
+
+	for param in signature.parameters.values():
+		default = param.default
+
+		# pylint: disable=dotted-import-in-loop
+		if default is not inspect.Parameter.empty:
+			for check, preprocessor in preprocessor_list:
+				if check(default):
+					default = preprocessor(default)
+					break
+
+		parameters.append(param.replace(annotation=inspect.Parameter.empty, default=default))
+		# pylint: enable=dotted-import-in-loop
+
+	return signature, parameters
+
+
+def preprocess_class_defaults(
+		obj: Callable
+		) -> Tuple[Optional[Callable], Optional[inspect.Signature], List[inspect.Parameter]]:
+	"""
+	Pre-processes the default values for the arguments of a class.
+
+	.. versionadded:: 0.8.0
+
+	:param obj: The class.
+
+	:return: The class signature and a list of arguments/parameters.
+	"""
+
+	init: Optional[Callable[..., Any]] = getattr(obj, "__init__", getattr(obj, "__new__", None))
+
+	if is_namedtuple(obj):
+		init = getattr(obj, "__new__")
+
+	try:
+		signature = Signature(inspect.unwrap(init))  # type: ignore[arg-type]
+	except ValueError:  # pragma: no cover
+		return init, None, []
+
+	parameters = []
+	preprocessor_list = default_preprocessors
+
+	for argname, param in signature.parameters.items():
+		default = param.default
+
+		if default is not inspect.Parameter.empty:
+			for check, preprocessor in preprocessor_list:
+				if check(default):
+					default = preprocessor(default)
+					break
+
+			else:
+				if hasattr(obj, "__attrs_attrs__") and default is attr.NOTHING:
+					# Special casing for attrs classes
+					for value in obj.__attrs_attrs__:  # type: ignore[attr-defined]
+						if value.name == argname:
+							if isinstance(value.default, attr.Factory):  # type: ignore[arg-type]
+								default = value.default.factory()
+
+		parameters.append(param.replace(annotation=inspect.Parameter.empty, default=default))
+
+	return init, signature, parameters
+
+
+def process_signature(  # noqa: MAN001
+		app: Sphinx,
+		what: str,
+		name: str,
+		obj,
+		options,
+		signature,
+		return_annotation: Any,
+		) -> Optional[Tuple[str, None]]:
+	"""
+	Process the signature for a function/method.
+
+	:param app: The Sphinx application.
+	:param what:
+	:param name: The name of the object being documented.
+	:param obj: The object being documented.
+	:param options: Mapping of autodoc options to values.
+	:param signature:
+	:param return_annotation:
+
+	:rtype:
+
+	.. versionchanged:: 0.8.0
+
+		Added support for factory function default values in attrs classes.
+	"""
+
+	if not callable(obj):
+		return None
+
+	original_obj = obj
+
+	if inspect.isclass(obj):
+		obj, signature, parameters = preprocess_class_defaults(obj)
+	else:
+		signature, parameters = preprocess_function_defaults(obj)
+
+	obj = inspect.unwrap(obj)
+
+	if not getattr(obj, "__annotations__", None):
+		return None
+
+	# The generated dataclass __init__() and class are weird and need extra checks
+	# This helper function operates on the generated class and methods
+	# of a dataclass, not an instantiated dataclass object. As such,
+	# it cannot be replaced by a call to `dataclasses.is_dataclass()`.
+	def _is_dataclass(name: str, what: str, qualname: str) -> bool:
+		if what == "method" and name.endswith(".__init__"):
+			# generated __init__()
+			return True
+		if what == "class" and qualname.endswith(".__init__"):
+			# generated class
+			return True
+		return False
+
+	# The generated dataclass __init__() is weird and needs the second condition
+	if (
+			hasattr(obj, "__qualname__") and "<locals>" in obj.__qualname__
+			and not _is_dataclass(name, what, obj.__qualname__)
+			):
+		sat_logger.warning(
+				"Cannot treat a function defined as a local function: '%s'  (use @functools.wraps)", name
+				)
+		return None
+
+	if parameters:
+		if inspect.isclass(original_obj) or (what == "method" and name.endswith(".__init__")):
+			del parameters[0]
+		elif what == "method":
+
+			try:
+				outer = inspect.getmodule(obj)
+				if outer is not None:
+					for clsname in obj.__qualname__.split('.')[:-1]:
+						outer = getattr(outer, clsname)
+			except AttributeError:
+				outer = None
+
+			method_name = obj.__name__
+			if method_name.startswith("__") and not method_name.endswith("__"):
+				# If the method starts with double underscore (dunder)
+				# Python applies mangling so we need to prepend the class name.
+				# This doesn't happen if it always ends with double underscore.
+				class_name = obj.__qualname__.split('.')[-2]
+				method_name = f"_{class_name}{method_name}"
+
+			if outer is not None:
+				method_object = outer.__dict__[method_name] if outer else obj
+				if not isinstance(method_object, (classmethod, staticmethod)):
+					del parameters[0]
+
+			else:
+				if not inspect.ismethod(obj) and parameters[0].name in {"self", "cls", "_cls"}:
+					del parameters[0]
+
+	signature = signature.replace(parameters=parameters, return_annotation=inspect.Signature.empty)
+
+	return stringify_signature(signature), None  # .replace('\\', '\\\\')
+
+
+def _docstring_property_hook(obj: Any) -> Callable:
+	if isinstance(obj, property):
+		obj = obj.fget
+
+	return obj
+
+
+def _docstring_class_hook(obj: Any) -> Callable:
+	if callable(obj):
+		if inspect.isclass(obj):
+			obj = getattr(obj, "__init__")
+
+	return obj
+
+
+def _docstring_namedtuple_hook(obj: Any) -> Callable:
+	if is_namedtuple(obj):
+		obj = getattr(obj, "__new__")
+
+	return obj
+
+
+docstring_hooks: List[Tuple[Callable[[Any], Callable], int]] = [
+		(_docstring_property_hook, 20),
+		(_docstring_namedtuple_hook, 90),
+		(_docstring_class_hook, 100),
+		]
+"""
+List of additional hooks to run in :func:`~sphinx_toolbox.more_autodoc.typehints.process_docstring`.
+
+Each entry in the list consists of:
+
+* a function that takes the object being documented as its only argument
+  and returns that object after modification.
+
+* a number giving the priority of the hook, in ascending order.
+
+   * ``< 20`` runs before ``fget`` functions are extracted from properties
+   * ``< 90`` runs before ``__new__`` functions are extracted from :class:`NamedTuples <typing.NamedTuple>`.
+   * ``< 100`` runs before ``__init__`` functions are extracted from classes.
+"""
+
+
+def process_docstring(
+		app: Sphinx,
+		what: str,
+		name: str,
+		obj: Any,
+		options: Dict[str, Any],
+		lines: List[str],
+		) -> None:
+	"""
+	Process the docstring of a class, function, method etc.
+
+	:param app: The Sphinx application.
+	:param what:
+	:param name: The name of the object being documented.
+	:param obj: The object being documented.
+	:param options: Mapping of autodoc options to values.
+	:param lines: List of strings representing the current contents of the docstring.
+
+	.. versionchanged:: 1.1.0
+
+		An empty ``:rtype:`` flag can be used to control the position of the return type annotation in the docstring.
+	"""
+
+	if what in {"variable", "regex"}:
+		# Doesn't have parameters or return type
+		return
+
+	original_obj = obj
+
+	for hook, priority in sorted(docstring_hooks, key=itemgetter(1)):
+		obj = hook(obj)
+
+	if callable(obj):
+		obj = inspect.unwrap(obj)
+		type_hints = get_all_type_hints(obj, name, original_obj)
+
+		signature_params: Mapping[str, Any]
+		try:
+			signature_params = inspect.signature(obj).parameters
+		except Exception:
+			# Ignore errors. Can be a multitude of things including builtin functions or extension modules.
+			signature_params = {}
+
+		for argname, annotation in type_hints.items():
+			if argname == "return":
+				continue  # this is handled separately later
+
+			if argname in signature_params:
+				# Ensure *args and **kwargs have *s
+				if signature_params[argname].kind == 2:  # *args
+					argname = f"\\*{argname}"
+				elif signature_params[argname].kind == 4:  # **kwargs
+					argname = f"\\*\\*{argname}"
+
+			argname = escape_trailing__(argname)
+
+			formatted_annotation = format_annotation(
+					annotation,
+					fully_qualified=app.config.typehints_fully_qualified,
+					)
+
+			searchfor = [f":{field} {argname}:" for field in ("param", "parameter", "arg", "argument")]
+			insert_index = None
+
+			for i, line in enumerate(lines):
+				if any(line.startswith(search_string) for search_string in searchfor):
+					insert_index = i
+					break
+
+			if insert_index is None and app.config.always_document_param_types:
+				lines.append(f":param {argname}:")
+				insert_index = len(lines)
+
+			if insert_index is not None:
+				lines.insert(insert_index, f":type {argname}: {formatted_annotation}")
+
+		if "return" in type_hints and not inspect.isclass(original_obj):
+			# This avoids adding a return type for data class __init__ methods
+			if what == "method" and name.endswith(".__init__"):
+				return
+
+			formatted_annotation = format_annotation(
+					type_hints["return"],
+					fully_qualified=app.config.typehints_fully_qualified,
+					)
+
+			insert_index = len(lines)
+			for i, line in enumerate(lines):
+				if line.startswith(":rtype:"):
+					if line[7:].strip():
+						insert_index = None
+					else:
+						insert_index = i
+						lines.pop(i)
+
+					break
+
+				elif line.startswith(":return:") or line.startswith(":returns:"):
+					insert_index = i
+
+			if insert_index is not None and app.config.typehints_document_rtype:
+
+				if insert_index == len(lines):
+					# Ensure that :rtype: doesn't get joined with a paragraph of text, which
+					# prevents it being interpreted.
+					lines.append('')
+					insert_index += 1
+
+				if not (formatted_annotation == ":py:obj:`None`" and app.config.hide_none_rtype):
+					lines.insert(insert_index, f":rtype: {formatted_annotation}")
+
+
+def _class_get_type_hints(obj, globalns=None, localns=None):  # noqa: MAN001,MAN002
+	"""
+	Return type hints for an object.
+
+	For classes, unlike :func:`typing.get_type_hints` this will attempt to
+	use the global namespace of the modules where the class and its parents
+	were defined until it can resolve all forward references.
+	"""
+
+	if not inspect.isclass(obj):
+		return get_type_hints(obj, localns=localns, globalns=globalns)
+
+	mro_stack = list(obj.__mro__)
+	if localns is None:
+		localns = {}
+
+	while True:
+
+		try:  # pylint: disable=R8203
+			return get_type_hints(obj.__init__, localns=localns, globalns=globalns)
+		except NameError:
+			if not mro_stack:
+				raise
+			klasse = mro_stack.pop(0)
+			if klasse is object or klasse.__module__ == "builtins":
+				raise
+			localns = {**sys.modules[klasse.__module__].__dict__, **localns}
+
+
+def get_all_type_hints(obj: Any, name: str, original_obj: Any) -> Dict[str, Any]:
+	"""
+	Returns the resolved type hints for the given objects.
+
+	:param obj:
+	:param name:
+	:param original_obj: The original object, before the class if ``obj`` is its ``__init__`` method.
+	"""
+
+	def log(exc: Exception) -> None:
+		sat_logger.warning(
+				'Cannot resolve forward reference in type annotations of "%s": %s',
+				name,
+				exc,
+				)
+
+	rv = {}
+
+	try:
+		if inspect.isclass(original_obj):
+			rv = _class_get_type_hints(original_obj)
+		else:
+			rv = get_type_hints(obj)
+
+	except (AttributeError, TypeError, RecursionError) as exc:
+		# Introspecting a slot wrapper will raise TypeError, and some recursive type
+		# definitions will cause a RecursionError (https://github.com/python/typing/issues/574).
+
+		# If one is using PEP563 annotations, Python will raise a (e.g.,)
+		# TypeError("TypeError: unsupported operand type(s) for |: 'type' and 'NoneType'")
+		# on 'str | None', therefore we accept TypeErrors with that error message
+		# if 'annotations' is imported from '__future__'.
+		if isinstance(exc, TypeError):
+			if _future_annotations_imported(obj) and "unsupported operand type" in str(exc):
+				rv = obj.__annotations__
+
+	except NameError as exc:
+		log(exc)
+		rv = obj.__annotations__
+
+	if rv:
+		return rv
+
+	rv = backfill_type_hints(obj, name)
+
+	try:
+		if rv != {}:
+			obj.__annotations__ = rv
+	except (AttributeError, TypeError):
+		return rv
+
+	try:
+		if inspect.isclass(original_obj):
+			rv = _class_get_type_hints(original_obj)
+		else:
+			rv = get_type_hints(obj)
+	except (AttributeError, TypeError):
+		pass
+	except NameError as exc:
+		log(exc)
+		rv = obj.__annotations__
+
+	return rv
+
+
+@metadata_add_version
+def setup(app: Sphinx) -> SphinxExtMetadata:
+	"""
+	Setup :mod:`sphinx_toolbox.more_autodoc.typehints`.
+
+	:param app: The Sphinx application.
+	"""
+
+	if "sphinx_autodoc_typehints" in app.extensions:
+		raise ExtensionError(
+				"'sphinx_toolbox.more_autodoc.typehints' must be loaded before 'sphinx_autodoc_typehints'."
+				)
+
+	sphinx_autodoc_typehints.format_annotation = format_annotation  # type: ignore[assignment]
+	sphinx_autodoc_typehints.process_signature = process_signature
+	sphinx_autodoc_typehints.process_docstring = process_docstring  # type: ignore[assignment]
+
+	app.setup_extension("sphinx.ext.autodoc")
+	app.setup_extension("sphinx_autodoc_typehints")
+
+	app.add_config_value("hide_none_rtype", False, "env", [bool])
+
+	return {"parallel_read_safe": True}
+
+
+def _resolve_forwardref(
+		fr: Union[ForwardRef, sphinx.util.typing.ForwardRef],
+		module: str,
+		) -> object:
+	"""
+	Resolve a forward reference.
+
+	This is not part of the public API.
+
+	:param fr:
+	:param module: The module the forward reference was defined in.
+
+	:return: The evaluated object.
+	"""
+
+	module_dict = sys.modules[module].__dict__
+	if sys.version_info < (3, 9):
+		return fr._evaluate(module_dict, module_dict)
+	else:
+		return fr._evaluate(module_dict, module_dict, set())

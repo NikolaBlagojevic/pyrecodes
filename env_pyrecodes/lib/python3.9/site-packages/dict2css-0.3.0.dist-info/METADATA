@@ -1,0 +1,198 @@
+Metadata-Version: 2.1
+Name: dict2css
+Version: 0.3.0
+Summary: A μ-library for constructing cascading style sheets from Python dictionaries.
+Author-email: Dominic Davis-Foster <dominic@davis-foster.co.uk>
+License: MIT
+Keywords: css,serialize
+Home-page: https://github.com/sphinx-toolbox/dict2css
+Project-URL: Issue Tracker, https://github.com/sphinx-toolbox/dict2css/issues
+Project-URL: Source Code, https://github.com/sphinx-toolbox/dict2css
+Project-URL: Documentation, https://dict2css.readthedocs.io/en/latest
+Platform: Windows
+Platform: macOS
+Platform: Linux
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Typing :: Typed
+Requires-Python: >=3.6
+Requires-Dist: cssutils>=2.2.0
+Requires-Dist: domdf-python-tools>=2.2.0
+Description-Content-Type: text/x-rst
+
+
+#########
+dict2css
+#########
+
+.. start short_desc
+
+**A μ-library for constructing cascading style sheets from Python dictionaries.**
+
+.. end short_desc
+
+
+.. start shields
+
+.. list-table::
+	:stub-columns: 1
+	:widths: 10 90
+
+	* - Docs
+	  - |docs| |docs_check|
+	* - Tests
+	  - |actions_linux| |actions_windows| |actions_macos| |coveralls|
+	* - PyPI
+	  - |pypi-version| |supported-versions| |supported-implementations| |wheel|
+	* - Anaconda
+	  - |conda-version| |conda-platform|
+	* - Activity
+	  - |commits-latest| |commits-since| |maintained| |pypi-downloads|
+	* - QA
+	  - |codefactor| |actions_flake8| |actions_mypy|
+	* - Other
+	  - |license| |language| |requires|
+
+.. |docs| image:: https://img.shields.io/readthedocs/dict2css/latest?logo=read-the-docs
+	:target: https://dict2css.readthedocs.io/en/latest
+	:alt: Documentation Build Status
+
+.. |docs_check| image:: https://github.com/sphinx-toolbox/dict2css/workflows/Docs%20Check/badge.svg
+	:target: https://github.com/sphinx-toolbox/dict2css/actions?query=workflow%3A%22Docs+Check%22
+	:alt: Docs Check Status
+
+.. |actions_linux| image:: https://github.com/sphinx-toolbox/dict2css/workflows/Linux/badge.svg
+	:target: https://github.com/sphinx-toolbox/dict2css/actions?query=workflow%3A%22Linux%22
+	:alt: Linux Test Status
+
+.. |actions_windows| image:: https://github.com/sphinx-toolbox/dict2css/workflows/Windows/badge.svg
+	:target: https://github.com/sphinx-toolbox/dict2css/actions?query=workflow%3A%22Windows%22
+	:alt: Windows Test Status
+
+.. |actions_macos| image:: https://github.com/sphinx-toolbox/dict2css/workflows/macOS/badge.svg
+	:target: https://github.com/sphinx-toolbox/dict2css/actions?query=workflow%3A%22macOS%22
+	:alt: macOS Test Status
+
+.. |actions_flake8| image:: https://github.com/sphinx-toolbox/dict2css/workflows/Flake8/badge.svg
+	:target: https://github.com/sphinx-toolbox/dict2css/actions?query=workflow%3A%22Flake8%22
+	:alt: Flake8 Status
+
+.. |actions_mypy| image:: https://github.com/sphinx-toolbox/dict2css/workflows/mypy/badge.svg
+	:target: https://github.com/sphinx-toolbox/dict2css/actions?query=workflow%3A%22mypy%22
+	:alt: mypy status
+
+.. |requires| image:: https://dependency-dash.herokuapp.com/github/sphinx-toolbox/dict2css/badge.svg
+	:target: https://dependency-dash.herokuapp.com/github/sphinx-toolbox/dict2css/
+	:alt: Requirements Status
+
+.. |coveralls| image:: https://img.shields.io/coveralls/github/sphinx-toolbox/dict2css/master?logo=coveralls
+	:target: https://coveralls.io/github/sphinx-toolbox/dict2css?branch=master
+	:alt: Coverage
+
+.. |codefactor| image:: https://img.shields.io/codefactor/grade/github/sphinx-toolbox/dict2css?logo=codefactor
+	:target: https://www.codefactor.io/repository/github/sphinx-toolbox/dict2css
+	:alt: CodeFactor Grade
+
+.. |pypi-version| image:: https://img.shields.io/pypi/v/dict2css
+	:target: https://pypi.org/project/dict2css/
+	:alt: PyPI - Package Version
+
+.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/dict2css?logo=python&logoColor=white
+	:target: https://pypi.org/project/dict2css/
+	:alt: PyPI - Supported Python Versions
+
+.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/dict2css
+	:target: https://pypi.org/project/dict2css/
+	:alt: PyPI - Supported Implementations
+
+.. |wheel| image:: https://img.shields.io/pypi/wheel/dict2css
+	:target: https://pypi.org/project/dict2css/
+	:alt: PyPI - Wheel
+
+.. |conda-version| image:: https://img.shields.io/conda/v/domdfcoding/dict2css?logo=anaconda
+	:target: https://anaconda.org/domdfcoding/dict2css
+	:alt: Conda - Package Version
+
+.. |conda-platform| image:: https://img.shields.io/conda/pn/domdfcoding/dict2css?label=conda%7Cplatform
+	:target: https://anaconda.org/domdfcoding/dict2css
+	:alt: Conda - Platform
+
+.. |license| image:: https://img.shields.io/github/license/sphinx-toolbox/dict2css
+	:target: https://github.com/sphinx-toolbox/dict2css/blob/master/LICENSE
+	:alt: License
+
+.. |language| image:: https://img.shields.io/github/languages/top/sphinx-toolbox/dict2css
+	:alt: GitHub top language
+
+.. |commits-since| image:: https://img.shields.io/github/commits-since/sphinx-toolbox/dict2css/v0.3.0
+	:target: https://github.com/sphinx-toolbox/dict2css/pulse
+	:alt: GitHub commits since tagged version
+
+.. |commits-latest| image:: https://img.shields.io/github/last-commit/sphinx-toolbox/dict2css
+	:target: https://github.com/sphinx-toolbox/dict2css/commit/master
+	:alt: GitHub last commit
+
+.. |maintained| image:: https://img.shields.io/maintenance/yes/2022
+	:alt: Maintenance
+
+.. |pypi-downloads| image:: https://img.shields.io/pypi/dm/dict2css
+	:target: https://pypi.org/project/dict2css/
+	:alt: PyPI - Downloads
+
+.. end shields
+
+``dict2css`` provides an API similar to the json_ and
+toml_ modules, with ``dump`` and ``load`` functions.
+The ``dump`` function takes a mapping of `CSS selectors`_
+to mappings of CSS properties.
+Each property value may, optionally, be a two-element tuple containing the value and the string "important".
+The ``load`` function returns a mapping with the same structure.
+
+For more information see `the documentation`_.
+
+.. _json: https://docs.python.org/3/library/json.html
+.. _toml: https://github.com/uiri/toml/
+.. _CSS selectors: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors
+.. _the documentation: https://dict2css.readthedocs.io/en/latest/
+
+Installation
+--------------
+
+.. start installation
+
+``dict2css`` can be installed from PyPI or Anaconda.
+
+To install with ``pip``:
+
+.. code-block:: bash
+
+	$ python -m pip install dict2css
+
+To install with ``conda``:
+
+	* First add the required channels
+
+	.. code-block:: bash
+
+		$ conda config --add channels https://conda.anaconda.org/conda-forge
+		$ conda config --add channels https://conda.anaconda.org/domdfcoding
+
+	* Then install
+
+	.. code-block:: bash
+
+		$ conda install dict2css
+
+.. end installation

@@ -1,0 +1,164 @@
+{
+    "BaseTransceiverStation_1": {
+        "ComponentClass": "StandardiReCoDeSComponent",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 10}}   
+                }                
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },       
+        "Supply": {
+            "Communication": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Binary"
+            }
+        },
+        "OperationDemand": {
+            "ElectricPower": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear"                
+            }
+        }
+    },
+    "BaseTransceiverStation_2": {
+        "ComponentClass": "StandardiReCoDeSComponent",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 10}} 
+                }       
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },       
+        "Supply": {
+            "Communication": {
+                "Amount": 2,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Binary"
+            }
+        },
+        "OperationDemand": {
+            "ElectricPower": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear"                
+            }
+        }
+    },
+    "ElectricPowerPlant": {
+        "ComponentClass": "StandardiReCoDeSComponent",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 10}}   
+                }     
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseLinear"
+            }
+        },
+        "Supply": {
+            "ElectricPower": {
+                "Amount": 5,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Binary"
+            }
+        },
+        "OperationDemand": {
+            "Communication": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Constant"                
+            },
+            "CoolingWater": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Constant"               
+            }
+        }
+    },
+    "CoolingWaterFacility": {
+        "ComponentClass": "StandardiReCoDeSComponent",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 10}}  
+                }      
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseLinear"
+            }
+        },
+        "Supply": {
+            "CoolingWater": {
+                "Amount": 3,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Binary"
+            }
+        },
+        "OperationDemand": {
+            "Communication": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Constant"
+            }
+        }
+    },
+    "BuildingStockUnit": {
+        "ComponentClass": "BuildingStockUnitWithEmergencyCalls",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 10}}  
+                }      
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseLinear"
+            }   
+        },   
+        "OperationDemand": {
+            "Communication": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Constant",
+                "PostDisasterIncreaseDueToEmergencyCalls": "True"
+            },
+            "ElectricPower": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "SuperLink": {
+        "ComponentClass": "StandardiReCoDeSComponent",
+        "RecoveryModel": {
+            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 10}}    
+                }    
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseLinear"
+            }   
+        },
+        "Supply": {
+            "SuperTransferService": {
+                "Amount": 1000,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    }
+
+}

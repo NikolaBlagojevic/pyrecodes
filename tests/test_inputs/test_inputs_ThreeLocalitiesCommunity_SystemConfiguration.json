@@ -1,0 +1,118 @@
+{   
+    "Constants": {
+        "START_TIME_STEP": 0,
+        "MAX_TIME_STEP": 500,
+        "DISASTER_TIME_STEP": 1
+    },  
+    "Content": {
+        "Locality 1": {
+            "Coordinates": {"X": 1,
+                            "Y": 1
+                        },
+            "ComponentsInLocality": {
+                "BaseTransceiverStation_1": 1,
+                "ElectricPowerPlant": 1
+                    },
+            "LinkTo":  {
+                "Locality 2": ["SuperLink"],
+                "Locality 3": ["SuperLink"]
+            }   
+        },
+        "Locality 2": {
+            "Coordinates": {"X": 0,
+                            "Y": 0
+                        },
+            "ComponentsInLocality": {
+                "CoolingWaterFacility": 1
+            },        
+            "LinkTo":  {
+                "Locality 1": ["SuperLink"],
+                "Locality 3": ["SuperLink"]
+            }  
+        },
+        "Locality 3": {
+            "Coordinates": {"X": 2,
+                            "Y": 0
+                        },
+            "ComponentsInLocality": {
+                "BuildingStockUnit": 1,
+                "BaseTransceiverStation_2": 1
+            },        
+            "LinkTo":  {
+                "Locality 1": ["SuperLink"],
+                "Locality 2": ["SuperLink"]
+            }  
+        }
+    },
+    "DamageInput": {
+        "Type": "ListDamageInput",
+        "Parameters": [0.0, 0.4, 0.0, 0.0, 0.4, 0.0, 0.0, 0.4, 0.4, 0.0, 0.0]
+    },    
+    "Resources": {
+        "ElectricPower": {
+            "Group": "Utilities",
+            "DistributionModel": {"Type": "UtilityDistributionModel",
+                                  "Parameters": {
+                                    "DistributionPriority": {"Type": "ComponentBasedPriority",
+                                                            "Parameters": [
+                                                                ["ElectricPowerPlant", ["Locality 1"], "OperationDemand"],
+                                                                ["BaseTransceiverStation_1", ["Locality 1"], "OperationDemand"],
+                                                                ["CoolingWaterFacility", ["Locality 2"], "OperationDemand"],
+                                                                ["BaseTransceiverStation_2", ["Locality 3"], "OperationDemand"],
+                                                                ["BuildingStockUnit", ["Locality 3"], "OperationDemand"]
+                                                            ]},
+                                    "TransferService": "SuperTransferService"}
+                                    }
+                                },    
+        "CoolingWater": {  
+            "Group": "Utilities",
+            "DistributionModel": {"Type": "UtilityDistributionModel",
+                                  "Parameters": {
+                                    "DistributionPriority": {"Type": "ComponentBasedPriority",
+                                                        "Parameters": [
+                                                            ["CoolingWaterFacility", ["Locality 2"], "OperationDemand"],       
+                                                            ["ElectricPowerPlant", ["Locality 1"], "OperationDemand"],                            
+                                                            ["BaseTransceiverStation_1", ["Locality 1"], "OperationDemand"],
+                                                            ["BaseTransceiverStation_2", ["Locality 3"], "OperationDemand"],                                                                                                                
+                                                            ["BuildingStockUnit", ["Locality 3"], "OperationDemand"]
+                                                        ]},
+                                    "TransferService": "SuperTransferService"}
+                                    }
+                                },         
+        "Communication": {     
+            "Group": "Utilities",
+            "DistributionModel": {"Type": "UtilityDistributionModel",
+                                  "Parameters": {
+                                    "DistributionPriority": {"Type": "ComponentBasedPriority",
+                                                    "Parameters": [
+                                                        ["BaseTransceiverStation_1", ["Locality 1"], "OperationDemand"],
+                                                        ["BaseTransceiverStation_2", ["Locality 3"], "OperationDemand"],
+                                                        ["ElectricPowerPlant", ["Locality 1"], "OperationDemand"],
+                                                        ["CoolingWaterFacility", ["Locality 2"], "OperationDemand"],                                        
+                                                        ["BuildingStockUnit", ["Locality 3"], "OperationDemand"]
+                                                    ]}
+                                    }
+                                    }
+                                },
+        "SuperTransferService": {
+            "Group": "TransferService",
+            "DistributionModel": {
+                "Type": "TransferServiceDistributionModelPotentialPathSets",
+                "Parameters": {
+                    "PathSetsFile": "./Example 1/potential_path_sets.json"
+                }
+            }
+        }          
+            
+        },
+    "ResilienceCalculator": [{
+            "Type": "ReCoDeSResilienceCalculator",
+            "Parameters": {"Scope": "All", 
+                           "Resources": ["ElectricPower", "CoolingWater", "Communication"]}                  
+        },
+            {"Type": "NISTGoalsResilienceCalculator",
+            "Parameters": [{"Resource": "ElectricPower", "DesiredFunctionalityLevel": 0.95, "Scope": "All"},
+                        {"Resource": "CoolingWater", "DesiredFunctionalityLevel": 0.9, "Scope": "All"},
+                        {"Resource": "Communication", "DesiredFunctionalityLevel": 0.8, "Scope": "All"}]
+        }]
+}

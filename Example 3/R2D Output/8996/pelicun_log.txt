@@ -1,0 +1,147 @@
+pelicun
+
+2021-04-18T11:50:58:920 -----------------------------------------------------------
+2021-04-18T11:50:58:920 Assessement Started
+2021-04-18T11:50:58:920 -----------------------------------------------------------
+2021-04-18T11:50:58:921 type: HAZUS Assessment
+2021-04-18T11:50:58:921 hazard: EQ
+2021-04-18T11:50:58:921 -----------------------------------------------------------
+2021-04-18T11:50:58:921 -----------------------------------------------------------
+2021-04-18T11:50:58:922 Reading inputs...
+2021-04-18T11:50:58:922 	BIM file...
+2021-04-18T11:50:58:922 		Opening the configuration file...
+2021-04-18T11:50:58:929 		Loading the Models:
+2021-04-18T11:50:58:929 			Response Model
+2021-04-18T11:50:58:929 			Damage Model
+2021-04-18T11:50:58:930 			Loss Model
+2021-04-18T11:50:58:930 			Performance Model
+2021-04-18T11:50:58:930 					Correlation between Quantities was not defined in the input file. Using default values.
+2021-04-18T11:50:58:931 					Correlation between Injuries was not defined in the input file. Using default values.
+2021-04-18T11:50:58:931 					Correlation between ReconstructionCosts was not defined in the input file. Using default values.
+2021-04-18T11:50:58:931 					Correlation between ReconstructionTimes was not defined in the input file. Using default values.
+2021-04-18T11:50:58:931 					Correlation between RedTagProbabilities was not defined in the input file. Using default values.
+2021-04-18T11:50:58:932 					Correlation between reconstruction cost and time was not defined in the input file. Using default values.
+2021-04-18T11:50:58:932 					Correlation between injury levels was not defined in the input file. Using default values.
+2021-04-18T11:50:58:932 
+2021-04-18T11:50:58:932 		Global attributes / settings:
+2021-04-18T11:50:58:933 			stories: 1
+2021-04-18T11:50:58:933 			coupled_assessment: True
+2021-04-18T11:50:58:933 			realizations: 50
+2021-04-18T11:50:58:933 
+2021-04-18T11:50:58:934 		Prescribed Decision Variables:
+2021-04-18T11:50:58:934 			injuries
+2021-04-18T11:50:58:934 			rec_cost
+2021-04-18T11:50:58:935 			rec_time
+2021-04-18T11:50:58:935 
+2021-04-18T11:50:58:935 		Damage and Loss Data Dir:
+2021-04-18T11:50:58:935 			C:\ETH\R2D and iReCoDeS\R2D_backend\applications\performDL\pelicun\pelicunPBE/resources/HAZUS_MH_2.1_EQ_eqv_PGA.hdf
+2021-04-18T11:50:58:935 
+2021-04-18T11:50:58:936 		Population Data Dir:
+2021-04-18T11:50:58:936 			C:\ETH\R2D and iReCoDeS\R2D_backend\applications\performDL\pelicun\pelicunPBE/resources/HAZUS_MH_2.1_EQ.hdf
+2021-04-18T11:50:58:936 
+2021-04-18T11:50:58:936 		Units:
+2021-04-18T11:50:58:937 			force: N (1.0)
+2021-04-18T11:50:58:937 			length: m (1.0)
+2021-04-18T11:50:58:937 			area: m2 (1.0)
+2021-04-18T11:50:58:938 			volume: m3 (1.0)
+2021-04-18T11:50:58:938 			speed: mps (1.0)
+2021-04-18T11:50:58:938 			acceleration: mps2 (1.0)
+2021-04-18T11:50:58:938 
+2021-04-18T11:50:58:939 		Response Model:
+2021-04-18T11:50:58:939 			Detection Limits:
+2021-04-18T11:50:58:939 				PID: None
+2021-04-18T11:50:58:939 				PRD: None
+2021-04-18T11:50:58:940 				PFA: None
+2021-04-18T11:50:58:940 				PGV: None
+2021-04-18T11:50:58:940 				RID: None
+2021-04-18T11:50:58:940 				PMD: None
+2021-04-18T11:50:58:941 				PGA: None
+2021-04-18T11:50:58:941 				SA: None
+2021-04-18T11:50:58:942 				SV: None
+2021-04-18T11:50:58:942 				SD: None
+2021-04-18T11:50:58:942 				RDR: None
+2021-04-18T11:50:58:942 				DWD: None
+2021-04-18T11:50:58:943 
+2021-04-18T11:50:58:943 			EDP_distribution: lognormal
+2021-04-18T11:50:58:943 
+2021-04-18T11:50:58:943 			EDP_dist_basis: all results
+2021-04-18T11:50:58:944 
+2021-04-18T11:50:58:944 			Additional Uncertainty:
+2021-04-18T11:50:58:944 				beta_gm: None
+2021-04-18T11:50:58:944 				beta_m: None
+2021-04-18T11:50:58:945 
+2021-04-18T11:50:58:945 		Performance Model:
+2021-04-18T11:50:58:945 				loc	dir	qnt	dist	cov	cgw
+2021-04-18T11:50:58:945 		S-W1-HC-RES1 [ea]:
+2021-04-18T11:50:58:946 
+2021-04-18T11:50:58:946 		Damage Model:
+2021-04-18T11:50:58:946 
+2021-04-18T11:50:58:946 		Loss Model:
+2021-04-18T11:50:58:947 			replacement_cost: 630025.0
+2021-04-18T11:50:58:947 			replacement_time: 1.0
+2021-04-18T11:50:58:947 			population: [1.0]
+2021-04-18T11:50:58:947 
+2021-04-18T11:50:58:948 		Collapse Modes:
+2021-04-18T11:50:58:948 
+2021-04-18T11:50:58:948 		Dependencies:
+2021-04-18T11:50:58:948 			quantities: IND
+2021-04-18T11:50:58:949 			fragilities: PG
+2021-04-18T11:50:58:949 			injuries: IND
+2021-04-18T11:50:58:949 			rec_costs: IND
+2021-04-18T11:50:58:949 			rec_times: IND
+2021-04-18T11:50:58:950 			red_tags: IND
+2021-04-18T11:50:58:950 			cost_and_time: False
+2021-04-18T11:50:58:950 			injury_lvls: False
+2021-04-18T11:50:58:950 	EDP file...
+2021-04-18T11:50:58:951 		Opening the input file...
+2021-04-18T11:50:58:953 		EDP types:
+2021-04-18T11:50:58:953 			PGA
+2021-04-18T11:50:58:953 
+2021-04-18T11:50:58:954 		number of samples: 100
+2021-04-18T11:50:58:954 	Damage and Loss data files...
+2021-04-18T11:50:58:995 		Available Fragility Groups:
+2021-04-18T11:50:58:995 			S-W1-HC-RES1 demand:PGA PGs: 1
+2021-04-18T11:50:58:995 -----------------------------------------------------------
+2021-04-18T11:50:58:995 Defining random variables...
+2021-04-18T11:50:58:996 	Quantities...
+2021-04-18T11:50:58:996 		None of the components have random quantities assigned
+2021-04-18T11:50:58:996 	Damage State Limits...
+2021-04-18T11:50:58:996 		RV dimensions:
+2021-04-18T11:50:58:997 			S-W1-HC-RES1: 4
+2021-04-18T11:50:58:997 	Damage States...
+2021-04-18T11:50:58:997 		RV dimensions: 1
+2021-04-18T11:50:58:998 	Reconstruction Costs and Times...
+2021-04-18T11:50:58:998 		None of the components have probabilistic consequence functions
+2021-04-18T11:50:58:999 	EDPs...
+2021-04-18T11:50:58:999 
+2021-04-18T11:50:58:999 Sampling the random variables...
+2021-04-18T11:50:59:007 Sampling completed.
+2021-04-18T11:50:59:007 -----------------------------------------------------------
+2021-04-18T11:50:59:007 Creating the damage and loss model...
+2021-04-18T11:50:59:007 	S-W1-HC-RES1...
+2021-04-18T11:50:59:008 -----------------------------------------------------------
+2021-04-18T11:50:59:008 Calculating damage...
+2021-04-18T11:50:59:009 	Sampling event time...
+2021-04-18T11:50:59:009 	Sampling the population...
+2021-04-18T11:50:59:010 	Calculating the damage in the non-collapsed cases...
+2021-04-18T11:50:59:010 		S-W1-HC-RES1...
+2021-04-18T11:50:59:030 -----------------------------------------------------------
+2021-04-18T11:50:59:030 Calculating losses...
+2021-04-18T11:50:59:031 	Calculating Reconstruction cost and time...
+2021-04-18T11:50:59:033 		S-W1-HC-RES1...
+2021-04-18T11:50:59:071 	Calculating Injuries in Non-Collapsed Cases...
+2021-04-18T11:50:59:072 		S-W1-HC-RES1...
+2021-04-18T11:50:59:098 -----------------------------------------------------------
+2021-04-18T11:50:59:099 Aggregating results...
+2021-04-18T11:50:59:116 -----------------------------------------------------------
+2021-04-18T11:50:59:116 Saving outputs...
+2021-04-18T11:50:59:117 	Converting EDP samples to input units...
+2021-04-18T11:50:59:117 	Converting damaged quantities to input units...
+2021-04-18T11:50:59:118 	Replacing headers with FG names...
+2021-04-18T11:50:59:129 	Saving files:
+2021-04-18T11:50:59:129 		Summary
+2021-04-18T11:50:59:130 			Saving file DL_summary.csv
+2021-04-18T11:50:59:131 		Only saving the main results.
+2021-04-18T11:50:59:132 		SimCenter EDP file
+2021-04-18T11:50:59:139 		SimCenter DM file
+2021-04-18T11:50:59:156 		SimCenter DV file

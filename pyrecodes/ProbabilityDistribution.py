@@ -2,6 +2,9 @@ from abc import ABC, abstractmethod
 import math
 import numpy as np
 
+"""
+Module used to define probability distributions used in the system.
+"""
 
 class Distribution(ABC):
 

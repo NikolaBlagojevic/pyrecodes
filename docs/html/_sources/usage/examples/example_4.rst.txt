@@ -11,9 +11,9 @@ Example 4 shows how infrastructure simulators can be integrated within an iRe-Co
 Component library
 -----------------
 
-As Example 4 extends Example 3, building recovery activities, their duration and resource demand as well as the supply of recovery resources from the Emergency Response Center are identical as in Example 3. However, to include the consideration of infrastructure systems, the Example 3 component library file is supplemented as follows:
+As Example 4 extends Example 3, building recovery activities, their duration and resource demand as well as the supply of recovery resources from the Emergency Response Center are identical as in Example 3. However, to consider the infrastructure systems, the Example 3 component library file is supplemented as follows:
 
-- operational demand of residential buildings for electric power, potable water and communication services is now considered and estimated based on building's occupancy (i.e., number of people residing in the building at each time step of the recovery simulation). Dummy values are set in the component library file and the true values are set when system is created in the SystemCreator class where building occupanc is set as well.
+- operational demand of residential buildings for electric power, potable water and communication services is now considered and estimated based on building's occupancy (i.e., number of people residing in the building at each time step of the recovery simulation). Dummy values are set in the component library file and the true values are set when system is created in the SystemCreator class where building occupancy is set.
 
 - two housing resources provided by buildings to their inhabitants are considered: shelter and functional housing. Supply of shelter is conditioned only on the building's damage state, while functional housing supply is also conditioned on the fulfillment of building's demand for infrastructure services.
 
@@ -1854,4 +1854,4 @@ Main
 Outputs
 -------
 
-Add plots
+Coming soon.

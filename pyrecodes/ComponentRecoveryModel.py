@@ -4,6 +4,9 @@ from pyrecodes import ProbabilityDistribution
 from pyrecodes import Relation
 from pyrecodes import Resource
 
+"""
+Module used to define recovery models for components.
+"""
 
 class RecoveryActivity(ABC):
     """

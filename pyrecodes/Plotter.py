@@ -2,6 +2,12 @@
 import matplotlib.pyplot as plt
 from pyrecodes import Component
 
+"""
+Module used to plot the results of the resilience assessment.
+
+More details coming soon.
+"""
+
 # CONSTANTS
 GANTT_BAR_DISTANCE = 10
 GANTT_BAR_WIDTH = 5

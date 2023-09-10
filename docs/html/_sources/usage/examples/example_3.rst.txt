@@ -1,7 +1,7 @@
 Example 3
 =========
 
-Example 3 shows how **pyrecodes** can integrate with the `SimCenter's R2DTool <https://github.com/NHERI-SimCenter/R2DTool>`_ and assess housing resilience of a community to a scenario earthquake. 
+Example 3 shows how **pyrecodes** can integrate with the `SimCenter's R2DTool <https://github.com/NHERI-SimCenter/R2DTool>`_, automatically build a **pyrecodes** model based on R2DTool's outputs and assess housing resilience of a community to a scenario earthquake. 
 
 The example is based on `R2DTools's Example 1 <https://nheri-simcenter.github.io/R2D-Documentation/common/user_manual/examples/desktop/E1BasicHAZUS/README.html>`_. R2D Tool outputs initial post-earthquake damage states of all buildings in the considered region following a hypothetical earthquake. **pyrecodes** takes this information and simulates regional recovery considering impeding factors and resource constraints. Further details can be found `here <https://doi.org/10.1016/j.rcns.2022.03.001>`_.
 
@@ -125,7 +125,7 @@ A residential building component in DS0 damage state experiences no damage and t
 DS1 Residential Building
 `````````````````````````
 
-Residential building in Damage State 1 experiences minor damage and requries several recovery activities as shown in the figure above. However, it's ability to provide shelter to its residents is not decreased due to damage, and thus its damage-functionality relation is constant - functionality is always 1 regardless of the damage level. The recovery activities are defined in the RecoveryModel section of the component template. The duration of each activity is defined using a lognormal distribution with median and dispersion values. The demand for recovery resources is defined in the Demand section of the recovery activity. These values are constant among all DS1 residential buildings. However, repair duration differs among DS1 buildings and is set during system creation in the SystemCreator class based on the R2DTool's output. Preceding activities for a recovery activity include all recovery activities that need to be performed before the current activity can start.
+Residential building in Damage State 1 experiences minor damage and goes through several recovery activities until repaired, as shown in the figure above. However, it's ability to provide shelter to its residents is not decreased due to damage, and thus its damage-functionality relation is constant - functionality is always 1 regardless of the damage level. The recovery activities are defined in the RecoveryModel section of the component template. The duration of each activity is defined using a lognormal distribution with median and dispersion values. The demand for recovery resources is defined in the Demand section of the recovery activity. These values are constant among all DS1 residential buildings. However, repair duration differs among DS1 buildings and is set during system creation in the SystemCreator class based on the R2DTool's output. Preceding activities for a recovery activity include all recovery activities that need to be performed before the current activity can start.
 
 .. toggle:: 
 
@@ -1144,6 +1144,6 @@ Main
 Outputs
 -------
 
-Check out Example 3.
+Coming soon.
 
 

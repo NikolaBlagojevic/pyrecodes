@@ -7,6 +7,11 @@ import itertools
 from pyrecodes import Component
 from pyrecodes import DistributionPriority
 
+"""
+Module used to define resource distribution models used in the system.
+
+More details coming soon.
+"""
 
 class ResourceDistributionModel(ABC):
 

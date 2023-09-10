@@ -3,6 +3,11 @@ import random
 from pyrecodes import Component
 import copy
 
+"""
+Module used to define component priority for resource distribution.
+
+More details coming soon.
+"""
 
 class DistributionPriority(ABC):
     """

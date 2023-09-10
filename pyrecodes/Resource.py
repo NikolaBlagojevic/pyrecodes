@@ -1,6 +1,12 @@
 from abc import ABC, abstractmethod
 from pyrecodes import Relation
 
+"""
+Module used to define resources used in the system.
+
+More details coming soon.
+"""
+
 
 class Resource(ABC):
     name: str

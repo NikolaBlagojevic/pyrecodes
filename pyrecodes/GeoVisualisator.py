@@ -12,6 +12,12 @@ from pyrecodes import Component
 from pyrecodes import Plotter
 from pyrecodes import System
 
+"""
+Module used to visualize the system recovery process using geospatial tools.
+
+More details coming soon.
+"""
+
 COMPONENT_STATE_COLORS = {
     'Waiting': 'black',
     'RapidInspection': 'lightblue',

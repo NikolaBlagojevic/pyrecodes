@@ -1,6 +1,12 @@
 from abc import ABC, abstractmethod
 import numpy as np
 
+"""
+Module used to define resilience calculators used in the system.
+
+More details coming soon.
+"""
+
 
 class ResilienceCalculator(ABC):
 

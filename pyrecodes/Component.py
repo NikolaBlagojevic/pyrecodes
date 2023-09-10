@@ -7,6 +7,9 @@ from pyrecodes import Relation
 from pyrecodes import ProbabilityDistribution
 import numpy as np
 
+"""
+Module used to define the Component class and its subclasses.
+"""
 
 class SupplyOrDemand(Enum):
     """

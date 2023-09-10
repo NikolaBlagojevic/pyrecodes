@@ -1,7 +1,11 @@
 from abc import ABC, abstractmethod
 import math
-import bisect
-import numpy as np
+
+"""
+Module used to define relations between damage and functionality of a component and functionality and supply and demand.
+
+More details coming soon.
+"""
 
 ABS_TOL = 1e-10
 

@@ -1,7 +1,11 @@
 from abc import ABC, abstractmethod
 from pyrecodes import Component
 
+"""
+Module used to provide initial component damage information to the system class.
 
+More details coming soon.
+"""
 class DamageInput(ABC):
     """
     Different methods for providing initial component damage information to the system class

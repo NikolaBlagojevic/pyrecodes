@@ -240,7 +240,7 @@ System's configuration is defined in a JSON file and consists of sections presen
 Constants
 `````````
 
-Example 1 uses the BuiltEnvironmentSystem class which requires the definition of the start, max and disaster time step. The start time step is set to 0, max time step to 500 and disaster time step - the time step at which the damage is assigned to components - to 1.
+Example 1 uses the BuiltEnvironmentSystem class which requires the definition of the start, max and disaster time step. The start time step is set to 0, max time step to 500 and disaster time step (i.e., the time step at which the damage is assigned to components) to 1.
 
 .. toggle::
 
@@ -441,7 +441,7 @@ To run the example, you can use the following code:
     import pyrecodes
     system = pyrecodes.main.run('./path/to/main/file')
 
-Example 1 jupyter notebook illustrates how to run the pyrecodes simulation and plot the post-disaster supply/demand/consumption dynamics and the components' recovery gantt chart.
+Example 1 Jupyter notebook illustrates how to run the pyrecodes simulation and plot the post-disaster supply/demand/consumption dynamics and the components' recovery gantt chart.
 
 Outputs
 -------

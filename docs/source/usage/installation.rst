@@ -19,7 +19,7 @@ Running Examples
 
 To ensure that the installation is successful, please run Example 1 as specified in the Examples page.
 
-All examples are written as jupyter notebooks. More information on installing jupyter notebooks can be found `here <https://jupyter.org/install>`_.  
+All examples are written as Jupyter notebooks. More information on installing Jupyter notebooks can be found `here <https://jupyter.org/install>`_.  
 
 
 Dependencies

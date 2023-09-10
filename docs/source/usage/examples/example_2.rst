@@ -12,7 +12,7 @@ Virtual community consists of the building stock and three interdependent infras
 
 The Electric Power Supply System provides electric power produced by Electric Power Plants (EPPs) and transferred to users through the Transsmision Lines, represented as links between localities. 
 
-The Water Supply System provides cooling and potable Water to the community. The two resources are supplied by the Cooling Water Facilities (CWFs) and Potable Water Facilities (PWFs) and transferred by cooling water pipes and potable water pipes that have the same topology as the transmission lines, represents as black lines in the figure above.
+The Water Supply System provides cooling and potable water to the community. The two resources are supplied by the Cooling Water Facilities (CWFs) and Potable Water Facilities (PWFs) and transferred by cooling water pipes and potable water pipes that have the same topology as the transmission lines, represents as black lines in the figure above.
 
 The Cellular Communication System consists of Base Station Controllers (BSCs) that control Base Transceiver Stations (BTSs) by providing High Level Communication resource. The BTSs then provide Low Level Communication to the community.
 
@@ -1203,34 +1203,34 @@ Apart from the post-disaster supply/demand/consumption dynamics, the results als
         "Resource": "ElectricPower",
         "Scope": "All",
         "DesiredFunctionalityLevel": 0.95,
-        "MetAtTimeStep": 10
+        "MetAtTimeStep": 22
         },
 
         {
         "Resource": "CoolingWater",
         "Scope": "All",
         "DesiredFunctionalityLevel": 0.9,
-        "MetAtTimeStep": 13},
+        "MetAtTimeStep": 22},
 
         {
         "Resource": "HighLevelCommunication",
         "Scope": "All",
         "DesiredFunctionalityLevel": 0.9,
-        "MetAtTimeStep": 26
+        "MetAtTimeStep": 60
         },
 
         {
         "Resource": "LowLevelCommunication",
         "Scope": "All",
         "DesiredFunctionalityLevel": 0.8,
-        "MetAtTimeStep": 16
+        "MetAtTimeStep": 22
         },
 
         {
         "Resource": "Shelter",
         "Scope": "All",
         "DesiredFunctionalityLevel": 0.9,
-        "MetAtTimeStep": 34
+        "MetAtTimeStep": 73
         }
 
 .. figure:: ../../figures/example_2_EP.png

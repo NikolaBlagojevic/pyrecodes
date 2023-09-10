@@ -1,0 +1,466 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Examples" href="examples.html" /><link rel="prev" title="Installing pyrecodes" href="installation.html" />
+
+    <!-- Generated with Sphinx 7.2.5 and Furo 2023.08.19 -->
+        <title>How to use pyrecodes? - pyrecodes 2023 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">pyrecodes 2023 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/pyrecodes_logo.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">pyrecodes 2023 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="what_is_pyrecodes.html">What is pyrecodes?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing pyrecodes</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">How to use pyrecodes?</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="examples.html">Examples</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_1.html">Example 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_2.html">Example 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_3.html">Example 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/example_4.html">Example 4</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="documentation.html">Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="documentation/main_docs.html">Main</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/system_class_docs.html">System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/system_creator_class_docs.html">System Creator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/component_class_docs.html">Component class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/component_library_creator_class_docs.html">Component Library Creator class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/component_recovery_model_class_docs.html">Component Recovery Model class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/damage_input_class_docs.html">Damage Input class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/distribution_priority_class_docs.html">Distribution Priority class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/geovisulisator_class_docs.html">Geovisualisator class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/plotter_class_docs.html">Plotter class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/probability_distribution_class_docs.html">Probability Distribution class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/relation_class_docs.html">Relation class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/resilience_calculators_class_docs.html">Resilience Calculator class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/resource_class_docs.html">Resource class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/resource_distribution_class_docs.html">Resource Distribution Model class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how_to_cite.html">How to cite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact and collaboration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyrecodes_license.html">pyrecodes license</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="how-to-use-pyrecodes">
+<h1>How to use pyrecodes?<a class="headerlink" href="#how-to-use-pyrecodes" title="Link to this heading">#</a></h1>
+<p>To assess system resilience in <strong>pyrecodes</strong>, the user needs to define three files:</p>
+<ul class="simple">
+<li><p><strong>component library</strong></p></li>
+<li><p><strong>system configuration</strong></p></li>
+<li><p><strong>main</strong></p></li>
+</ul>
+<p>The three files are defined as JSONs and the following figure illustrates the relationship between them and a system in <strong>pyrecodes</strong>:</p>
+<figure class="align-default" id="id2">
+<img alt="pyrecodes system illustration" src="../_images/pyrecodes_system_illustration_v2.png" />
+<figcaption>
+<p><span class="caption-text">A system in <strong>pyrecodes</strong> is defined by the system configuration file and the component library file. Main file specifies the class of the system configuration and component library files and is used to run the system resilience assessment.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Outputs of a <strong>pyrecodes</strong> resilience assessment are resource supply, demand, and consumption curves, which provide insights into the system’s resilience by assessing unmet resource demand after an event and the system’s ability to meet its resilience goals. Additionally, Gantt charts are employed to visualize the recovery progress of individual components, aiding in the comprehension of the overall system’s recovery dynamics. Finally, certain system classes allow for the visualization of the system’s spatial distribution and its evolution over time (Examples 3 and 4).</p>
+<section id="component-library">
+<h2>Component Library<a class="headerlink" href="#component-library" title="Link to this heading">#</a></h2>
+<p>A system in <strong>pyrecodes</strong> is discretized into components. As such components can be numerous but still share similar characteristics (e.g., residential buildings, pipes), to avoid defining each component individually <strong>pyrecodes</strong> allows users to define a component library with component templates. This library enables users to define common parameters once and then customize specific attributes for individual components, reducing redundancy in parameter input while maintaining consistency. Each component template consists of the following parameters:</p>
+<ul class="simple">
+<li><p><strong>Component class</strong>: defines the type of the <strong>pyrecodes</strong> component class.</p></li>
+<li><p><strong>Recovery model</strong>: defines the recovery model of the component and its parameters.</p></li>
+<li><p><strong>Supply</strong>: defines the resource supply of the component - resources that the component provides to the system and how their amount relates to component’s functionality and unmet demand.</p></li>
+<li><p><strong>Operation demand</strong>: defines the operation demand of the component - resources that the component needs to operate and how their amount relates to component’s functionality.</p></li>
+</ul>
+<p>Component library contains component template parameters in the following format:</p>
+<div class="toggle docutils container">
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;[ComponentName]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;ComponentClass&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[ComponentClassName]&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;RecoveryModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[ComponentRecoveryModelClassName]&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[ComponentRecoveryModelClassParameters]&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;DamageFunctionalityRelation&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[RelationClassName]&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;Supply&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;[ResourceName]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;Amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[Amount]&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;FunctionalityToAmountRelation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[RelationClassName]&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;UnmetDemandToAmountRelation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[RelationClassName]&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;OperationDemand&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;[ResourceName]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;Amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[Amount]&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;FunctionalityToAmountRelation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[RelationClassName]&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="system-configuration">
+<h2>System configuration<a class="headerlink" href="#system-configuration" title="Link to this heading">#</a></h2>
+<p>The system configuration file defines the spatial distribution of components, thus defining the system. Additionally, it defines the damage input model, resource parameters, resilience calculators, and temporal discretization of the system.</p>
+<p>In terms of spatial discretization, components in <strong>pyrecodes</strong> are located in geographical units called localities. Resources can freely flow within localities without needing links. Links, which are components themselves, connect components across localities, enabling resource transfer between them. This spatial discretization simplifies modeling by not considering links within a locality. One can still consider links among each component by placing each component in a separate locality. On the other hand, placing all components in a single locality (Example 3) allows one to not consider any links, and thus simplify resilience assessment. In terms of coordinates, <strong>pyrecodes</strong> can define the coordinate of a locality through its centroid (Examples 1 and 2) or as a bounding box (Examples 3 and 4). Components can also have their coordinates, but are not required as long as component’s locality is defined.</p>
+<p>The system configuration file defines the following:</p>
+<ul class="simple">
+<li><p><strong>Content of Localities</strong>: number and type of components located in and between localities.</p></li>
+<li><p><strong>Damage input</strong>: damage input model and its parameters.</p></li>
+<li><p><strong>Resources</strong>: resource parameters including their resource distribution models and component priorities.</p></li>
+<li><p><strong>Resilience calculators</strong>: resilience calculators and their parameters.</p></li>
+<li><p><strong>Constants</strong>: temporal discretization of the system and system-class specific constants.</p></li>
+</ul>
+<p>System configuration file is structured as follows:</p>
+<div class="toggle docutils container">
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;Constants&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;START_TIME_STEP&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[Value]&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;MAX_TIME_STEP&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[Value]&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;DISASTER_TIME_STEP&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[Value]&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;[SystemClassSpecificParameters]&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;Content&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;[LocalityName]&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[LocalityCoordinatesAndContent]&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;DamageInput&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[DamageInputClassName]&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;Parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[DamageInputClassParameters]&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;Resources&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;[ResourceName]&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Group&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[ResourceGroupName]&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;DistributionModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[ResourceDistributionModelClassName]&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;Parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;DistributionPriority&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[DistributionPriorityClassName]&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;Parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[DistributionPriorityClassParameters]&quot;</span>
+<span class="w">                    </span><span class="p">},</span>
+<span class="w">                    </span><span class="nt">&quot;TransferService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[TransferServiceRequiredToTransferResource]&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;ResilienceCalculator&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[ResilienceCalculatorClassName]&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[ResilienceCalculatorClassParameters]&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="main">
+<h2>Main<a class="headerlink" href="#main" title="Link to this heading">#</a></h2>
+<p>Finally, the user needs to define the main file, which specifies the class of the <strong>pyrecodes</strong> system configuration and component library and calls already defined JSON files :</p>
+<div class="toggle docutils container">
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;ComponentLibrary&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;ComponentLibraryCreatorClass&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[ComponentLibraryCreatorClassName]&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;ComponentLibraryFile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[PathToComponentLibraryFile]&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;System&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;SystemCreatorClass&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[SystemCreatorClassName]&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;SystemClass&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[SystemClassName]&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;SystemConfigurationFile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;[PathToSystemConfigurationFile]&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Variables in square brackets need to be replaced with appropriate class names or values. Please check out the <a class="reference external" href="./documentation.html">Documentation</a> page for the available classes and their parameter format and the <a class="reference external" href="examples.html">Examples</a> page to see how they are implemented.</p>
+</div>
+</section>
+<section id="how-to-run-the-model">
+<h2>How to run the model<a class="headerlink" href="#how-to-run-the-model" title="Link to this heading">#</a></h2>
+<p>Once the three files are defined, the model can be run using the following command:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyrecodes</span>
+<span class="n">system</span> <span class="o">=</span> <span class="n">pyrecodes</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;./path/to/main/file&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When the simulation is finished, user can save the system object containing the simulation outputs:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">system</span><span class="o">.</span><span class="n">save_as_pickle</span><span class="p">(</span><span class="s1">&#39;savename&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The outputs can be loaded later as follows:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">system</span> <span class="o">=</span> <span class="n">pyrecodes</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">load_system</span><span class="p">(</span><span class="s1">&#39;savename&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="output-visualization">
+<h2>Output visualization<a class="headerlink" href="#output-visualization" title="Link to this heading">#</a></h2>
+<p>The results are vizualised using the <a class="reference external" href="./documentation/plotter_class_docs.html">Plotter</a> and <a class="reference external" href="./documentation/geovisulisator_class_docs.html">GeoVisualisator</a> class. Note that the available visulization tools depend on the employed System class. Please check out the <a class="reference external" href="examples.html">Examples</a>.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="examples.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Examples</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="installation.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Installing pyrecodes</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Nikola Blagojević
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">How to use pyrecodes?</a><ul>
+<li><a class="reference internal" href="#component-library">Component Library</a></li>
+<li><a class="reference internal" href="#system-configuration">System configuration</a></li>
+<li><a class="reference internal" href="#main">Main</a></li>
+<li><a class="reference internal" href="#how-to-run-the-model">How to run the model</a></li>
+<li><a class="reference internal" href="#output-visualization">Output visualization</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=a4664895"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    </body>
+</html>

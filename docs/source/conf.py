@@ -21,7 +21,8 @@ release = '2023'
 extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.autodoc',
-    'sphinx_togglebutton'
+    'sphinx_togglebutton',
+    'sphinx.ext.githubpages'
 ]
 
 templates_path = ['_templates']

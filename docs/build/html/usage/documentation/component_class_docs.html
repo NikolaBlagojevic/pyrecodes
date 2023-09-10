@@ -1,0 +1,709 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Component Library Creator class" href="component_library_creator_class_docs.html" /><link rel="prev" title="System Creator" href="system_creator_class_docs.html" />
+
+    <!-- Generated with Sphinx 7.2.5 and Furo 2023.08.19 -->
+        <title>Component class - pyrecodes 2023 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">pyrecodes 2023 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../../_static/pyrecodes_logo.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">pyrecodes 2023 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../what_is_pyrecodes.html">What is pyrecodes?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing pyrecodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">How to use pyrecodes?</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples.html">Examples</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Examples</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/example_1.html">Example 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/example_2.html">Example 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/example_3.html">Example 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/example_4.html">Example 4</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../documentation.html">Documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="main_docs.html">Main</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_class_docs.html">System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_creator_class_docs.html">System Creator</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Component class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_library_creator_class_docs.html">Component Library Creator class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_recovery_model_class_docs.html">Component Recovery Model class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="damage_input_class_docs.html">Damage Input class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distribution_priority_class_docs.html">Distribution Priority class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geovisulisator_class_docs.html">Geovisualisator class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotter_class_docs.html">Plotter class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="probability_distribution_class_docs.html">Probability Distribution class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relation_class_docs.html">Relation class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resilience_calculators_class_docs.html">Resilience Calculator class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_class_docs.html">Resource class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_distribution_class_docs.html">Resource Distribution Model class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../how_to_cite.html">How to cite</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact.html">Contact and collaboration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyrecodes_license.html">pyrecodes license</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="module-Component">
+<span id="component-class"></span><h1>Component class<a class="headerlink" href="#module-Component" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Component.Bridge">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Component.</span></span><span class="sig-name descname"><span class="pre">Bridge</span></span><a class="headerlink" href="#Component.Bridge" title="Link to this definition">#</a></dt>
+<dd><p>Subclass used to identify bridges in a system. For now that’s the only purpose.</p>
+<p><strong>TODO</strong>: Add specific bridge methods and attributes. Future work.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Component.BuildingStockUnitWithEmergencyCalls">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Component.</span></span><span class="sig-name descname"><span class="pre">BuildingStockUnitWithEmergencyCalls</span></span><a class="headerlink" href="#Component.BuildingStockUnitWithEmergencyCalls" title="Link to this definition">#</a></dt>
+<dd><p>Subclass of the StandardiReCoDeSComponent class that simulates the performance of building stock units 
+with increased post-disaster demand for communication services due to emergency calls.</p>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">#</a></h2>
+<p>(only subclass specific)</p>
+<dl>
+<dt>COMMUNICATION_RESOURCE_NAME<span class="classifier">str</span></dt><dd><div class="line-block">
+<div class="line">The demand for this resource will increase after a disaster.</div>
+<div class="line">This name should be defined in the component library file by adding the ‘PostDisasterIncreaseDueToEmergencyCalls’ key with a ‘True’ value.</div>
+</div>
+</dd>
+<dt>COMMUNICATION_DEMAND_MULTIPLIER<span class="classifier">float</span></dt><dd><p>Defines by how much the pre-disaster demand for the communication resource 
+is increased after a disaster.</p>
+</dd>
+<dt>COMMUNICATION_DEMAND_INCREASE_TIME_STEP<span class="classifier">int</span></dt><dd><div class="line-block">
+<div class="line">Define at which time step of the recovery simulation will the demand for communication resource increase.</div>
+<div class="line"><strong>Note</strong>: this time step should be after the DISASTER_TIME_STEP defined in the system configuration file.</div>
+</div>
+</dd>
+<dt>COMMUNICATION_DEMAND_EXP_DECREASE_COEFF<span class="classifier">float</span></dt><dd><p>Define the parameter of the exponential function that simulates the post-disaster decrease of the
+demand for communication resource following the initial demand surge.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.BuildingStockUnitWithEmergencyCalls.add_resources">
+<span class="sig-name descname"><span class="pre">add_resources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">supply_or_demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.BuildingStockUnitWithEmergencyCalls.add_resources" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line"><em>override parent method</em></div>
+<div class="line">While adding resources check if a resource is a communication resource.</div>
+<div class="line">If yes, set the COMMUNICATION_RESOURCE_NAME attribute.</div>
+<div class="line"><strong>Note</strong>: only one resource can be a communication resource that has increased demand following a disaster.</div>
+<div class="line"><strong>TODO</strong>: Implement a check for multiple communication resources. Future work.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.BuildingStockUnitWithEmergencyCalls.check_if_demand_increase_considered">
+<span class="sig-name descname"><span class="pre">check_if_demand_increase_considered</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.BuildingStockUnitWithEmergencyCalls.check_if_demand_increase_considered" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Check if the resource demand should be increased following the disaster for the resource resource_name.</div>
+<div class="line">Communication resource parameters dict in ComponentLibrary should have the ‘PostDisasterIncreaseDueToEmergencyCalls’ key with a ‘True’ value.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.BuildingStockUnitWithEmergencyCalls.modify_emergency_calls_demand">
+<span class="sig-name descname"><span class="pre">modify_emergency_calls_demand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_communication_demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#Component.BuildingStockUnitWithEmergencyCalls.modify_emergency_calls_demand" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Modify communication demand based on the current time step, the exponential function parameters and initial communication demand.</div>
+<div class="line">The modified communication demand cannot be smaller than the initial, pre-disaster, demand.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.BuildingStockUnitWithEmergencyCalls.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.BuildingStockUnitWithEmergencyCalls.update" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line"><em>extend parent method</em></div>
+<div class="line">Update the demand for communication services conditioned on the current time step.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.BuildingStockUnitWithEmergencyCalls.update_communication_demand">
+<span class="sig-name descname"><span class="pre">update_communication_demand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.BuildingStockUnitWithEmergencyCalls.update_communication_demand" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Calculate the communication resource demand at the current time step</div>
+<div class="line">and update in component’s operation demand.</div>
+</div>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Component.Component">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Component.</span></span><span class="sig-name descname"><span class="pre">Component</span></span><a class="headerlink" href="#Component.Component" title="Link to this definition">#</a></dt>
+<dd><p>Abstract Class to define the required methods and properties of a component.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Component.InfrastructureInterface">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Component.</span></span><span class="sig-name descname"><span class="pre">InfrastructureInterface</span></span><a class="headerlink" href="#Component.InfrastructureInterface" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Subclass of the StandardiReCoDeSComponent class used to interface third-party infrastructure simulators into an iRe-CoDeS system-of-systems model.</div>
+<div class="line">Infrastructure simulator performance is defined in the system configuration file.    </div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.InfrastructureInterface.get_restoration_times">
+<span class="sig-name descname"><span class="pre">get_restoration_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">supply_dynamics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#Component.InfrastructureInterface.get_restoration_times" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Sample the restoration times from the distribution defined in the system configuration file.</div>
+<div class="line">These times define the time steps at which the interface restors the supply amounts defined in the Amount key in the system configuration file.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.InfrastructureInterface.set_supply_dynamics">
+<span class="sig-name descname"><span class="pre">set_supply_dynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">supply_dynamics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.InfrastructureInterface.set_supply_dynamics" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Set the predefined supply dynamics of the infrastructure interface component by specifying the parameters of the component’s recovery model.</div>
+<div class="line">These are defined in the system configuration file by specifying the amounts of resource supplied by the infrastructure system and the time step at which the supply is restored.</div>
+<div class="line"><strong>Note 1</strong>: The supply dynamics are defined in the system configuration file, but in the component library file the interface component has to have the resource defined.</div>
+<div class="line"><strong>Note 2</strong>: It is assumed that last value in the Amount key is the initial supply amount and the highest value that the infrastructure system provides. </div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Component.</span></span><span class="sig-name descname"><span class="pre">StandardiReCoDeSComponent</span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent" title="Link to this definition">#</a></dt>
+<dd><p>Implementation of the Component abstract class to define standard functionality of a component in iRe-CoDeS.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.DemandTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DemandTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.DemandTypes" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Enum Class to specify the strings used for component’s demand types.</div>
+<div class="line">Two demand types are currently considered in pyrecodes: operation and recovery demand.</div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.SupplyTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SupplyTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.SupplyTypes" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Enum Class to specify the strings used for component’s supply types.</div>
+<div class="line">Only one supply type is currently considered in pyrecodes.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.add_resources">
+<span class="sig-name descname"><span class="pre">add_resources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">supply_or_demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.add_resources" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Add resources to the component’s supply or demand, depending on the supply_or_demand parameter.</div>
+<div class="line">The type parameter specifies the type of the supply or demand.</div>
+<div class="line">The resource_dict parameter is a dict with resource names as keys and resource parameters as values.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.check_if_functional">
+<span class="sig-name descname"><span class="pre">check_if_functional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.check_if_functional" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Check if the component is functional at time_step. Component is considered functional if its functionality level is higher than 0.</div>
+<div class="line">If the component is functional at time_step, add time_step to the component’s “functional” list.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.form_resource">
+<span class="sig-name descname"><span class="pre">form_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_resource_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NonConsumableResource'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.form_resource" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Form a resource object based on the resource_name and resource_parameters.</div>
+<div class="line">Default resource class is NonConsumableResource. Specify a different default resource class if needed.</div>
+<div class="line">Check out the resource parameters dict in the component library files in the examples to get the dict structure.</div>
+<div class="line"><strong>TODO</strong>: Add the dict structure here. Future work.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.get_current_resource_amount">
+<span class="sig-name descname"><span class="pre">get_current_resource_amount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">supply_or_demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.get_current_resource_amount" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Get the current amount of a resource resource_name in component’s supply or demand and the type of the supply or demand.</div>
+<div class="line">In case resource is not in component’s supply or demand, returns 0.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.get_damage_level">
+<span class="sig-name descname"><span class="pre">get_damage_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.get_damage_level" title="Link to this definition">#</a></dt>
+<dd><p>Get the current damage level of the component.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.get_locality">
+<span class="sig-name descname"><span class="pre">get_locality</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.get_locality" title="Link to this definition">#</a></dt>
+<dd><p>Get component locality ids.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.has_operation_demand">
+<span class="sig-name descname"><span class="pre">has_operation_demand</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.has_operation_demand" title="Link to this definition">#</a></dt>
+<dd><p>Check whether the component has any operation demand - if it needs any resource to operate.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.has_resource_supply">
+<span class="sig-name descname"><span class="pre">has_resource_supply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.has_resource_supply" title="Link to this definition">#</a></dt>
+<dd><p>Check whether the component has a supply of the resource resource_name.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.recover">
+<span class="sig-name descname"><span class="pre">recover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.recover" title="Link to this definition">#</a></dt>
+<dd><p>Recover the component as defined in its recovery model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.set_initial_damage_level">
+<span class="sig-name descname"><span class="pre">set_initial_damage_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">damage_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.set_initial_damage_level" title="Link to this definition">#</a></dt>
+<dd><p>Set the initial damage level of the component. Damage level must be between 0 and 1.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.set_locality">
+<span class="sig-name descname"><span class="pre">set_locality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">locality_id:</span> <span class="pre">[&lt;class</span> <span class="pre">'int'&gt;]</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.set_locality" title="Link to this definition">#</a></dt>
+<dd><p>Set component locality ids. Locality id is a list of integers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.set_met_demand_for_recovery_activities">
+<span class="sig-name descname"><span class="pre">set_met_demand_for_recovery_activities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percent_of_met_demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.set_met_demand_for_recovery_activities" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Set the demand_met for the component’s recovery activity that require the resource resource_name.</div>
+<div class="line">This is how recovery resource constraints are captured.</div>
+<div class="line">This method is called once the resource distribution is performed at a time step.</div>
+<div class="line"><strong>Note</strong>: At this point, two recovery activities CANNOT ask for the same resource! </div>
+<div class="line"><strong>TODO</strong>: Add recovery_activity as input, then it would be possible. Future work. </div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.set_name">
+<span class="sig-name descname"><span class="pre">set_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.set_name" title="Link to this definition">#</a></dt>
+<dd><p>Set component name.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.set_operation_demand">
+<span class="sig-name descname"><span class="pre">set_operation_demand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operation_demand_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.set_operation_demand" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Set component’s operation demand as defined in operation_demand_parameters.</div>
+<div class="line">Check out the operation_demand in the component library files in the examples to get the dict structure.</div>
+<div class="line"><strong>TODO</strong>: Add the dict structure here. Future work.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.set_recovery_model">
+<span class="sig-name descname"><span class="pre">set_recovery_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recovery_model_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.set_recovery_model" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Set component recovery model as defined in recovery_model_parameters dict.</div>
+<div class="line">The data provided in the recovery_model_parameters depends on the recovery model type.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.set_recovery_model_activities_demand_to_met">
+<span class="sig-name descname"><span class="pre">set_recovery_model_activities_demand_to_met</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.set_recovery_model_activities_demand_to_met" title="Link to this definition">#</a></dt>
+<dd><p>Set the demand of all component’s recovery activities as met.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.set_supply">
+<span class="sig-name descname"><span class="pre">set_supply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">supply_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.set_supply" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Set component’s supply as defined in supply_parameters.</div>
+<div class="line">Check out the supply_parameters in the examples to get the dict structure.</div>
+<div class="line"><strong>TODO</strong>: Add the dict structure here. Future work.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.unmet_demand_can_affect_resource_supply">
+<span class="sig-name descname"><span class="pre">unmet_demand_can_affect_resource_supply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.unmet_demand_can_affect_resource_supply" title="Link to this definition">#</a></dt>
+<dd><p>Check if the component has a supply of the resource resource_name and if the supply can be affected by unmet demand - i.e., if the UnmetDemandToAmountRelation is not constant.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.update" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Update component’s state based on its current damage level and damage-to-functionality relation.</div>
+<div class="line">This includes updating component’s functionality_level, checking if the component is functional at time_step and updating its supply, operation and recovery demand.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.update_functionality">
+<span class="sig-name descname"><span class="pre">update_functionality</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.update_functionality" title="Link to this definition">#</a></dt>
+<dd><p>Update component’s functionality level by calling the recovery model’s get_functionality_level method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.update_operation_demand">
+<span class="sig-name descname"><span class="pre">update_operation_demand</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.update_operation_demand" title="Link to this definition">#</a></dt>
+<dd><p>Update component’s operation demand based on its current functionality level.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.update_recovery_demand">
+<span class="sig-name descname"><span class="pre">update_recovery_demand</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.update_recovery_demand" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Update component’s recovery demand based on its currently active recovery activities.</div>
+<div class="line">Before resources are distributed, it is assumed that all recovery demand is met. </div>
+<div class="line">It is important that this method is called before the resource distribution in a time step of the resilience assessment.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.update_resources_based_on_component_functionality">
+<span class="sig-name descname"><span class="pre">update_resources_based_on_component_functionality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">supply_or_demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.update_resources_based_on_component_functionality" title="Link to this definition">#</a></dt>
+<dd><p>Update component’s supply or demand based on its current functionality level.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.update_supply_based_on_component_functionality">
+<span class="sig-name descname"><span class="pre">update_supply_based_on_component_functionality</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.update_supply_based_on_component_functionality" title="Link to this definition">#</a></dt>
+<dd><p>Update component’s supply based on its current functionality level.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.update_supply_based_on_consumption">
+<span class="sig-name descname"><span class="pre">update_supply_based_on_consumption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consumed_amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.update_supply_based_on_consumption" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Update component’s supply based on how much of its consumable resource is consumed.</div>
+<div class="line">If resource is non-consumable, this method does nothing.</div>
+<div class="line">This method is called during resource distribution.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Component.StandardiReCoDeSComponent.update_supply_based_on_unmet_demand">
+<span class="sig-name descname"><span class="pre">update_supply_based_on_unmet_demand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">percent_of_met_demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#Component.StandardiReCoDeSComponent.update_supply_based_on_unmet_demand" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Update component’s supply based on how much of its operation demand is met.</div>
+<div class="line">This is how component interdependencies are captured.</div>
+<div class="line">This method is called during resource distribution.</div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Component.SupplyOrDemand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Component.</span></span><span class="sig-name descname"><span class="pre">SupplyOrDemand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Component.SupplyOrDemand" title="Link to this definition">#</a></dt>
+<dd><p>Enum Class to specify the strings used for component’s supply and demand parameters.</p>
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="component_library_creator_class_docs.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Component Library Creator class</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="system_creator_class_docs.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">System Creator</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Nikola Blagojević
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Component class</a><ul>
+<li><a class="reference internal" href="#Component.Bridge"><code class="docutils literal notranslate"><span class="pre">Bridge</span></code></a></li>
+<li><a class="reference internal" href="#Component.BuildingStockUnitWithEmergencyCalls"><code class="docutils literal notranslate"><span class="pre">BuildingStockUnitWithEmergencyCalls</span></code></a><ul>
+<li><a class="reference internal" href="#Component.BuildingStockUnitWithEmergencyCalls.add_resources"><code class="docutils literal notranslate"><span class="pre">BuildingStockUnitWithEmergencyCalls.add_resources()</span></code></a></li>
+<li><a class="reference internal" href="#Component.BuildingStockUnitWithEmergencyCalls.check_if_demand_increase_considered"><code class="docutils literal notranslate"><span class="pre">BuildingStockUnitWithEmergencyCalls.check_if_demand_increase_considered()</span></code></a></li>
+<li><a class="reference internal" href="#Component.BuildingStockUnitWithEmergencyCalls.modify_emergency_calls_demand"><code class="docutils literal notranslate"><span class="pre">BuildingStockUnitWithEmergencyCalls.modify_emergency_calls_demand()</span></code></a></li>
+<li><a class="reference internal" href="#Component.BuildingStockUnitWithEmergencyCalls.update"><code class="docutils literal notranslate"><span class="pre">BuildingStockUnitWithEmergencyCalls.update()</span></code></a></li>
+<li><a class="reference internal" href="#Component.BuildingStockUnitWithEmergencyCalls.update_communication_demand"><code class="docutils literal notranslate"><span class="pre">BuildingStockUnitWithEmergencyCalls.update_communication_demand()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Component.Component"><code class="docutils literal notranslate"><span class="pre">Component</span></code></a></li>
+<li><a class="reference internal" href="#Component.InfrastructureInterface"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterface</span></code></a><ul>
+<li><a class="reference internal" href="#Component.InfrastructureInterface.get_restoration_times"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterface.get_restoration_times()</span></code></a></li>
+<li><a class="reference internal" href="#Component.InfrastructureInterface.set_supply_dynamics"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterface.set_supply_dynamics()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent</span></code></a><ul>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.DemandTypes"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.DemandTypes</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.SupplyTypes"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.SupplyTypes</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.add_resources"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.add_resources()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.check_if_functional"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.check_if_functional()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.form_resource"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.form_resource()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.get_current_resource_amount"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.get_current_resource_amount()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.get_damage_level"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.get_damage_level()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.get_locality"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.get_locality()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.has_operation_demand"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.has_operation_demand()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.has_resource_supply"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.has_resource_supply()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.recover"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.recover()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.set_initial_damage_level"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.set_initial_damage_level()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.set_locality"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.set_locality()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.set_met_demand_for_recovery_activities"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.set_met_demand_for_recovery_activities()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.set_name"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.set_name()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.set_operation_demand"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.set_operation_demand()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.set_recovery_model"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.set_recovery_model()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.set_recovery_model_activities_demand_to_met"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.set_recovery_model_activities_demand_to_met()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.set_supply"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.set_supply()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.unmet_demand_can_affect_resource_supply"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.unmet_demand_can_affect_resource_supply()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.update"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.update()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.update_functionality"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.update_functionality()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.update_operation_demand"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.update_operation_demand()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.update_recovery_demand"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.update_recovery_demand()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.update_resources_based_on_component_functionality"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.update_resources_based_on_component_functionality()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.update_supply_based_on_component_functionality"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.update_supply_based_on_component_functionality()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.update_supply_based_on_consumption"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.update_supply_based_on_consumption()</span></code></a></li>
+<li><a class="reference internal" href="#Component.StandardiReCoDeSComponent.update_supply_based_on_unmet_demand"><code class="docutils literal notranslate"><span class="pre">StandardiReCoDeSComponent.update_supply_based_on_unmet_demand()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#Component.SupplyOrDemand"><code class="docutils literal notranslate"><span class="pre">SupplyOrDemand</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=a4664895"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/furo.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    </body>
+</html>

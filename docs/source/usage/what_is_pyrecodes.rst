@@ -18,7 +18,7 @@ Following figure represents the simplified object-oriented architecture of **pyr
 iRe-CoDeS framework
 --------------------
 
-The iRe-CoDeS framework discretizes a system into components and simulates the change in components' supply and demand for various resources over the post-disaster recovery period. Components' interaction is captured by simulating the flow of resources among components and conditioning their ability to operate and recover on their resource demand fulfillment. System's resilience is then assessed by contrasting the post-disaster system-level evolution of supply, demand and consumption of various resources and identifying the system's unmet demand.
+The iRe-CoDeS framework for disaster resilience quantification discretizes a system into components and simulates the change in components' supply and demand for various resources over the post-disaster recovery period. Components' interactions are captured by simulating the flow of operation and recovery resources among components and conditioning their ability to operate and recover on their resource demand fulfillment. System's resilience is then assessed by contrasting the post-disaster system-level evolution of supply, demand and consumption of various resources and identifying the magnitude and duration of unmet resource demands in the system.
 
 .. figure:: ../figures/1slide_iRe-CoDeS.gif
         :alt: Overview of the iRe-CoDeS framework.

@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Resource Distribution Model class" href="resource_distribution_class_docs.html" /><link rel="prev" title="Resilience Calculator class" href="resilience_calculators_class_docs.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Resource Distribution Model" href="resource_distribution_class_docs.html" /><link rel="prev" title="Resilience Calculator" href="resilience_calculators_class_docs.html" />
 
     <!-- Generated with Sphinx 7.2.5 and Furo 2023.08.19 -->
         <title>Resource class - pyrecodes 2023 documentation</title>
@@ -174,18 +174,18 @@
 <li class="toctree-l2"><a class="reference internal" href="main_docs.html">Main</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system_class_docs.html">System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system_creator_class_docs.html">System Creator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_class_docs.html">Component class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_library_creator_class_docs.html">Component Library Creator class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_recovery_model_class_docs.html">Component Recovery Model class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="damage_input_class_docs.html">Damage Input class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distribution_priority_class_docs.html">Distribution Priority class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geovisulisator_class_docs.html">Geovisualisator class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotter_class_docs.html">Plotter class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="probability_distribution_class_docs.html">Probability Distribution class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="relation_class_docs.html">Relation class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resilience_calculators_class_docs.html">Resilience Calculator class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_class_docs.html">Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_library_creator_class_docs.html">Component Library Creator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_recovery_model_class_docs.html">Component Recovery Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="damage_input_class_docs.html">Damage Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distribution_priority_class_docs.html">Distribution Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geovisulisator_class_docs.html">Geovisualisator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotter_class_docs.html">Plotter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="probability_distribution_class_docs.html">Probability Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relation_class_docs.html">Relation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resilience_calculators_class_docs.html">Resilience Calculator</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Resource class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resource_distribution_class_docs.html">Resource Distribution Model class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_distribution_class_docs.html">Resource Distribution Model</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../how_to_cite.html">How to cite</a></li>
@@ -225,16 +225,16 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-Resource">
-<span id="resource-class"></span><h1>Resource class<a class="headerlink" href="#module-Resource" title="Link to this heading">#</a></h1>
+          <section id="module-pyrecodes.Resource">
+<span id="resource-class"></span><h1>Resource class<a class="headerlink" href="#module-pyrecodes.Resource" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="Resource.ConcreteResource">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Resource.</span></span><span class="sig-name descname"><span class="pre">ConcreteResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_relation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Constant'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Resource.ConcreteResource" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.Resource.ConcreteResource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.Resource.</span></span><span class="sig-name descname"><span class="pre">ConcreteResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_relation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Constant'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.Resource.ConcreteResource" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="Resource.ConsumableResource">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Resource.</span></span><span class="sig-name descname"><span class="pre">ConsumableResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_relation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Constant'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Resource.ConsumableResource" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.Resource.ConsumableResource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.Resource.</span></span><span class="sig-name descname"><span class="pre">ConsumableResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_relation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Constant'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.Resource.ConsumableResource" title="Link to this definition">#</a></dt>
 <dd><p>Class to simulate a resource whose supply decreases when it is consumed.</p>
 <p>Both initial and current amounts are reduced by the consumption amount.</p>
 <p>The reason is that the initial amount represents the amount that the component provides when 
@@ -242,14 +242,14 @@ functionality level is 1 and this value is also decreased for a consumable resou
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="Resource.NonConsumableResource">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Resource.</span></span><span class="sig-name descname"><span class="pre">NonConsumableResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_relation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Constant'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Resource.NonConsumableResource" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.Resource.NonConsumableResource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.Resource.</span></span><span class="sig-name descname"><span class="pre">NonConsumableResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_relation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Constant'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.Resource.NonConsumableResource" title="Link to this definition">#</a></dt>
 <dd><p>Class to simulate a resource whose supply does not decrease when it is consumed.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="Resource.Resource">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Resource.</span></span><span class="sig-name descname"><span class="pre">Resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">functionality_to_amount_relation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unmet_demand_to_amount_relation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Resource.Resource" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.Resource.Resource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.Resource.</span></span><span class="sig-name descname"><span class="pre">Resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">functionality_to_amount_relation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unmet_demand_to_amount_relation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.Resource.Resource" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 </section>
@@ -264,7 +264,7 @@ functionality level is 1 and this value is also decreased for a consumable resou
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Resource Distribution Model class</div>
+                <div class="title">Resource Distribution Model</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -275,7 +275,7 @@ functionality level is 1 and this value is also decreased for a consumable resou
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Resilience Calculator class</div>
+                <div class="title">Resilience Calculator</div>
                 
               </div>
             </a>
@@ -310,10 +310,10 @@ functionality level is 1 and this value is also decreased for a consumable resou
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Resource class</a><ul>
-<li><a class="reference internal" href="#Resource.ConcreteResource"><code class="docutils literal notranslate"><span class="pre">ConcreteResource</span></code></a></li>
-<li><a class="reference internal" href="#Resource.ConsumableResource"><code class="docutils literal notranslate"><span class="pre">ConsumableResource</span></code></a></li>
-<li><a class="reference internal" href="#Resource.NonConsumableResource"><code class="docutils literal notranslate"><span class="pre">NonConsumableResource</span></code></a></li>
-<li><a class="reference internal" href="#Resource.Resource"><code class="docutils literal notranslate"><span class="pre">Resource</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.Resource.ConcreteResource"><code class="docutils literal notranslate"><span class="pre">ConcreteResource</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.Resource.ConsumableResource"><code class="docutils literal notranslate"><span class="pre">ConsumableResource</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.Resource.NonConsumableResource"><code class="docutils literal notranslate"><span class="pre">NonConsumableResource</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.Resource.Resource"><code class="docutils literal notranslate"><span class="pre">Resource</span></code></a></li>
 </ul>
 </li>
 </ul>

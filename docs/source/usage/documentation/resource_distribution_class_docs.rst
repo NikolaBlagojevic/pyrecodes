@@ -1,5 +1,5 @@
-Resource Distribution Model class
-=================================
+Resource Distribution Model
+===========================
 
-.. automodule:: ResourceDistributionModel
+.. automodule:: pyrecodes.ResourceDistributionModel
    :members:

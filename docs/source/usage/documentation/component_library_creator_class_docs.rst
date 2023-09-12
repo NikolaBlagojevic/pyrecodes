@@ -1,5 +1,5 @@
-Component Library Creator class
-===============================
+Component Library Creator
+=========================
 
-.. automodule:: ComponentLibraryCreator
+.. automodule:: pyrecodes.ComponentLibraryCreator
    :members:

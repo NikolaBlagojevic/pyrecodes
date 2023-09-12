@@ -1,5 +1,5 @@
-Geovisualisator class
-=====================
+Geovisualisator
+===============
 
-.. automodule:: GeoVisualisator
+.. automodule:: pyrecodes.GeoVisualisator
    :members:

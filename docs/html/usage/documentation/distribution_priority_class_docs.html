@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Geovisualisator class" href="geovisulisator_class_docs.html" /><link rel="prev" title="Damage Input class" href="damage_input_class_docs.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Geovisualisator" href="geovisulisator_class_docs.html" /><link rel="prev" title="Damage Input" href="damage_input_class_docs.html" />
 
     <!-- Generated with Sphinx 7.2.5 and Furo 2023.08.19 -->
-        <title>Distribution Priority class - pyrecodes 2023 documentation</title>
+        <title>Distribution Priority - pyrecodes 2023 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
@@ -174,18 +174,18 @@
 <li class="toctree-l2"><a class="reference internal" href="main_docs.html">Main</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system_class_docs.html">System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system_creator_class_docs.html">System Creator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_class_docs.html">Component class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_library_creator_class_docs.html">Component Library Creator class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_recovery_model_class_docs.html">Component Recovery Model class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="damage_input_class_docs.html">Damage Input class</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Distribution Priority class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geovisulisator_class_docs.html">Geovisualisator class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotter_class_docs.html">Plotter class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="probability_distribution_class_docs.html">Probability Distribution class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="relation_class_docs.html">Relation class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resilience_calculators_class_docs.html">Resilience Calculator class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_class_docs.html">Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_library_creator_class_docs.html">Component Library Creator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_recovery_model_class_docs.html">Component Recovery Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="damage_input_class_docs.html">Damage Input</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Distribution Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geovisulisator_class_docs.html">Geovisualisator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotter_class_docs.html">Plotter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="probability_distribution_class_docs.html">Probability Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relation_class_docs.html">Relation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resilience_calculators_class_docs.html">Resilience Calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource_class_docs.html">Resource class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resource_distribution_class_docs.html">Resource Distribution Model class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_distribution_class_docs.html">Resource Distribution Model</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../how_to_cite.html">How to cite</a></li>
@@ -225,50 +225,50 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-DistributionPriority">
-<span id="distribution-priority-class"></span><h1>Distribution Priority class<a class="headerlink" href="#module-DistributionPriority" title="Link to this heading">#</a></h1>
+          <section id="module-pyrecodes.DistributionPriority">
+<span id="distribution-priority"></span><h1>Distribution Priority<a class="headerlink" href="#module-pyrecodes.DistributionPriority" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="DistributionPriority.ComponentBasedPriority">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DistributionPriority.</span></span><span class="sig-name descname"><span class="pre">ComponentBasedPriority</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">resource_name:</span> <span class="pre">str,</span> <span class="pre">parameters,</span> <span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#DistributionPriority.ComponentBasedPriority" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.DistributionPriority.ComponentBasedPriority">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.DistributionPriority.</span></span><span class="sig-name descname"><span class="pre">ComponentBasedPriority</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">resource_name:</span> <span class="pre">str,</span> <span class="pre">parameters,</span> <span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.DistributionPriority.ComponentBasedPriority" title="Link to this definition">#</a></dt>
 <dd><p>Resource distribution priority of each component are explicitly defined.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="DistributionPriority.ComponentTypeBasedPriority">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DistributionPriority.</span></span><span class="sig-name descname"><span class="pre">ComponentTypeBasedPriority</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">resource_name:</span> <span class="pre">str,</span> <span class="pre">parameters,</span> <span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#DistributionPriority.ComponentTypeBasedPriority" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.DistributionPriority.ComponentTypeBasedPriority">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.DistributionPriority.</span></span><span class="sig-name descname"><span class="pre">ComponentTypeBasedPriority</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">resource_name:</span> <span class="pre">str,</span> <span class="pre">parameters,</span> <span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.DistributionPriority.ComponentTypeBasedPriority" title="Link to this definition">#</a></dt>
 <dd><p>Components are prioritized based on their type (i.e., name). Components higher in the system’s component list are prioritized among same type components.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="DistributionPriority.DistributionPriority">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DistributionPriority.</span></span><span class="sig-name descname"><span class="pre">DistributionPriority</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;],</span> <span class="pre">parameters,</span> <span class="pre">resource_name:</span> <span class="pre">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#DistributionPriority.DistributionPriority" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.DistributionPriority.DistributionPriority">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.DistributionPriority.</span></span><span class="sig-name descname"><span class="pre">DistributionPriority</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;],</span> <span class="pre">parameters,</span> <span class="pre">resource_name:</span> <span class="pre">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.DistributionPriority.DistributionPriority" title="Link to this definition">#</a></dt>
 <dd><p>Abstract class for defining component priority for resource distribution.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="DistributionPriority.RandomPriority">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DistributionPriority.</span></span><span class="sig-name descname"><span class="pre">RandomPriority</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">resource_name:</span> <span class="pre">str,</span> <span class="pre">parameters:</span> <span class="pre">dict,</span> <span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#DistributionPriority.RandomPriority" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.DistributionPriority.RandomPriority">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.DistributionPriority.</span></span><span class="sig-name descname"><span class="pre">RandomPriority</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">resource_name:</span> <span class="pre">str,</span> <span class="pre">parameters:</span> <span class="pre">dict,</span> <span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.DistributionPriority.RandomPriority" title="Link to this definition">#</a></dt>
 <dd><p>Randomly shuffle components for resource distribution. 
 Keeps resource suppliers on top of the priority list to maximize the consumption of components’ supply capacity.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="DistributionPriority.RandomPriority.randomize_ids">
-<span class="sig-name descname"><span class="pre">randomize_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">demand_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#DistributionPriority.RandomPriority.randomize_ids" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.DistributionPriority.RandomPriority.randomize_ids">
+<span class="sig-name descname"><span class="pre">randomize_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">demand_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#pyrecodes.DistributionPriority.RandomPriority.randomize_ids" title="Link to this definition">#</a></dt>
 <dd><p>The method randomizes component ids. Demand types are in the same order as in the input variable.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="DistributionPriority.RandomPriorityWithPrioritizedInterfaces">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DistributionPriority.</span></span><span class="sig-name descname"><span class="pre">RandomPriorityWithPrioritizedInterfaces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">resource_name:</span> <span class="pre">str,</span> <span class="pre">parameters:</span> <span class="pre">dict,</span> <span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#DistributionPriority.RandomPriorityWithPrioritizedInterfaces" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.DistributionPriority.RandomPriorityWithPrioritizedInterfaces">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.DistributionPriority.</span></span><span class="sig-name descname"><span class="pre">RandomPriorityWithPrioritizedInterfaces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">resource_name:</span> <span class="pre">str,</span> <span class="pre">parameters:</span> <span class="pre">dict,</span> <span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.DistributionPriority.RandomPriorityWithPrioritizedInterfaces" title="Link to this definition">#</a></dt>
 <dd><p>Randomly shuffle components for resource distribution. 
 Keeps resource suppliers on top of the priority list to maximize the consumption of components’ supply capacity. 
 Prioritized infrastructure interfaces over other components to minimize shutdowns due to infrastructure interdependency effects.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="DistributionPriority.SupplierOnlyDistributionPriority">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DistributionPriority.</span></span><span class="sig-name descname"><span class="pre">SupplierOnlyDistributionPriority</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">resource_name:</span> <span class="pre">str,</span> <span class="pre">parameters:</span> <span class="pre">dict,</span> <span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#DistributionPriority.SupplierOnlyDistributionPriority" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.DistributionPriority.SupplierOnlyDistributionPriority">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.DistributionPriority.</span></span><span class="sig-name descname"><span class="pre">SupplierOnlyDistributionPriority</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">resource_name:</span> <span class="pre">str,</span> <span class="pre">parameters:</span> <span class="pre">dict,</span> <span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.DistributionPriority.SupplierOnlyDistributionPriority" title="Link to this definition">#</a></dt>
 <dd><p>Find all components that have a supply for a specified resource and only include those components when distributing a resource.
 Used for housing service distribution, as it only considers components with housing supply when distributing housing services. Makes housing distribution faster.
 Considers Operation Demand only.</p>
@@ -286,7 +286,7 @@ Considers Operation Demand only.</p>
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Geovisualisator class</div>
+                <div class="title">Geovisualisator</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -297,7 +297,7 @@ Considers Operation Demand only.</p>
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Damage Input class</div>
+                <div class="title">Damage Input</div>
                 
               </div>
             </a>
@@ -331,16 +331,16 @@ Considers Operation Demand only.</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Distribution Priority class</a><ul>
-<li><a class="reference internal" href="#DistributionPriority.ComponentBasedPriority"><code class="docutils literal notranslate"><span class="pre">ComponentBasedPriority</span></code></a></li>
-<li><a class="reference internal" href="#DistributionPriority.ComponentTypeBasedPriority"><code class="docutils literal notranslate"><span class="pre">ComponentTypeBasedPriority</span></code></a></li>
-<li><a class="reference internal" href="#DistributionPriority.DistributionPriority"><code class="docutils literal notranslate"><span class="pre">DistributionPriority</span></code></a></li>
-<li><a class="reference internal" href="#DistributionPriority.RandomPriority"><code class="docutils literal notranslate"><span class="pre">RandomPriority</span></code></a><ul>
-<li><a class="reference internal" href="#DistributionPriority.RandomPriority.randomize_ids"><code class="docutils literal notranslate"><span class="pre">RandomPriority.randomize_ids()</span></code></a></li>
+<li><a class="reference internal" href="#">Distribution Priority</a><ul>
+<li><a class="reference internal" href="#pyrecodes.DistributionPriority.ComponentBasedPriority"><code class="docutils literal notranslate"><span class="pre">ComponentBasedPriority</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.DistributionPriority.ComponentTypeBasedPriority"><code class="docutils literal notranslate"><span class="pre">ComponentTypeBasedPriority</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.DistributionPriority.DistributionPriority"><code class="docutils literal notranslate"><span class="pre">DistributionPriority</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.DistributionPriority.RandomPriority"><code class="docutils literal notranslate"><span class="pre">RandomPriority</span></code></a><ul>
+<li><a class="reference internal" href="#pyrecodes.DistributionPriority.RandomPriority.randomize_ids"><code class="docutils literal notranslate"><span class="pre">RandomPriority.randomize_ids()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#DistributionPriority.RandomPriorityWithPrioritizedInterfaces"><code class="docutils literal notranslate"><span class="pre">RandomPriorityWithPrioritizedInterfaces</span></code></a></li>
-<li><a class="reference internal" href="#DistributionPriority.SupplierOnlyDistributionPriority"><code class="docutils literal notranslate"><span class="pre">SupplierOnlyDistributionPriority</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.DistributionPriority.RandomPriorityWithPrioritizedInterfaces"><code class="docutils literal notranslate"><span class="pre">RandomPriorityWithPrioritizedInterfaces</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.DistributionPriority.SupplierOnlyDistributionPriority"><code class="docutils literal notranslate"><span class="pre">SupplierOnlyDistributionPriority</span></code></a></li>
 </ul>
 </li>
 </ul>

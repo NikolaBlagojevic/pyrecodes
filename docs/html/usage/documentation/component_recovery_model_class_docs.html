@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Damage Input class" href="damage_input_class_docs.html" /><link rel="prev" title="Component Library Creator class" href="component_library_creator_class_docs.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Damage Input" href="damage_input_class_docs.html" /><link rel="prev" title="Component Library Creator" href="component_library_creator_class_docs.html" />
 
     <!-- Generated with Sphinx 7.2.5 and Furo 2023.08.19 -->
-        <title>Component Recovery Model class - pyrecodes 2023 documentation</title>
+        <title>Component Recovery Model - pyrecodes 2023 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
@@ -174,18 +174,18 @@
 <li class="toctree-l2"><a class="reference internal" href="main_docs.html">Main</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system_class_docs.html">System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system_creator_class_docs.html">System Creator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_class_docs.html">Component class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_library_creator_class_docs.html">Component Library Creator class</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Component Recovery Model class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="damage_input_class_docs.html">Damage Input class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distribution_priority_class_docs.html">Distribution Priority class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geovisulisator_class_docs.html">Geovisualisator class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotter_class_docs.html">Plotter class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="probability_distribution_class_docs.html">Probability Distribution class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="relation_class_docs.html">Relation class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resilience_calculators_class_docs.html">Resilience Calculator class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_class_docs.html">Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_library_creator_class_docs.html">Component Library Creator</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Component Recovery Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="damage_input_class_docs.html">Damage Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distribution_priority_class_docs.html">Distribution Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geovisulisator_class_docs.html">Geovisualisator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotter_class_docs.html">Plotter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="probability_distribution_class_docs.html">Probability Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relation_class_docs.html">Relation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resilience_calculators_class_docs.html">Resilience Calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource_class_docs.html">Resource class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resource_distribution_class_docs.html">Resource Distribution Model class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_distribution_class_docs.html">Resource Distribution Model</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../how_to_cite.html">How to cite</a></li>
@@ -225,11 +225,11 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-ComponentRecoveryModel">
-<span id="component-recovery-model-class"></span><h1>Component Recovery Model class<a class="headerlink" href="#module-ComponentRecoveryModel" title="Link to this heading">#</a></h1>
+          <section id="module-pyrecodes.ComponentRecoveryModel">
+<span id="component-recovery-model"></span><h1>Component Recovery Model<a class="headerlink" href="#module-pyrecodes.ComponentRecoveryModel" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ComponentRecoveryModel.</span></span><span class="sig-name descname"><span class="pre">ComponentLevelRecoveryActivitiesModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recovery_model_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">REPAIR_ACTIVITY_NAME</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Repair'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ComponentRecoveryModel.</span></span><span class="sig-name descname"><span class="pre">ComponentLevelRecoveryActivitiesModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recovery_model_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">REPAIR_ACTIVITY_NAME</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Repair'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel" title="Link to this definition">#</a></dt>
 <dd><p>Component recovery model that considers multiple recovery activities defined on a component level.</p>
 <p>This model accounts for several impeding factors and a single repair activity.</p>
 <dl class="simple">
@@ -240,14 +240,14 @@ REPAIR_ACTIVITY_NAME (str): The name of the repair activity - one that actually 
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.check_preceding_activities">
-<span class="sig-name descname"><span class="pre">check_preceding_activities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.check_preceding_activities" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.check_preceding_activities">
+<span class="sig-name descname"><span class="pre">check_preceding_activities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.check_preceding_activities" title="Link to this definition">#</a></dt>
 <dd><p>Check if preceding activities are finished for all recovery activities and set the preceding_activities_finished attribute accordingly.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.find_recovery_activity_that_demands_the_resource">
-<span class="sig-name descname"><span class="pre">find_recovery_activity_that_demands_the_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ComponentRecoveryModel.RecoveryActivity" title="ComponentRecoveryModel.RecoveryActivity"><span class="pre">RecoveryActivity</span></a></span></span><a class="headerlink" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.find_recovery_activity_that_demands_the_resource" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.find_recovery_activity_that_demands_the_resource">
+<span class="sig-name descname"><span class="pre">find_recovery_activity_that_demands_the_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.RecoveryActivity" title="pyrecodes.ComponentRecoveryModel.RecoveryActivity"><span class="pre">RecoveryActivity</span></a></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.find_recovery_activity_that_demands_the_resource" title="Link to this definition">#</a></dt>
 <dd><p>Find the recovery activity that demands the resource resource_name.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>resource_name (str): The name of the resource.</p>
@@ -260,8 +260,8 @@ REPAIR_ACTIVITY_NAME (str): The name of the repair activity - one that actually 
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_damage_level">
-<span class="sig-name descname"><span class="pre">get_damage_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_damage_level" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_damage_level">
+<span class="sig-name descname"><span class="pre">get_damage_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_damage_level" title="Link to this definition">#</a></dt>
 <dd><p>Get the current damage level of the component. It’s 1 - the progress level of the repair activity.</p>
 <dl class="simple">
 <dt>Returns:</dt><dd><p>float: The damage level (between 0 and 1).</p>
@@ -270,8 +270,8 @@ REPAIR_ACTIVITY_NAME (str): The name of the repair activity - one that actually 
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_demand">
-<span class="sig-name descname"><span class="pre">get_demand</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_demand" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_demand">
+<span class="sig-name descname"><span class="pre">get_demand</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_demand" title="Link to this definition">#</a></dt>
 <dd><p>Get the resource demand needed to meet the demand of all recovery activities currently in progress.</p>
 <dl class="simple">
 <dt>Returns:</dt><dd><p>dict: A dictionary of resource demands for active recovery activities.</p>
@@ -280,8 +280,8 @@ REPAIR_ACTIVITY_NAME (str): The name of the repair activity - one that actually 
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_functionality_level">
-<span class="sig-name descname"><span class="pre">get_functionality_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_functionality_level" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_functionality_level">
+<span class="sig-name descname"><span class="pre">get_functionality_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_functionality_level" title="Link to this definition">#</a></dt>
 <dd><p>Get the functionality level of the component absed on the current damage level and the damage-functionality relation.</p>
 <dl class="simple">
 <dt>Returns:</dt><dd><p>float: The functionality level (between 0 and 1).</p>
@@ -290,8 +290,8 @@ REPAIR_ACTIVITY_NAME (str): The name of the repair activity - one that actually 
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.preceding_activities_finished">
-<span class="sig-name descname"><span class="pre">preceding_activities_finished</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recovery_activity_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ComponentRecoveryModel.RecoveryActivity" title="ComponentRecoveryModel.RecoveryActivity"><span class="pre">RecoveryActivity</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.preceding_activities_finished" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.preceding_activities_finished">
+<span class="sig-name descname"><span class="pre">preceding_activities_finished</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recovery_activity_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.RecoveryActivity" title="pyrecodes.ComponentRecoveryModel.RecoveryActivity"><span class="pre">RecoveryActivity</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.preceding_activities_finished" title="Link to this definition">#</a></dt>
 <dd><p>Check if preceding activities for a single recovery activity are finished.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>recovery_activity_object (RecoveryActivity): The recovery activity to check.</p>
@@ -302,8 +302,8 @@ REPAIR_ACTIVITY_NAME (str): The name of the repair activity - one that actually 
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.recover">
-<span class="sig-name descname"><span class="pre">recover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.recover" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.recover">
+<span class="sig-name descname"><span class="pre">recover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.recover" title="Link to this definition">#</a></dt>
 <dd><p>Perform recovery for a time step. Increase the level of all activities that are not finished, for which all preceding activities are finished and the resource demand is met.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>time_step (int): The time step for which recovery is performed.</p>
@@ -312,14 +312,14 @@ REPAIR_ACTIVITY_NAME (str): The name of the repair activity - one that actually 
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_activities_demand_to_met">
-<span class="sig-name descname"><span class="pre">set_activities_demand_to_met</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_activities_demand_to_met" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_activities_demand_to_met">
+<span class="sig-name descname"><span class="pre">set_activities_demand_to_met</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_activities_demand_to_met" title="Link to this definition">#</a></dt>
 <dd><p>Set the demand for recovery activities to met. This is done before resource are distributed at each time step, as resource distribution can only reduce the percent of met demand of a component - this is an iRe-CoDeS assumption.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_damage_functionality">
-<span class="sig-name descname"><span class="pre">set_damage_functionality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">damage_functionality_relation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_damage_functionality" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_damage_functionality">
+<span class="sig-name descname"><span class="pre">set_damage_functionality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">damage_functionality_relation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_damage_functionality" title="Link to this definition">#</a></dt>
 <dd><p>Set damage functionality relation. This relation is used to get the component’s functionality level based on its current damage level.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>damage_functionality_relation (dict): Damage functionality relation parameters.</p>
@@ -328,8 +328,8 @@ REPAIR_ACTIVITY_NAME (str): The name of the repair activity - one that actually 
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_initial_damage_level">
-<span class="sig-name descname"><span class="pre">set_initial_damage_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">damage_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_initial_damage_level" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_initial_damage_level">
+<span class="sig-name descname"><span class="pre">set_initial_damage_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">damage_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_initial_damage_level" title="Link to this definition">#</a></dt>
 <dd><p>Set the initial damage level. The damage level must be between 0 and 1.</p>
 <p>Sets the progress level of all activities to 0 and the progress level of the repair activity to 1 - damage_level.</p>
 <dl class="simple">
@@ -339,8 +339,8 @@ REPAIR_ACTIVITY_NAME (str): The name of the repair activity - one that actually 
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_initial_repair_activity_state">
-<span class="sig-name descname"><span class="pre">set_initial_repair_activity_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">damage_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_initial_repair_activity_state" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_initial_repair_activity_state">
+<span class="sig-name descname"><span class="pre">set_initial_repair_activity_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">damage_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_initial_repair_activity_state" title="Link to this definition">#</a></dt>
 <dd><p>Set the initial state of the repair activity. Initial level is 1 - damage_level and the rate is damage_level / duration to ensure that the component is repaired in the specified duration.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>damage_level (float): The initial damage level (between 0 and 1).</p>
@@ -349,8 +349,8 @@ REPAIR_ACTIVITY_NAME (str): The name of the repair activity - one that actually 
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_met_demand_for_recovery_activities">
-<span class="sig-name descname"><span class="pre">set_met_demand_for_recovery_activities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percent_of_met_demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_met_demand_for_recovery_activities" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_met_demand_for_recovery_activities">
+<span class="sig-name descname"><span class="pre">set_met_demand_for_recovery_activities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percent_of_met_demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_met_demand_for_recovery_activities" title="Link to this definition">#</a></dt>
 <dd><p>Set the percent of met demand for a recovery activity that requires the resource resource_name. This method is called during resource distribution.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>resource_name (str): The name of the resource.
@@ -362,8 +362,8 @@ percent_of_met_demand (float): The percent of met demand (between 0 and 1).:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_parameters">
-<span class="sig-name descname"><span class="pre">set_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_parameters" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_parameters">
+<span class="sig-name descname"><span class="pre">set_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_parameters" title="Link to this definition">#</a></dt>
 <dd><p>Set parameters for all recovery activities. Parameters are preceding activities, duration, and demand of activities.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>parameters (dict): Parameters for the recovery model.</p>
@@ -374,12 +374,12 @@ percent_of_met_demand (float): The percent of met demand (between 0 and 1).:</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ConcreteRecoveryActivity">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ComponentRecoveryModel.</span></span><span class="sig-name descname"><span class="pre">ConcreteRecoveryActivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ComponentRecoveryModel.ConcreteRecoveryActivity" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ComponentRecoveryModel.</span></span><span class="sig-name descname"><span class="pre">ConcreteRecoveryActivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity" title="Link to this definition">#</a></dt>
 <dd><p>Concrete implementation of a recovery activity.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ConcreteRecoveryActivity.activity_finished">
-<span class="sig-name descname"><span class="pre">activity_finished</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.activity_finished" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.activity_finished">
+<span class="sig-name descname"><span class="pre">activity_finished</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.activity_finished" title="Link to this definition">#</a></dt>
 <dd><p>Check if the activity is finished and return a boolean value.</p>
 <dl class="simple">
 <dt>Returns:</dt><dd><p>bool: True if the activity is finished, False otherwise.</p>
@@ -388,8 +388,8 @@ percent_of_met_demand (float): The percent of met demand (between 0 and 1).:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ConcreteRecoveryActivity.effect_of_unmet_demand_on_activity">
-<span class="sig-name descname"><span class="pre">effect_of_unmet_demand_on_activity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.effect_of_unmet_demand_on_activity" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.effect_of_unmet_demand_on_activity">
+<span class="sig-name descname"><span class="pre">effect_of_unmet_demand_on_activity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.effect_of_unmet_demand_on_activity" title="Link to this definition">#</a></dt>
 <dd><p>Determine how demand met for each resource in the recovery demand affects the recovery activity.</p>
 <dl class="simple">
 <dt>Returns:</dt><dd><p>float: The effect of unmet demand on the activity.</p>
@@ -398,8 +398,8 @@ percent_of_met_demand (float): The percent of met demand (between 0 and 1).:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ConcreteRecoveryActivity.get_demand">
-<span class="sig-name descname"><span class="pre">get_demand</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.get_demand" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.get_demand">
+<span class="sig-name descname"><span class="pre">get_demand</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.get_demand" title="Link to this definition">#</a></dt>
 <dd><p>Get the current resource demand of the activity.</p>
 <dl class="simple">
 <dt>Returns:</dt><dd><p>dict: A dictionary of resource demands.</p>
@@ -408,8 +408,8 @@ percent_of_met_demand (float): The percent of met demand (between 0 and 1).:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ConcreteRecoveryActivity.record_progress">
-<span class="sig-name descname"><span class="pre">record_progress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.record_progress" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.record_progress">
+<span class="sig-name descname"><span class="pre">record_progress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.record_progress" title="Link to this definition">#</a></dt>
 <dd><p>Record progress at a specific time step. If the rate at a time step was higher than zero, than the time step is recorded.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>time_step (int): The time step when progress is recorded.</p>
@@ -418,8 +418,8 @@ percent_of_met_demand (float): The percent of met demand (between 0 and 1).:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ConcreteRecoveryActivity.recover">
-<span class="sig-name descname"><span class="pre">recover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.recover" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.recover">
+<span class="sig-name descname"><span class="pre">recover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.recover" title="Link to this definition">#</a></dt>
 <dd><p>Perform recovery for a given time step. Activity recovers (i.e., progresses) if it’s not already finished. The rate of progress depends on the percent of met resource demand.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>time_step (int): The time step for which recovery is performed.</p>
@@ -428,8 +428,8 @@ percent_of_met_demand (float): The percent of met demand (between 0 and 1).:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ConcreteRecoveryActivity.sample_duration">
-<span class="sig-name descname"><span class="pre">sample_duration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distribution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.sample_duration" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.sample_duration">
+<span class="sig-name descname"><span class="pre">sample_duration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distribution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.sample_duration" title="Link to this definition">#</a></dt>
 <dd><p>Sample the duration from a distribution.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>distribution (dict): A dictionary describing the duration distribution.</p>
@@ -440,8 +440,8 @@ percent_of_met_demand (float): The percent of met demand (between 0 and 1).:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ConcreteRecoveryActivity.set_demand">
-<span class="sig-name descname"><span class="pre">set_demand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.set_demand" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_demand">
+<span class="sig-name descname"><span class="pre">set_demand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_demand" title="Link to this definition">#</a></dt>
 <dd><p>Set the resource demand for the activity.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>resources (list): List of dictionaries describing resource demands.</p>
@@ -450,8 +450,8 @@ percent_of_met_demand (float): The percent of met demand (between 0 and 1).:</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ConcreteRecoveryActivity.set_demand_met">
-<span class="sig-name descname"><span class="pre">set_demand_met</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">demand_met</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.set_demand_met" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_demand_met">
+<span class="sig-name descname"><span class="pre">set_demand_met</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">demand_met</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_demand_met" title="Link to this definition">#</a></dt>
 <dd><p>Set the level of demand met (between 0 and 1) for a resource resource_name.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>resource_name (str): The name of the resource.
@@ -461,8 +461,8 @@ demand_met (float): The level of demand met (between 0 and 1).</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ConcreteRecoveryActivity.set_duration">
-<span class="sig-name descname"><span class="pre">set_duration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distribution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.set_duration" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_duration">
+<span class="sig-name descname"><span class="pre">set_duration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distribution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_duration" title="Link to this definition">#</a></dt>
 <dd><p>Set the duration of the activity based on a distribution. Duration must be a positive number. If duration is zero, the rate is infinite - activity is immediately finished.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>distribution (dict): A dictionary describing the duration distribution.</p>
@@ -471,8 +471,8 @@ demand_met (float): The level of demand met (between 0 and 1).</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ConcreteRecoveryActivity.set_level">
-<span class="sig-name descname"><span class="pre">set_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.set_level" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_level">
+<span class="sig-name descname"><span class="pre">set_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_level" title="Link to this definition">#</a></dt>
 <dd><p>Set the progress level of the activity.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>level (float): The progress level of the activity (between 0 and 1).</p>
@@ -481,8 +481,8 @@ demand_met (float): The level of demand met (between 0 and 1).</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ConcreteRecoveryActivity.set_name">
-<span class="sig-name descname"><span class="pre">set_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.set_name" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_name">
+<span class="sig-name descname"><span class="pre">set_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_name" title="Link to this definition">#</a></dt>
 <dd><p>Set the name of the activity.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>name (str): The name of the activity.</p>
@@ -491,8 +491,8 @@ demand_met (float): The level of demand met (between 0 and 1).</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ConcreteRecoveryActivity.set_preceding_activities">
-<span class="sig-name descname"><span class="pre">set_preceding_activities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">preceding_activities:</span> <span class="pre">[&lt;class</span> <span class="pre">'str'&gt;]</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.set_preceding_activities" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_preceding_activities">
+<span class="sig-name descname"><span class="pre">set_preceding_activities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">preceding_activities:</span> <span class="pre">[&lt;class</span> <span class="pre">'str'&gt;]</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_preceding_activities" title="Link to this definition">#</a></dt>
 <dd><p>Set preceding activities that need to be completed for this activity to start.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>preceding_activities (list[str]): List of names of preceding activities.</p>
@@ -501,8 +501,8 @@ demand_met (float): The level of demand met (between 0 and 1).</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.ConcreteRecoveryActivity.set_preceding_activities_finished">
-<span class="sig-name descname"><span class="pre">set_preceding_activities_finished</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">finished</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.set_preceding_activities_finished" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_preceding_activities_finished">
+<span class="sig-name descname"><span class="pre">set_preceding_activities_finished</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">finished</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_preceding_activities_finished" title="Link to this definition">#</a></dt>
 <dd><p>Set the status of preceding activities.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>finished (bool): True if all preceding activities are finished.</p>
@@ -513,12 +513,12 @@ demand_met (float): The level of demand met (between 0 and 1).</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ComponentRecoveryModel.</span></span><span class="sig-name descname"><span class="pre">InfrastructureInterfaceRecoveryModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recovery_model_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ComponentRecoveryModel.</span></span><span class="sig-name descname"><span class="pre">InfrastructureInterfaceRecoveryModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recovery_model_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel" title="Link to this definition">#</a></dt>
 <dd><p>Component recovery model for infrastructure interfaces to simulate their pre-defined post-disaster supply/demand dynamics.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_damage_level">
-<span class="sig-name descname"><span class="pre">get_damage_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_damage_level" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_damage_level">
+<span class="sig-name descname"><span class="pre">get_damage_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_damage_level" title="Link to this definition">#</a></dt>
 <dd><p>Get the damage level of the infrastructure interface.</p>
 <dl class="simple">
 <dt>Returns:</dt><dd><p>float: The damage level.</p>
@@ -527,8 +527,8 @@ demand_met (float): The level of demand met (between 0 and 1).</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_demand">
-<span class="sig-name descname"><span class="pre">get_demand</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_demand" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_demand">
+<span class="sig-name descname"><span class="pre">get_demand</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_demand" title="Link to this definition">#</a></dt>
 <dd><p>Get the demand for the infrastructure interface.</p>
 <dl class="simple">
 <dt>Returns:</dt><dd><p>dict: An empty dictionary, as it assumed that there is no recovery demand for infrastructure interfaces.</p>
@@ -537,8 +537,8 @@ demand_met (float): The level of demand met (between 0 and 1).</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_functionality_level">
-<span class="sig-name descname"><span class="pre">get_functionality_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_functionality_level" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_functionality_level">
+<span class="sig-name descname"><span class="pre">get_functionality_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_functionality_level" title="Link to this definition">#</a></dt>
 <dd><p>Get the functionality level of the infrastructure interface.</p>
 <dl class="simple">
 <dt>Returns:</dt><dd><p>float: The functionality level.</p>
@@ -547,8 +547,8 @@ demand_met (float): The level of demand met (between 0 and 1).</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.recover">
-<span class="sig-name descname"><span class="pre">recover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.recover" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.recover">
+<span class="sig-name descname"><span class="pre">recover</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.recover" title="Link to this definition">#</a></dt>
 <dd><p>Perform recovery for a time step. Recovery here means simulating the pre-defined post-disaster supply/demand dynamics.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>time_step (int): The time step for which recovery is performed.</p>
@@ -557,14 +557,14 @@ demand_met (float): The level of demand met (between 0 and 1).</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_damage_functionality">
-<span class="sig-name descname"><span class="pre">set_damage_functionality</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_damage_functionality" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_damage_functionality">
+<span class="sig-name descname"><span class="pre">set_damage_functionality</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_damage_functionality" title="Link to this definition">#</a></dt>
 <dd><p>Set damage functionality relation. For this model it’s always a multiple step relation.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_initial_damage_level">
-<span class="sig-name descname"><span class="pre">set_initial_damage_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">damage_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_initial_damage_level" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_initial_damage_level">
+<span class="sig-name descname"><span class="pre">set_initial_damage_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">damage_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_initial_damage_level" title="Link to this definition">#</a></dt>
 <dd><p>Set the initial damage level for infrastructure interfaces. The damage level is always 1 to triger the pre-defined supply/demand dynamics.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>damage_level (float): The initial damage level. For this model, it must be 1.</p>
@@ -577,8 +577,8 @@ demand_met (float): The level of demand met (between 0 and 1).</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_parameters">
-<span class="sig-name descname"><span class="pre">set_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[{'Deterministic':</span> <span class="pre">{'Value':</span> <span class="pre">0}}]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_parameters" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_parameters">
+<span class="sig-name descname"><span class="pre">set_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[{'Deterministic':</span> <span class="pre">{'Value':</span> <span class="pre">0}}]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_parameters" title="Link to this definition">#</a></dt>
 <dd><p>Set model parameters. These include setting the post-disaster functionality levels and the time steps at which they change as multiple steps to achieve the predefined supply/demand dynamics as set in the system configuration file.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>parameters (dict): Parameters for the recovery model.
@@ -600,12 +600,12 @@ default_duration (list, optional): Default duration for recovery activities (def
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.NoRecoveryActivityModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ComponentRecoveryModel.</span></span><span class="sig-name descname"><span class="pre">NoRecoveryActivityModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recovery_model_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">REPAIR_ACTIVITY_NAME</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Repair'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ComponentRecoveryModel.NoRecoveryActivityModel" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ComponentRecoveryModel.</span></span><span class="sig-name descname"><span class="pre">NoRecoveryActivityModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recovery_model_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">REPAIR_ACTIVITY_NAME</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Repair'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel" title="Link to this definition">#</a></dt>
 <dd><p>Recovery model for components that did not experience damage.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.NoRecoveryActivityModel.get_damage_level">
-<span class="sig-name descname"><span class="pre">get_damage_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.NoRecoveryActivityModel.get_damage_level" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.get_damage_level">
+<span class="sig-name descname"><span class="pre">get_damage_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.get_damage_level" title="Link to this definition">#</a></dt>
 <dd><p>Get the damage level of the undamaged component.</p>
 <dl class="simple">
 <dt>Returns:</dt><dd><p>float: The damage level (always 0 for undamaged components).</p>
@@ -614,8 +614,8 @@ default_duration (list, optional): Default duration for recovery activities (def
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.NoRecoveryActivityModel.get_demand">
-<span class="sig-name descname"><span class="pre">get_demand</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.NoRecoveryActivityModel.get_demand" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.get_demand">
+<span class="sig-name descname"><span class="pre">get_demand</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.get_demand" title="Link to this definition">#</a></dt>
 <dd><p>Get the demand for recovery activities for the undamaged component.</p>
 <dl class="simple">
 <dt>Returns:</dt><dd><p>dict: An empty dictionary, as there is no demand for undamaged components.</p>
@@ -624,8 +624,8 @@ default_duration (list, optional): Default duration for recovery activities (def
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.NoRecoveryActivityModel.get_functionality_level">
-<span class="sig-name descname"><span class="pre">get_functionality_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.NoRecoveryActivityModel.get_functionality_level" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.get_functionality_level">
+<span class="sig-name descname"><span class="pre">get_functionality_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.get_functionality_level" title="Link to this definition">#</a></dt>
 <dd><p>Get the functionality level of the undamaged component.</p>
 <dl class="simple">
 <dt>Returns:</dt><dd><p>float: The functionality level (always 1.0 for undamaged components).</p>
@@ -634,8 +634,8 @@ default_duration (list, optional): Default duration for recovery activities (def
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.NoRecoveryActivityModel.set_damage_functionality">
-<span class="sig-name descname"><span class="pre">set_damage_functionality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">damage_functionality_relation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.NoRecoveryActivityModel.set_damage_functionality" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.set_damage_functionality">
+<span class="sig-name descname"><span class="pre">set_damage_functionality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">damage_functionality_relation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.set_damage_functionality" title="Link to this definition">#</a></dt>
 <dd><p>Set damage functionality relation (not applicable for undamaged components).</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>damage_functionality_relation (dict): Damage functionality relation parameters.</p>
@@ -644,8 +644,8 @@ default_duration (list, optional): Default duration for recovery activities (def
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.NoRecoveryActivityModel.set_initial_damage_level">
-<span class="sig-name descname"><span class="pre">set_initial_damage_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">damage_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.NoRecoveryActivityModel.set_initial_damage_level" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.set_initial_damage_level">
+<span class="sig-name descname"><span class="pre">set_initial_damage_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">damage_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.set_initial_damage_level" title="Link to this definition">#</a></dt>
 <dd><p>Set the initial damage level for undamaged components.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>damage_level (float): The initial damage level. For this model, it must be 0.</p>
@@ -656,8 +656,8 @@ default_duration (list, optional): Default duration for recovery activities (def
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.NoRecoveryActivityModel.set_met_demand_for_recovery_activities">
-<span class="sig-name descname"><span class="pre">set_met_demand_for_recovery_activities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percent_of_met_demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ComponentRecoveryModel.NoRecoveryActivityModel.set_met_demand_for_recovery_activities" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.set_met_demand_for_recovery_activities">
+<span class="sig-name descname"><span class="pre">set_met_demand_for_recovery_activities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percent_of_met_demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.set_met_demand_for_recovery_activities" title="Link to this definition">#</a></dt>
 <dd><p>Set the percent of met demand for a recovery activity that requires the resource resource_name. This method is called during resource distribution.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>resource_name (str): The name of the resource.
@@ -671,8 +671,8 @@ percent_of_met_demand (float): The percent of met demand (between 0 and 1).:</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.RecoveryActivity">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ComponentRecoveryModel.</span></span><span class="sig-name descname"><span class="pre">RecoveryActivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ComponentRecoveryModel.RecoveryActivity" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.RecoveryActivity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ComponentRecoveryModel.</span></span><span class="sig-name descname"><span class="pre">RecoveryActivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.RecoveryActivity" title="Link to this definition">#</a></dt>
 <dd><p>Abstract class representing a recovery activity.</p>
 <dl class="simple">
 <dt>Attributes:</dt><dd><p>level (float): The current progress level of the activity at a time step (between 0 and 1).
@@ -688,8 +688,8 @@ time_steps (list[int]): List of time steps when progress was recorded.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ComponentRecoveryModel.RecoveryModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ComponentRecoveryModel.</span></span><span class="sig-name descname"><span class="pre">RecoveryModel</span></span><a class="headerlink" href="#ComponentRecoveryModel.RecoveryModel" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentRecoveryModel.RecoveryModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ComponentRecoveryModel.</span></span><span class="sig-name descname"><span class="pre">RecoveryModel</span></span><a class="headerlink" href="#pyrecodes.ComponentRecoveryModel.RecoveryModel" title="Link to this definition">#</a></dt>
 <dd><p>Abstract class representing a recovery model.</p>
 </dd></dl>
 
@@ -705,7 +705,7 @@ time_steps (list[int]): List of time steps when progress was recorded.</p>
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Damage Input class</div>
+                <div class="title">Damage Input</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -716,7 +716,7 @@ time_steps (list[int]): List of time steps when progress was recorded.</p>
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Component Library Creator class</div>
+                <div class="title">Component Library Creator</div>
                 
               </div>
             </a>
@@ -750,60 +750,60 @@ time_steps (list[int]): List of time steps when progress was recorded.</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Component Recovery Model class</a><ul>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel</span></code></a><ul>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.check_preceding_activities"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.check_preceding_activities()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.find_recovery_activity_that_demands_the_resource"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.find_recovery_activity_that_demands_the_resource()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_damage_level"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.get_damage_level()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_demand"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.get_demand()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_functionality_level"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.get_functionality_level()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.preceding_activities_finished"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.preceding_activities_finished()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.recover"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.recover()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_activities_demand_to_met"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.set_activities_demand_to_met()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_damage_functionality"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.set_damage_functionality()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_initial_damage_level"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.set_initial_damage_level()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_initial_repair_activity_state"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.set_initial_repair_activity_state()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_met_demand_for_recovery_activities"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.set_met_demand_for_recovery_activities()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_parameters"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.set_parameters()</span></code></a></li>
+<li><a class="reference internal" href="#">Component Recovery Model</a><ul>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel</span></code></a><ul>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.check_preceding_activities"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.check_preceding_activities()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.find_recovery_activity_that_demands_the_resource"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.find_recovery_activity_that_demands_the_resource()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_damage_level"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.get_damage_level()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_demand"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.get_demand()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.get_functionality_level"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.get_functionality_level()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.preceding_activities_finished"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.preceding_activities_finished()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.recover"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.recover()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_activities_demand_to_met"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.set_activities_demand_to_met()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_damage_functionality"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.set_damage_functionality()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_initial_damage_level"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.set_initial_damage_level()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_initial_repair_activity_state"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.set_initial_repair_activity_state()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_met_demand_for_recovery_activities"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.set_met_demand_for_recovery_activities()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ComponentLevelRecoveryActivitiesModel.set_parameters"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.set_parameters()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ConcreteRecoveryActivity"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity</span></code></a><ul>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.activity_finished"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.activity_finished()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.effect_of_unmet_demand_on_activity"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.effect_of_unmet_demand_on_activity()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.get_demand"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.get_demand()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.record_progress"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.record_progress()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.recover"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.recover()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.sample_duration"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.sample_duration()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.set_demand"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.set_demand()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.set_demand_met"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.set_demand_met()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.set_duration"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.set_duration()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.set_level"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.set_level()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.set_name"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.set_name()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.set_preceding_activities"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.set_preceding_activities()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.ConcreteRecoveryActivity.set_preceding_activities_finished"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.set_preceding_activities_finished()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity</span></code></a><ul>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.activity_finished"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.activity_finished()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.effect_of_unmet_demand_on_activity"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.effect_of_unmet_demand_on_activity()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.get_demand"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.get_demand()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.record_progress"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.record_progress()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.recover"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.recover()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.sample_duration"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.sample_duration()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_demand"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.set_demand()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_demand_met"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.set_demand_met()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_duration"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.set_duration()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_level"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.set_level()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_name"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.set_name()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_preceding_activities"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.set_preceding_activities()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.ConcreteRecoveryActivity.set_preceding_activities_finished"><code class="docutils literal notranslate"><span class="pre">ConcreteRecoveryActivity.set_preceding_activities_finished()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterfaceRecoveryModel</span></code></a><ul>
-<li><a class="reference internal" href="#ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_damage_level"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterfaceRecoveryModel.get_damage_level()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_demand"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterfaceRecoveryModel.get_demand()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_functionality_level"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterfaceRecoveryModel.get_functionality_level()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.recover"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterfaceRecoveryModel.recover()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_damage_functionality"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterfaceRecoveryModel.set_damage_functionality()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_initial_damage_level"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterfaceRecoveryModel.set_initial_damage_level()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_parameters"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterfaceRecoveryModel.set_parameters()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterfaceRecoveryModel</span></code></a><ul>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_damage_level"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterfaceRecoveryModel.get_damage_level()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_demand"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterfaceRecoveryModel.get_demand()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.get_functionality_level"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterfaceRecoveryModel.get_functionality_level()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.recover"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterfaceRecoveryModel.recover()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_damage_functionality"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterfaceRecoveryModel.set_damage_functionality()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_initial_damage_level"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterfaceRecoveryModel.set_initial_damage_level()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.InfrastructureInterfaceRecoveryModel.set_parameters"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterfaceRecoveryModel.set_parameters()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.NoRecoveryActivityModel"><code class="docutils literal notranslate"><span class="pre">NoRecoveryActivityModel</span></code></a><ul>
-<li><a class="reference internal" href="#ComponentRecoveryModel.NoRecoveryActivityModel.get_damage_level"><code class="docutils literal notranslate"><span class="pre">NoRecoveryActivityModel.get_damage_level()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.NoRecoveryActivityModel.get_demand"><code class="docutils literal notranslate"><span class="pre">NoRecoveryActivityModel.get_demand()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.NoRecoveryActivityModel.get_functionality_level"><code class="docutils literal notranslate"><span class="pre">NoRecoveryActivityModel.get_functionality_level()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.NoRecoveryActivityModel.set_damage_functionality"><code class="docutils literal notranslate"><span class="pre">NoRecoveryActivityModel.set_damage_functionality()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.NoRecoveryActivityModel.set_initial_damage_level"><code class="docutils literal notranslate"><span class="pre">NoRecoveryActivityModel.set_initial_damage_level()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.NoRecoveryActivityModel.set_met_demand_for_recovery_activities"><code class="docutils literal notranslate"><span class="pre">NoRecoveryActivityModel.set_met_demand_for_recovery_activities()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel"><code class="docutils literal notranslate"><span class="pre">NoRecoveryActivityModel</span></code></a><ul>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.get_damage_level"><code class="docutils literal notranslate"><span class="pre">NoRecoveryActivityModel.get_damage_level()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.get_demand"><code class="docutils literal notranslate"><span class="pre">NoRecoveryActivityModel.get_demand()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.get_functionality_level"><code class="docutils literal notranslate"><span class="pre">NoRecoveryActivityModel.get_functionality_level()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.set_damage_functionality"><code class="docutils literal notranslate"><span class="pre">NoRecoveryActivityModel.set_damage_functionality()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.set_initial_damage_level"><code class="docutils literal notranslate"><span class="pre">NoRecoveryActivityModel.set_initial_damage_level()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.NoRecoveryActivityModel.set_met_demand_for_recovery_activities"><code class="docutils literal notranslate"><span class="pre">NoRecoveryActivityModel.set_met_demand_for_recovery_activities()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.RecoveryActivity"><code class="docutils literal notranslate"><span class="pre">RecoveryActivity</span></code></a></li>
-<li><a class="reference internal" href="#ComponentRecoveryModel.RecoveryModel"><code class="docutils literal notranslate"><span class="pre">RecoveryModel</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.RecoveryActivity"><code class="docutils literal notranslate"><span class="pre">RecoveryActivity</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentRecoveryModel.RecoveryModel"><code class="docutils literal notranslate"><span class="pre">RecoveryModel</span></code></a></li>
 </ul>
 </li>
 </ul>

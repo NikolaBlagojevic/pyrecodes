@@ -1,5 +1,5 @@
-Damage Input class
-==================
+Damage Input
+============
 
-.. automodule:: DamageInput
+.. automodule:: pyrecodes.DamageInput
    :members:

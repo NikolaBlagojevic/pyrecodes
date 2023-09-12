@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Component Recovery Model class" href="component_recovery_model_class_docs.html" /><link rel="prev" title="Component class" href="component_class_docs.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Component Recovery Model class" href="component_recovery_model_class_docs.html" /><link rel="prev" title="Component" href="component_class_docs.html" />
 
     <!-- Generated with Sphinx 7.2.5 and Furo 2023.08.19 -->
-        <title>Component Library Creator class - pyrecodes 2023 documentation</title>
+        <title>Component Library Creator - pyrecodes 2023 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
@@ -174,8 +174,8 @@
 <li class="toctree-l2"><a class="reference internal" href="main_docs.html">Main</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system_class_docs.html">System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system_creator_class_docs.html">System Creator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_class_docs.html">Component class</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Component Library Creator class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_class_docs.html">Component</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Component Library Creator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="component_recovery_model_class_docs.html">Component Recovery Model class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="damage_input_class_docs.html">Damage Input class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distribution_priority_class_docs.html">Distribution Priority class</a></li>
@@ -225,27 +225,27 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-ComponentLibraryCreator">
-<span id="component-library-creator-class"></span><h1>Component Library Creator class<a class="headerlink" href="#module-ComponentLibraryCreator" title="Link to this heading">#</a></h1>
+          <section id="module-pyrecodes.ComponentLibraryCreator">
+<span id="component-library-creator"></span><h1>Component Library Creator<a class="headerlink" href="#module-pyrecodes.ComponentLibraryCreator" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="ComponentLibraryCreator.ComponentLibraryCreator">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ComponentLibraryCreator.</span></span><span class="sig-name descname"><span class="pre">ComponentLibraryCreator</span></span><a class="headerlink" href="#ComponentLibraryCreator.ComponentLibraryCreator" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentLibraryCreator.ComponentLibraryCreator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ComponentLibraryCreator.</span></span><span class="sig-name descname"><span class="pre">ComponentLibraryCreator</span></span><a class="headerlink" href="#pyrecodes.ComponentLibraryCreator.ComponentLibraryCreator" title="Link to this definition">#</a></dt>
 <dd><p>Abstract class for ComponentLibraryCreator class used to create component library based on which system components are constructed.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ComponentLibraryCreator.JSONComponentLibraryCreator">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ComponentLibraryCreator.</span></span><span class="sig-name descname"><span class="pre">JSONComponentLibraryCreator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ComponentLibraryCreator.JSONComponentLibraryCreator" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentLibraryCreator.JSONComponentLibraryCreator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ComponentLibraryCreator.</span></span><span class="sig-name descname"><span class="pre">JSONComponentLibraryCreator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.ComponentLibraryCreator.JSONComponentLibraryCreator" title="Link to this definition">#</a></dt>
 <dd><p>Class to create a component library from a single JSON file containing component templates for each component type.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentLibraryCreator.JSONComponentLibraryCreator.form_component">
-<span class="sig-name descname"><span class="pre">form_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Component</span></span></span><a class="headerlink" href="#ComponentLibraryCreator.JSONComponentLibraryCreator.form_component" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentLibraryCreator.JSONComponentLibraryCreator.form_component">
+<span class="sig-name descname"><span class="pre">form_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Component</span></span></span><a class="headerlink" href="#pyrecodes.ComponentLibraryCreator.JSONComponentLibraryCreator.form_component" title="Link to this definition">#</a></dt>
 <dd><p>Form and return a component object based on the input component_name and component_parameters to be used as component template in system creation.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ComponentLibraryCreator.JSONComponentLibraryCreator.form_library">
-<span class="sig-name descname"><span class="pre">form_library</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#ComponentLibraryCreator.JSONComponentLibraryCreator.form_library" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ComponentLibraryCreator.JSONComponentLibraryCreator.form_library">
+<span class="sig-name descname"><span class="pre">form_library</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pyrecodes.ComponentLibraryCreator.JSONComponentLibraryCreator.form_library" title="Link to this definition">#</a></dt>
 <dd><p>Form component library based on the component template specificed in the component library JSON file. Returns a dict with component templates.</p>
 </dd></dl>
 
@@ -274,7 +274,7 @@
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Component class</div>
+                <div class="title">Component</div>
                 
               </div>
             </a>
@@ -308,11 +308,11 @@
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Component Library Creator class</a><ul>
-<li><a class="reference internal" href="#ComponentLibraryCreator.ComponentLibraryCreator"><code class="docutils literal notranslate"><span class="pre">ComponentLibraryCreator</span></code></a></li>
-<li><a class="reference internal" href="#ComponentLibraryCreator.JSONComponentLibraryCreator"><code class="docutils literal notranslate"><span class="pre">JSONComponentLibraryCreator</span></code></a><ul>
-<li><a class="reference internal" href="#ComponentLibraryCreator.JSONComponentLibraryCreator.form_component"><code class="docutils literal notranslate"><span class="pre">JSONComponentLibraryCreator.form_component()</span></code></a></li>
-<li><a class="reference internal" href="#ComponentLibraryCreator.JSONComponentLibraryCreator.form_library"><code class="docutils literal notranslate"><span class="pre">JSONComponentLibraryCreator.form_library()</span></code></a></li>
+<li><a class="reference internal" href="#">Component Library Creator</a><ul>
+<li><a class="reference internal" href="#pyrecodes.ComponentLibraryCreator.ComponentLibraryCreator"><code class="docutils literal notranslate"><span class="pre">ComponentLibraryCreator</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentLibraryCreator.JSONComponentLibraryCreator"><code class="docutils literal notranslate"><span class="pre">JSONComponentLibraryCreator</span></code></a><ul>
+<li><a class="reference internal" href="#pyrecodes.ComponentLibraryCreator.JSONComponentLibraryCreator.form_component"><code class="docutils literal notranslate"><span class="pre">JSONComponentLibraryCreator.form_component()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ComponentLibraryCreator.JSONComponentLibraryCreator.form_library"><code class="docutils literal notranslate"><span class="pre">JSONComponentLibraryCreator.form_library()</span></code></a></li>
 </ul>
 </li>
 </ul>

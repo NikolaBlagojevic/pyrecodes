@@ -1,5 +1,5 @@
-Plotter class
-=============
+Plotter
+=======
 
-.. automodule:: Plotter
+.. automodule:: pyrecodes.Plotter
    :members:

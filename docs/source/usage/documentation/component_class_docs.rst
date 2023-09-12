@@ -1,5 +1,5 @@
-Component class
-===============
+Component
+=========
 
-.. automodule:: Component
+.. automodule:: pyrecodes.Component
    :members:

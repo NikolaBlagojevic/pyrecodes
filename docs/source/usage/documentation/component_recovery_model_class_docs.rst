@@ -1,5 +1,5 @@
-Component Recovery Model class
-==============================
+Component Recovery Model
+========================
 
-.. automodule:: ComponentRecoveryModel
+.. automodule:: pyrecodes.ComponentRecoveryModel
    :members:

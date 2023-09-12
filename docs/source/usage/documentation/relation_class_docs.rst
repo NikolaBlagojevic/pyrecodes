@@ -1,5 +1,5 @@
-Relation class
-==============
+Relation
+========
 
-.. automodule:: Relation
+.. automodule:: pyrecodes.Relation
    :members:

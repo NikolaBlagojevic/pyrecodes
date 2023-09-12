@@ -1,5 +1,5 @@
-Resilience Calculator class
-===========================
+Resilience Calculator
+=====================
 
-.. automodule:: ResilienceCalculator
+.. automodule:: pyrecodes.ResilienceCalculator
    :members:

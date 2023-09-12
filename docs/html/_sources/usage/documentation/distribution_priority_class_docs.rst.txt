@@ -1,5 +1,5 @@
-Distribution Priority class
-===========================
+Distribution Priority
+=====================
 
-.. automodule:: DistributionPriority
+.. automodule:: pyrecodes.DistributionPriority
    :members:

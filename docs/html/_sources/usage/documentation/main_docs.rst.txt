@@ -1,5 +1,5 @@
 Main
 ====
 
-.. automodule:: main
+.. automodule:: pyrecodes.main
    :members:

@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Relation class" href="relation_class_docs.html" /><link rel="prev" title="Plotter class" href="plotter_class_docs.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Relation" href="relation_class_docs.html" /><link rel="prev" title="Plotter" href="plotter_class_docs.html" />
 
     <!-- Generated with Sphinx 7.2.5 and Furo 2023.08.19 -->
-        <title>Probability Distribution class - pyrecodes 2023 documentation</title>
+        <title>Probability Distribution - pyrecodes 2023 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
@@ -174,18 +174,18 @@
 <li class="toctree-l2"><a class="reference internal" href="main_docs.html">Main</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system_class_docs.html">System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system_creator_class_docs.html">System Creator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_class_docs.html">Component class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_library_creator_class_docs.html">Component Library Creator class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_recovery_model_class_docs.html">Component Recovery Model class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="damage_input_class_docs.html">Damage Input class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distribution_priority_class_docs.html">Distribution Priority class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geovisulisator_class_docs.html">Geovisualisator class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotter_class_docs.html">Plotter class</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Probability Distribution class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="relation_class_docs.html">Relation class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resilience_calculators_class_docs.html">Resilience Calculator class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_class_docs.html">Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_library_creator_class_docs.html">Component Library Creator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_recovery_model_class_docs.html">Component Recovery Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="damage_input_class_docs.html">Damage Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distribution_priority_class_docs.html">Distribution Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geovisulisator_class_docs.html">Geovisualisator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotter_class_docs.html">Plotter</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Probability Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relation_class_docs.html">Relation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resilience_calculators_class_docs.html">Resilience Calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource_class_docs.html">Resource class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resource_distribution_class_docs.html">Resource Distribution Model class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_distribution_class_docs.html">Resource Distribution Model</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../how_to_cite.html">How to cite</a></li>
@@ -225,21 +225,21 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-ProbabilityDistribution">
-<span id="probability-distribution-class"></span><h1>Probability Distribution class<a class="headerlink" href="#module-ProbabilityDistribution" title="Link to this heading">#</a></h1>
+          <section id="module-pyrecodes.ProbabilityDistribution">
+<span id="probability-distribution"></span><h1>Probability Distribution<a class="headerlink" href="#module-pyrecodes.ProbabilityDistribution" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="ProbabilityDistribution.Deterministic">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ProbabilityDistribution.</span></span><span class="sig-name descname"><span class="pre">Deterministic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProbabilityDistribution.Deterministic" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ProbabilityDistribution.Deterministic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ProbabilityDistribution.</span></span><span class="sig-name descname"><span class="pre">Deterministic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.ProbabilityDistribution.Deterministic" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ProbabilityDistribution.Distribution">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ProbabilityDistribution.</span></span><span class="sig-name descname"><span class="pre">Distribution</span></span><a class="headerlink" href="#ProbabilityDistribution.Distribution" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ProbabilityDistribution.Distribution">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ProbabilityDistribution.</span></span><span class="sig-name descname"><span class="pre">Distribution</span></span><a class="headerlink" href="#pyrecodes.ProbabilityDistribution.Distribution" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ProbabilityDistribution.Lognormal">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ProbabilityDistribution.</span></span><span class="sig-name descname"><span class="pre">Lognormal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ProbabilityDistribution.Lognormal" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ProbabilityDistribution.Lognormal">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ProbabilityDistribution.</span></span><span class="sig-name descname"><span class="pre">Lognormal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.ProbabilityDistribution.Lognormal" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 </section>
@@ -254,7 +254,7 @@
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Relation class</div>
+                <div class="title">Relation</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -265,7 +265,7 @@
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Plotter class</div>
+                <div class="title">Plotter</div>
                 
               </div>
             </a>
@@ -299,10 +299,10 @@
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Probability Distribution class</a><ul>
-<li><a class="reference internal" href="#ProbabilityDistribution.Deterministic"><code class="docutils literal notranslate"><span class="pre">Deterministic</span></code></a></li>
-<li><a class="reference internal" href="#ProbabilityDistribution.Distribution"><code class="docutils literal notranslate"><span class="pre">Distribution</span></code></a></li>
-<li><a class="reference internal" href="#ProbabilityDistribution.Lognormal"><code class="docutils literal notranslate"><span class="pre">Lognormal</span></code></a></li>
+<li><a class="reference internal" href="#">Probability Distribution</a><ul>
+<li><a class="reference internal" href="#pyrecodes.ProbabilityDistribution.Deterministic"><code class="docutils literal notranslate"><span class="pre">Deterministic</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ProbabilityDistribution.Distribution"><code class="docutils literal notranslate"><span class="pre">Distribution</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ProbabilityDistribution.Lognormal"><code class="docutils literal notranslate"><span class="pre">Lognormal</span></code></a></li>
 </ul>
 </li>
 </ul>

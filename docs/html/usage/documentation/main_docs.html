@@ -174,18 +174,18 @@
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Main</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system_class_docs.html">System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system_creator_class_docs.html">System Creator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_class_docs.html">Component class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_library_creator_class_docs.html">Component Library Creator class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_recovery_model_class_docs.html">Component Recovery Model class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="damage_input_class_docs.html">Damage Input class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distribution_priority_class_docs.html">Distribution Priority class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geovisulisator_class_docs.html">Geovisualisator class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotter_class_docs.html">Plotter class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="probability_distribution_class_docs.html">Probability Distribution class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="relation_class_docs.html">Relation class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resilience_calculators_class_docs.html">Resilience Calculator class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_class_docs.html">Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_library_creator_class_docs.html">Component Library Creator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_recovery_model_class_docs.html">Component Recovery Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="damage_input_class_docs.html">Damage Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distribution_priority_class_docs.html">Distribution Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geovisulisator_class_docs.html">Geovisualisator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotter_class_docs.html">Plotter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="probability_distribution_class_docs.html">Probability Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relation_class_docs.html">Relation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resilience_calculators_class_docs.html">Resilience Calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource_class_docs.html">Resource class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resource_distribution_class_docs.html">Resource Distribution Model class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_distribution_class_docs.html">Resource Distribution Model</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../how_to_cite.html">How to cite</a></li>
@@ -225,12 +225,12 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-main">
-<span id="main"></span><h1>Main<a class="headerlink" href="#module-main" title="Link to this heading">#</a></h1>
+          <section id="module-pyrecodes.main">
+<span id="main"></span><h1>Main<a class="headerlink" href="#module-pyrecodes.main" title="Link to this heading">#</a></h1>
 <p>Module used to run the <strong>pyrecodes</strong> resilience assessment as defined in the component library and system configuration files.</p>
 <dl class="py function">
-<dt class="sig sig-object py" id="main.create_system">
-<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">create_system</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">System</span></span></span><a class="headerlink" href="#main.create_system" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.main.create_system">
+<span class="sig-prename descclassname"><span class="pre">pyrecodes.main.</span></span><span class="sig-name descname"><span class="pre">create_system</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="system_class_docs.html#pyrecodes.System.System" title="pyrecodes.System.System"><span class="pre">System</span></a></span></span><a class="headerlink" href="#pyrecodes.main.create_system" title="Link to this definition">#</a></dt>
 <dd><p>Creates a system object using the input dictionary.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>input_dict (dict): The input dictionary containing System configuration.</p>
@@ -241,8 +241,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="main.form_component_library">
-<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">form_component_library</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#main.form_component_library" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.main.form_component_library">
+<span class="sig-prename descclassname"><span class="pre">pyrecodes.main.</span></span><span class="sig-name descname"><span class="pre">form_component_library</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pyrecodes.main.form_component_library" title="Link to this definition">#</a></dt>
 <dd><p>Forms a component library based on the input dictionary.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>input_dict (dict): The input dictionary containing component library configuration.</p>
@@ -253,8 +253,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="main.read_file">
-<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#main.read_file" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.main.read_file">
+<span class="sig-prename descclassname"><span class="pre">pyrecodes.main.</span></span><span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pyrecodes.main.read_file" title="Link to this definition">#</a></dt>
 <dd><p>Reads a JSON file and returns its contents as a dictionary.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>file_name (str): The name of the JSON file to be read.</p>
@@ -265,8 +265,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="main.run">
-<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">System</span></span></span><a class="headerlink" href="#main.run" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.main.run">
+<span class="sig-prename descclassname"><span class="pre">pyrecodes.main.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="system_class_docs.html#pyrecodes.System.System" title="pyrecodes.System.System"><span class="pre">System</span></a></span></span><a class="headerlink" href="#pyrecodes.main.run" title="Link to this definition">#</a></dt>
 <dd><p>Runs the resilience assessment for the system.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>main_file (str): The name of the main JSON configuration file.</p>
@@ -334,10 +334,10 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Main</a><ul>
-<li><a class="reference internal" href="#main.create_system"><code class="docutils literal notranslate"><span class="pre">create_system()</span></code></a></li>
-<li><a class="reference internal" href="#main.form_component_library"><code class="docutils literal notranslate"><span class="pre">form_component_library()</span></code></a></li>
-<li><a class="reference internal" href="#main.read_file"><code class="docutils literal notranslate"><span class="pre">read_file()</span></code></a></li>
-<li><a class="reference internal" href="#main.run"><code class="docutils literal notranslate"><span class="pre">run()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.main.create_system"><code class="docutils literal notranslate"><span class="pre">create_system()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.main.form_component_library"><code class="docutils literal notranslate"><span class="pre">form_component_library()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.main.read_file"><code class="docutils literal notranslate"><span class="pre">read_file()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.main.run"><code class="docutils literal notranslate"><span class="pre">run()</span></code></a></li>
 </ul>
 </li>
 </ul>

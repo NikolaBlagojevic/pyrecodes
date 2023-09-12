@@ -1,5 +1,5 @@
-Probability Distribution class
-==============================
+Probability Distribution
+========================
 
-.. automodule:: ProbabilityDistribution
+.. automodule:: pyrecodes.ProbabilityDistribution
    :members:

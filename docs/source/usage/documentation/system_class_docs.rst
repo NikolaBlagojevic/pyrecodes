@@ -1,5 +1,5 @@
 System
-============
+======
 
-.. automodule:: System
+.. automodule:: pyrecodes.System
    :members:

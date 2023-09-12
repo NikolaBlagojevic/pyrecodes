@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="How to cite" href="../how_to_cite.html" /><link rel="prev" title="Resource class" href="resource_class_docs.html" />
 
     <!-- Generated with Sphinx 7.2.5 and Furo 2023.08.19 -->
-        <title>Resource Distribution Model class - pyrecodes 2023 documentation</title>
+        <title>Resource Distribution Model - pyrecodes 2023 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
@@ -174,18 +174,18 @@
 <li class="toctree-l2"><a class="reference internal" href="main_docs.html">Main</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system_class_docs.html">System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system_creator_class_docs.html">System Creator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_class_docs.html">Component class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_library_creator_class_docs.html">Component Library Creator class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_recovery_model_class_docs.html">Component Recovery Model class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="damage_input_class_docs.html">Damage Input class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distribution_priority_class_docs.html">Distribution Priority class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geovisulisator_class_docs.html">Geovisualisator class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotter_class_docs.html">Plotter class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="probability_distribution_class_docs.html">Probability Distribution class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="relation_class_docs.html">Relation class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resilience_calculators_class_docs.html">Resilience Calculator class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_class_docs.html">Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_library_creator_class_docs.html">Component Library Creator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_recovery_model_class_docs.html">Component Recovery Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="damage_input_class_docs.html">Damage Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distribution_priority_class_docs.html">Distribution Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geovisulisator_class_docs.html">Geovisualisator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotter_class_docs.html">Plotter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="probability_distribution_class_docs.html">Probability Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relation_class_docs.html">Relation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resilience_calculators_class_docs.html">Resilience Calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource_class_docs.html">Resource class</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Resource Distribution Model class</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Resource Distribution Model</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../how_to_cite.html">How to cite</a></li>
@@ -225,97 +225,97 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-ResourceDistributionModel">
-<span id="resource-distribution-model-class"></span><h1>Resource Distribution Model class<a class="headerlink" href="#module-ResourceDistributionModel" title="Link to this heading">#</a></h1>
+          <section id="module-pyrecodes.ResourceDistributionModel">
+<span id="resource-distribution-model"></span><h1>Resource Distribution Model<a class="headerlink" href="#module-pyrecodes.ResourceDistributionModel" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="ResourceDistributionModel.BridgeServiceDistributionModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">BridgeServiceDistributionModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">resource_name:</span> <span class="pre">str,</span> <span class="pre">resource_parameters:</span> <span class="pre">dict,</span> <span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ResourceDistributionModel.BridgeServiceDistributionModel" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.BridgeServiceDistributionModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">BridgeServiceDistributionModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">resource_name:</span> <span class="pre">str,</span> <span class="pre">resource_parameters:</span> <span class="pre">dict,</span> <span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.BridgeServiceDistributionModel" title="Link to this definition">#</a></dt>
 <dd><p>Bridge service is not consumable!</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="ResourceDistributionModel.BridgeServiceDistributionModel.map_links_to_bridges">
-<span class="sig-name descname"><span class="pre">map_links_to_bridges</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ResourceDistributionModel.BridgeServiceDistributionModel.map_links_to_bridges" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.BridgeServiceDistributionModel.map_links_to_bridges">
+<span class="sig-name descname"><span class="pre">map_links_to_bridges</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.BridgeServiceDistributionModel.map_links_to_bridges" title="Link to this definition">#</a></dt>
 <dd><p>Find all links that are on a bridge.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ResourceDistributionModel.BridgeServiceDistributionModelConstructor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">BridgeServiceDistributionModelConstructor</span></span><a class="headerlink" href="#ResourceDistributionModel.BridgeServiceDistributionModelConstructor" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.BridgeServiceDistributionModelConstructor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">BridgeServiceDistributionModelConstructor</span></span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.BridgeServiceDistributionModelConstructor" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ResourceDistributionModel.ConcreteResourceDistributionModelConstructor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">ConcreteResourceDistributionModelConstructor</span></span><a class="headerlink" href="#ResourceDistributionModel.ConcreteResourceDistributionModelConstructor" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.ConcreteResourceDistributionModelConstructor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">ConcreteResourceDistributionModelConstructor</span></span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.ConcreteResourceDistributionModelConstructor" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ResourceDistributionModel.HousingDistributionModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">HousingDistributionModel</span></span><a class="headerlink" href="#ResourceDistributionModel.HousingDistributionModel" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.HousingDistributionModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">HousingDistributionModel</span></span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.HousingDistributionModel" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ResourceDistributionModel.ResourceDistributionModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">ResourceDistributionModel</span></span><a class="headerlink" href="#ResourceDistributionModel.ResourceDistributionModel" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.ResourceDistributionModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">ResourceDistributionModel</span></span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.ResourceDistributionModel" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ResourceDistributionModel.ResourceDistributionModelConstructor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">ResourceDistributionModelConstructor</span></span><a class="headerlink" href="#ResourceDistributionModel.ResourceDistributionModelConstructor" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.ResourceDistributionModelConstructor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">ResourceDistributionModelConstructor</span></span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.ResourceDistributionModelConstructor" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ResourceDistributionModel.TransferServiceDistributionModelConstructor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">TransferServiceDistributionModelConstructor</span></span><a class="headerlink" href="#ResourceDistributionModel.TransferServiceDistributionModelConstructor" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelConstructor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">TransferServiceDistributionModelConstructor</span></span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelConstructor" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">TransferServiceDistributionModelPotentialPathSets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">resource_name:</span> <span class="pre">str,</span> <span class="pre">resource_parameters:</span> <span class="pre">dict,</span> <span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">TransferServiceDistributionModelPotentialPathSets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">resource_name:</span> <span class="pre">str,</span> <span class="pre">resource_parameters:</span> <span class="pre">dict,</span> <span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets" title="Link to this definition">#</a></dt>
 <dd><dl class="py method">
-<dt class="sig sig-object py" id="ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.create_potential_paths">
-<span class="sig-name descname"><span class="pre">create_potential_paths</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.create_potential_paths" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.create_potential_paths">
+<span class="sig-name descname"><span class="pre">create_potential_paths</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.create_potential_paths" title="Link to this definition">#</a></dt>
 <dd><p>The method finds the links that are used in potential paths. 
 It creates a list of links that is latter queried to find the 
 optimal path from the list of potential paths.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.distribute">
-<span class="sig-name descname"><span class="pre">distribute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.distribute" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.distribute">
+<span class="sig-name descname"><span class="pre">distribute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.distribute" title="Link to this definition">#</a></dt>
 <dd><p>Distribute method updates the potential paths between all locality pairs.
 This is done implicitly when using the potential path sets,
 as components’ transfer service supply is updated in the system class.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.get_optimal_path">
-<span class="sig-name descname"><span class="pre">get_optimal_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_locality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_locality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.get_optimal_path" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.get_optimal_path">
+<span class="sig-name descname"><span class="pre">get_optimal_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_locality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_locality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.get_optimal_path" title="Link to this definition">#</a></dt>
 <dd><p>Method finds the optimal path, from all potential paths between two localities.
 Optimality is defined as maximizing the transfer service supply.
 Transfer service supply of a path is the minimal supply among its constitutive links.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.get_path_supply">
-<span class="sig-name descname"><span class="pre">get_path_supply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.get_path_supply" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.get_path_supply">
+<span class="sig-name descname"><span class="pre">get_path_supply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.get_path_supply" title="Link to this definition">#</a></dt>
 <dd><p>Get the supply capacity of a path as the minimum of links supply.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ResourceDistributionModel.UtilityDistributionModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">UtilityDistributionModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">resource_name:</span> <span class="pre">str,</span> <span class="pre">resource_parameters:</span> <span class="pre">dict,</span> <span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#ResourceDistributionModel.UtilityDistributionModel" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.UtilityDistributionModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">UtilityDistributionModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">resource_name:</span> <span class="pre">str,</span> <span class="pre">resource_parameters:</span> <span class="pre">dict,</span> <span class="pre">components:</span> <span class="pre">[&lt;class</span> <span class="pre">'pyrecodes.Component.Component'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.UtilityDistributionModel" title="Link to this definition">#</a></dt>
 <dd><dl class="py method">
-<dt class="sig sig-object py" id="ResourceDistributionModel.UtilityDistributionModel.get_locality_pairs">
-<span class="sig-name descname"><span class="pre">get_locality_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">supplier_start_locality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supplier_end_locality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_localities</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#ResourceDistributionModel.UtilityDistributionModel.get_locality_pairs" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.UtilityDistributionModel.get_locality_pairs">
+<span class="sig-name descname"><span class="pre">get_locality_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">supplier_start_locality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supplier_end_locality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_localities</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.UtilityDistributionModel.get_locality_pairs" title="Link to this definition">#</a></dt>
 <dd><p>Finds non-duplicate locality pairs between supplier and component.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ResourceDistributionModel.UtilityDistributionModel.get_optimal_path">
-<span class="sig-name descname"><span class="pre">get_optimal_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_locality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_locality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#ResourceDistributionModel.UtilityDistributionModel.get_optimal_path" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.UtilityDistributionModel.get_optimal_path">
+<span class="sig-name descname"><span class="pre">get_optimal_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_locality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_locality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.UtilityDistributionModel.get_optimal_path" title="Link to this definition">#</a></dt>
 <dd><p>Method outputs the supply capacity and the localities of the optimal path between two localities.
 If transfer services are not needed to transfer the resource, transfer service distribution model
 should not be assigned (stay None) and the method will return math.inf as the optimal path supply capacity.
@@ -323,24 +323,24 @@ Works only when start and end locality are different. If they are the same, meth
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ResourceDistributionModel.UtilityDistributionModel.get_path_functionality">
-<span class="sig-name descname"><span class="pre">get_path_functionality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_locality</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_locality</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transfer_service_demand</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ResourceDistributionModel.UtilityDistributionModel.get_path_functionality" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.UtilityDistributionModel.get_path_functionality">
+<span class="sig-name descname"><span class="pre">get_path_functionality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_locality</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_locality</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transfer_service_demand</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.UtilityDistributionModel.get_path_functionality" title="Link to this definition">#</a></dt>
 <dd><p>Method calculates path functionality by comparing the transfer service supply
 of the optimal path with the demand.
 Optimal path not used at the moment. If we need which links are used this is important. Future work.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="ResourceDistributionModel.UtilityDistributionModel.get_transfer_service_demand">
-<span class="sig-name descname"><span class="pre">get_transfer_service_demand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_row_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">demand_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#ResourceDistributionModel.UtilityDistributionModel.get_transfer_service_demand" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.UtilityDistributionModel.get_transfer_service_demand">
+<span class="sig-name descname"><span class="pre">get_transfer_service_demand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_row_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">demand_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.UtilityDistributionModel.get_transfer_service_demand" title="Link to this definition">#</a></dt>
 <dd><p>Method assumes that the transfer service demand is the same as the demand for the utility resource.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="ResourceDistributionModel.UtilityDistributionModelConstructor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">UtilityDistributionModelConstructor</span></span><a class="headerlink" href="#ResourceDistributionModel.UtilityDistributionModelConstructor" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.ResourceDistributionModel.UtilityDistributionModelConstructor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.ResourceDistributionModel.</span></span><span class="sig-name descname"><span class="pre">UtilityDistributionModelConstructor</span></span><a class="headerlink" href="#pyrecodes.ResourceDistributionModel.UtilityDistributionModelConstructor" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 </section>
@@ -400,32 +400,32 @@ Optimal path not used at the moment. If we need which links are used this is imp
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Resource Distribution Model class</a><ul>
-<li><a class="reference internal" href="#ResourceDistributionModel.BridgeServiceDistributionModel"><code class="docutils literal notranslate"><span class="pre">BridgeServiceDistributionModel</span></code></a><ul>
-<li><a class="reference internal" href="#ResourceDistributionModel.BridgeServiceDistributionModel.map_links_to_bridges"><code class="docutils literal notranslate"><span class="pre">BridgeServiceDistributionModel.map_links_to_bridges()</span></code></a></li>
+<li><a class="reference internal" href="#">Resource Distribution Model</a><ul>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.BridgeServiceDistributionModel"><code class="docutils literal notranslate"><span class="pre">BridgeServiceDistributionModel</span></code></a><ul>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.BridgeServiceDistributionModel.map_links_to_bridges"><code class="docutils literal notranslate"><span class="pre">BridgeServiceDistributionModel.map_links_to_bridges()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#ResourceDistributionModel.BridgeServiceDistributionModelConstructor"><code class="docutils literal notranslate"><span class="pre">BridgeServiceDistributionModelConstructor</span></code></a></li>
-<li><a class="reference internal" href="#ResourceDistributionModel.ConcreteResourceDistributionModelConstructor"><code class="docutils literal notranslate"><span class="pre">ConcreteResourceDistributionModelConstructor</span></code></a></li>
-<li><a class="reference internal" href="#ResourceDistributionModel.HousingDistributionModel"><code class="docutils literal notranslate"><span class="pre">HousingDistributionModel</span></code></a></li>
-<li><a class="reference internal" href="#ResourceDistributionModel.ResourceDistributionModel"><code class="docutils literal notranslate"><span class="pre">ResourceDistributionModel</span></code></a></li>
-<li><a class="reference internal" href="#ResourceDistributionModel.ResourceDistributionModelConstructor"><code class="docutils literal notranslate"><span class="pre">ResourceDistributionModelConstructor</span></code></a></li>
-<li><a class="reference internal" href="#ResourceDistributionModel.TransferServiceDistributionModelConstructor"><code class="docutils literal notranslate"><span class="pre">TransferServiceDistributionModelConstructor</span></code></a></li>
-<li><a class="reference internal" href="#ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets"><code class="docutils literal notranslate"><span class="pre">TransferServiceDistributionModelPotentialPathSets</span></code></a><ul>
-<li><a class="reference internal" href="#ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.create_potential_paths"><code class="docutils literal notranslate"><span class="pre">TransferServiceDistributionModelPotentialPathSets.create_potential_paths()</span></code></a></li>
-<li><a class="reference internal" href="#ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.distribute"><code class="docutils literal notranslate"><span class="pre">TransferServiceDistributionModelPotentialPathSets.distribute()</span></code></a></li>
-<li><a class="reference internal" href="#ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.get_optimal_path"><code class="docutils literal notranslate"><span class="pre">TransferServiceDistributionModelPotentialPathSets.get_optimal_path()</span></code></a></li>
-<li><a class="reference internal" href="#ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.get_path_supply"><code class="docutils literal notranslate"><span class="pre">TransferServiceDistributionModelPotentialPathSets.get_path_supply()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.BridgeServiceDistributionModelConstructor"><code class="docutils literal notranslate"><span class="pre">BridgeServiceDistributionModelConstructor</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.ConcreteResourceDistributionModelConstructor"><code class="docutils literal notranslate"><span class="pre">ConcreteResourceDistributionModelConstructor</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.HousingDistributionModel"><code class="docutils literal notranslate"><span class="pre">HousingDistributionModel</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.ResourceDistributionModel"><code class="docutils literal notranslate"><span class="pre">ResourceDistributionModel</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.ResourceDistributionModelConstructor"><code class="docutils literal notranslate"><span class="pre">ResourceDistributionModelConstructor</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelConstructor"><code class="docutils literal notranslate"><span class="pre">TransferServiceDistributionModelConstructor</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets"><code class="docutils literal notranslate"><span class="pre">TransferServiceDistributionModelPotentialPathSets</span></code></a><ul>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.create_potential_paths"><code class="docutils literal notranslate"><span class="pre">TransferServiceDistributionModelPotentialPathSets.create_potential_paths()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.distribute"><code class="docutils literal notranslate"><span class="pre">TransferServiceDistributionModelPotentialPathSets.distribute()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.get_optimal_path"><code class="docutils literal notranslate"><span class="pre">TransferServiceDistributionModelPotentialPathSets.get_optimal_path()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets.get_path_supply"><code class="docutils literal notranslate"><span class="pre">TransferServiceDistributionModelPotentialPathSets.get_path_supply()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#ResourceDistributionModel.UtilityDistributionModel"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel</span></code></a><ul>
-<li><a class="reference internal" href="#ResourceDistributionModel.UtilityDistributionModel.get_locality_pairs"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.get_locality_pairs()</span></code></a></li>
-<li><a class="reference internal" href="#ResourceDistributionModel.UtilityDistributionModel.get_optimal_path"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.get_optimal_path()</span></code></a></li>
-<li><a class="reference internal" href="#ResourceDistributionModel.UtilityDistributionModel.get_path_functionality"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.get_path_functionality()</span></code></a></li>
-<li><a class="reference internal" href="#ResourceDistributionModel.UtilityDistributionModel.get_transfer_service_demand"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.get_transfer_service_demand()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.UtilityDistributionModel"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel</span></code></a><ul>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.UtilityDistributionModel.get_locality_pairs"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.get_locality_pairs()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.UtilityDistributionModel.get_optimal_path"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.get_optimal_path()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.UtilityDistributionModel.get_path_functionality"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.get_path_functionality()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.UtilityDistributionModel.get_transfer_service_demand"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.get_transfer_service_demand()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#ResourceDistributionModel.UtilityDistributionModelConstructor"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModelConstructor</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.ResourceDistributionModel.UtilityDistributionModelConstructor"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModelConstructor</span></code></a></li>
 </ul>
 </li>
 </ul>

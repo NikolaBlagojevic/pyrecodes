@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Distribution Priority class" href="distribution_priority_class_docs.html" /><link rel="prev" title="Component Recovery Model class" href="component_recovery_model_class_docs.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Distribution Priority" href="distribution_priority_class_docs.html" /><link rel="prev" title="Component Recovery Model" href="component_recovery_model_class_docs.html" />
 
     <!-- Generated with Sphinx 7.2.5 and Furo 2023.08.19 -->
-        <title>Damage Input class - pyrecodes 2023 documentation</title>
+        <title>Damage Input - pyrecodes 2023 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
@@ -174,18 +174,18 @@
 <li class="toctree-l2"><a class="reference internal" href="main_docs.html">Main</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system_class_docs.html">System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system_creator_class_docs.html">System Creator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_class_docs.html">Component class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_library_creator_class_docs.html">Component Library Creator class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_recovery_model_class_docs.html">Component Recovery Model class</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Damage Input class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distribution_priority_class_docs.html">Distribution Priority class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geovisulisator_class_docs.html">Geovisualisator class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotter_class_docs.html">Plotter class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="probability_distribution_class_docs.html">Probability Distribution class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="relation_class_docs.html">Relation class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resilience_calculators_class_docs.html">Resilience Calculator class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_class_docs.html">Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_library_creator_class_docs.html">Component Library Creator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_recovery_model_class_docs.html">Component Recovery Model</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Damage Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distribution_priority_class_docs.html">Distribution Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geovisulisator_class_docs.html">Geovisualisator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotter_class_docs.html">Plotter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="probability_distribution_class_docs.html">Probability Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relation_class_docs.html">Relation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resilience_calculators_class_docs.html">Resilience Calculator</a></li>
 <li class="toctree-l2"><a class="reference internal" href="resource_class_docs.html">Resource class</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resource_distribution_class_docs.html">Resource Distribution Model class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_distribution_class_docs.html">Resource Distribution Model</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../how_to_cite.html">How to cite</a></li>
@@ -225,30 +225,30 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-DamageInput">
-<span id="damage-input-class"></span><h1>Damage Input class<a class="headerlink" href="#module-DamageInput" title="Link to this heading">#</a></h1>
+          <section id="module-pyrecodes.DamageInput">
+<span id="damage-input"></span><h1>Damage Input<a class="headerlink" href="#module-pyrecodes.DamageInput" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="DamageInput.ConcreteDamageInput">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DamageInput.</span></span><span class="sig-name descname"><span class="pre">ConcreteDamageInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DamageInput.ConcreteDamageInput" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.DamageInput.ConcreteDamageInput">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.DamageInput.</span></span><span class="sig-name descname"><span class="pre">ConcreteDamageInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.DamageInput.ConcreteDamageInput" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="DamageInput.DamageInput">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DamageInput.</span></span><span class="sig-name descname"><span class="pre">DamageInput</span></span><a class="headerlink" href="#DamageInput.DamageInput" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.DamageInput.DamageInput">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.DamageInput.</span></span><span class="sig-name descname"><span class="pre">DamageInput</span></span><a class="headerlink" href="#pyrecodes.DamageInput.DamageInput" title="Link to this definition">#</a></dt>
 <dd><p>Different methods for providing initial component damage information to the system class</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="DamageInput.FileDamageInput">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DamageInput.</span></span><span class="sig-name descname"><span class="pre">FileDamageInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DamageInput.FileDamageInput" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.DamageInput.FileDamageInput">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.DamageInput.</span></span><span class="sig-name descname"><span class="pre">FileDamageInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.DamageInput.FileDamageInput" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="DamageInput.ListDamageInput">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DamageInput.</span></span><span class="sig-name descname"><span class="pre">ListDamageInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DamageInput.ListDamageInput" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.DamageInput.ListDamageInput">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.DamageInput.</span></span><span class="sig-name descname"><span class="pre">ListDamageInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.DamageInput.ListDamageInput" title="Link to this definition">#</a></dt>
 <dd><dl class="py method">
-<dt class="sig sig-object py" id="DamageInput.ListDamageInput.get_initial_damage">
-<span class="sig-name descname"><span class="pre">get_initial_damage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DamageInput.ListDamageInput.get_initial_damage" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.DamageInput.ListDamageInput.get_initial_damage">
+<span class="sig-name descname"><span class="pre">get_initial_damage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.DamageInput.ListDamageInput.get_initial_damage" title="Link to this definition">#</a></dt>
 <dd><p>”
 self.parameters are set in the system class and contained in the system_creator.system_configuration</p>
 </dd></dl>
@@ -256,8 +256,8 @@ self.parameters are set in the system class and contained in the system_creator.
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="DamageInput.R2DDamageInput">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DamageInput.</span></span><span class="sig-name descname"><span class="pre">R2DDamageInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DamageInput.R2DDamageInput" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pyrecodes.DamageInput.R2DDamageInput">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.DamageInput.</span></span><span class="sig-name descname"><span class="pre">R2DDamageInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.DamageInput.R2DDamageInput" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
 </section>
@@ -272,7 +272,7 @@ self.parameters are set in the system class and contained in the system_creator.
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Distribution Priority class</div>
+                <div class="title">Distribution Priority</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -283,7 +283,7 @@ self.parameters are set in the system class and contained in the system_creator.
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Component Recovery Model class</div>
+                <div class="title">Component Recovery Model</div>
                 
               </div>
             </a>
@@ -317,15 +317,15 @@ self.parameters are set in the system class and contained in the system_creator.
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Damage Input class</a><ul>
-<li><a class="reference internal" href="#DamageInput.ConcreteDamageInput"><code class="docutils literal notranslate"><span class="pre">ConcreteDamageInput</span></code></a></li>
-<li><a class="reference internal" href="#DamageInput.DamageInput"><code class="docutils literal notranslate"><span class="pre">DamageInput</span></code></a></li>
-<li><a class="reference internal" href="#DamageInput.FileDamageInput"><code class="docutils literal notranslate"><span class="pre">FileDamageInput</span></code></a></li>
-<li><a class="reference internal" href="#DamageInput.ListDamageInput"><code class="docutils literal notranslate"><span class="pre">ListDamageInput</span></code></a><ul>
-<li><a class="reference internal" href="#DamageInput.ListDamageInput.get_initial_damage"><code class="docutils literal notranslate"><span class="pre">ListDamageInput.get_initial_damage()</span></code></a></li>
+<li><a class="reference internal" href="#">Damage Input</a><ul>
+<li><a class="reference internal" href="#pyrecodes.DamageInput.ConcreteDamageInput"><code class="docutils literal notranslate"><span class="pre">ConcreteDamageInput</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.DamageInput.DamageInput"><code class="docutils literal notranslate"><span class="pre">DamageInput</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.DamageInput.FileDamageInput"><code class="docutils literal notranslate"><span class="pre">FileDamageInput</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.DamageInput.ListDamageInput"><code class="docutils literal notranslate"><span class="pre">ListDamageInput</span></code></a><ul>
+<li><a class="reference internal" href="#pyrecodes.DamageInput.ListDamageInput.get_initial_damage"><code class="docutils literal notranslate"><span class="pre">ListDamageInput.get_initial_damage()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#DamageInput.R2DDamageInput"><code class="docutils literal notranslate"><span class="pre">R2DDamageInput</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.DamageInput.R2DDamageInput"><code class="docutils literal notranslate"><span class="pre">R2DDamageInput</span></code></a></li>
 </ul>
 </li>
 </ul>

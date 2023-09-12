@@ -1,5 +1,5 @@
 System Creator
-====================
+==============
 
-.. automodule:: SystemCreator
+.. automodule:: pyrecodes.SystemCreator
    :members:

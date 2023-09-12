@@ -1,13 +1,13 @@
-from abc import ABC, abstractmethod
-import random
-from pyrecodes import Component
-import copy
-
 """
 Module used to define component priority for resource distribution.
 
 More details coming soon.
 """
+
+from abc import ABC, abstractmethod
+import random
+from pyrecodes import Component
+import copy
 
 class DistributionPriority(ABC):
     """

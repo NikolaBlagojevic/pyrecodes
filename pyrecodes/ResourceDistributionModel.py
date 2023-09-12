@@ -1,3 +1,9 @@
+"""
+Module used to define resource distribution models used in the system.
+
+More details coming soon.
+"""
+
 from abc import ABC, abstractmethod
 import numpy as np
 import math
@@ -6,12 +12,6 @@ import json
 import itertools 
 from pyrecodes import Component
 from pyrecodes import DistributionPriority
-
-"""
-Module used to define resource distribution models used in the system.
-
-More details coming soon.
-"""
 
 class ResourceDistributionModel(ABC):
 

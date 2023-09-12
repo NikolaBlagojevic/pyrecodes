@@ -1,3 +1,7 @@
+"""
+Module used to define the Component class and its subclasses.
+"""
+
 import math
 from abc import ABC, abstractmethod
 from enum import Enum
@@ -6,10 +10,6 @@ from pyrecodes import Resource
 from pyrecodes import Relation
 from pyrecodes import ProbabilityDistribution
 import numpy as np
-
-"""
-Module used to define the Component class and its subclasses.
-"""
 
 class SupplyOrDemand(Enum):
     """

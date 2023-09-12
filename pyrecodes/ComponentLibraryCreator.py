@@ -1,10 +1,10 @@
-import json
-from abc import ABC, abstractmethod
-from pyrecodes import Component
-
 """
 Module used to create component library based on which system components are constructed.
 """
+
+import json
+from abc import ABC, abstractmethod
+from pyrecodes import Component
 
 class ComponentLibraryCreator(ABC):
     """

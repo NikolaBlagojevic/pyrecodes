@@ -1,11 +1,11 @@
-from abc import ABC, abstractmethod
-import math
-
 """
 Module used to define relations between damage and functionality of a component and functionality and supply and demand.
 
 More details coming soon.
 """
+
+from abc import ABC, abstractmethod
+import math
 
 ABS_TOL = 1e-10
 

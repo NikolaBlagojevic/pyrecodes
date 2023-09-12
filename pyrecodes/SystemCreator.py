@@ -1,3 +1,9 @@
+"""
+Module used to create a system based on a system configuration file.
+
+More details coming soon.
+"""
+
 from abc import ABC, abstractmethod
 from pyrecodes import Component
 from pyrecodes import ComponentLibraryCreator
@@ -9,13 +15,6 @@ import math
 import pandas as pd
 import geopandas as gpd
 import shapely
-
-"""
-Module used to create a system based on a system configuration file.
-
-More details coming soon.
-"""
-
 
 class SystemCreator(ABC):
     """

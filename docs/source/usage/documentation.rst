@@ -14,7 +14,7 @@ The following examples highlight the usage of **pyrecodes**. Examples are writte
    ./documentation/component_recovery_model_class_docs
    ./documentation/damage_input_class_docs
    ./documentation/distribution_priority_class_docs
-   ./documentation/geovisulisator_class_docs
+   ./documentation/geovisualizer_class_docs
    ./documentation/plotter_class_docs
    ./documentation/probability_distribution_class_docs
    ./documentation/relation_class_docs

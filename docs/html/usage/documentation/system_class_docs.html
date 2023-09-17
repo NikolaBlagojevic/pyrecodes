@@ -286,6 +286,13 @@ and implements the necessary methods to run the resilience assessment for the bu
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.get_system_supply">
+<span class="sig-name descname"><span class="pre">get_system_supply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.get_system_supply" title="Link to this definition">#</a></dt>
+<dd><p>Get the system-level supply for a resource resource_name based on current components’ state.</p>
+<p>This method is already implemented in the ResourceDistributionClass but uses the system matrix. However, using that method requires one to update the system matrix outside of resource distribution which then screws up consumption calculation. This method is a workaround to avoid that.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.load_as_pickle">
 <span class="sig-name descname"><span class="pre">load_as_pickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loadname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./system_object.pickle'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.load_as_pickle" title="Link to this definition">#</a></dt>
 <dd><p>Loads the system object from a pickle file and returns it.</p>
@@ -672,6 +679,7 @@ is finished.</p>
 <li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.create_system"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.create_system()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.distribute_resources"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.distribute_resources()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.get_supply_of_interdependent_resources"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.get_supply_of_interdependent_resources()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.get_system_supply"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.get_system_supply()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.load_as_pickle"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.load_as_pickle()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.recover"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.recover()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.recovery_target_met"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.recovery_target_met()</span></code></a></li>

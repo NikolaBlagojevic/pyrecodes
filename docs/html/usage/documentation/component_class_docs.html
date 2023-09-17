@@ -326,6 +326,16 @@ demand for communication resource following the initial demand surge.</p>
 <div class="line">Infrastructure simulator performance is defined in the system configuration file.    </div>
 </div>
 <dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.Component.InfrastructureInterface.add_initial_zero_supply">
+<span class="sig-name descname"><span class="pre">add_initial_zero_supply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step_limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#pyrecodes.Component.InfrastructureInterface.add_initial_zero_supply" title="Link to this definition">#</a></dt>
+<dd><div class="line-block">
+<div class="line">Add the initial zero supply to the step limits and step values.</div>
+<div class="line">This is needed to make sure that the supply is zero before the infrastructure system is restored.</div>
+<div class="line">This is not applied if the interface already defines the initial post-disaster supply amount at time 0.</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.Component.InfrastructureInterface.get_restoration_times">
 <span class="sig-name descname"><span class="pre">get_restoration_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">supply_dynamics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#pyrecodes.Component.InfrastructureInterface.get_restoration_times" title="Link to this definition">#</a></dt>
 <dd><div class="line-block">
@@ -649,6 +659,7 @@ demand for communication resource following the initial demand surge.</p>
 </li>
 <li><a class="reference internal" href="#pyrecodes.Component.Component"><code class="docutils literal notranslate"><span class="pre">Component</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.Component.InfrastructureInterface"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterface</span></code></a><ul>
+<li><a class="reference internal" href="#pyrecodes.Component.InfrastructureInterface.add_initial_zero_supply"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterface.add_initial_zero_supply()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.Component.InfrastructureInterface.get_restoration_times"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterface.get_restoration_times()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.Component.InfrastructureInterface.set_supply_dynamics"><code class="docutils literal notranslate"><span class="pre">InfrastructureInterface.set_supply_dynamics()</span></code></a></li>
 </ul>

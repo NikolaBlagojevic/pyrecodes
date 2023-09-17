@@ -421,6 +421,9 @@ class BuiltEnvironmentSystem(System):
             if self.time_step == self.DISASTER_TIME_STEP:
                 self.set_initial_damage()
 
+            if self.time_step == 80:
+                print('')
+
             self.update()
 
             self.distribute_resources()
@@ -474,7 +477,7 @@ class BuiltEnvironmentSystem(System):
         while not(system_converged):
             for resource_name in self.resource_distribution_dict['InterdependentResources']:
                 self.resources[resource_name]['DistributionModel'].distribute()
-                updated_system_supply = self.get_supply_of_interdependent_resources()
+            updated_system_supply = self.get_supply_of_interdependent_resources()
             system_converged = self.check_system_convergence(system_supply, updated_system_supply)
             system_supply = copy.deepcopy(updated_system_supply)
         
@@ -486,10 +489,24 @@ class BuiltEnvironmentSystem(System):
             dict: A dictionary with the supply of interdependent resources in the system.
         """
         system_supply = {}
-        for resource_name in set(self.resource_distribution_dict['InterdependentResources']):
-            system_supply[resource_name] = self.resources[resource_name]['DistributionModel'].get_total_supply()
+        for resource_name in set(self.resource_distribution_dict['InterdependentResources']):            
+            system_supply[resource_name] = self.get_system_supply(resource_name)
         return system_supply
     
+    def get_system_supply(self, resource_name: str) -> dict:
+        """
+        Get the system-level supply for a resource resource_name based on current components' state.
+        
+        This method is already implemented in the ResourceDistributionClass but uses the system matrix. However, using that method requires one to update the system matrix outside of resource distribution which then screws up consumption calculation. This method is a workaround to avoid that.
+        """
+        system_supply = 0
+        for component in self.components:
+            if component.has_resource_supply(resource_name):
+                system_supply += component.get_current_resource_amount(Component.SupplyOrDemand.SUPPLY.value,
+                                                                       Component.StandardiReCoDeSComponent.SupplyTypes.SUPPLY.value,
+                                                                       resource_name)
+        return system_supply
+        
     def check_system_convergence(self, system_supply: dict, updated_system_supply: dict) -> bool:
         """
         Checks whether the system has converged to a stable state.

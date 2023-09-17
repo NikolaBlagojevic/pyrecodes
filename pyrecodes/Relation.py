@@ -67,17 +67,12 @@ class MultipleStep(ConcreteRelation):
     Step limits define the values at which the output changes. Step values define the output values.
     if limit smaller than the lowest limit, output is 0.0
     if limit larger than the largest limit, output is 1.0
-    
+
+    Note: input has to be rounded, otherwise comparison does not work. 
     """
     def get_output(self, input: float) -> float:
-        if self.valid_input(input):      
-            # if math.isclose(input, 1.0, abs_tol=ABS_TOL):
-            #     return 1.0
-            # elif math.isclose(input, 0.0, abs_tol=ABS_TOL):
-            #     return self.step_values[0]
-            # else:
-            #     step_id = bisect.bisect_left(self.step_limits, input)
-            #     return self.step_values[step_id]
+        if self.valid_input(input):
+            input = round(input, int(math.log10(1 / ABS_TOL)))
             for i in range(len(self.step_limits) - 1):
                 if input < self.step_limits[0]:
                     return 0.0

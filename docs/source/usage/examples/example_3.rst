@@ -785,7 +785,7 @@ Sections of the system configuration file as presented in the `How to use pyreco
 Constants
 `````````
 
-The starting time step of the recovery simulation is set to day 0, time step is day, and the maximal duration is set at 500 time steps to limit the computational time of the analysis. A full recovery analysis requires a higher number of days and requires more computational time. Building damage is assigned on day 1, to simulate the scenario earthquake. 
+The starting time step of the recovery simulation is set to day 0, time step is a day, and the maximal duration is set at 3650 time steps. Building damage is assigned on day 1, to simulate the scenario earthquake. 
 
 Apart from these three constants that are required by all SystemCreator classes in **pyrecodes**, the R2DSystemCreator class requires several additionall constants. These are:
 
@@ -803,7 +803,7 @@ Apart from these three constants that are required by all SystemCreator classes 
         {
             "Constants": {
                 "START_TIME_STEP": 0,
-                "MAX_TIME_STEP": 500,
+                "MAX_TIME_STEP": 3650,
                 "DISASTER_TIME_STEP": 1,
                 "DS4_REPAIR_DURATION": 240,
                 "MAX_REPAIR_CREW_DEMAND_PER_BUILDING": 50,
@@ -825,7 +825,11 @@ Apart from these three constants that are required by all SystemCreator classes 
 Content
 ```````
 
-Example 3 places all components in a single locality - Locality 1. The spatial extent of Locality 1 is defined as a bounding box. All components whose centroid, as defined in the R2DTool's output, falls within the bounding box are placed in Locality 1. The bounding box is defined by the latitude and longitude of its four corners. The folder location and the ID's of building data is provided in this section of the system configuration file as well. Maximal number of buildings to be considered in Locality 1 is set to 1000, and the building occupancy is determined by dividing the building's total area by the **AreaPerPerson** value. The **EmergencyResponseCenter** component is the supplier of recovery resources for components in Locality 1.
+Example 3 places all components in a single locality - Locality 1. The spatial extent of Locality 1 is defined as a bounding box. All components whose centroid, as defined in the R2DTool's output, falls within the bounding box are placed in Locality 1. The bounding box is defined by the latitude and longitude of its four corners. The folder location and the ID's of building data is provided in this section of the system configuration file as well. Maximal number of buildings to be considered in Locality 1 is set to 100, and the building occupancy is determined by dividing the building's total area by the **AreaPerPerson** value. The **EmergencyResponseCenter** component is the supplier of recovery resources for components in Locality 1.
+
+.. hint::
+
+    The number of buldings is limited to 100 to reduce the computational time of the example. This number can be increased to consider all buildings in the region.
 
 .. toggle::
 
@@ -858,7 +862,7 @@ Example 3 places all components in a single locality - Locality 1. The spatial e
                         8000,
                         9000
                     ],
-                    "MaxNumBuildings": 1000,
+                    "MaxNumBuildings": 100,
                     "AreaPerPerson": 541
                 }
             }
@@ -1144,6 +1148,35 @@ Main
 Outputs
 -------
 
-Coming soon.
+The outputs of the housing resilience assessment include the post-earthquake change in the capacity of the building stock to shelter its residents. This is shown in the following figure for the 100 buildings considered in Example 3. As the regional recovery simulation considers resource constraints, an example of a resource ihndering recovery is shown as well: the post-earthquake supply/demand for repair crews. The blue shaded area points to the amount and duration of unmet demand for repair crews in the repair crew supply/demand plot - whenever there is unmet demand for repair crews there is a building waiting to be repaired, and thus the recovery of shelter supply is hindered.
+
+.. figure:: ../../figures/example_3_shelter.png
+    :alt: Shelter supply/demand.
+
+    Post-earthquake recovery of shelter supply of the 100 buildings considered in Example 3.
+
+.. figure:: ../../figures/example_3_repair_crews.png
+    :alt: Repair crew supply/demand.
+
+    Post-earthquake supply and demand for repair crews.
+
+.. figure:: ../../figures/example_3_gantt_chart.png
+    :alt: Gantt chart illustrating the recovery of 20 damaged buildings.
+
+    Gantt chart illustrating the progress of recovery activities for 20 damaged buildings.
+
+Apart from the figures, the outputs of the resilience assesment indicate the total unmet resource demand and the time needed to meet the resilience goal specified in the ResilienceCalculator parameters in the system configuration file. First dictionary shows the results of the first ReCoDeSResilienceCalculator resilience calculator: the total unmet resource demand for selected resources. The second NISTResilienceGoals resilience calculator shows the time needed to meet the specified resilience goal.
+
+.. code-block:: json
+
+    {"Shelter": 1361011.0,
+    "FirstResponderEngineer": 0.0,
+    "RepairCrew": 57587.0,
+    "Money": 0.0},
+
+    {"Resource": "Shelter",
+    "Scope": "All",
+    "DesiredFunctionalityLevel": 0.95,
+    "MetAtTimeStep": 413}
 
 

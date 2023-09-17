@@ -177,7 +177,6 @@ class UtilityDistributionModel(ResourceDistributionModel):
         self.constructor = UtilityDistributionModelConstructor()
         self.constructor.construct(resource_name, resource_parameters, components, self)
         self.transfer_service_distribution_model = None #consider moving this into the constructor or finding a better solution-the point is to have an initial value for this property
-        self.fill_system_matrix() # to get system supply when checking convergence before first distribution
 
     def distribute(self):
         self.fill_system_matrix()
@@ -220,7 +219,6 @@ class UtilityDistributionModel(ResourceDistributionModel):
         end_locality = self.system_matrix.matrix[component_row_id, self.system_matrix.END_LOCALITY_COL_ID]
         component_is_supplier = False
         if current_supply > 0:
-            # suppliers.append([start_locality, end_locality, current_supply])
             suppliers.append({'StartLocality': start_locality, 'EndLocality': end_locality, 
                               'CurrentSupply': current_supply, 'ConsumedAmount': 0, 
                               'ComponentRowID': component_row_id})

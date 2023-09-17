@@ -71,11 +71,19 @@ class Plotter():
             if len(active_recovery_activities) > 0:
                 component_row += 1
                 recovery_activities_legend += active_recovery_activities
-                plotted_components.append(component)            
-        axis_object.legend(set(recovery_activities_legend), loc='upper left', bbox_to_anchor=(1.02, 1.0))
+                plotted_components.append(component)        
+        self.set_gantt_chart_legend(recovery_activities_legend, axis_object)
         axis_object.set_yticks([(i) * GANTT_BAR_DISTANCE for i in range(len(plotted_components))])   
         axis_object.set_yticklabels([component.__str__() for component in plotted_components])
         plt.show()
+    
+    def set_gantt_chart_legend(self, recovery_activities_legend: list, axis_object: plt.axis) -> None:
+        legend_labels = []
+        legend_handles = []
+        for recovery_activity_name in set(recovery_activities_legend):
+            legend_labels.append(recovery_activity_name)
+            legend_handles.append(plt.Rectangle((0, 0), 1, 1, fc=ALL_RECOVERY_ACTIVITIES_COLORS[recovery_activity_name]))
+        axis_object.legend(legend_handles, legend_labels, loc='upper left', bbox_to_anchor=(1.02, 1.0))
 
     def plot_component_gantt_bar(self, component_row: int, component: Component.Component, axis_object: plt.axis) -> list:
         active_recovery_activities = []

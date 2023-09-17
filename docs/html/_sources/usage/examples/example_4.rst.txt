@@ -984,7 +984,7 @@ Novel constants introduced in Example 4 are contained in the **DEMAND_PER_PERSON
 
         "Constants": {
             "START_TIME_STEP": 0,
-            "MAX_TIME_STEP": 500,
+            "MAX_TIME_STEP": 3650,
             "DISASTER_TIME_STEP": 1,
             "DS4_REPAIR_DURATION": 240,
             "MAX_REPAIR_CREW_DEMAND_PER_BUILDING": 50,
@@ -1013,6 +1013,10 @@ Content
 ```````
 
 Example 4 divides the considered region, north-east San Francisco, into 5 localities, defined by their bounding box coordinates, as opposed to storing all components in a single locality as in Example 3. The effect of infrastructure systems is captured through supply/demand interfaces defined at the locality level. For each of the three considered infrastructure systems, their post-earthquake supply dynamics are defined in terms of the amount of resources they can provide to the components in their locality and the times at which these amounts are restored. For example, the electric power supply system in Locality 1 provides 150MWh from day 0 - immediately after the earthquake, and increase the supply to 450MWh, 60 days after the earthquake.
+
+.. hint::
+
+    The number of buildings per locality is limited to 50 to reduce the computational time of the example. This number can be increased to consider more buildings in the region.
 
 .. toggle::
 
@@ -1106,7 +1110,7 @@ Example 4 divides the considered region, north-east San Francisco, into 5 locali
                         8000,
                         9000
                     ],
-                    "MaxNumBuildings": 1000,
+                    "MaxNumBuildings": 50,
                     "AreaPerPerson": 541
                 }
             },
@@ -1195,7 +1199,7 @@ Example 4 divides the considered region, north-east San Francisco, into 5 locali
                         8000,
                         9000
                     ],
-                    "MaxNumBuildings": 1000,
+                    "MaxNumBuildings": 50,
                     "AreaPerPerson": 541
                 }
             },
@@ -1249,7 +1253,7 @@ Example 4 divides the considered region, north-east San Francisco, into 5 locali
                                 ],
                                 "Demand": {
                                     "Resource": "ElectricPower",
-                                    "Amount": 1.5
+                                    "Amount": 0.5
                                 }
                             }
                         },
@@ -1268,7 +1272,7 @@ Example 4 divides the considered region, north-east San Francisco, into 5 locali
                                 ],
                                 "Demand": {
                                     "Resource": "ElectricPower",
-                                    "Amount": 0.2
+                                    "Amount": 0.1
                                 }
                             }
                         }
@@ -1278,7 +1282,7 @@ Example 4 divides the considered region, north-east San Francisco, into 5 locali
                         8000,
                         9000
                     ],
-                    "MaxNumBuildings": 1000,
+                    "MaxNumBuildings": 50,
                     "AreaPerPerson": 541
                 }
             },
@@ -1365,7 +1369,7 @@ Example 4 divides the considered region, north-east San Francisco, into 5 locali
                         8000,
                         9000
                     ],
-                    "MaxNumBuildings": 1000,
+                    "MaxNumBuildings": 50,
                     "AreaPerPerson": 541
                 }
             },
@@ -1446,7 +1450,7 @@ Example 4 divides the considered region, north-east San Francisco, into 5 locali
                         8000,
                         9000
                     ],
-                    "MaxNumBuildings": 1000,
+                    "MaxNumBuildings": 50,
                     "AreaPerPerson": 541
                 }
             }
@@ -1854,4 +1858,51 @@ Main
 Outputs
 -------
 
-Coming soon.
+Resilience assessment outputs are provided in terms of post-earthquake supply/demand/consumption dynamics for functional housing, electric power, potable water and cellular communication. The results identify how much and for how long user demand is not met, pointing out the lack of system's resilience. The results are provided for the entire system and for Locality 4 only, to illustrate that the outputs can be provided per locality.
+
+.. figure:: ../../figures/example_4_localities_max_50_buildings.png
+        :alt: Localities in the considered region.
+
+        Localities in the considered region. Dark blue colored buildings are in Locality 1, light blue in Locality 2, ligth red in Locality 3, dark red in Locality 4 and purple in Locality 5.
+
+.. figure:: ../../figures/example_4_functional_housing_all.png
+        :alt: Functional housing supply/demand/consumption following the scenario earthquake for the considered region. Functional housing resource represents how many people are sheltered in their homes and have access to electric power, potable water and cellular communication.
+
+        Functional housing supply/demand/consumption following the scenario earthquake for the considered region. Functional housing resource represents how many people are sheltered in their homes and have access to electric power, potable water and cellular communication.
+
+.. figure:: ../../figures/example_4_electric_power_all.png
+        :alt: Electric Power post-earthquake supply/demand/consumption dynamics for the considered region.
+
+        Electric Power post-earthquake supply/demand/consumption dynamics for the considered region.
+
+.. figure:: ../../figures/example_4_potable_water_all.png
+        :alt: Potable Water post-earthquake supply/demand/consumption dynamics for the considered region.
+
+        Potable Water post-earthquake supply/demand/consumption dynamics for the considered region.
+
+.. figure:: ../../figures/example_4_communication_all.png
+        :alt: Cellular Communication post-earthquake supply/demand/consumption dynamics for the considered region.
+
+        Cellular Communication post-earthquake supply/demand/consumption dynamics for the considered region.
+
+.. figure:: ../../figures/example_4_functional_housing_locality_4.png
+        :alt: Functional housing supply/demand/consumption following the scenario earthquake for Locality 4.
+
+        Functional housing supply/demand/consumption following the scenario earthquake for Locality 4.
+
+.. figure:: ../../figures/example_4_electric_power_locality_4.png
+        :alt: Electric Power post-earthquake supply/demand/consumption dynamics for Locality 4.
+
+        Electric Power post-earthquake supply/demand/consumption dynamics for Locality 4.
+
+.. figure:: ../../figures/example_4_potable_water_locality_4.png
+        :alt: Potable Water post-earthquake supply/demand/consumption dynamics for Locality 4.
+
+        Potable Water post-earthquake supply/demand/consumption dynamics for Locality 4.
+
+.. figure:: ../../figures/example_4_communication_locality_4.png
+        :alt: Cellular Communication post-earthquake supply/demand/consumption dynamics for Locality 4.
+
+        Cellular Communication post-earthquake supply/demand/consumption dynamics for Locality 4.
+
+

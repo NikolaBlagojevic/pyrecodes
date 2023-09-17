@@ -426,13 +426,29 @@ class InfrastructureInterface(StandardiReCoDeSComponent):
         | **Note 2**: It is assumed that last value in the Amount key is the initial supply amount and the highest value that the infrastructure system provides. 
         """
         restoration_times = self.get_restoration_times(supply_dynamics)
-        step_limits = list(np.divide(restoration_times, restoration_times[-1]))
+        # avoid divison with zero if the last restoration time is zero
+        if restoration_times[-1] != 0.0:
+            step_limits = list(np.divide(restoration_times, restoration_times[-1]))
+        else:
+            step_limits = [1.0]
         step_values = list(np.divide(supply_dynamics['Amount'], max(supply_dynamics['Amount'])))   
+        step_limits, step_values = self.add_initial_zero_supply(step_limits, step_values)
         
         self.recovery_model.set_parameters({'RestoredIn': supply_dynamics['RestoredIn'],
                                             'StepLimits': step_limits,
                                             'StepValues': step_values})
         self.supply['Supply'][supply_dynamics['Resource']].set_initial_amount(max(supply_dynamics['Amount']))
+    
+    def add_initial_zero_supply(self, step_limits: list, step_values: list) -> tuple:
+        """
+        | Add the initial zero supply to the step limits and step values.
+        | This is needed to make sure that the supply is zero before the infrastructure system is restored.
+        | This is not applied if the interface already defines the initial post-disaster supply amount at time 0.
+        """
+        if step_limits[0] != 0.0:
+            step_limits.insert(0, 0.0)
+            step_values.insert(0, 0.0)
+        return step_limits, step_values
     
     def get_restoration_times(self, supply_dynamics: dict) -> list:
         """

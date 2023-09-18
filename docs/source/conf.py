@@ -37,3 +37,10 @@ html_static_path = ['_static']
 html_logo = "./figures/pyrecodes_logo.png"
 html_home = "./what_is_pyrecodes.html"
 
+# Set the line width for code blocks (e.g., 80 characters)
+# Adjust this value according to your preferred line length
+# Set to 0 to disable word wrapping in code blocks
+rst_prolog = """
+   .. |line_width| replace:: 80
+"""
+

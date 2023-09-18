@@ -1,5 +1,5 @@
-Resource class
-==============
+Resource
+========
 
 .. automodule:: pyrecodes.Resource
    :members:

@@ -13,7 +13,7 @@ sys.path.insert(0, '../pyrecodes/')
 project = 'pyrecodes'
 copyright = '2023, Nikola Blagojević'
 author = 'Nikola Blagojević'
-release = '2023'
+release = 'v0.1.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -22,6 +22,7 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.autodoc',
     'sphinx_togglebutton',
+    'sphinx_carousel.carousel',
     'sphinx.ext.githubpages'
 ]
 
@@ -36,11 +37,3 @@ html_theme = 'furo'
 html_static_path = ['_static']
 html_logo = "./figures/pyrecodes_logo.png"
 html_home = "./what_is_pyrecodes.html"
-
-# Set the line width for code blocks (e.g., 80 characters)
-# Adjust this value according to your preferred line length
-# Set to 0 to disable word wrapping in code blocks
-rst_prolog = """
-   .. |line_width| replace:: 80
-"""
-

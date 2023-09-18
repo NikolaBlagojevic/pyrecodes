@@ -1,7 +1,7 @@
 Examples
 ===================
 
-The following examples highlight the usage of **pyrecodes**. Examples are written as jupyter notebooks and all the files necessary to run the examples are available on `Github <https://github.com/NikolaBlagojevic/pyrecodes/tree/main>`_.
+The following examples highlight the usage of **pyrecodes**. Examples are written as Jupyter notebooks and all the files necessary to run the examples are available on `Github <https://github.com/NikolaBlagojevic/pyrecodes/tree/main>`_.
 
 All Examples:
 

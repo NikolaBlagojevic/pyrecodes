@@ -22,19 +22,19 @@ To ensure that the installation is successful, please run Example 1 as specified
 All examples are written as Jupyter notebooks. More information on installing Jupyter notebooks can be found `here <https://jupyter.org/install>`_.  
 
 
-Dependencies
-------------
+.. Dependencies
+.. ------------
 
-Apart from the Python's standard library, pyrecodes relies on several external packages:
- - numpy
- - pandas
- - geopandas
- - shapely
- - contextily (for visualization only)
- - matplotlib (for visualization only)
- - imageio (for visualization only)
+.. Apart from the Python's standard library, pyrecodes relies on several external packages:
+..  - numpy
+..  - pandas
+..  - geopandas
+..  - shapely
+..  - contextily (for visualization only)
+..  - matplotlib (for visualization only)
+..  - imageio (for visualization only)
 
-These packages, along with their dependencies, define the requirements of the pyrecodes library.
+.. These packages, along with their dependencies, define the requirements of the pyrecodes library.
 
 
 

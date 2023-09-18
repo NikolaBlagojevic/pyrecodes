@@ -1,11 +1,13 @@
 How to use pyrecodes?
 =====================
 
-To assess system resilience in **pyrecodes**, the user needs to define three files:
+To assess system resilience in **pyrecodes**, the input that user needs to define is structured in three files:
 
 - **component library**
 - **system configuration**
 - **main**
+
+**Component library** defines templates for component objects to be instantiated in the system. **System configuration** file defines the system by specifying the spatial distribution of components, damage input model, resource parameters, resilience calculators, and temporal discretization of the system. **Main** file specifies the class of the system configuration and component library objects and is used to run the system resilience assessment.
 
 The three files are defined as JSONs and the following figure illustrates the relationship between them and a system in **pyrecodes**:
 
@@ -14,7 +16,6 @@ The three files are defined as JSONs and the following figure illustrates the re
 
         A system in **pyrecodes** is defined by the system configuration file and the component library file. Main file specifies the class of the system configuration and component library files and is used to run the system resilience assessment.
 
-Outputs of a **pyrecodes** resilience assessment are resource supply, demand, and consumption curves, which provide insights into the system's resilience by assessing unmet resource demand after an event and the system's ability to meet its resilience goals. Additionally, Gantt charts are employed to visualize the recovery progress of individual components, aiding in the comprehension of the overall system's recovery dynamics. Finally, certain system classes allow for the visualization of the system's spatial distribution and its evolution over time (Examples 3 and 4).
 
 Component Library
 -----------------
@@ -168,6 +169,8 @@ The outputs can be loaded later as follows:
 
 Output visualization
 --------------------
+
+Outputs of a **pyrecodes** resilience assessment are resource supply, demand, and consumption during the resilience assessment interval, which provide insights into the system's resilience by assessing unmet resource demand after an event and the system's ability to meet its resilience goals. Additionally, Gantt charts are employed to visualize the recovery progress of individual components, aiding in the comprehension of the overall system's recovery dynamics. Finally, certain system classes allow for the visualization of the system's spatial distribution and its evolution over time (Examples 3 and 4).
 
 The results are vizualised using the `Plotter <./documentation/plotter_class_docs.html>`_ and `GeoVisualisator <./documentation/geovisulisator_class_docs.html>`_ class. Note that the available visulization tools depend on the employed System class. Please check out the `Examples <examples.html>`_.
 

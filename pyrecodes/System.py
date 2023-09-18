@@ -37,12 +37,12 @@ class System(ABC):
         pass
 
     @abstractmethod
-    def set_configuration_file(self, file_name: str):
+    def set_configuration_file(self, system_configuration: dict):
         """
         Sets the configuration file for the system.
 
         Args:
-            file_name (str): The name of the configuration file to set.
+            system_configuration (dict): System configuration dictionary.
         """
         pass
 

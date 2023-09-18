@@ -6,10 +6,12 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Installing pyrecodes" href="installation.html" /><link rel="prev" title="Welcome to pyrecodes’s documentation!" href="../index.html" />
 
     <!-- Generated with Sphinx 7.2.5 and Furo 2023.08.19 -->
-        <title>What is pyrecodes? - pyrecodes 2023 documentation</title>
+        <title>What is pyrecodes? - pyrecodes v0.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-carousel.min.css?v=fd277c8b" />
+    <link rel="stylesheet" type="text/css" href="../_static/carousel-custom.css?v=6fe5d8c5" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
     
     
@@ -124,7 +126,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">pyrecodes 2023 documentation</div></a>
+      <a href="../index.html"><div class="brand">pyrecodes v0.1.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -150,7 +152,7 @@
     <img class="sidebar-logo" src="../_static/pyrecodes_logo.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">pyrecodes 2023 documentation</span>
+  <span class="sidebar-brand-text">pyrecodes v0.1.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -225,167 +227,175 @@
           </label>
         </div>
         <article role="main">
-          <blockquote>
-<div></div></blockquote>
-<section id="what-is-pyrecodes">
+          <section id="what-is-pyrecodes">
 <h1>What is pyrecodes?<a class="headerlink" href="#what-is-pyrecodes" title="Link to this heading">#</a></h1>
-<p><strong>pyrecodes</strong> is an open-source object-oriented Python library for regional disaster recovery simulation and disaster resilience assessment of the built environment.</p>
-<p><strong>pyrecodes</strong> is based on the iRe-CoDeS framework developed in the research group of Professor Božidar Stojadinović at the <a class="reference external" href="https://stojadinovic.ibk.ethz.ch/">Chair of Structural Dynamics and Earthquake Engineering</a> at ETH Zurich, Switzerland.</p>
-<section id="pyrecodes-architecture">
-<h2>pyrecodes architecture<a class="headerlink" href="#pyrecodes-architecture" title="Link to this heading">#</a></h2>
-<p>Following figure represents the simplified object-oriented architecture of <strong>pyrecodes</strong>.</p>
-<figure class="align-default" id="id13">
-<img alt="Simplified architecture of pyrecodes." src="../_images/simplified_pyrecodes_architecture.png" />
+<p>As disasters worlwide are becoming more frequent and severe, there is a growing need for tools that can help communities and cities assess their disaster resilience and identify the most effective resilience improvement strategies. <strong>pyrecodes</strong> is an open-source Python library for regional disaster recovery simulation and disaster resilience assessment of the built environment with the primary goal to respond to this pressing need. <strong>pyrecodes</strong> is based on the iRe-CoDeS framework developed in the research group of Professor Božidar Stojadinović at the <a class="reference external" href="https://stojadinovic.ibk.ethz.ch/">Chair of Structural Dynamics and Earthquake Engineering</a> at ETH Zurich, Switzerland.</p>
+<figure class="align-default" id="id1">
+<img alt="Overview of the iRe-CoDeS framework." src="../_images/1slide_iRe-CoDeS.gif" />
 <figcaption>
-<p><span class="caption-text">Simplified architecture of pyrecodes.</span><a class="headerlink" href="#id13" title="Link to this image">#</a></p>
+<p><span class="caption-text">Overview of the iRe-CoDeS framework.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-</section>
 <section id="ire-codes-framework">
 <h2>iRe-CoDeS framework<a class="headerlink" href="#ire-codes-framework" title="Link to this heading">#</a></h2>
 <p>The iRe-CoDeS framework for disaster resilience quantification discretizes a system into components and simulates the change in components’ supply and demand for various resources over the post-disaster recovery period. Components’ interactions are captured by simulating the flow of operation and recovery resources among components and conditioning their ability to operate and recover on their resource demand fulfillment. System’s resilience is then assessed by contrasting the post-disaster system-level evolution of supply, demand and consumption of various resources and identifying the magnitude and duration of unmet resource demands in the system.</p>
-<figure class="align-default" id="id14">
-<img alt="Overview of the iRe-CoDeS framework." src="../_images/1slide_iRe-CoDeS.gif" />
-<figcaption>
-<p><span class="caption-text">Overview of the iRe-CoDeS framework.</span><a class="headerlink" href="#id14" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<dl>
-<dt>The iRe-CoDeS framework has been used to:</dt><dd><ul>
-<li><p>capture cascading effects caused by interdependencies among infrastructure systems following a disaster <a class="reference external" href="https://doi.org/10.1080/15732479.2022.2052912">[link]</a></p>
-<blockquote>
-<div><figure class="align-default" id="id15">
-<img alt="Supply, demand and consumption of electric power after a scenario earthquake in the virtual community." src="../_images/irecodes_SIE_paper_EP_plot.png" />
-<figcaption>
-<p><span class="caption-text">Supply, demand and consumption of electric power after a scenario earthquake in the virtual community. Dashed lines represent supply/consumption dynamics withouth considering infrastructure interdependencies, while solid lines include interdependencies. Gray LoR area marks the unmet demand for electric power caused by infrastructure interdependencies.</span><a class="headerlink" href="#id15" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</div></blockquote>
-</li>
-<li><p>conduct scenario-based seismic resilience assessment of a virtual community by integrating iRe-CoDeS with ground motion models and HAZUS fragility and recovery functions <a class="reference external" href="https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/463555/1/7d-0003_Published.pdf">[link]</a></p>
-<blockquote>
-<div><figure class="align-default" id="id16">
-<img alt="Workflow of resilience assessment in iRe-CoDeS extends the traditional regional risk assessment by simulating recovery and quantifying resilience." src="../_images/irecodes_workflow.png" />
-<figcaption>
-<p><span class="caption-text">Workflow of resilience assessment in iRe-CoDeS extends the traditional regional risk assessment by simulating recovery and quantifying resilience.</span><a class="headerlink" href="#id16" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</div></blockquote>
-</li>
-<li><p>conduct probabilistic seismic resilience assessment of a virtual community and obtaining risk-based resilience metrics <a class="reference external" href="https://www.research-collection.ethz.ch/handle/20.500.11850/463549">[link]</a></p>
-<blockquote>
-<div><figure class="align-default" id="id17">
-<img alt="Probabilistic resilience assessment results in assessing the mean annual rate of exceeding a certain value of a Lack of Resilience (LoR) - the unmet demand for a resource, here electric power, during the resilience assessment period." src="../_images/17WCEE_LoR_LossCurves_CIS_1.png" />
-<figcaption>
-<p><span class="caption-text">Probabilistic resilience assessment results in assessing the mean annual rate of exceeding a certain value of a Lack of Resilience (LoR) - the unmet demand for a resource, here electric power, during the resilience assessment period.</span><a class="headerlink" href="#id17" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</div></blockquote>
-</li>
-<li><p>quantify component importance for disaster resilience of a system using Sobol’ indices and a heuristic upper and lower-bound search <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0951832022003702">[link]</a></p>
-<blockquote>
-<div><figure class="align-default" id="id18">
-<img alt="Component importance ranking for the resilience of an electric power supply system." src="../_images/sobol_indices_EPSS.png" />
-<figcaption>
-<p><span class="caption-text">Component importance ranking for the resilience of an electric power supply system.</span><a class="headerlink" href="#id18" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</div></blockquote>
-</li>
-<li><p>assess seismic resilience of an electrical substation <a class="reference external" href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/eqe.3800">[link]</a></p>
-<blockquote>
-<div><figure class="align-default" id="id19">
-<img alt="Resilience assessment of an electrical substation using the iRe-CoDeS framework." src="../_images/substation_resilience.png" />
-<figcaption>
-<p><span class="caption-text">Resilience assessment of an electrical substation using the iRe-CoDeS framework.</span><a class="headerlink" href="#id19" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</div></blockquote>
-</li>
-<li><p>evaluate NIST community resilience goals <a class="reference external" href="https://www.research-collection.ethz.ch/handle/20.500.11850/586997">[link]</a></p>
-<blockquote>
-<div><figure class="align-default" id="id20">
-<img alt="NIST resilience goals can be assessed using iRe-CoDeS by defining functionality of a system as the percent of met user demand for a resource provided by the considered system." src="../_images/irecodes_NIST_goals.png" />
-<figcaption>
-<p><span class="caption-text">NIST resilience goals can be assessed using iRe-CoDeS by defining functionality of a system as the percent of met user demand for a resource provided by the considered system.</span><a class="headerlink" href="#id20" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</div></blockquote>
-</li>
-<li><p>assess housing resilience of a virtual community exposed to seismic hazard <a class="reference external" href="https://ascelibrary.org/doi/abs/10.1061/9780784484432.082">[link]</a></p>
-<blockquote>
-<div><figure class="align-default" id="id21">
-<img alt="By treating housing as a resource provided by the building stock, iRe-CoDeS can assess housing resilience by looking at post-disaster housing supply/demand dynamics." src="../_images/irecodes_housing_resilience_lifelines2021.png" />
-<figcaption>
-<p><span class="caption-text">By treating housing as a resource provided by the building stock, iRe-CoDeS can assess housing resilience by looking at post-disaster housing supply/demand dynamics.</span><a class="headerlink" href="#id21" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</div></blockquote>
-</li>
-<li><p>assess the adequate post-disaster supply of recovery resources for the city of Kraljevo, Serbia to improve its seismic resilience <a class="reference external" href="https://www.research-collection.ethz.ch/handle/20.500.11850/586957">[link]</a></p>
-<blockquote>
-<div><figure class="align-default" id="id22">
-<img alt="Relation between recovery resource supply, in this case workers, and recovery time can be assessed using iRe-CoDeS." src="../_images/adequate_worker_supply_kraljevo.png" />
-<figcaption>
-<p><span class="caption-text">Relation between recovery resource supply, in this case workers, and recovery time can be assessed using iRe-CoDeS.</span><a class="headerlink" href="#id22" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</div></blockquote>
-</li>
-<li><p>enable risk-informed resilience assessment using Lack of Resilience surfaces <a class="reference external" href="https://www.researchgate.net/publication/363671446_Risk-Informed_Resilience_Assessment_of_Communities_using_Lack_of_Resilience_Surfaces">[link]</a></p>
-<blockquote>
-<div><figure class="align-default" id="id23">
-<img alt="Example of an LoR surface." src="../_images/lor_surface_example.png" />
-<figcaption>
-<p><span class="caption-text">Example of an LoR surface showing the annual rate of exceeding a certain percent of unmet resource demand (i.e., the LoR) at each time step of the simulated recovery process.</span><a class="headerlink" href="#id23" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</div></blockquote>
-</li>
-<li><p>compare the iRe-CoDeS seismic housing resilience assessment with a real-life post-earthquake recovery of the city of Kraljevo, Serbia <a class="reference external" href="https://www.research-collection.ethz.ch/handle/20.500.11850/586954">[link]</a></p>
-<blockquote>
-<div><figure class="align-default" id="id24">
-<img alt="Comparing the iRe-CoDeS seismic housing recovery estimates with the observed housing recovery data from the 2010 Kraljevo, Serbia, earthquake." src="../_images/kraljevo_housing_resilience_validation.png" />
-<figcaption>
-<p><span class="caption-text">Comparing the iRe-CoDeS seismic housing recovery estimates with the observed housing recovery data from the 2010 Kraljevo, Serbia, earthquake.</span><a class="headerlink" href="#id24" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</div></blockquote>
-</li>
-<li><p>simulate recovery impeding factors and the effect of regional resource constraints on the recovery of San Francisco following a hypothetical earthquake <a class="reference external" href="https://www.research-collection.ethz.ch/handle/20.500.11850/587004">[link]</a></p>
-<blockquote>
-<div><figure class="align-default" id="id25">
-<img alt="Relation between recovery resource supply, in this case workers, and recovery time can be assessed using iRe-CoDeS." src="../_images/SF_HousingRecovery_small.gif" />
-<figcaption>
-<p><span class="caption-text">Relation between recovery resource supply, in this case workers, and recovery time can be assessed using iRe-CoDeS.</span><a class="headerlink" href="#id25" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</div></blockquote>
-</li>
-<li><p>capture the impact of transportation infrastructure on community disaster resilience in a virtual community <a class="reference external" href="https://www.research-collection.ethz.ch/handle/20.500.11850/527466">[link]</a></p>
-<blockquote>
-<div><figure class="align-default" id="id26">
-<img alt="Post-disaster inoperability of the damaged transportation infrastructure prevents access to damaged components, delaying their repair and preventing the mobilization of available workers." src="../_images/transportation_infrastructure_community_resilience.png" />
-<figcaption>
-<p><span class="caption-text">Post-disaster inoperability of the damaged transportation infrastructure prevents access to damaged components, delaying their repair and preventing the mobilization of available workers.</span><a class="headerlink" href="#id26" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</div></blockquote>
-</li>
-<li><p>integrate advanced building-component-level functional recovery modelling framework F-Rec with iRe-CoDeS <a class="reference external" href="https://www.research-collection.ethz.ch/handle/20.500.11850/610946">[link]</a></p>
-<blockquote>
-<div><figure class="align-default" id="id27">
-<img alt="By integrating F-Rec building-level recovery models into the regional iRe-CoDeS recovery model we capture recovery resource constraints on a building component level at each floor in the entire region." src="../_images/f-rec_irecodes_example.png" />
-<figcaption>
-<p><span class="caption-text">By integrating F-Rec building-level recovery models into the regional iRe-CoDeS recovery model we capture recovery resource constraints on a building component level at each floor in the entire region.</span><a class="headerlink" href="#id27" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</div></blockquote>
-</li>
-</ul>
-</dd>
-</dl>
+<p>The iRe-CoDeS framework has been used to:</p>
+<p>(click to the side of the figure to cycle through, and in the center to see further details):</p>
+<div class="scbs-carousel scbs-slide" id="carousel-0">
+<div class="scbs-carousel-indicators">
+<button aria-current="true" aria-label="Slide 1" class="scbs-active" data-bs-slide-to="0" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 2" data-bs-slide-to="1" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 3" data-bs-slide-to="2" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 4" data-bs-slide-to="3" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 5" data-bs-slide-to="4" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 6" data-bs-slide-to="5" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 7" data-bs-slide-to="6" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 8" data-bs-slide-to="7" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 9" data-bs-slide-to="8" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 10" data-bs-slide-to="9" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 11" data-bs-slide-to="10" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 12" data-bs-slide-to="11" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 13" data-bs-slide-to="12" data-bs-target="#carousel-0" type="button"></button>
+</div>
+<div class="scbs-carousel-inner">
+<div class="scbs-carousel-item scbs-active">
+<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/587004"><img alt="../_images/SF_HousingRecovery_small.gif" class="scbs-d-block scbs-w-100" src="../_images/SF_HousingRecovery_small.gif" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Simulate recovery impeding factors and the effect of regional resource constraints on the recovery of San Francisco following a hypothetical earthquake.</h5>
+<p>
+Figures show the simulated building-level recovery and the resulting increase in regional shelter capacity and demand for repair crews.
+</p>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://doi.org/10.1080/15732479.2022.2052912"><img alt="../_images/irecodes_SIE_paper_EP_plot.png" class="scbs-d-block scbs-w-100" src="../_images/irecodes_SIE_paper_EP_plot.png" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Capture cascading effects caused by interdependencies among infrastructure systems following a disaster.</h5>
+<p>
+Figures shows supply, demand and consumption of electric power after a scenario earthquake in the virtual community. Dashed lines represent supply/consumption dynamics withouth considering infrastructure interdependencies, while solid lines include interdependencies. Gray LoR area marks the unmet demand for electric power caused by infrastructure interdependencies.
+</p>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/463555/1/7d-0003_Published.pdf"><img alt="../_images/irecodes_workflow.png" class="scbs-d-block scbs-w-100" src="../_images/irecodes_workflow.png" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Conduct scenario-based seismic resilience assessment of a virtual community by integrating iRe-CoDeS with ground motion models and HAZUS fragility and recovery functions.</h5>
+<p>
+Figure shows the workflow of resilience assessment in iRe-CoDeS which extends the traditional regional risk assessment by simulating recovery and quantifying resilience.
+</p>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/463549"><img alt="../_images/17WCEE_LoR_LossCurves_CIS_1.png" class="scbs-d-block scbs-w-100" src="../_images/17WCEE_LoR_LossCurves_CIS_1.png" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Conduct probabilistic seismic resilience assessment of a virtual community and obtaining risk-based resilience metrics.</h5>
+<p>
+Figure shows probabilistic resilience assessment results as the mean annual rate of exceeding a certain value of a Lack of Resilience (LoR) - the unmet demand for a resource, here electric power, during the resilience assessment period.
+</p>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://www.sciencedirect.com/science/article/pii/S0951832022003702"><img alt="../_images/sobol_indices_EPSS.png" class="scbs-d-block scbs-w-100" src="../_images/sobol_indices_EPSS.png" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Quantify component importance for disaster resilience of a system using Sobol' indices and a heuristic upper and lower-bound search.</h5>
+<p>
+Figure shows component importance ranking for the resilience of an electric power supply system in a virtual community.
+</p>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/eqe.3800"><img alt="../_images/substation_resilience.png" class="scbs-d-block scbs-w-100" src="../_images/substation_resilience.png" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Assess seismic resilience of an electrical substation.</h5>
+<p>
+Figure shows resilience assessment of an electrical substation using the iRe-CoDeS framework.
+</p>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/586997"><img alt="../_images/irecodes_NIST_goals.png" class="scbs-d-block scbs-w-100" src="../_images/irecodes_NIST_goals.png" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Evaluate NIST community resilience goals.</h5>
+<p>
+Figure shows how NIST resilience goals can be assessed using iRe-CoDeS by defining functionality of a system as the percent of met user demand for a resource provided by the considered system.
+</p>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://ascelibrary.org/doi/abs/10.1061/9780784484432.082"><img alt="../_images/irecodes_housing_resilience_lifelines2021.png" class="scbs-d-block scbs-w-100" src="../_images/irecodes_housing_resilience_lifelines2021.png" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Assess housing resilience of a virtual community exposed to seismic hazard.</h5>
+<p>
+Figure shows that by treating housing as a resource provided by the building stock, iRe-CoDeS can assess housing resilience by looking at post-disaster housing supply/demand dynamics.
+</p>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/586957"><img alt="../_images/adequate_worker_supply_kraljevo.png" class="scbs-d-block scbs-w-100" src="../_images/adequate_worker_supply_kraljevo.png" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Assess the adequate post-disaster supply of recovery resources for the city of Kraljevo, Serbia to improve its seismic resilience.</h5>
+<p>
+Figure shows that the relation between recovery resource supply, in this case workers, and recovery time can be assessed using iRe-CoDeS.
+</p>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://www.researchgate.net/publication/363671446_Risk-Informed_Resilience_Assessment_of_Communities_using_Lack_of_Resilience_Surfaces"><img alt="../_images/lor_surface_example.png" class="scbs-d-block scbs-w-100" src="../_images/lor_surface_example.png" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Enable risk-informed resilience assessment using Lack of Resilience surfaces.</h5>
+<p>
+Figure shows an example of an LoR surface showing the annual rate of exceeding a certain percent of unmet resource demand (i.e., the LoR) at each time step of the simulated recovery process.
+</p>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/586954"><img alt="../_images/kraljevo_housing_resilience_validation.png" class="scbs-d-block scbs-w-100" src="../_images/kraljevo_housing_resilience_validation.png" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Compare the iRe-CoDeS seismic housing resilience assessment with a real-life post-earthquake recovery of the city of Kraljevo, Serbia.</h5>
+<p>
+Figure compares the iRe-CoDeS seismic housing recovery estimates with the observed housing recovery data from the 2010 Kraljevo, Serbia, earthquake.
+</p>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/527466"><img alt="../_images/transportation_infrastructure_community_resilience.png" class="scbs-d-block scbs-w-100" src="../_images/transportation_infrastructure_community_resilience.png" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Capture the impact of transportation infrastructure on community disaster resilience in a virtual community.</h5>
+<p>
+Figure shows that post-disaster inoperability of the damaged transportation infrastructure prevents access to damaged components, delaying their repair and preventing the mobilization of available workers.
+</p>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/610946"><img alt="../_images/f-rec_irecodes_example.png" class="scbs-d-block scbs-w-100" src="../_images/f-rec_irecodes_example.png" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Integrate advanced building-component-level functional recovery modelling framework F-Rec with iRe-CoDeS.</h5>
+<p>
+Figure shows that by integrating F-Rec building-level recovery models into the regional iRe-CoDeS recovery model we capture recovery resource constraints on a building component level at each floor in the entire region.
+</p>
+</div>
+</div>
+</div>
+<button class="scbs-carousel-control-prev" data-bs-slide="prev" data-bs-target="#carousel-0" type="button">
+<span aria-hidden="true" class="scbs-carousel-control-prev-icon"></span>
+<span class="scbs-visually-hidden">Previous</span>
+</button>
+<button class="scbs-carousel-control-next" data-bs-slide="next" data-bs-target="#carousel-0" type="button">
+<span aria-hidden="true" class="scbs-carousel-control-next-icon"></span>
+<span class="scbs-visually-hidden">Next</span>
+</button>
+</div>
 <p>More information on the iRe-CoDeS framework can be found <a class="reference external" href="https://www.research-collection.ethz.ch/handle/20.500.11850/605682">here</a>.</p>
+</section>
+<section id="pyrecodes-architecture">
+<h2>pyrecodes architecture<a class="headerlink" href="#pyrecodes-architecture" title="Link to this heading">#</a></h2>
+<p>Following figure represents the simplified object-oriented architecture of <strong>pyrecodes</strong>.</p>
+<figure class="align-default" id="id2">
+<img alt="Simplified architecture of pyrecodes." src="../_images/simplified_pyrecodes_architecture.png" />
+<figcaption>
+<p><span class="caption-text">Simplified architecture of pyrecodes.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 
@@ -445,8 +455,8 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">What is pyrecodes?</a><ul>
-<li><a class="reference internal" href="#pyrecodes-architecture">pyrecodes architecture</a></li>
 <li><a class="reference internal" href="#ire-codes-framework">iRe-CoDeS framework</a></li>
+<li><a class="reference internal" href="#pyrecodes-architecture">pyrecodes architecture</a></li>
 </ul>
 </li>
 </ul>
@@ -458,7 +468,7 @@
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=a4664895"></script>
+</div><script src="../_static/documentation_options.js?v=fa47ad08"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
@@ -468,5 +478,6 @@
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/bootstrap-carousel.min.js?v=9a6c5d3e"></script>
     </body>
 </html>

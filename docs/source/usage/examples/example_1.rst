@@ -389,7 +389,7 @@ Two resilience calculators are employed in Example 1: the ReCoDeSResilienceCalcu
 
 The ReCoDeSResilienceCalculator assesses resilience by calculating the total unmet demand of the system during the resilience assessment interval. This is done for the entire system (Scope: All) and for three utility resources: Electric Power, Cooling Water and Communication.
 
-The NISTGoalsResilienceCalculator calculates the time that the system needs to reach the desired system's functionality level as specified by the resilience goal. In **pyrecodes** functionality level is defined as the percent of met system demand at each time step of the resilience assessment interval. Three resilience goals are defined in Example 1, which consider the three utility resources, the entire system (as opposed to a subset of localities/components) and are set to different desired functionality levels.
+The NISTGoalsResilienceCalculator calculates the time that the system needs to reach the desired system's functionality level as specified by the resilience goal. In **pyrecodes** functionality level of a system is defined as the percent of met system demand at each time step of the resilience assessment interval. Three resilience goals are defined in Example 1, which consider the three utility resources, the entire system (as opposed to a subset of localities/components) and are set to different desired functionality levels.
 
 .. toggle::
 

@@ -3,14 +3,19 @@ Example 4
 
 Example 4 shows how infrastructure simulators can be integrated within an iRe-CoDeS system-of-systems model using the supply/demand interfaces. Such interfaces allow the integration of third-party infrastructure simulators to capture their interdependencies and their impact on buildings' functional recovery. Interfaces are tiered to accomodate infrastructure managers privacy and/or security concerns. Interface application is illustrated by extending the Example 3 North-East San Francisco Case Study to include the impact of infrastructure systems on building's functionality. Further details are available `here <https://link.springer.com/article/10.1007/s10669-023-09931-0>`_.
 
-Run the example online using `Google Colab <https://colab.research.google.com/github/NikolaBlagojevic/pyrecodes/blob/main/Example4_NorthEast_SF_Interfaces_Colab.ipynb>`_.
-    
-Alternatively, the example can be run locally by downloading the `Example 4 Jupyter notebook <https://github.com/NikolaBlagojevic/pyrecodes/blob/main/Example4_NorthEast_SF_Interfaces.ipynb>`_ and the required files from the `Example 4 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%204>`_. 
-
 .. figure:: ../../figures/Example_4_infrastructure_interfaces.png
         :alt: Tiered supply/demand interfaces for infrastructure systems
 
         Tiered supply/demand infrastructure simulator interfaces. Tier 1 interface requires post-event resource supply dynamics defined per locality. Tier 2 interface additionally requires the information on the resources that the infrastructure system needs to operate on a locality level. Tier 3 interfaces needs component-level supply/demand dynamics.
+
+Running the example
+-------------------
+
+Example 4 Jupyter notebook illustrates how to run the pyrecodes simulation and plot the post-disaster supply/demand/consumption dynamics and the components' recovery gantt chart, as well as animate the building recovery process.
+
+Run the example online using `Google Colab <https://colab.research.google.com/github/NikolaBlagojevic/pyrecodes/blob/main/Example4_NorthEast_SF_Interfaces_Colab.ipynb>`_.
+    
+Alternatively, the example can be run locally by downloading the `Example 4 Jupyter notebook <https://github.com/NikolaBlagojevic/pyrecodes/blob/main/Example4_NorthEast_SF_Interfaces.ipynb>`_ and the required files from the `Example 4 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%204>`_. 
 
 Component library
 -----------------

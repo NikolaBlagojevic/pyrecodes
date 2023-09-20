@@ -228,22 +228,29 @@
           <section id="example-3">
 <h1>Example 3<a class="headerlink" href="#example-3" title="Link to this heading">#</a></h1>
 <p>Example 3 shows how <strong>pyrecodes</strong> can integrate with the <a class="reference external" href="https://github.com/NHERI-SimCenter/R2DTool">SimCenter’s R2DTool</a>, automatically build a <strong>pyrecodes</strong> model based on R2DTool’s outputs and assess housing resilience of a community to a scenario earthquake.</p>
-<p>The example is based on <a class="reference external" href="https://nheri-simcenter.github.io/R2D-Documentation/common/user_manual/examples/desktop/E1BasicHAZUS/README.html">R2DTools’s Example 1</a>. R2D Tool outputs initial post-earthquake damage states of all buildings in the considered region following a hypothetical earthquake. <strong>pyrecodes</strong> takes this information and simulates regional recovery considering impeding factors and resource constraints. Further details can be found <a class="reference external" href="https://doi.org/10.1016/j.rcns.2022.03.001">here</a>.</p>
-<p>Run the example online using <a class="reference external" href="https://colab.research.google.com/github/NikolaBlagojevic/pyrecodes/blob/main/Example3_NorthEast_SF_Housing_Colab.ipynb">Google Colab</a>.</p>
-<p>Alternatively, the example can be run locally by downloading the <a class="reference external" href="https://github.com/NikolaBlagojevic/pyrecodes/blob/main/Example3_NorthEast_SF_Housing.ipynb">Example 3 Jupyter notebook</a> and the required files from the <a class="reference external" href="https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%203">Example 3 folder</a>.</p>
-<figure class="align-default" id="id3">
+<figure class="align-default" id="id4">
 <img alt="North-East San Francisco buildings considered in Example 3." src="../../_images/Example_3_NorthEastSF.png" />
 <figcaption>
-<p><span class="caption-text">North-East San Francisco buildings considered in Example 3.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+<p><span class="caption-text">North-East San Francisco buildings considered in Example 3.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+<section id="running-the-example">
+<h2>Running the example<a class="headerlink" href="#running-the-example" title="Link to this heading">#</a></h2>
+<p>Example 3 Jupyter notebook illustrates how to run the pyrecodes simulation and plot the post-disaster supply/demand/consumption dynamics and the components’ recovery gantt chart, as well as animate the building recovery process.</p>
+<p>Run the example online using <a class="reference external" href="https://colab.research.google.com/github/NikolaBlagojevic/pyrecodes/blob/main/Example3_NorthEast_SF_Housing_Colab.ipynb">Google Colab</a>.</p>
+<p>Alternatively, the example can be run locally by downloading the <a class="reference external" href="https://github.com/NikolaBlagojevic/pyrecodes/blob/main/Example3_NorthEast_SF_Housing.ipynb">Example 3 Jupyter notebook</a> and the required files from the <a class="reference external" href="https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%203">Example 3 folder</a>.</p>
+</section>
+<section id="example-description">
+<h2>Example description<a class="headerlink" href="#example-description" title="Link to this heading">#</a></h2>
+<p>The example is based on <a class="reference external" href="https://nheri-simcenter.github.io/R2D-Documentation/common/user_manual/examples/desktop/E1BasicHAZUS/README.html">R2DTools’s Example 1</a>. R2D Tool outputs initial post-earthquake damage states of all buildings in the considered region following a hypothetical earthquake. <strong>pyrecodes</strong> takes this information and simulates regional recovery considering impeding factors and resource constraints. Further details can be found <a class="reference external" href="https://doi.org/10.1016/j.rcns.2022.03.001">here</a>.</p>
 <p>Building recovery activities are conditioned on the initial building damage state and are defined in the component library file, as illustrated in the following figure.</p>
-<figure class="align-default" id="id4">
+<figure class="align-default" id="id5">
 <img alt="Building recovery activities conditioned on the initial post-earthquake damage state." src="../../_images/Example_3_recovery_activities.png" />
 <figcaption>
-<p><span class="caption-text">Building recovery activities conditioned on the initial post-earthquake damage state.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+<p><span class="caption-text">Building recovery activities conditioned on the initial post-earthquake damage state.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+</section>
 <section id="component-library">
 <h2>Component library<a class="headerlink" href="#component-library" title="Link to this heading">#</a></h2>
 <p>Components considered in Example 3 are the Emergency Response Center representing a supplier of recovery resources, such as engineers, workers and finances, and residential buildings. As functionality and recovery activities differ among buildings depending on their initial damage state, different component templates are defined for buildings in different initial post-earthquake damage states. The component templates follow the structure presented in the <a class="reference external" href="./user_guide.html">How to use pyrecodes</a> page.</p>
@@ -1348,8 +1355,8 @@
 <p>Path to component library and system configuration file might differ on your local machine.</p>
 </div>
 </section>
-<section id="running-the-example">
-<h2>Running the example<a class="headerlink" href="#running-the-example" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h2>Running the example<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>To run the example, you can use the following code:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyrecodes</span> <span class="kn">import</span> <span class="n">main</span>
 <span class="n">system</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;./path/to/main/file&#39;</span><span class="p">)</span>
@@ -1360,22 +1367,22 @@
 <section id="outputs">
 <h2>Outputs<a class="headerlink" href="#outputs" title="Link to this heading">#</a></h2>
 <p>The outputs of the housing resilience assessment include the post-earthquake change in the capacity of the building stock to shelter its residents. This is shown in the following figure for the 100 buildings considered in Example 3. As the regional recovery simulation considers resource constraints, an example of a resource ihndering recovery is shown as well: the post-earthquake supply/demand for repair crews. The blue shaded area points to the amount and duration of unmet demand for repair crews in the repair crew supply/demand plot - whenever there is unmet demand for repair crews there is a building waiting to be repaired, and thus the recovery of shelter supply is hindered.</p>
-<figure class="align-default" id="id5">
+<figure class="align-default" id="id6">
 <img alt="Shelter supply/demand." src="../../_images/example_3_shelter.png" />
 <figcaption>
-<p><span class="caption-text">Post-earthquake recovery of shelter supply of the 100 buildings considered in Example 3.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-default" id="id6">
-<img alt="Repair crew supply/demand." src="../../_images/example_3_repair_crews.png" />
-<figcaption>
-<p><span class="caption-text">Post-earthquake supply and demand for repair crews.</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
+<p><span class="caption-text">Post-earthquake recovery of shelter supply of the 100 buildings considered in Example 3.</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id7">
+<img alt="Repair crew supply/demand." src="../../_images/example_3_repair_crews.png" />
+<figcaption>
+<p><span class="caption-text">Post-earthquake supply and demand for repair crews.</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id8">
 <img alt="Gantt chart illustrating the recovery of 20 damaged buildings." src="../../_images/example_3_gantt_chart.png" />
 <figcaption>
-<p><span class="caption-text">Gantt chart illustrating the progress of recovery activities for 20 damaged buildings.</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
+<p><span class="caption-text">Gantt chart illustrating the progress of recovery activities for 20 damaged buildings.</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Apart from the figures, the outputs of the resilience assesment indicate the total unmet resource demand and the time needed to meet the resilience goal specified in the ResilienceCalculator parameters in the system configuration file. First dictionary shows the results of the first ReCoDeSResilienceCalculator resilience calculator: the total unmet resource demand for selected resources. The second NISTResilienceGoals resilience calculator shows the time needed to meet the specified resilience goal.</p>
@@ -1449,6 +1456,8 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Example 3</a><ul>
+<li><a class="reference internal" href="#running-the-example">Running the example</a></li>
+<li><a class="reference internal" href="#example-description">Example description</a></li>
 <li><a class="reference internal" href="#component-library">Component library</a><ul>
 <li><a class="reference internal" href="#emergency-response-center">Emergency Response Center</a></li>
 <li><a class="reference internal" href="#ds0-residential-building">DS0 Residential Building</a></li>
@@ -1467,7 +1476,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#main">Main</a></li>
-<li><a class="reference internal" href="#running-the-example">Running the example</a></li>
+<li><a class="reference internal" href="#id2">Running the example</a></li>
 <li><a class="reference internal" href="#outputs">Outputs</a></li>
 </ul>
 </li>

@@ -3,16 +3,24 @@ Example 3
 
 Example 3 shows how **pyrecodes** can integrate with the `SimCenter's R2DTool <https://github.com/NHERI-SimCenter/R2DTool>`_, automatically build a **pyrecodes** model based on R2DTool's outputs and assess housing resilience of a community to a scenario earthquake. 
 
-The example is based on `R2DTools's Example 1 <https://nheri-simcenter.github.io/R2D-Documentation/common/user_manual/examples/desktop/E1BasicHAZUS/README.html>`_. R2D Tool outputs initial post-earthquake damage states of all buildings in the considered region following a hypothetical earthquake. **pyrecodes** takes this information and simulates regional recovery considering impeding factors and resource constraints. Further details can be found `here <https://doi.org/10.1016/j.rcns.2022.03.001>`_.
-
-Run the example online using `Google Colab <https://colab.research.google.com/github/NikolaBlagojevic/pyrecodes/blob/main/Example3_NorthEast_SF_Housing_Colab.ipynb>`_.
-    
-Alternatively, the example can be run locally by downloading the `Example 3 Jupyter notebook <https://github.com/NikolaBlagojevic/pyrecodes/blob/main/Example3_NorthEast_SF_Housing.ipynb>`_ and the required files from the `Example 3 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%203>`_. 
-
 .. figure:: ../../figures/Example_3_NorthEastSF.png
         :alt: North-East San Francisco buildings considered in Example 3.
 
         North-East San Francisco buildings considered in Example 3.
+
+Running the example
+-------------------
+
+Example 3 Jupyter notebook illustrates how to run the pyrecodes simulation and plot the post-disaster supply/demand/consumption dynamics and the components' recovery gantt chart, as well as animate the building recovery process.
+
+Run the example online using `Google Colab <https://colab.research.google.com/github/NikolaBlagojevic/pyrecodes/blob/main/Example3_NorthEast_SF_Housing_Colab.ipynb>`_.
+    
+Alternatively, the example can be run locally by downloading the `Example 3 Jupyter notebook <https://github.com/NikolaBlagojevic/pyrecodes/blob/main/Example3_NorthEast_SF_Housing.ipynb>`_ and the required files from the `Example 3 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%203>`_.
+
+Example description
+-------------------
+
+The example is based on `R2DTools's Example 1 <https://nheri-simcenter.github.io/R2D-Documentation/common/user_manual/examples/desktop/E1BasicHAZUS/README.html>`_. R2D Tool outputs initial post-earthquake damage states of all buildings in the considered region following a hypothetical earthquake. **pyrecodes** takes this information and simulates regional recovery considering impeding factors and resource constraints. Further details can be found `here <https://doi.org/10.1016/j.rcns.2022.03.001>`_.
 
 Building recovery activities are conditioned on the initial building damage state and are defined in the component library file, as illustrated in the following figure.
 

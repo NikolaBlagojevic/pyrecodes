@@ -65,13 +65,13 @@ class ConcreteGeoVisualizer():
         for time_step in time_steps:           
             frame = imageio.v2.imread(file_name.replace('TIME_STEP', str(time_step)))
             frames.append(frame)
-        imageio.mimsave(savename, # output gif
+        imageio.mimwrite(savename, # output gif
                 frames,          # array of input frames
-                fps = 4)         # optional: frames per second
+                duration = 1)         # optional: duration in s
     
     def create_current_state_buildings_and_supply_demand_figure(self, time_step: int, system: System.System, save=True, 
                                                                 dpi=300, resources_to_plot=['Shelter', 'RepairCrew'],
-                                                                supply_demand_resilience_calculator_id=0,
+                                                                show=False, supply_demand_resilience_calculator_id=0,
                                                                 savename=f'2D_buildings_with_supply_demand_TIME_STEP.png') -> None:
         fig, ax_dict = plt.subplot_mosaic([['left', 'upper right'],
                                ['left', 'lower right']],
@@ -88,10 +88,14 @@ class ConcreteGeoVisualizer():
             ax_dict[axis_name].set_ylabel(y_axis_label)
             ax_dict[axis_name].grid(True)      
 
+        if show:
+            plt.show()
+
         if save:
             plt.rcParams.update({'font.size': 18})   
             plt.savefig(savename.replace('TIME_STEP', str(time_step)), dpi=dpi, bbox_inches='tight', pad_inches=0)  
-            plt.close()
+            plt.close()       
+        
     
     def create_current_state_figure(self, time_step: int, ax=None, save=False, dpi=300):
         state_colors = self.update_buildings_dataframe_with_component_current_state(time_step)     

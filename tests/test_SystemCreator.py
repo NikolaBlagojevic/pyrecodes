@@ -450,8 +450,8 @@ class TestR2DSystemWithInterfacesCreator:
         r2d_system_creator.set_infrastructure_system_parameters(component, content['Infrastructure'][0]['ElectricPowerSupplySystem'])
         assert component.supply['Supply']['ElectricPower'].initial_amount == 80
         assert component.recovery_model.recovery_activities['Recovery'].duration == 30
-        assert component.recovery_model.damage_to_functionality_relation.step_values == [0.5, 1.0]
-        assert component.recovery_model.damage_to_functionality_relation.step_limits == [0.5, 1.0]
+        assert component.recovery_model.damage_to_functionality_relation.step_values == [0.0, 0.5, 1.0]
+        assert component.recovery_model.damage_to_functionality_relation.step_limits == [0.0, 0.5, 1.0]
     
 class TestComponentParametersSetter:
 

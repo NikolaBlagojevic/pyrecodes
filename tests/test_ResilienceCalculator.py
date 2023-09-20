@@ -114,7 +114,7 @@ class TestNISTGoalsResilienceCalculator:
         assert resilience_calculator.resilience_goals[1]['GoalMet'][-1] == True
         assert resilience_calculator.resilience_goals[2]['GoalMet'][-1] == True
     
-    def test_calculate_resilience(self, system, resilience_calculator):
+    def test_calculate_resilience(self, system):
         system.start_resilience_assessment()
         system.calculate_resilience()
         assert system.resilience_calculators[1].resilience_goals[0]['MetAtTimeStep'] == [12]

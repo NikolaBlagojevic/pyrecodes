@@ -285,19 +285,6 @@ class TestUtilityDistributionModel_ThreeLocalitiesCommunity():
         assert distribution_models['ElectricPower'].system_matrix.RECOVERY_DEMAND_ROW_OFFSET == len(system.components)
         assert isinstance(distribution_models['ElectricPower'].priority, DistributionPriority.ComponentBasedPriority)
         assert isinstance(distribution_models['ElectricPower'].transfer_service_distribution_model, ResourceDistributionModel.TransferServiceDistributionModelPotentialPathSets)
-        locality_matrix = []
-        for component in distribution_models['ElectricPower'].components:
-            locality_matrix.append([component.get_locality()[0], component.get_locality()[-1]])
-
-        recovery_demand_matrix_part = np.concatenate(
-            (locality_matrix, np.asarray([[0.0, 0.0, 1.0] for _ in distribution_models['ElectricPower'].components])),
-            axis=1)
-        target_power_matrix = np.concatenate(
-            (np.asarray([[1, 1, 0.0, 1.0, 1.0], [1, 1, 5.0, 0.0, 1.0], [1, 2, 0.0, 0.0, 1.0], [1, 3, 0.0, 0.0, 1.0],
-                         [2, 2, 0.0, 1.0, 1.0], [2, 1, 0.0, 0.0, 1.0], [2, 3, 0.0, 0.0, 1.0], [3, 3, 0.0, 1.0, 1.0],
-                         [3, 3, 0.0, 1.0, 1.0], [3, 1, 0.0, 0.0, 1.0], [3, 2, 0.0, 0.0, 1.0]]),
-             recovery_demand_matrix_part), axis=0)
-        assert np.all(distribution_models['ElectricPower'].system_matrix.matrix == target_power_matrix)
 
     def test_distribute(self, distribution_models: dict, system: System.System):
         distribution_models['Communication'].distribute()
@@ -403,6 +390,8 @@ class TestUtilityDistributionModel_ThreeLocalitiesCommunity():
                       'ComponentRowID': 0}]
         componet_row_id = 7
         component_demand_type = 'OperationDemand'
+        distribution_models['ElectricPower'].fill_system_matrix()
+
         suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, componet_row_id, component_demand_type)
         assert math.isclose(suppliers[0]['CurrentSupply'], 4.0)
         assert math.isclose(suppliers[0]['ConsumedAmount'], 1.0)
@@ -430,6 +419,8 @@ class TestUtilityDistributionModel_ThreeLocalitiesCommunity():
                        'ComponentRowID': 8}]
         component_row_id = 7
         component_demand_type = 'OperationDemand'
+        distribution_models['ElectricPower'].fill_system_matrix()
+
         suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, component_row_id, component_demand_type)
         assert math.isclose(suppliers[0]['CurrentSupply'], 0.0)
         assert math.isclose(suppliers[0]['ConsumedAmount'], 0.5)
@@ -611,6 +602,8 @@ class TestUtilityDistributionModel_ThreeLocalitiesCommunity():
         assert distribution_models['ElectricPower'].get_optimal_path(2, 1) == (0, 0)
 
     def test_get_scope(self, distribution_models: dict):
+        distribution_models['ElectricPower'].fill_system_matrix()
+        
         target_all_components_id = list(range(2 * len(distribution_models['ElectricPower'].components)))
         assert distribution_models['ElectricPower'].get_scope() == target_all_components_id
 

@@ -675,9 +675,9 @@ class TestInfrastructureInterface():
         assert component.supply['Supply']['SupplyInterfaceResource1'].initial_amount == 200
         assert component.recovery_model.recovery_activities[component.recovery_model.RECOVERY_ACTIVITY_NAME].duration == 50
         assert isinstance(component.recovery_model.damage_to_functionality_relation, Relation.MultipleStep)
-        assert component.recovery_model.damage_to_functionality_relation.step_values == [0.5, 1]
-        assert math.isclose(component.recovery_model.damage_to_functionality_relation.step_limits[0], 0.4)
-        assert component.recovery_model.damage_to_functionality_relation.step_limits[1] == 1
+        assert component.recovery_model.damage_to_functionality_relation.step_values == [0.0, 0.5, 1]
+        assert math.isclose(component.recovery_model.damage_to_functionality_relation.step_limits[1], 0.4)
+        assert component.recovery_model.damage_to_functionality_relation.step_limits[2] == 1
     
     def test_set_supply_dynamics_complicated(self, component, component_parameters):
         component.construct(component_name, component_parameters)

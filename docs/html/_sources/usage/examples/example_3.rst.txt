@@ -5,6 +5,10 @@ Example 3 shows how **pyrecodes** can integrate with the `SimCenter's R2DTool <h
 
 The example is based on `R2DTools's Example 1 <https://nheri-simcenter.github.io/R2D-Documentation/common/user_manual/examples/desktop/E1BasicHAZUS/README.html>`_. R2D Tool outputs initial post-earthquake damage states of all buildings in the considered region following a hypothetical earthquake. **pyrecodes** takes this information and simulates regional recovery considering impeding factors and resource constraints. Further details can be found `here <https://doi.org/10.1016/j.rcns.2022.03.001>`_.
 
+Run the example online using `Google Colab <https://colab.research.google.com/github/NikolaBlagojevic/pyrecodes/blob/main/Example3_NorthEast_SF_Housing_Colab.ipynb>`_.
+    
+Alternatively, the example can be run locally by downloading the `Example 3 Jupyter notebook <https://github.com/NikolaBlagojevic/pyrecodes/blob/main/Example3_NorthEast_SF_Housing.ipynb>`_ and the required files from the `Example 3 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%203>`_. 
+
 .. figure:: ../../figures/Example_3_NorthEastSF.png
         :alt: North-East San Francisco buildings considered in Example 3.
 
@@ -1144,6 +1148,18 @@ Main
 .. note::
 
     Path to component library and system configuration file might differ on your local machine.
+
+Running the example
+-------------------
+
+To run the example, you can use the following code:
+
+.. code-block:: Python
+
+    from pyrecodes import main
+    system = main.run('./path/to/main/file')
+
+Check out the Example 3 Jupyter notebook on how to run the pyrecodes simulation and plot the outputs. Make sure to download the files required to run the Example 3 from the `Example 3 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%203>`_.
     
 Outputs
 -------

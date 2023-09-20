@@ -228,12 +228,14 @@
           <section id="example-1">
 <h1>Example 1<a class="headerlink" href="#example-1" title="Link to this heading">#</a></h1>
 <p>Example 1 illustrates how the resilience of a simple community with five components located in three localities can be assessed using <strong>pyrecodes</strong>. Initial damage levels are assigned to a subset of system components, simulating the effects of a disaster, and defined directly in the system configuration file. The recovery of the components is then simulated and the post-disaster system-level supply/demand/consumption dynamics are plotted, together with a gantt chart illustrating the recovery of components. Resilience is assessed by identifying the unmet system demand for electric power, communication and cooling water - more post-disaster unmet demand indicates lower resilience.</p>
-<figure class="align-default" id="id1">
+<figure class="align-default" id="id2">
 <img alt="Three localities community in Example 1." src="../../_images/Example_1_Community.png" />
 <figcaption>
-<p><span class="caption-text">Three localities community in Example 1.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-text">Three localities community in Example 1.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
+<p>Run the example online using <a class="reference external" href="https://colab.research.google.com/github/NikolaBlagojevic/pyrecodes/blob/main/Example1_ThreeLocalityCommunity_Colab.ipynb">Google Colab</a>.</p>
+<p>Alternatively, the example can be run locally by downloading the <a class="reference external" href="https://github.com/NikolaBlagojevic/pyrecodes/blob/main/Example1_ThreeLocalityCommunity.ipynb">Example 1 Jupyter notebook</a> and the required files from the <a class="reference external" href="https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%201">Example 1 folder</a>.</p>
 <p>Components considered in Example 1 are Base Transceiver Stations (BTS), Electric Power Plant (EPP), Cooling Water Facility (CWF), Building Stock Unit (BSU) and links transferring resources among components.</p>
 <section id="component-library">
 <h2>Component library<a class="headerlink" href="#component-library" title="Link to this heading">#</a></h2>
@@ -627,37 +629,37 @@
 <section id="running-the-example">
 <h2>Running the example<a class="headerlink" href="#running-the-example" title="Link to this heading">#</a></h2>
 <p>To run the example, you can use the following code:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyrecodes</span>
-<span class="n">system</span> <span class="o">=</span> <span class="n">pyrecodes</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;./path/to/main/file&#39;</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyrecodes</span> <span class="kn">import</span> <span class="n">main</span>
+<span class="n">system</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;./path/to/main/file&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Example 1 Jupyter notebook illustrates how to run the pyrecodes simulation and plot the post-disaster supply/demand/consumption dynamics and the components’ recovery gantt chart.</p>
+<p>Example 1 Jupyter notebook illustrates how to run the pyrecodes simulation and plot the post-disaster supply/demand/consumption dynamics and the components’ recovery gantt chart. Make sure to download the files required to run the Example 1 from the <a class="reference external" href="https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%201">Example 1 folder</a>.</p>
 </section>
 <section id="outputs">
 <h2>Outputs<a class="headerlink" href="#outputs" title="Link to this heading">#</a></h2>
 <p>The outputs of Example 1 are plotted using the <a class="reference external" href="../documentation/plotter_class_docs.html">Plotter class</a> and should produce the following output:</p>
-<figure class="align-default" id="id2">
+<figure class="align-default" id="id3">
 <img alt="Post-disaster supply/demand/consumption dynamics for electric power in the three localities community." src="../../_images/example_1_power_plot.png" />
 <figcaption>
-<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics of electric power in the three localities community.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-default" id="id3">
-<img alt="Post-disaster supply/demand/consumption dynamics for cooling water in the three localities community." src="../../_images/example_1_water_plot.png" />
-<figcaption>
-<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics for cooling water in the three localities community.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics of electric power in the three localities community.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id4">
-<img alt="Post-disaster supply/demand/consumption dynamics for cellular communication in the three localities community." src="../../_images/example_1_communication_plot.png" />
+<img alt="Post-disaster supply/demand/consumption dynamics for cooling water in the three localities community." src="../../_images/example_1_water_plot.png" />
 <figcaption>
-<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics for cellular communication in the three localities community.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics for cooling water in the three localities community.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id5">
+<img alt="Post-disaster supply/demand/consumption dynamics for cellular communication in the three localities community." src="../../_images/example_1_communication_plot.png" />
+<figcaption>
+<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics for cellular communication in the three localities community.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id6">
 <img alt="Component recovery gantt chart." src="../../_images/example_1_gantt_chart.png" />
 <figcaption>
-<p><span class="caption-text">Component repair gantt chart. All damaged components are assumed to take 10 days to repair (check out their component library templates above) - these are the BTS and BSU at Locality 3, CWF at Locality 2 and EPP at Locality 1. Components that are not damaged do not need repair.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+<p><span class="caption-text">Component repair gantt chart. All damaged components are assumed to take 10 days to repair (check out their component library templates above) - these are the BTS and BSU at Locality 3, CWF at Locality 2 and EPP at Locality 1. Components that are not damaged do not need repair.</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Apart from the plots, the output of Example 1 includes the assessment of resilience goals in the following format:</p>

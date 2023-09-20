@@ -8,8 +8,11 @@ Example 1 illustrates how the resilience of a simple community with five compone
 
         Three localities community in Example 1. 
 
-Components considered in Example 1 are Base Transceiver Stations (BTS), Electric Power Plant (EPP), Cooling Water Facility (CWF), Building Stock Unit (BSU) and links transferring resources among components. 
+Run the example online using `Google Colab <https://colab.research.google.com/github/NikolaBlagojevic/pyrecodes/blob/main/Example1_ThreeLocalityCommunity_Colab.ipynb>`_.
+    
+Alternatively, the example can be run locally by downloading the `Example 1 Jupyter notebook <https://github.com/NikolaBlagojevic/pyrecodes/blob/main/Example1_ThreeLocalityCommunity.ipynb>`_ and the required files from the `Example 1 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%201>`_. 
 
+Components considered in Example 1 are Base Transceiver Stations (BTS), Electric Power Plant (EPP), Cooling Water Facility (CWF), Building Stock Unit (BSU) and links transferring resources among components. 
 
 Component library
 -----------------
@@ -438,10 +441,10 @@ To run the example, you can use the following code:
 
 .. code-block:: Python
 
-    import pyrecodes
-    system = pyrecodes.main.run('./path/to/main/file')
+    from pyrecodes import main
+    system = main.run('./path/to/main/file')
 
-Example 1 Jupyter notebook illustrates how to run the pyrecodes simulation and plot the post-disaster supply/demand/consumption dynamics and the components' recovery gantt chart.
+Example 1 Jupyter notebook illustrates how to run the pyrecodes simulation and plot the post-disaster supply/demand/consumption dynamics and the components' recovery gantt chart. Make sure to download the files required to run the Example 1 from the `Example 1 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%201>`_.
 
 Outputs
 -------

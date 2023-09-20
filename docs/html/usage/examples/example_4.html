@@ -228,10 +228,12 @@
           <section id="example-4">
 <h1>Example 4<a class="headerlink" href="#example-4" title="Link to this heading">#</a></h1>
 <p>Example 4 shows how infrastructure simulators can be integrated within an iRe-CoDeS system-of-systems model using the supply/demand interfaces. Such interfaces allow the integration of third-party infrastructure simulators to capture their interdependencies and their impact on buildings’ functional recovery. Interfaces are tiered to accomodate infrastructure managers privacy and/or security concerns. Interface application is illustrated by extending the Example 3 North-East San Francisco Case Study to include the impact of infrastructure systems on building’s functionality. Further details are available <a class="reference external" href="https://link.springer.com/article/10.1007/s10669-023-09931-0">here</a>.</p>
-<figure class="align-default" id="id1">
+<p>Run the example online using <a class="reference external" href="https://colab.research.google.com/github/NikolaBlagojevic/pyrecodes/blob/main/Example4_NorthEast_SF_Interfaces_Colab.ipynb">Google Colab</a>.</p>
+<p>Alternatively, the example can be run locally by downloading the <a class="reference external" href="https://github.com/NikolaBlagojevic/pyrecodes/blob/main/Example4_NorthEast_SF_Interfaces.ipynb">Example 4 Jupyter notebook</a> and the required files from the <a class="reference external" href="https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%204">Example 4 folder</a>.</p>
+<figure class="align-default" id="id2">
 <img alt="Tiered supply/demand interfaces for infrastructure systems" src="../../_images/Example_4_infrastructure_interfaces.png" />
 <figcaption>
-<p><span class="caption-text">Tiered supply/demand infrastructure simulator interfaces. Tier 1 interface requires post-event resource supply dynamics defined per locality. Tier 2 interface additionally requires the information on the resources that the infrastructure system needs to operate on a locality level. Tier 3 interfaces needs component-level supply/demand dynamics.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-text">Tiered supply/demand infrastructure simulator interfaces. Tier 1 interface requires post-event resource supply dynamics defined per locality. Tier 2 interface additionally requires the information on the resources that the infrastructure system needs to operate on a locality level. Tier 3 interfaces needs component-level supply/demand dynamics.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="component-library">
@@ -2053,61 +2055,70 @@
 </div>
 </div>
 </section>
+<section id="running-the-example">
+<h2>Running the example<a class="headerlink" href="#running-the-example" title="Link to this heading">#</a></h2>
+<p>To run the example, you can use the following code:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyrecodes</span> <span class="kn">import</span> <span class="n">main</span>
+<span class="n">system</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;./path/to/main/file&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Check out the Example 4 Jupyter notebook on how to run the pyrecodes simulation and plot the outputs. Make sure to download the files required to run the Example 4 from the <a class="reference external" href="https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%204">Example 4 folder</a>.</p>
+</section>
 <section id="outputs">
 <h2>Outputs<a class="headerlink" href="#outputs" title="Link to this heading">#</a></h2>
 <p>Resilience assessment outputs are provided in terms of post-earthquake supply/demand/consumption dynamics for functional housing, electric power, potable water and cellular communication. The results identify how much and for how long user demand is not met, pointing out the lack of system’s resilience. The results are provided for the entire system and for Locality 4 only, to illustrate that the outputs can be provided per locality.</p>
-<figure class="align-default" id="id2">
+<figure class="align-default" id="id3">
 <img alt="Localities in the considered region." src="../../_images/example_4_localities_max_50_buildings.png" />
 <figcaption>
-<p><span class="caption-text">Localities in the considered region. Dark blue colored buildings are in Locality 1, light blue in Locality 2, ligth red in Locality 3, dark red in Locality 4 and purple in Locality 5.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-default" id="id3">
-<img alt="Functional housing supply/demand/consumption following the scenario earthquake for the considered region. Functional housing resource represents how many people are sheltered in their homes and have access to electric power, potable water and cellular communication." src="../../_images/example_4_functional_housing_all.png" />
-<figcaption>
-<p><span class="caption-text">Functional housing supply/demand/consumption following the scenario earthquake for the considered region. Functional housing resource represents how many people are sheltered in their homes and have access to electric power, potable water and cellular communication.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+<p><span class="caption-text">Localities in the considered region. Dark blue colored buildings are in Locality 1, light blue in Locality 2, ligth red in Locality 3, dark red in Locality 4 and purple in Locality 5.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id4">
-<img alt="Electric Power post-earthquake supply/demand/consumption dynamics for the considered region." src="../../_images/example_4_electric_power_all.png" />
+<img alt="Functional housing supply/demand/consumption following the scenario earthquake for the considered region. Functional housing resource represents how many people are sheltered in their homes and have access to electric power, potable water and cellular communication." src="../../_images/example_4_functional_housing_all.png" />
 <figcaption>
-<p><span class="caption-text">Electric Power post-earthquake supply/demand/consumption dynamics for the considered region.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+<p><span class="caption-text">Functional housing supply/demand/consumption following the scenario earthquake for the considered region. Functional housing resource represents how many people are sheltered in their homes and have access to electric power, potable water and cellular communication.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id5">
-<img alt="Potable Water post-earthquake supply/demand/consumption dynamics for the considered region." src="../../_images/example_4_potable_water_all.png" />
+<img alt="Electric Power post-earthquake supply/demand/consumption dynamics for the considered region." src="../../_images/example_4_electric_power_all.png" />
 <figcaption>
-<p><span class="caption-text">Potable Water post-earthquake supply/demand/consumption dynamics for the considered region.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+<p><span class="caption-text">Electric Power post-earthquake supply/demand/consumption dynamics for the considered region.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id6">
-<img alt="Cellular Communication post-earthquake supply/demand/consumption dynamics for the considered region." src="../../_images/example_4_communication_all.png" />
+<img alt="Potable Water post-earthquake supply/demand/consumption dynamics for the considered region." src="../../_images/example_4_potable_water_all.png" />
 <figcaption>
-<p><span class="caption-text">Cellular Communication post-earthquake supply/demand/consumption dynamics for the considered region.</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
+<p><span class="caption-text">Potable Water post-earthquake supply/demand/consumption dynamics for the considered region.</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id7">
-<img alt="Functional housing supply/demand/consumption following the scenario earthquake for Locality 4." src="../../_images/example_4_functional_housing_locality_4.png" />
+<img alt="Cellular Communication post-earthquake supply/demand/consumption dynamics for the considered region." src="../../_images/example_4_communication_all.png" />
 <figcaption>
-<p><span class="caption-text">Functional housing supply/demand/consumption following the scenario earthquake for Locality 4.</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
+<p><span class="caption-text">Cellular Communication post-earthquake supply/demand/consumption dynamics for the considered region.</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id8">
-<img alt="Electric Power post-earthquake supply/demand/consumption dynamics for Locality 4." src="../../_images/example_4_electric_power_locality_4.png" />
+<img alt="Functional housing supply/demand/consumption following the scenario earthquake for Locality 4." src="../../_images/example_4_functional_housing_locality_4.png" />
 <figcaption>
-<p><span class="caption-text">Electric Power post-earthquake supply/demand/consumption dynamics for Locality 4.</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
+<p><span class="caption-text">Functional housing supply/demand/consumption following the scenario earthquake for Locality 4.</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id9">
-<img alt="Potable Water post-earthquake supply/demand/consumption dynamics for Locality 4." src="../../_images/example_4_potable_water_locality_4.png" />
+<img alt="Electric Power post-earthquake supply/demand/consumption dynamics for Locality 4." src="../../_images/example_4_electric_power_locality_4.png" />
 <figcaption>
-<p><span class="caption-text">Potable Water post-earthquake supply/demand/consumption dynamics for Locality 4.</span><a class="headerlink" href="#id9" title="Link to this image">#</a></p>
+<p><span class="caption-text">Electric Power post-earthquake supply/demand/consumption dynamics for Locality 4.</span><a class="headerlink" href="#id9" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id10">
+<img alt="Potable Water post-earthquake supply/demand/consumption dynamics for Locality 4." src="../../_images/example_4_potable_water_locality_4.png" />
+<figcaption>
+<p><span class="caption-text">Potable Water post-earthquake supply/demand/consumption dynamics for Locality 4.</span><a class="headerlink" href="#id10" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id11">
 <img alt="Cellular Communication post-earthquake supply/demand/consumption dynamics for Locality 4." src="../../_images/example_4_communication_locality_4.png" />
 <figcaption>
-<p><span class="caption-text">Cellular Communication post-earthquake supply/demand/consumption dynamics for Locality 4.</span><a class="headerlink" href="#id10" title="Link to this image">#</a></p>
+<p><span class="caption-text">Cellular Communication post-earthquake supply/demand/consumption dynamics for Locality 4.</span><a class="headerlink" href="#id11" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -2190,6 +2201,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#main">Main</a></li>
+<li><a class="reference internal" href="#running-the-example">Running the example</a></li>
 <li><a class="reference internal" href="#outputs">Outputs</a></li>
 </ul>
 </li>

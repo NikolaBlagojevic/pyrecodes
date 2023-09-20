@@ -8,6 +8,10 @@ Example 2 shows how **pyrecodes** can be used to assess the resilience of interd
 
         Virtual community in Example 2.
 
+Run the example online using `Google Colab <https://colab.research.google.com/github/NikolaBlagojevic/pyrecodes/blob/main/Example2_VirtualCommunity_Colab.ipynb>`_.
+    
+Alternatively, the example can be run locally by downloading the `Example 2 Jupyter notebook <https://github.com/NikolaBlagojevic/pyrecodes/blob/main/Example2_ThreeLocalityCommunity.ipynb>`_ and the required files from the `Example 2 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%202>`_. 
+
 Virtual community consists of the building stock and three interdependent infrastructure systems: the Electric Power Supply System, the Water Supply System and the Cellular Communication System. Community is discretized into 20 localities connected with links, containing components and/or representing link intersections. 
 
 The Electric Power Supply System provides electric power produced by Electric Power Plants (EPPs) and transferred to users through the Transsmision Lines, represented as links between localities. 
@@ -1185,10 +1189,10 @@ To run the example, you can use the following code:
 
 .. code-block:: Python
 
-    import pyrecodes
-    system = pyrecodes.main.run('./path/to/main/file')
+    from pyrecodes import main
+    system = main.run('./path/to/main/file')
 
-Check out the Example 2 jupyter notebook on how to run the pyrecodes simulation and plot the outputs.
+Check out the Example 2 Jupyter notebook on how to run the pyrecodes simulation and plot the outputs. Make sure to download the files required to run the Example 2 from the `Example 2 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%202>`_.
 
 Outputs
 -------

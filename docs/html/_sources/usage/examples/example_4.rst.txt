@@ -3,6 +3,10 @@ Example 4
 
 Example 4 shows how infrastructure simulators can be integrated within an iRe-CoDeS system-of-systems model using the supply/demand interfaces. Such interfaces allow the integration of third-party infrastructure simulators to capture their interdependencies and their impact on buildings' functional recovery. Interfaces are tiered to accomodate infrastructure managers privacy and/or security concerns. Interface application is illustrated by extending the Example 3 North-East San Francisco Case Study to include the impact of infrastructure systems on building's functionality. Further details are available `here <https://link.springer.com/article/10.1007/s10669-023-09931-0>`_.
 
+Run the example online using `Google Colab <https://colab.research.google.com/github/NikolaBlagojevic/pyrecodes/blob/main/Example4_NorthEast_SF_Interfaces_Colab.ipynb>`_.
+    
+Alternatively, the example can be run locally by downloading the `Example 4 Jupyter notebook <https://github.com/NikolaBlagojevic/pyrecodes/blob/main/Example4_NorthEast_SF_Interfaces.ipynb>`_ and the required files from the `Example 4 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%204>`_. 
+
 .. figure:: ../../figures/Example_4_infrastructure_interfaces.png
         :alt: Tiered supply/demand interfaces for infrastructure systems
 
@@ -1854,6 +1858,18 @@ Main
                 "SystemConfigurationFile": "./Example 4/NorthEast_SF_Housing_Interface_Infrastructure_Interdependent_SystemConfiguration.json"
             }
         }
+
+Running the example
+-------------------
+
+To run the example, you can use the following code:
+
+.. code-block:: Python
+
+    from pyrecodes import main
+    system = main.run('./path/to/main/file')
+
+Check out the Example 4 Jupyter notebook on how to run the pyrecodes simulation and plot the outputs. Make sure to download the files required to run the Example 4 from the `Example 4 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%204>`_.
 
 Outputs
 -------

@@ -46,7 +46,7 @@ The iRe-CoDeS framework has been used to:
     .. figure:: ../figures/17WCEE_LoR_LossCurves_CIS_1.png
         :target: https://www.research-collection.ethz.ch/handle/20.500.11850/463549
         
-        Conduct probabilistic seismic resilience assessment of a virtual community and obtaining risk-based resilience metrics.
+        Conduct probabilistic seismic resilience assessment of a virtual community and obtain risk-based resilience metrics.
         
         Figure shows probabilistic resilience assessment results as the mean annual rate of exceeding a certain value of a Lack of Resilience (LoR) - the unmet demand for a resource, here electric power, during the resilience assessment period.
 

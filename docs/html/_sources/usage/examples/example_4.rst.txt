@@ -1926,4 +1926,70 @@ Resilience assessment outputs are provided in terms of post-earthquake supply/de
 
         Cellular Communication post-earthquake supply/demand/consumption dynamics for Locality 4.
 
+Apart from figures, the analysis outputs the resilience metrics as text. Note that the simulation is probabilistic, thus the results among different runs might differ.
+
+.. code-block:: text
+
+    Re-CoDeS Resilience Calculator 
+    Scope: All
+    ----------------------------- 
+    Total unmet demand: 
+    Shelter: 2442513.0
+    FunctionalHousing: 3538479.0
+    ElectricPower: 12498.739999999998
+    PotableWater: 152223900.0
+    CellularCommunication: 75282.58874280643
+
+    Re-CoDeS Resilience Calculator 
+    Scope: Locality 1
+    ----------------------------- 
+    Total unmet demand: 
+    Shelter: 99197.0
+    FunctionalHousing: 435145.0
+    ElectricPower: 0.0
+    PotableWater: 50392200.0
+    CellularCommunication: 1848.5171499241221
+
+    Re-CoDeS Resilience Calculator 
+    Scope: Locality 2
+    ----------------------------- 
+    Total unmet demand: 
+    Shelter: 164184.0
+    FunctionalHousing: 174072.0
+    ElectricPower: 224.96
+    PotableWater: 1483200.0
+    CellularCommunication: 2107.391296466136
+
+    Re-CoDeS Resilience Calculator 
+    Scope: Locality 3
+    ----------------------------- 
+    Total unmet demand: 
+    Shelter: 113905.0
+    FunctionalHousing: 147057.0
+    ElectricPower: 462.44000000000005
+    PotableWater: 4972800.0
+    CellularCommunication: 2478.392991861871
+
+    Re-CoDeS Resilience Calculator 
+    Scope: Locality 4
+    ----------------------------- 
+    Total unmet demand: 
+    Shelter: 2062891.0
+    FunctionalHousing: 2372448.0
+    ElectricPower: 6797.139999999999
+    PotableWater: 46433550.0
+    CellularCommunication: 53510.24260081496
+
+    Re-CoDeS Resilience Calculator 
+    Scope: Locality 5
+    ----------------------------- 
+    Total unmet demand: 
+    Shelter: 2336.0
+    FunctionalHousing: 409757.0
+    ElectricPower: 5014.2
+    PotableWater: 48942150.0
+    CellularCommunication: 15338.044703739364
+
+
+
 

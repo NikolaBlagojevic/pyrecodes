@@ -465,21 +465,31 @@ The outputs of Example 1 are plotted using the `Plotter class <../documentation/
         Component repair gantt chart. All damaged components are assumed to take 10 days to repair (check out their component library templates above) - these are the BTS and BSU at Locality 3, CWF at Locality 2 and EPP at Locality 1. Components that are not damaged do not need repair.
 
 
-Apart from the plots, the output of Example 1 includes the assessment of resilience goals in the following format:
+Apart from the plots, the output of Example 1 includes the resilience metrics in terms of total unmet resource demand and assessment of resilience goals in the following format:
 
-.. code-block:: json
+.. code-block:: text
 
-    {"Resource": "ElectricPower",
-   "DesiredFunctionalityLevel": 0.95,
-   "Scope": "All",
-   "MetAtTimeStep": 12},
+    Re-CoDeS Resilience Calculator 
+    Scope: All
+    ----------------------------- 
+    Total unmet demand: 
+    ElectricPower: 30.400000000000002
+    CoolingWater: 11.0
+    Communication: 60.082792050515444
 
-  {"Resource": "CoolingWater",
-   "DesiredFunctionalityLevel": 0.9,
-   "Scope": "All",
-   "MetAtTimeStep": 12},
+    NIST Resilience Goals Calculator: 
+    -------------------------------- 
+    Resource: ElectricPower
+    DesiredFunctionalityLevel: 0.95
+    Scope: All
+    MetAtTimeStep: 12
 
-  {"Resource": "Communication",
-   "DesiredFunctionalityLevel": 0.8,
-   "Scope": "All",
-   "MetAtTimeStep": 12}
+    Resource: CoolingWater
+    DesiredFunctionalityLevel: 0.9
+    Scope: All
+    MetAtTimeStep: 12
+
+    Resource: Communication
+    DesiredFunctionalityLevel: 0.8
+    Scope: All
+    MetAtTimeStep: 12

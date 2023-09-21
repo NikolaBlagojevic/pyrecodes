@@ -537,7 +537,7 @@ class BuiltEnvironmentSystem(System):
         for resilience_calculator in self.resilience_calculators:
             resilience_calculator.update(self.resources)
 
-    def calculate_resilience(self) -> dict:
+    def calculate_resilience(self, print_output=True, return_output=False) -> dict:
         """
         Calculates and returns the resilience metrics for the system.
 
@@ -547,7 +547,10 @@ class BuiltEnvironmentSystem(System):
         resilience_metrics = []
         for resilience_calculator in self.resilience_calculators:
             resilience_metrics.append(resilience_calculator.calculate_resilience())
-        return resilience_metrics
+            if print_output:
+                print(resilience_calculator)
+        if return_output:
+            return resilience_metrics
     
     def save_as_pickle(self, savename='./system_object.pickle') -> None:
         """

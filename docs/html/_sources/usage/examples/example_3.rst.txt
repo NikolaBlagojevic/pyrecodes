@@ -1189,18 +1189,24 @@ The outputs of the housing resilience assessment include the post-earthquake cha
 
     Gantt chart illustrating the progress of recovery activities for 20 damaged buildings.
 
-Apart from the figures, the outputs of the resilience assesment indicate the total unmet resource demand and the time needed to meet the resilience goal specified in the ResilienceCalculator parameters in the system configuration file. First dictionary shows the results of the first ReCoDeSResilienceCalculator resilience calculator: the total unmet resource demand for selected resources. The second NISTResilienceGoals resilience calculator shows the time needed to meet the specified resilience goal.
+Apart from the figures, the outputs of the resilience assesment indicate the total unmet resource demand and the time needed to meet the resilience goal specified in the ResilienceCalculator parameters in the system configuration file. First dictionary shows the results of the first ReCoDeSResilienceCalculator resilience calculator: the total unmet resource demand for selected resources. The second NISTResilienceGoals resilience calculator shows the time needed to meet the specified resilience goal. Note that the simulation is probabilistic, thus the results among different runs might differ.
 
-.. code-block:: json
+.. code-block:: python
 
-    {"Shelter": 1361011.0,
-    "FirstResponderEngineer": 0.0,
-    "RepairCrew": 57587.0,
-    "Money": 0.0},
+    Re-CoDeS Resilience Calculator 
+    Scope: All
+    ----------------------------- 
+    Total unmet demand: 
+    Shelter: 1538495.0
+    FirstResponderEngineer: 0.0
+    RepairCrew: 68570.0
+    Money: 0.0
 
-    {"Resource": "Shelter",
-    "Scope": "All",
-    "DesiredFunctionalityLevel": 0.95,
-    "MetAtTimeStep": 413}
+    NIST Resilience Goals Calculator: 
+    -------------------------------- 
+    Resource: Shelter
+    Scope: All
+    DesiredFunctionalityLevel: 0.95
+    MetAtTimeStep: 509
 
 

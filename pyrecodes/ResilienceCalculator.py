@@ -10,6 +10,10 @@ import numpy as np
 class ResilienceCalculator(ABC):
 
     @abstractmethod
+    def __str__(self):
+        pass
+
+    @abstractmethod
     def calculate_resilience(self):
         pass
 
@@ -17,15 +21,17 @@ class ResilienceCalculator(ABC):
     def update(self):
         pass
 
-
 class FullRecoveryTimeResilienceCalculator(ResilienceCalculator):
+
+    def __str__(self):
+        # define what the print() method should return
+        return 'Full Recovery Time Resilience Calculator \n' + 'Recovery time: ' + str(self.current_recovery_time) + '\n'
 
     def calculate_resilience(self):
         return self.current_recovery_time
 
     def update(self, time_step: int) -> None:
         self.current_time_step = time_step
-
 
 class ReCoDeSResilienceCalculator(ResilienceCalculator):
 
@@ -39,13 +45,24 @@ class ReCoDeSResilienceCalculator(ResilienceCalculator):
             self.system_supply[resource_name] = []
             self.system_demand[resource_name] = []
             self.system_consumption[resource_name] = []
+    
+    def __str__(self):
+        # define what the print() method should return
+        lack_of_resilience = self.calculate_resilience()
+        output = 'Re-CoDeS Resilience Calculator \n'
+        output += 'Scope: ' + self.scope + '\n'
+        output += '----------------------------- \n'
+        output += 'Total unmet demand: \n'
+        for resource_name, value in lack_of_resilience.items():
+            output += ' ' + resource_name + ': ' + str(value) + '\n'
+        return output
 
     def calculate_resilience(self) -> dict:
-        lack_of_resilience = dict()
+        self.lack_of_resilience = dict()
         for resource_name in self.resource_names:
-            lack_of_resilience[resource_name] = np.sum(
+            self.lack_of_resilience[resource_name] = np.sum(
                 np.asarray(self.system_demand[resource_name]) - np.asarray(self.system_consumption[resource_name]))
-        return lack_of_resilience
+        return self.lack_of_resilience
 
     def update(self, resources: dict):
         for resource_name, resource_parameters in resources.items():
@@ -55,11 +72,20 @@ class ReCoDeSResilienceCalculator(ResilienceCalculator):
                 self.system_consumption[resource_name].append(
                     resource_parameters['DistributionModel'].get_total_consumption(scope=self.scope))
 
-
 class NISTGoalsResilienceCalculator(ReCoDeSResilienceCalculator):
 
     def __init__(self, resilience_goals: list) -> None:
         self.set_resilience_goals(resilience_goals)
+    
+    def __str__(self):
+        # define what the print() method should return
+        output = 'NIST Resilience Goals Calculator: \n'
+        output += '-------------------------------- \n'
+        for resilience_goal in self.resilience_goals:
+            for key, value in resilience_goal.items():
+                output += ' ' + key + ': ' + str(value) + '\n'
+            output += '\n'
+        return output
 
     def set_resilience_goals(self, resilience_goals: list):
         self.resilience_goals = []
@@ -83,6 +109,3 @@ class NISTGoalsResilienceCalculator(ReCoDeSResilienceCalculator):
             # remove GoalMet key not important anymore
             del resilience_goal['GoalMet']
         return self.resilience_goals
-
-    
-        

@@ -1209,41 +1209,45 @@ Results of the resilience assessment performed in this Example are shown below. 
 
 Apart from the post-disaster supply/demand/consumption dynamics, the results also include the time that each infrastructure system needs to attain its NIST resilience goal as defined in the *Resilience Calculators* section of the system configuration file. Functionality level of a system at a time step of the resilience assessment interval is defined as the ratio between the system's demand and the system's consumption (i.e., the met demand), representing the percent of met system demand. The results are printed once the example is ran in the Jupyter notebook:
 
-.. code-block:: json 
+.. code-block:: text 
 
-        {
-        "Resource": "ElectricPower",
-        "Scope": "All",
-        "DesiredFunctionalityLevel": 0.95,
-        "MetAtTimeStep": 22
-        },
+        Re-CoDeS Resilience Calculator 
+        Scope: All
+        ----------------------------- 
+        Total unmet demand: 
+        ElectricPower: 1047.2658
+        CoolingWater: 4.2
+        LowLevelCommunication: 14410.538777539477
+        HighLevelCommunication: 4453.800000000015
+        PotableWater: 64.62125999999992
+        Shelter: 63036.000000000284
 
-        {
-        "Resource": "CoolingWater",
-        "Scope": "All",
-        "DesiredFunctionalityLevel": 0.9,
-        "MetAtTimeStep": 22},
+        NIST Resilience Goals Calculator: 
+        -------------------------------- 
+        Resource: ElectricPower
+        Scope: All
+        DesiredFunctionalityLevel: 0.95
+        MetAtTimeStep: 22
 
-        {
-        "Resource": "HighLevelCommunication",
-        "Scope": "All",
-        "DesiredFunctionalityLevel": 0.9,
-        "MetAtTimeStep": 60
-        },
+        Resource: CoolingWater
+        Scope: All
+        DesiredFunctionalityLevel: 0.9
+        MetAtTimeStep: 22
 
-        {
-        "Resource": "LowLevelCommunication",
-        "Scope": "All",
-        "DesiredFunctionalityLevel": 0.8,
-        "MetAtTimeStep": 22
-        },
+        Resource: HighLevelCommunication
+        Scope: All
+        DesiredFunctionalityLevel: 0.9
+        MetAtTimeStep: 60
 
-        {
-        "Resource": "Shelter",
-        "Scope": "All",
-        "DesiredFunctionalityLevel": 0.9,
-        "MetAtTimeStep": 73
-        }
+        Resource: LowLevelCommunication
+        Scope: All
+        DesiredFunctionalityLevel: 0.8
+        MetAtTimeStep: 22
+
+        Resource: Shelter
+        Scope: All
+        DesiredFunctionalityLevel: 0.9
+        MetAtTimeStep: 73
 
 .. figure:: ../../figures/example_2_EP.png
         :alt: Post-disaster supply/demand/consumption dynamics of electric power. LoR labells the unmet demand for electric power.

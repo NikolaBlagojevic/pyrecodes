@@ -228,10 +228,10 @@
           <section id="example-2">
 <h1>Example 2<a class="headerlink" href="#example-2" title="Link to this heading">#</a></h1>
 <p>Example 2 shows how <strong>pyrecodes</strong> can be used to assess the resilience of interdependent infrastructure systems and housing in a virtual community affected by a scenario disaster. This is a toy example to illustrate how system recovery is simulated following a disaster and how component interdependencies are captured in iRe-CoDeS.</p>
-<figure class="align-default" id="id3">
+<figure class="align-default" id="id1">
 <img alt="Virtual community in Example 2." src="../../_images/Example_2_Community.png" />
 <figcaption>
-<p><span class="caption-text">Virtual community in Example 2.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+<p><span class="caption-text">Virtual community in Example 2.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <section id="running-the-example">
@@ -1389,15 +1389,6 @@
 <p>Path to component library and system configuration file might differ on your local machine.</p>
 </div>
 </section>
-<section id="id1">
-<h2>Running the example<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>To run the example, you can use the following code:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyrecodes</span> <span class="kn">import</span> <span class="n">main</span>
-<span class="n">system</span> <span class="o">=</span> <span class="n">main</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;./path/to/main/file&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Check out the Example 2 Jupyter notebook on how to run the pyrecodes simulation and plot the outputs. Make sure to download the files required to run the Example 2 from the <a class="reference external" href="https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%202">Example 2 folder</a>.</p>
-</section>
 <section id="outputs">
 <h2>Outputs<a class="headerlink" href="#outputs" title="Link to this heading">#</a></h2>
 <p>Results of the resilience assessment performed in this Example are shown below. They are represented as post-disaster supply/demand/consumption dynamics for all considered resources, and as Gantt chart showing the repair dynamics for a subset of 20 system components.</p>
@@ -1441,46 +1432,46 @@ DesiredFunctionalityLevel: 0.9
 MetAtTimeStep: 73
 </pre></div>
 </div>
-<figure class="align-default" id="id4">
+<figure class="align-default" id="id2">
 <img alt="Post-disaster supply/demand/consumption dynamics of electric power. LoR labells the unmet demand for electric power." src="../../_images/example_2_EP.png" />
 <figcaption>
-<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics of electric power. LoR labells the unmet demand for electric power.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics of electric power. LoR labells the unmet demand for electric power.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id3">
+<img alt="Post-disaster supply/demand/consumption dynamics of high level communication. LoR labells the unmet demand for high level communication." src="../../_images/example_2_HLC.png" />
+<figcaption>
+<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics of high level communication. LoR labells the unmet demand for high level communication.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id4">
+<img alt="Post-disaster supply/demand/consumption dynamics of low level communication. LoR labells the unmet demand for low level communication." src="../../_images/example_2_LLC.png" />
+<figcaption>
+<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics of low level communication. LoR labells the unmet demand for low level communication.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id5">
-<img alt="Post-disaster supply/demand/consumption dynamics of high level communication. LoR labells the unmet demand for high level communication." src="../../_images/example_2_HLC.png" />
+<img alt="Post-disaster supply/demand/consumption dynamics of potable water. LoR labells the unmet demand for potable water." src="../../_images/example_2_PW.png" />
 <figcaption>
-<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics of high level communication. LoR labells the unmet demand for high level communication.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics of potable water. LoR labells the unmet demand for potable water.</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id6">
-<img alt="Post-disaster supply/demand/consumption dynamics of low level communication. LoR labells the unmet demand for low level communication." src="../../_images/example_2_LLC.png" />
+<img alt="Post-disaster supply/demand/consumption dynamics of cooling water. LoR labells the unmet demand for cooling water." src="../../_images/example_2_CW.png" />
 <figcaption>
-<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics of low level communication. LoR labells the unmet demand for low level communication.</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
+<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics of cooling water. LoR labells the unmet demand for cooling water.</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id7">
-<img alt="Post-disaster supply/demand/consumption dynamics of potable water. LoR labells the unmet demand for potable water." src="../../_images/example_2_PW.png" />
+<img alt="Post-disaster supply/demand/consumption dynamics of cooling water. LoR labells the unmet demand for cooling water." src="../../_images/example_2_shelter.png" />
 <figcaption>
-<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics of potable water. LoR labells the unmet demand for potable water.</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
+<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics of cooling water. LoR labells the unmet demand for cooling water.</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <figure class="align-default" id="id8">
-<img alt="Post-disaster supply/demand/consumption dynamics of cooling water. LoR labells the unmet demand for cooling water." src="../../_images/example_2_CW.png" />
-<figcaption>
-<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics of cooling water. LoR labells the unmet demand for cooling water.</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-default" id="id9">
-<img alt="Post-disaster supply/demand/consumption dynamics of cooling water. LoR labells the unmet demand for cooling water." src="../../_images/example_2_shelter.png" />
-<figcaption>
-<p><span class="caption-text">Post-disaster supply/demand/consumption dynamics of cooling water. LoR labells the unmet demand for cooling water.</span><a class="headerlink" href="#id9" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-default" id="id10">
 <img alt="Gantt chart showing the repair dynamics for a subset of 20 system components." src="../../_images/example_2_gantt_chart.png" />
 <figcaption>
-<p><span class="caption-text">Gantt chart showing the repair dynamics for a subset of 20 system components.</span><a class="headerlink" href="#id10" title="Link to this image">#</a></p>
+<p><span class="caption-text">Gantt chart showing the repair dynamics for a subset of 20 system components.</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1566,7 +1557,6 @@ MetAtTimeStep: 73
 </ul>
 </li>
 <li><a class="reference internal" href="#main">Main</a></li>
-<li><a class="reference internal" href="#id1">Running the example</a></li>
 <li><a class="reference internal" href="#outputs">Outputs</a></li>
 </ul>
 </li>

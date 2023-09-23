@@ -1864,18 +1864,6 @@ Main
             }
         }
 
-Running the example
--------------------
-
-To run the example, you can use the following code:
-
-.. code-block:: Python
-
-    from pyrecodes import main
-    system = main.run('./path/to/main/file')
-
-Check out the Example 4 Jupyter notebook on how to run the pyrecodes simulation and plot the outputs. Make sure to download the files required to run the Example 4 from the `Example 4 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%204>`_.
-
 Outputs
 -------
 

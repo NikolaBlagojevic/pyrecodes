@@ -1157,18 +1157,7 @@ Main
 
     Path to component library and system configuration file might differ on your local machine.
 
-Running the example
--------------------
-
-To run the example, you can use the following code:
-
-.. code-block:: Python
-
-    from pyrecodes import main
-    system = main.run('./path/to/main/file')
-
-Check out the Example 3 Jupyter notebook on how to run the pyrecodes simulation and plot the outputs. Make sure to download the files required to run the Example 3 from the `Example 3 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%203>`_.
-    
+   
 Outputs
 -------
 

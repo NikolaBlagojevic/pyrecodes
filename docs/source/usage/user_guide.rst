@@ -172,7 +172,7 @@ Output visualization
 
 Outputs of a **pyrecodes** resilience assessment are resource supply, demand, and consumption during the resilience assessment interval, which provide insights into the system's resilience by assessing unmet resource demand after an event and the system's ability to meet its resilience goals. Additionally, Gantt charts are employed to visualize the recovery progress of individual components, aiding in the comprehension of the overall system's recovery dynamics. Finally, certain system classes allow for the visualization of the system's spatial distribution and its evolution over time (Examples 3 and 4).
 
-The results are vizualised using the `Plotter <./documentation/plotter_class_docs.html>`_ and `GeoVisualisator <./documentation/geovisulisator_class_docs.html>`_ class. Note that the available visulization tools depend on the employed System class. Please check out the `Examples <examples.html>`_.
+The results are vizualised using the `Plotter <./documentation/plotter_class_docs.html>`_ and `GeoVisualizer <./documentation/geovisualizer_class_docs.html>`_ class. Note that the available visulization tools depend on the employed System class. Please check out the `Examples <examples.html>`_.
 
 
 

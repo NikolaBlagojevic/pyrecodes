@@ -421,9 +421,6 @@ class BuiltEnvironmentSystem(System):
             if self.time_step == self.DISASTER_TIME_STEP:
                 self.set_initial_damage()
 
-            if self.time_step == 80:
-                print('')
-
             self.update()
 
             self.distribute_resources()

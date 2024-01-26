@@ -44,9 +44,9 @@ Electric Power Plant
         .. code-block:: json
 
                 "ElectricPowerPlant": {
-                "ComponentClass": "ComponentLevelRecoveryActivitiesModel",
+                "ComponentClass": "StandardiReCoDeSComponent",
                 "RecoveryModel": {
-                "Type": "SingleRecoveryActivity",
+                "Type": "ComponentLevelRecoveryActivitiesModel",
                 "Parameters": {
                         "Repair": {
                         "Duration": {
@@ -61,25 +61,25 @@ Electric Power Plant
                 }
                 },
                 "Supply": {
-                        "ElectricPower": {
-                                "Amount": 40,
-                                "FunctionalityToAmountRelation": "Linear",
-                                "UnmetDemandToAmountRelation": "Binary"
-                        }
+                "ElectricPower": {
+                        "Amount": 40,
+                        "FunctionalityToAmountRelation": "Linear",
+                        "UnmetDemandToAmountRelation": "Binary"
+                }
                 },
                 "OperationDemand": {
-                        "ElectricPower": {
-                                "Amount": 0.2,
-                                "FunctionalityToAmountRelation": "Constant"
-                        },
-                        "LowLevelCommunication": {
-                                "Amount": 0.001,
-                                "FunctionalityToAmountRelation": "Constant"
-                        },
-                        "CoolingWater": {
-                                "Amount": 0.05,
-                                "FunctionalityToAmountRelation": "Constant"
-                        }
+                "ElectricPower": {
+                        "Amount": 0.2,
+                        "FunctionalityToAmountRelation": "Constant"
+                },
+                "LowLevelCommunication": {
+                        "Amount": 0.001,
+                        "FunctionalityToAmountRelation": "Constant"
+                },
+                "CoolingWater": {
+                        "Amount": 0.05,
+                        "FunctionalityToAmountRelation": "Constant"
+                }
                 }
 
 Base Station Controller

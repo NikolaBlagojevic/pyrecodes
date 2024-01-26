@@ -256,9 +256,9 @@
 <h3>Electric Power Plant<a class="headerlink" href="#electric-power-plant" title="Link to this heading">#</a></h3>
 <div class="toggle docutils container">
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;ElectricPowerPlant&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="nt">&quot;ComponentClass&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ComponentLevelRecoveryActivitiesModel&quot;</span><span class="p">,</span>
+<span class="nt">&quot;ComponentClass&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;StandardiReCoDeSComponent&quot;</span><span class="p">,</span>
 <span class="nt">&quot;RecoveryModel&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SingleRecoveryActivity&quot;</span><span class="p">,</span>
+<span class="nt">&quot;Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ComponentLevelRecoveryActivitiesModel&quot;</span><span class="p">,</span>
 <span class="nt">&quot;Parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;Repair&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;Duration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -273,25 +273,25 @@
 <span class="p">}</span>
 <span class="p">},</span>
 <span class="nt">&quot;Supply&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;ElectricPower&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;Amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;FunctionalityToAmountRelation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Linear&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;UnmetDemandToAmountRelation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Binary&quot;</span>
-<span class="w">        </span><span class="p">}</span>
+<span class="nt">&quot;ElectricPower&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FunctionalityToAmountRelation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Linear&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;UnmetDemandToAmountRelation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Binary&quot;</span>
+<span class="p">}</span>
 <span class="p">},</span>
 <span class="nt">&quot;OperationDemand&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;ElectricPower&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;Amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;FunctionalityToAmountRelation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Constant&quot;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;LowLevelCommunication&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;Amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;FunctionalityToAmountRelation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Constant&quot;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;CoolingWater&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;Amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;FunctionalityToAmountRelation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Constant&quot;</span>
-<span class="w">        </span><span class="p">}</span>
+<span class="nt">&quot;ElectricPower&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FunctionalityToAmountRelation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Constant&quot;</span>
+<span class="p">},</span>
+<span class="nt">&quot;LowLevelCommunication&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FunctionalityToAmountRelation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Constant&quot;</span>
+<span class="p">},</span>
+<span class="nt">&quot;CoolingWater&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;Amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;FunctionalityToAmountRelation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Constant&quot;</span>
+<span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>

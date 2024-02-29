@@ -23,7 +23,10 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx_togglebutton',
     'sphinx_carousel.carousel',
-    'sphinx.ext.githubpages'
+    'sphinx.ext.githubpages',
+    'sphinx.ext.intersphinx',
+    'sphinxcontrib.youtube'
+    
 ]
 
 templates_path = ['_templates']

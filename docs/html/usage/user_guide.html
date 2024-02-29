@@ -5,9 +5,9 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Examples" href="examples.html" /><link rel="prev" title="Installing pyrecodes" href="installation.html" />
 
-    <!-- Generated with Sphinx 7.2.5 and Furo 2023.08.19 -->
+    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
         <title>How to use pyrecodes? - pyrecodes v0.1.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
@@ -241,7 +241,10 @@
 <p><span class="caption-text">A system in <strong>pyrecodes</strong> is defined by the system configuration file and the component library file. Main file specifies the class of the system configuration and component library files and is used to run the system resilience assessment.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<section id="component-library">
+<p>Here is a Youtube video that explains the basics of pyrecodes and how to use it:</p>
+<div class="video_wrapper" style="">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/IFUcdtKTWoo?si=ZHjTYemi9ce2b4nq" style="border: 0; height: 345px; width: 560px">
+</iframe></div><section id="component-library">
 <h2>Component Library<a class="headerlink" href="#component-library" title="Link to this heading">#</a></h2>
 <p>A system in <strong>pyrecodes</strong> is discretized into components. As such components can be numerous but still share similar characteristics (e.g., residential buildings, pipes), to avoid defining each component individually <strong>pyrecodes</strong> allows users to define a component library with component templates. This library enables users to define common parameters once and then customize specific attributes for individual components, reducing redundancy in parameter input while maintaining consistency. Each component template consists of the following parameters:</p>
 <ul class="simple">

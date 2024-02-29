@@ -120,7 +120,7 @@ pyrecodes architecture
 
 Following figure represents the simplified object-oriented architecture of **pyrecodes**.
 
-.. figure:: ../figures/simplified_pyrecodes_architecture.png
+.. figure:: ../figures/pyrecodes_architecture.png
         :alt: Simplified architecture of pyrecodes.
 
         Simplified architecture of pyrecodes.

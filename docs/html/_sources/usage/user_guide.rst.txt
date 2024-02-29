@@ -16,6 +16,9 @@ The three files are defined as JSONs and the following figure illustrates the re
 
         A system in **pyrecodes** is defined by the system configuration file and the component library file. Main file specifies the class of the system configuration and component library files and is used to run the system resilience assessment.
 
+Here is a Youtube video that explains the basics of pyrecodes and how to use it:
+
+.. youtube:: IFUcdtKTWoo?si=ZHjTYemi9ce2b4nq
 
 Component Library
 -----------------

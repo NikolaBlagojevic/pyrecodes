@@ -9,7 +9,7 @@ The simplest way to install pyrecodes is to use `pip`:
 
     pip install pyrecodes
 
-pyrecodes can also be installed by `cloning <https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository>`_ the source code repository availalbe on `Github <https://github.com/NikolaBlagojevic/pyrecodes/tree/main>`_.
+pyrecodes can also be installed by `cloning <https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository>`_ the source code available on `Github <https://github.com/NikolaBlagojevic/pyrecodes/tree/main>`_.
 
 It's good practice to use a virtual environment when installing pyrecodes, to ensure dependencies are isolated from other Python projects on your machine.
 

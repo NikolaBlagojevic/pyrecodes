@@ -1,0 +1,250 @@
+{
+    "Buildings": {
+        "Building": {
+            "1": {
+                "GeneralInformation": {
+                    "AIM_id": "1",
+                    "location": {
+                        "latitude": 2,
+                        "longitude": 0
+                    },
+                    "Latitude": 2,
+                    "Longitude": 0,
+                    "NumberOfStories": 1,
+                    "YearBuilt": 1953,
+                    "OccupancyClass": "RES1",
+                    "StructureType": "W1",
+                    "PlanArea": 18615.30048,
+                    "ReplacementCost": 38781.876,
+                    "Population": 5,
+                    "SoilType": "B",
+                    "type": "Building",
+                    "Footprint": "{\"type\":\"Feature\",\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-122.293878,37.771004],[-122.293973,37.771029],[-122.294025,37.770903],[-122.293931,37.770878],[-122.293878,37.771004]]]},\"properties\":{}}",
+                    "units": {
+                        "force": "kips",
+                        "length": "inch",
+                        "time": "sec"
+                    },
+                    "DesignLevel": "MC",
+                    "Population_Ratio": 1.0
+                }
+            }
+        }
+    },
+    "WaterDistributionNetwork": {
+        "Pipe": {
+            "1": {
+                "GeneralInformation": {
+                    "AIM_id": "1",
+                    "location": {
+                        "latitude": 1,
+                        "longitude": 1
+                    },
+                    "geometry": "LINESTRING (1 1, 0 0)",
+                    "Diam": 1.0,
+                    "InpID": "1",
+                    "Kb": 0,
+                    "Kc": 100,
+                    "Km": 0,
+                    "Kw": 0,
+                    "Len": 18559,
+                    "R": 0,
+                    "Rc": 0,
+                    "Status": "OPEN",
+                    "endNode": "3",
+                    "startNode": "1",
+                    "type": "Pipe",
+                    "units": {
+                        "force": "kips",
+                        "length": "ft",
+                        "time": "sec"
+                    },
+                    "material flexibility": "B",
+                    "material": "CI"
+                },
+                "Damage": {
+                    "Location": [],
+                    "Type": []
+                }
+            },
+            "2": {
+                "GeneralInformation": {
+                    "AIM_id": "2",
+                    "location": {
+                        "latitude": 0,
+                        "longitude": 0
+                    },
+                    "geometry": "LINESTRING (0 0, 0 2)",
+                    "Diam": 1.0,
+                    "InpID": "2",
+                    "Kb": 0,
+                    "Kc": 100,
+                    "Km": 0,
+                    "Kw": 0,
+                    "Len": 13123,
+                    "R": 0,
+                    "Rc": 0,
+                    "Status": "OPEN",
+                    "endNode": "4",
+                    "startNode": "3",
+                    "type": "Pipe",
+                    "units": {
+                        "force": "kips",
+                        "length": "ft",
+                        "time": "sec"
+                    },
+                    "material flexibility": "B",
+                    "material": "CI"
+                },
+                "Damage": {
+                    "Location": [],
+                    "Type": []
+                }
+            },
+            "3": {
+                "GeneralInformation": {
+                    "AIM_id": "3",
+                    "location": {
+                        "latitude": 2,
+                        "longitude": 0
+                    },
+                    "geometry": "LINESTRING (0 2, 1 1)",
+                    "Diam": 4.166667,
+                    "InpID": "3",
+                    "Kb": 0,
+                    "Kc": 100,
+                    "Km": 0,
+                    "Kw": 0,
+                    "Len": 9280,
+                    "R": 0,
+                    "Rc": 0,
+                    "Status": "OPEN",
+                    "endNode": "5",
+                    "startNode": "1",
+                    "type": "Pipe",
+                    "units": {
+                        "force": "kips",
+                        "length": "ft",
+                        "time": "sec"
+                    },
+                    "material flexibility": "B",
+                    "material": "CI"
+                },
+                "Damage": {
+                    "Location": [],
+                    "Type": []
+                }
+            },
+            "4": {
+                "GeneralInformation": {
+                    "AIM_id": "4",
+                    "location": {
+                        "latitude": 2,
+                        "longitude": 0
+                    },
+                    "geometry": "LINESTRING (0 2, 1 1)",
+                    "Diam": 4.166667,
+                    "InpID": "4",
+                    "Kb": 0,
+                    "Kc": 100,
+                    "Km": 0,
+                    "Kw": 0,
+                    "Len": 9280,
+                    "R": 0,
+                    "Rc": 0,
+                    "Status": "OPEN",
+                    "endNode": "4",
+                    "startNode": "6",
+                    "type": "Pipe",
+                    "units": {
+                        "force": "kips",
+                        "length": "ft",
+                        "time": "sec"
+                    },
+                    "material flexibility": "B",
+                    "material": "CI"
+                },
+                "Damage": {
+                    "Location": [],
+                    "Type": []
+                }
+            }
+        },
+        "Reservoir": {
+            "1": {
+                "GeneralInformation": {
+                    "geometry": "POINT (0 0)",
+                    "REWET_id": "1",
+                    "AIM_id": "1",
+                    "C": 0,
+                    "CanOverflow": 0,
+                    "H0": 300,
+                    "InpID": "1",
+                    "Kb": 0,
+                    "MixModel": "MIX1",
+                    "Pat": 0,
+                    "V": 0,
+                    "V0": 0,
+                    "V1Max": 0,
+                    "Vcurve": 0,
+                    "Vmax": 0,
+                    "Vmin": 0,
+                    "type": "Reservoir"
+                },
+                "Damage": {
+                    "DamageState": 0
+                }
+            }
+        },
+        "Junction": {
+            "1": {
+                "GeneralInformation": {
+                    "geometry": "POINT (1 0)",
+                    "REWET_id": "3",
+                    "AIM_id": "1",
+                    "C0": 0,
+                    "El": 0,
+                    "InpID": "3",
+                    "Ke": 0,
+                    "type": "Junction"
+                }
+            },
+            "2": {
+                "GeneralInformation": {
+                    "geometry": "POINT (0 2)",
+                    "REWET_id": "4",
+                    "AIM_id": "2",
+                    "C0": 0,
+                    "El": 240,
+                    "InpID": "4",
+                    "Ke": 0,
+                    "type": "Junction"
+                }
+            },
+            "3": {
+                "GeneralInformation": {
+                    "geometry": "POINT (1 1)",
+                    "REWET_id": "5",
+                    "AIM_id": "3",
+                    "C0": 0,
+                    "El": 0,
+                    "InpID": "5",
+                    "Ke": 0,
+                    "type": "Junction"
+                }
+            },
+            "4": {
+                "GeneralInformation": {
+                    "geometry": "POINT (0 0)",
+                    "REWET_id": "6",
+                    "AIM_id": "4",
+                    "C0": 0,
+                    "El": 0,
+                    "InpID": "6",
+                    "Ke": 0,
+                    "type": "Junction"
+                }
+            }
+        }
+    }
+}

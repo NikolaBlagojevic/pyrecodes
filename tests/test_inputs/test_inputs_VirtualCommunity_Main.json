@@ -1,11 +1,14 @@
 {
     "ComponentLibrary": {
-        "ComponentLibraryCreatorClass": "JSONComponentLibraryCreator",
+        "ComponentLibraryCreatorFileName": "json_component_library_creator",
+        "ComponentLibraryCreatorClassName": "JSONComponentLibraryCreator",
         "ComponentLibraryFile": "./tests/test_inputs/test_inputs_VirtualCommunity_ComponentLibrary.json"
     },
     "System": {
-        "SystemCreatorClass": "JSONSystemCreator",
-        "SystemClass": "BuiltEnvironmentSystem",
+        "SystemCreatorClassName": "ConcreteSystemCreator",
+        "SystemCreatorFileName": "concrete_system_creator",
+        "SystemClassName": "BuiltEnvironment",
+        "SystemFileName": "built_environment",
         "SystemConfigurationFile": "./tests/test_inputs/test_inputs_VirtualCommunity_SystemConfiguration.json"
     }
 }

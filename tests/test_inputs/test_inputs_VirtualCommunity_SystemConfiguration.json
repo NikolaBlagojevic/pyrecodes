@@ -10,16 +10,40 @@
                 "X": 1,
                 "Y": 1
             },
-            "LinkTo": {
-                "Locality 201": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 102": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
+            "Components": {
+                "Infrastructure": [
+                    {"ElectricPowerSystem": {
+                        "CreatorClassName": "JSONSubsystemCreator",
+                        "CreatorFileName": "json_subsystem_creator",
+                        "Parameters": {
+                            "ComponentsBetweenLocalities": {
+                                "Locality 201": ["ElectricPowerTransmissionLine"],
+                                "Locality 102": ["ElectricPowerTransmissionLine"]
+                            }
+                        }
+                    }},
+                    {"PotableWaterSystem": {
+                        "CreatorClassName": "JSONSubsystemCreator",
+                        "CreatorFileName": "json_subsystem_creator",
+                        "Parameters": {
+                            "ComponentsBetweenLocalities": {
+                                "Locality 201": ["PotableWaterPipe"],
+                                "Locality 102": ["PotableWaterPipe"]
+                            }
+                        }
+                    }},
+                    {
+                    "CoolingWaterSystem": {
+                        "CreatorClassName": "JSONSubsystemCreator",
+                        "CreatorFileName": "json_subsystem_creator",
+                        "Parameters": {
+                            "ComponentsBetweenLocalities": {
+                                "Locality 201": ["CoolingWaterPipe"],
+                                "Locality 102": ["CoolingWaterPipe"]
+                            }
+                        }
+                    }
+                    }
                 ]
             }
         },
@@ -28,49 +52,113 @@
                 "X": 2,
                 "Y": 1
             },
-            "LinkTo": {
-                "Locality 101": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 202": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 103": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ]
-            }
+            "Components": {
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 101": ["ElectricPowerTransmissionLine"],
+                                    "Locality 202": ["ElectricPowerTransmissionLine"],
+                                    "Locality 103": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 101": ["PotableWaterPipe"],
+                                    "Locality 202": ["PotableWaterPipe"],
+                                    "Locality 103": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 101": ["CoolingWaterPipe"],
+                                    "Locality 202": ["CoolingWaterPipe"],
+                                    "Locality 103": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        }
+                    ]
+                }
         },
         "Locality 103": {
             "Coordinates": {
                 "X": 3,
                 "Y": 1
             },
-            "ComponentsInLocality": {
-                "BuildingStockUnit": 2,
-                "BaseTransceiverStation": 2,
-                "PotableWaterFacility": 1
-            },
-            "LinkTo": {
-                "Locality 102": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 203": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 104": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
+            "Components":{
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 102": ["ElectricPowerTransmissionLine"],
+                                    "Locality 203": ["ElectricPowerTransmissionLine"],
+                                    "Locality 104": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "PotableWaterFacility": 1
+                                },
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 102": ["PotableWaterPipe"],
+                                    "Locality 203": ["PotableWaterPipe"],
+                                    "Locality 104": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 102": ["CoolingWaterPipe"],
+                                    "Locality 203": ["CoolingWaterPipe"],
+                                    "Locality 104": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        },
+                        {
+                            "CommunicationSystem": {
+                                "CreatorClassName": "JSONSubsystemCreator",
+                                "CreatorFileName": "json_subsystem_creator",
+                                "Parameters": {
+                                    "ComponentsInLocality": {
+                                        "BaseTransceiverStation": 2
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                "BuildingStock": [
+                    {"Buildings": {
+                        "CreatorClassName": "JSONSubsystemCreator",
+                        "CreatorFileName": "json_subsystem_creator",
+                        "Parameters": {
+                            "ComponentsInLocality": {
+                                "BuildingStockUnit": 2
+                            }
+                        }
+                    }}
                 ]
             }
         },
@@ -79,17 +167,41 @@
                 "X": 4,
                 "Y": 1
             },
-            "LinkTo": {
-                "Locality 103": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 105": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ]
+            "Components": {
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 103": ["ElectricPowerTransmissionLine"],
+                                    "Locality 105": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 103": ["PotableWaterPipe"],
+                                    "Locality 105": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 103": ["CoolingWaterPipe"],
+                                    "Locality 105": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        }
+                    ]
             }
         },
         "Locality 105": {
@@ -97,28 +209,72 @@
                 "X": 5,
                 "Y": 1
             },
-            "ComponentsInLocality": {
-                "BuildingStockUnit": 3,
-                "BaseTransceiverStation": 3,
-                "PotableWaterFacility": 1,
-                "CoolingWaterFacility": 1,
-                "BaseStationController": 1
-            },
-            "LinkTo": {
-                "Locality 104": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 205": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 106": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
+            "Components":{
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 104": ["ElectricPowerTransmissionLine"],
+                                    "Locality 205": ["ElectricPowerTransmissionLine"],
+                                    "Locality 106": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "PotableWaterFacility": 1
+                                },
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 104": ["PotableWaterPipe"],
+                                    "Locality 205": ["PotableWaterPipe"],
+                                    "Locality 106": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "CoolingWaterFacility": 1
+                                },
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 104": ["CoolingWaterPipe"],
+                                    "Locality 205": ["CoolingWaterPipe"],
+                                    "Locality 106": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        },
+                        {
+                            "CommunicationSystem": {
+                                "CreatorClassName": "JSONSubsystemCreator",
+                                "CreatorFileName": "json_subsystem_creator",
+                                "Parameters": {
+                                    "ComponentsInLocality": {
+                                        "BaseTransceiverStation": 3,
+                                        "BaseStationController": 1
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                "BuildingStock": [
+                    {"Buildings": {
+                        "CreatorClassName": "JSONSubsystemCreator",
+                        "CreatorFileName": "json_subsystem_creator",
+                        "Parameters": {
+                            "ComponentsInLocality": {
+                                "BuildingStockUnit": 3
+                            }
+                        }
+                    }}
                 ]
             }
         },
@@ -127,22 +283,44 @@
                 "X": 6,
                 "Y": 1
             },
-            "LinkTo": {
-                "Locality 105": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 206": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 107": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ]
+            "Components":{
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 105": ["ElectricPowerTransmissionLine"],
+                                    "Locality 206": ["ElectricPowerTransmissionLine"],
+                                    "Locality 107": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 105": ["PotableWaterPipe"],
+                                    "Locality 206": ["PotableWaterPipe"],
+                                    "Locality 107": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 105": ["CoolingWaterPipe"],
+                                    "Locality 206": ["CoolingWaterPipe"],
+                                    "Locality 107": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        }
+                    ]
             }
         },
         "Locality 107": {
@@ -150,17 +328,41 @@
                 "X": 7,
                 "Y": 1
             },
-            "LinkTo": {
-                "Locality 106": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 207": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ]
+            "Components":{
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 106": ["ElectricPowerTransmissionLine"],
+                                    "Locality 207": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 106": ["PotableWaterPipe"],
+                                    "Locality 207": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 106": ["CoolingWaterPipe"],
+                                    "Locality 207": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        }
+                    ]
             }
         },
         "Locality 201": {
@@ -168,23 +370,55 @@
                 "X": 1,
                 "Y": 2
             },
-            "LinkTo": {
-                "Locality 101": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 202": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 301": [
-                    "Bridge",
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ]
+            "Components":{
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 101": ["ElectricPowerTransmissionLine"],
+                                    "Locality 202": ["ElectricPowerTransmissionLine"],
+                                    "Locality 301": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 101": ["PotableWaterPipe"],
+                                    "Locality 202": ["PotableWaterPipe"],
+                                    "Locality 301": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 101": ["CoolingWaterPipe"],
+                                    "Locality 202": ["CoolingWaterPipe"],
+                                    "Locality 301": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        },
+                        {
+                        "TransportationSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 301": ["Bridge"]
+                                }
+                            }
+                        }
+                        }
+                    ]
             }
         },
         "Locality 202": {
@@ -192,22 +426,44 @@
                 "X": 2,
                 "Y": 2
             },
-            "LinkTo": {
-                "Locality 201": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 203": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 102": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ]
+            "Components":{
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 201": ["ElectricPowerTransmissionLine"],
+                                    "Locality 203": ["ElectricPowerTransmissionLine"],
+                                    "Locality 102": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 201": ["PotableWaterPipe"],
+                                    "Locality 203": ["PotableWaterPipe"],
+                                    "Locality 102": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 201": ["CoolingWaterPipe"],
+                                    "Locality 203": ["CoolingWaterPipe"],
+                                    "Locality 102": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        }
+                    ]
             }
         },
         "Locality 203": {
@@ -215,22 +471,44 @@
                 "X": 3,
                 "Y": 2
             },
-            "LinkTo": {
-                "Locality 202": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 103": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 303": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ]
+            "Components":{
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 202": ["ElectricPowerTransmissionLine"],
+                                    "Locality 103": ["ElectricPowerTransmissionLine"],
+                                    "Locality 303": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 202": ["PotableWaterPipe"],
+                                    "Locality 103": ["PotableWaterPipe"],
+                                    "Locality 303": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 202": ["CoolingWaterPipe"],
+                                    "Locality 103": ["CoolingWaterPipe"],
+                                    "Locality 303": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        }
+                    ]
             }
         },
         "Locality 205": {
@@ -238,22 +516,44 @@
                 "X": 5,
                 "Y": 2
             },
-            "LinkTo": {
-                "Locality 105": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 206": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 305": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ]
+            "Components":{
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 105": ["ElectricPowerTransmissionLine"],
+                                    "Locality 206": ["ElectricPowerTransmissionLine"],
+                                    "Locality 305": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 105": ["PotableWaterPipe"],
+                                    "Locality 206": ["PotableWaterPipe"],
+                                    "Locality 305": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 105": ["CoolingWaterPipe"],
+                                    "Locality 206": ["CoolingWaterPipe"],
+                                    "Locality 305": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        }
+                    ]
             }
         },
         "Locality 206": {
@@ -261,27 +561,47 @@
                 "X": 6,
                 "Y": 2
             },
-            "LinkTo": {
-                "Locality 106": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 205": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 306": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 207": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ]
+            "Components":{
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 106": ["ElectricPowerTransmissionLine"],
+                                    "Locality 205": ["ElectricPowerTransmissionLine"],
+                                    "Locality 306": ["ElectricPowerTransmissionLine"],
+                                    "Locality 207": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 106": ["PotableWaterPipe"],
+                                    "Locality 205": ["PotableWaterPipe"],
+                                    "Locality 306": ["PotableWaterPipe"],
+                                    "Locality 207": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 106": ["CoolingWaterPipe"],
+                                    "Locality 205": ["CoolingWaterPipe"],
+                                    "Locality 306": ["CoolingWaterPipe"],
+                                    "Locality 207": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        }
+                    ]
             }
         },
         "Locality 207": {
@@ -289,22 +609,44 @@
                 "X": 7,
                 "Y": 2
             },
-            "LinkTo": {
-                "Locality 107": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 206": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 307": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ]
+            "Components":{
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 107": ["ElectricPowerTransmissionLine"],
+                                    "Locality 206": ["ElectricPowerTransmissionLine"],
+                                    "Locality 307": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 107": ["PotableWaterPipe"],
+                                    "Locality 206": ["PotableWaterPipe"],
+                                    "Locality 307": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 107": ["CoolingWaterPipe"],
+                                    "Locality 206": ["CoolingWaterPipe"],
+                                    "Locality 307": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        }
+                    ]
             }
         },
         "Locality 301": {
@@ -312,24 +654,70 @@
                 "X": 1,
                 "Y": 3
             },
-            "ComponentsInLocality": {
-                "ElectricPowerPlant": 1,
-                "BaseTransceiverStation": 1,
-                "CoolingWaterFacility": 1
-            },
-            "LinkTo": {
-                "Locality 201": [
-                    "Bridge",
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 302": [
-                    "Bridge",
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ]
+            "Components":{
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "ElectricPowerPlant": 1
+                                },
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 201": ["ElectricPowerTransmissionLine"],
+                                    "Locality 302": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 201": ["PotableWaterPipe"],
+                                    "Locality 302": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "CoolingWaterFacility": 1
+                                },
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 201": ["CoolingWaterPipe"],
+                                    "Locality 302": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        },
+                        {
+                        "CommunicationSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "BaseTransceiverStation": 1
+                                }
+                            }
+                        }
+                        },
+                        {
+                        "TransportationSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 201": ["Bridge"],
+                                    "Locality 302": ["Bridge"]
+                                }
+                            }
+                        }
+                        }
+                    ]
             }
         },
         "Locality 302": {
@@ -337,18 +725,52 @@
                 "X": 2,
                 "Y": 3
             },
-            "LinkTo": {
-                "Locality 301": [
-                    "Bridge",
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 303": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ]
+            "Components":{
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 301": ["ElectricPowerTransmissionLine"],
+                                    "Locality 303": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 301": ["PotableWaterPipe"],
+                                    "Locality 303": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 301": ["CoolingWaterPipe"],
+                                    "Locality 303": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        },
+                        {
+                        "TransportationSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 301": ["Bridge"]
+                                }
+                            }
+                        }
+                        }
+                    ]
             }
         },
         "Locality 303": {
@@ -356,28 +778,72 @@
                 "X": 3,
                 "Y": 3
             },
-            "ComponentsInLocality": {
-                "BuildingStockUnit": 3,
-                "BaseTransceiverStation": 3,
-                "CoolingWaterFacility": 1,
-                "PotableWaterFacility": 1,
-                "BaseStationController": 1
-            },
-            "LinkTo": {
-                "Locality 302": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 203": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 304": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
+            "Components":{
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 302": ["ElectricPowerTransmissionLine"],
+                                    "Locality 203": ["ElectricPowerTransmissionLine"],
+                                    "Locality 304": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "PotableWaterFacility": 1
+                                },
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 302": ["PotableWaterPipe"],
+                                    "Locality 203": ["PotableWaterPipe"],
+                                    "Locality 304": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "CoolingWaterFacility": 1
+                                },
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 302": ["CoolingWaterPipe"],
+                                    "Locality 203": ["CoolingWaterPipe"],
+                                    "Locality 304": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        },
+                        {
+                        "CommunicationSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "BaseTransceiverStation": 3,
+                                    "BaseStationController": 1
+                                }
+                            }
+                        }
+                        }
+                    ],
+                "BuildingStock": [
+                    {"Buildings": {
+                        "CreatorClassName": "JSONSubsystemCreator",
+                        "CreatorFileName": "json_subsystem_creator",
+                        "Parameters": {
+                            "ComponentsInLocality": {
+                                "BuildingStockUnit": 3
+                            }
+                        }
+                    }}
                 ]
             }
         },
@@ -386,17 +852,41 @@
                 "X": 4,
                 "Y": 3
             },
-            "LinkTo": {
-                "Locality 303": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 305": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ]
+            "Components":{
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 303": ["ElectricPowerTransmissionLine"],
+                                    "Locality 305": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 303": ["PotableWaterPipe"],
+                                    "Locality 305": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 303": ["CoolingWaterPipe"],
+                                    "Locality 305": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        }
+                    ]
             }
         },
         "Locality 305": {
@@ -404,27 +894,61 @@
                 "X": 5,
                 "Y": 3
             },
-            "ComponentsInLocality": {
-                "ElectricPowerPlant": 1,
-                "BaseTransceiverStation": 1,
-                "CoolingWaterFacility": 1
-            },
-            "LinkTo": {
-                "Locality 304": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 205": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 306": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ]
+            "Components":{
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "ElectricPowerPlant": 1
+                                },
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 302": ["ElectricPowerTransmissionLine"],
+                                    "Locality 203": ["ElectricPowerTransmissionLine"],
+                                    "Locality 304": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 304": ["PotableWaterPipe"],
+                                    "Locality 205": ["PotableWaterPipe"],
+                                    "Locality 306": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "CoolingWaterFacility": 1
+                                },
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 304": ["CoolingWaterPipe"],
+                                    "Locality 205": ["CoolingWaterPipe"],
+                                    "Locality 306": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        },
+                        {
+                        "CommunicationSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "BaseTransceiverStation": 1
+                                }
+                            }
+                        }
+                        }
+                    ]
             }
         },
         "Locality 306": {
@@ -432,17 +956,41 @@
                 "X": 6,
                 "Y": 3
             },
-            "LinkTo": {
-                "Locality 305": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 307": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ]
+            "Components":{
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 305": ["ElectricPowerTransmissionLine"],
+                                    "Locality 307": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 305": ["PotableWaterPipe"],
+                                    "Locality 307": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 305": ["CoolingWaterPipe"],
+                                    "Locality 307": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        }
+                    ]
             }
         },
         "Locality 307": {
@@ -450,37 +998,84 @@
                 "X": 7,
                 "Y": 3
             },
-            "ComponentsInLocality": {
-                "BuildingStockUnit": 1,
-                "BaseTransceiverStation": 1,
-                "PotableWaterFacility": 1
-            },
-            "LinkTo": {
-                "Locality 306": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
-                ],
-                "Locality 207": [
-                    "ElectricPowerTransmissionLine",
-                    "PotableWaterPipe",
-                    "CoolingWaterPipe"
+            "Components":{
+                "Infrastructure": [
+                        {"ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 306": ["ElectricPowerTransmissionLine"],
+                                    "Locality 207": ["ElectricPowerTransmissionLine"]
+                                }
+                            }
+                        }},
+                        {"PotableWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "PotableWaterFacility": 1
+                                },
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 306": ["PotableWaterPipe"],
+                                    "Locality 207": ["PotableWaterPipe"]
+                                }
+                            }
+                        }},
+                        {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 306": ["CoolingWaterPipe"],
+                                    "Locality 207": ["CoolingWaterPipe"]
+                                }
+                            }
+                        }
+                        },
+                        {
+                        "CommunicationSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "BaseTransceiverStation": 1
+                                }
+                            }
+                        }
+                        }
+                    ],
+                "BuildingStock": [
+                    {"Buildings": {
+                        "CreatorClassName": "JSONSubsystemCreator",
+                        "CreatorFileName": "json_subsystem_creator",
+                        "Parameters": {
+                            "ComponentsInLocality": {
+                                "BuildingStockUnit": 1
+                            }
+                        }
+                    }}
                 ]
             }
         }
     },
     "DamageInput": {
-        "Type": "FileDamageInput",
-        "Parameters": "./Example 2/example_2_damage_input.txt"
+        "ClassName": "FileDamageInput",
+        "FileName": "file_damage_input",
+        "Parameters": "./tests/test_inputs/test_inputs_virtual_community_damage_input.txt"
     },
     "Resources": {
         "ElectricPower": {
             "Group": "Utilities",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "ComponentTypeBasedPriority",
+                        "FileName": "component_type_priority",
+                        "ClassName": "ComponentTypePriority",
                         "Parameters": [
                             [
                                 "ElectricPowerPlant",
@@ -514,10 +1109,12 @@
         "HighLevelCommunication": {
             "Group": "Utilities",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "ComponentTypeBasedPriority",
+                        "FileName": "component_type_priority",
+                        "ClassName": "ComponentTypePriority",
                         "Parameters": [
                             [
                                 "BaseStationController",
@@ -535,10 +1132,12 @@
         "LowLevelCommunication": {
             "Group": "Utilities",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "ComponentTypeBasedPriority",
+                        "FileName": "component_type_priority",
+                        "ClassName": "ComponentTypePriority",
                         "Parameters": [
                             [
                                 "BaseTransceiverStation",
@@ -564,10 +1163,12 @@
         "PotableWater": {
             "Group": "Utilities",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "ComponentTypeBasedPriority",
+                        "FileName": "component_type_priority",
+                        "ClassName": "ComponentTypePriority",
                         "Parameters": [
                             [
                                 "PotableWaterFacility",
@@ -586,10 +1187,12 @@
         "CoolingWater": {
             "Group": "Utilities",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "ComponentTypeBasedPriority",
+                        "FileName": "component_type_priority",
+                        "ClassName": "ComponentTypePriority",
                         "Parameters": [
                             [
                                 "CoolingWaterFacility",
@@ -612,10 +1215,12 @@
         "Shelter": {
             "Group": "Utilities",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "ComponentTypeBasedPriority",
+                        "FileName": "component_type_priority",
+                        "ClassName": "ComponentTypePriority",
                         "Parameters": [
                             [
                                 "BuildingStockUnit",
@@ -629,10 +1234,12 @@
         "FunctionalHousing": {
             "Group": "Utilities",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "ComponentTypeBasedPriority",
+                        "FileName": "component_type_priority",
+                        "ClassName": "ComponentTypePriority",
                         "Parameters": [
                             [
                                 "BuildingStockUnit",
@@ -646,41 +1253,46 @@
         "ElectricPowerTransferService": {
             "Group": "TransferService",
             "DistributionModel": {
-                "Type": "TransferServiceDistributionModelPotentialPathSets",
+                "ClassName": "TransferServiceDistributionModelPotentialPaths",
+                "FileName": "transfer_service_distribution_model_potential_paths",
                 "Parameters": {
-                    "PathSetsFile": "./Example 2/potential_path_sets.json"
+                    "PathSetsFile": "./tests/test_inputs/test_inputs_potential_path_sets.json"
                 }
             }
         },
         "PotableWaterTransferService": {
             "Group": "TransferService",
             "DistributionModel": {
-                "Type": "TransferServiceDistributionModelPotentialPathSets",
+                "ClassName": "TransferServiceDistributionModelPotentialPaths",
+                "FileName": "transfer_service_distribution_model_potential_paths",
                 "Parameters": {
-                    "PathSetsFile": "./Example 2/potential_path_sets.json"
+                    "PathSetsFile": "./tests/test_inputs/test_inputs_potential_path_sets.json"
                 }
             }
         },
         "CoolingWaterTransferService": {
             "Group": "TransferService",
             "DistributionModel": {
-                "Type": "TransferServiceDistributionModelPotentialPathSets",
+                "ClassName": "TransferServiceDistributionModelPotentialPaths",
+                "FileName": "transfer_service_distribution_model_potential_paths",
                 "Parameters": {
-                    "PathSetsFile": "./Example 2/potential_path_sets.json"
+                    "PathSetsFile": "./tests/test_inputs/test_inputs_potential_path_sets.json"
                 }
             }
         },
         "BridgeService": {
             "Group": "BridgeService",
             "DistributionModel": {
-                "Type": "BridgeServiceDistributionModel",
+                "ClassName": "BridgeServiceDistributionModel",
+                "FileName": "bridge_service_distribution_model",
                 "Parameters": {}
             }
         }
     },
     "ResilienceCalculator": [
         {
-            "Type": "ReCoDeSResilienceCalculator",
+            "FileName": "recodes_calculator",
+            "ClassName": "ReCoDeSCalculator",
             "Parameters": {
                 "Scope": "All",
                 "Resources": [
@@ -695,7 +1307,8 @@
             }
         },
         {
-            "Type": "NISTGoalsResilienceCalculator",
+            "ClassName": "NISTGoalsCalculator",
+            "FileName": "nist_goals_calculator",
             "Parameters": [
                 {
                     "Resource": "ElectricPower",

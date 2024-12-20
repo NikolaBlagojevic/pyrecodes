@@ -13,8 +13,8 @@ class ComponentRecoveryTimeCalculator(ResilienceCalculator):
         # define what the print() method should return
         output = 'Component Recovery Time Calculator \n'
         output += '-------------------------------- \n'
-        for component_name, recovery_time in self.component_recovery_times.items():
-            output += component_name + ': ' + str(recovery_time) + '\n'
+        for component_recovery_time in self.component_recovery_times:
+            output += list(component_recovery_time.keys())[0] + ': ' + str(list(component_recovery_time.values())[0]) + '\n'
         return output
 
     def calculate_resilience(self):

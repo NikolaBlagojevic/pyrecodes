@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from pyrecodes.component.component import Component
+from pyrecodes.system.system import System
 from pyrecodes.constants import LOR_ALPHA, GANTT_BAR_DISTANCE, GANTT_BAR_WIDTH, ALL_RECOVERY_ACTIVITIES_COLORS
 
 class ConcretePlotter():
@@ -10,6 +11,23 @@ class ConcretePlotter():
         plt.ylabel(y_axis_label)
         plt.grid(True)
         return plt.gca()
+    
+    def plot_supply_demand_dynamics(self, system: System, resources: list[str], units: list[str], resilience_calculator_id=0, x_axis_label='Time step [day]'):
+        """
+        Method plots regional supply, demand, and consumption dynamics during recovery for a list of resources.
+
+        Default values are set for:
+        - the resilience calculator id. It is assumed that the first resilience calculator in system.resilience_calculators list is a recodes calculator with scope='All'. The user can specify a different resilience calculator id as long as it is a recodes calculator.
+        - the x-axis label. It is assumed that the x-axis label is 'Time step [day]'.
+        """
+        for resource_name, unit in zip(resources, units):
+            y_axis_label= f'{resource_name} Demand/Supply/Consumption {unit}'
+            axis_object = self.setup_lor_plot_fig(x_axis_label, y_axis_label)
+            # supply/demand/consumption information is in the ReCoDeS resilience calculator object, which is stored in the system object: system.resilience_calculators[0]
+            self.plot_single_resource(list(range(system.time_step+1)), system.resilience_calculators[resilience_calculator_id].system_supply[resource_name],
+                                                system.resilience_calculators[resilience_calculator_id].system_demand[resource_name],
+                                                system.resilience_calculators[resilience_calculator_id].system_consumption[resource_name], axis_object)
+
 
     def plot_single_resource(self, time_steps: list, supply: list, demand: list, consumption: list,
                              axis_object: plt.axis, warmup=0, show=False, supply_label='Supply', demand_label='Demand',
@@ -34,14 +52,15 @@ class ConcretePlotter():
             extended_lists.append([list_to_extend[0]] * warmup + list_to_extend)
         return extended_lists       
 
-    def setup_gantt_chart_fig(self, x_axis_label: str, components: list) -> plt.axis:
+    def setup_gantt_chart_fig(self, x_axis_label) -> plt.axis:
         plt.figure()
         plt.xlabel(x_axis_label)
         axis_object = plt.gca()
         plt.grid(True)
         return axis_object
 
-    def plot_gantt_chart(self, components: list([Component]), axis_object: plt.axis) -> None:
+    def plot_gantt_chart(self, components: list([Component]), x_axis_label='Time Step [day]') -> None:
+        axis_object = self.setup_gantt_chart_fig(x_axis_label)
         recovery_activities_legend = []
         plotted_components = []
         component_row = 0

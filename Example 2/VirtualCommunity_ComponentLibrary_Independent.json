@@ -1,12 +1,17 @@
 {
     "ElectricPowerPlant": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "Repair": {
-                    "Duration": {"Deterministic": {"Value": 100}}   
-                }     
+                    "Duration": {
+                        "Deterministic": {
+                            "Value": 100
+                        }
+                    }
+                }
             },
             "DamageFunctionalityRelation": {
                 "Type": "ReverseLinear"
@@ -22,32 +27,36 @@
         "OperationDemand": {
             "ElectricPower": {
                 "Amount": 0.2,
-                "FunctionalityToAmountRelation": "Constant"                
+                "FunctionalityToAmountRelation": "Constant"
             },
             "LowLevelCommunication": {
                 "Amount": 0.001,
-                "FunctionalityToAmountRelation": "Constant"                
+                "FunctionalityToAmountRelation": "Constant"
             },
             "CoolingWater": {
                 "Amount": 0.05,
-                "FunctionalityToAmountRelation": "Constant"               
+                "FunctionalityToAmountRelation": "Constant"
             }
         }
     },
-
     "BaseStationController": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "Repair": {
-                    "Duration": {"Deterministic": {"Value": 100}} 
-                }       
+                    "Duration": {
+                        "Deterministic": {
+                            "Value": 100
+                        }
+                    }
+                }
             },
             "DamageFunctionalityRelation": {
                 "Type": "ReverseLinear"
             }
-        },       
+        },
         "Supply": {
             "HighLevelCommunication": {
                 "Amount": 300,
@@ -58,28 +67,32 @@
         "OperationDemand": {
             "ElectricPower": {
                 "Amount": 0.2,
-                "FunctionalityToAmountRelation": "Constant"                
-            },          
+                "FunctionalityToAmountRelation": "Constant"
+            },
             "CoolingWater": {
                 "Amount": 0.05,
-                "FunctionalityToAmountRelation": "Constant"                
-            }         
+                "FunctionalityToAmountRelation": "Constant"
+            }
         }
     },
-
     "BaseTransceiverStation": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "Repair": {
-                    "Duration": {"Deterministic": {"Value": 20}}   
-                }                
+                    "Duration": {
+                        "Deterministic": {
+                            "Value": 20
+                        }
+                    }
+                }
             },
             "DamageFunctionalityRelation": {
                 "Type": "ReverseBinary"
             }
-        },       
+        },
         "Supply": {
             "LowLevelCommunication": {
                 "Amount": 45,
@@ -90,23 +103,27 @@
         "OperationDemand": {
             "ElectricPower": {
                 "Amount": 0.1,
-                "FunctionalityToAmountRelation": "Linear"                
+                "FunctionalityToAmountRelation": "Linear"
             },
             "HighLevelCommunication": {
                 "Amount": 50,
-                "FunctionalityToAmountRelation": "Linear"                
+                "FunctionalityToAmountRelation": "Linear"
             }
         }
     },
-    
     "PotableWaterFacility": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "Repair": {
-                    "Duration": {"Deterministic": {"Value": 100}}  
-                }      
+                    "Duration": {
+                        "Deterministic": {
+                            "Value": 100
+                        }
+                    }
+                }
             },
             "DamageFunctionalityRelation": {
                 "Type": "ReverseBinary"
@@ -116,25 +133,29 @@
             "PotableWater": {
                 "Amount": 0.2,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Constant"
+                "UnmetDemandToAmountRelation": "Constant"               
             }
         },
-        "OperationDemand": {            
+        "OperationDemand": {
             "ElectricPower": {
                 "Amount": 0.1,
                 "FunctionalityToAmountRelation": "Constant"
             }
         }
     },
-
     "CoolingWaterFacility": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "Repair": {
-                    "Duration": {"Deterministic": {"Value": 20}}  
-                }      
+                    "Duration": {
+                        "Deterministic": {
+                            "Value": 20
+                        }
+                    }
+                }
             },
             "DamageFunctionalityRelation": {
                 "Type": "ReverseLinear"
@@ -147,7 +168,7 @@
                 "UnmetDemandToAmountRelation": "Constant"
             }
         },
-        "OperationDemand": {            
+        "OperationDemand": {
             "ElectricPower": {
                 "Amount": 0.2,
                 "FunctionalityToAmountRelation": "Constant"
@@ -158,19 +179,23 @@
             }
         }
     },
-
     "BuildingStockUnit": {
-        "ComponentClass": "BuildingStockUnitWithEmergencyCalls",
+        "ComponentClass": {"FileName": "building_with_emergency_calls", "ClassName": "BuildingWithEmergencyCalls"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "Repair": {
-                    "Duration": {"Deterministic": {"Value": 100}}  
-                }      
+                    "Duration": {
+                        "Deterministic": {
+                            "Value": 100
+                        }
+                    }
+                }
             },
             "DamageFunctionalityRelation": {
                 "Type": "ReverseLinear"
-            }   
+            }
         },
         "Supply": {
             "Shelter": {
@@ -200,26 +225,31 @@
             },
             "Shelter": {
                 "Amount": 400,
-                "FunctionalityToAmountRelation": "Constant"            
+                "FunctionalityToAmountRelation": "Constant"
             },
             "FunctionalHousing": {
                 "Amount": 400,
-                "FunctionalityToAmountRelation": "Constant"           
-            }            
+                "FunctionalityToAmountRelation": "Constant"
+            }
         }
     },
     "ElectricPowerTransmissionLine": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "Repair": {
-                    "Duration": {"Deterministic": {"Value": 20}}    
-                }    
-            },           
+                    "Duration": {
+                        "Deterministic": {
+                            "Value": 20
+                        }
+                    }
+                }
+            },
             "DamageFunctionalityRelation": {
                 "Type": "ReverseLinear"
-            }   
+            }
         },
         "Supply": {
             "ElectricPowerTransferService": {
@@ -227,21 +257,31 @@
                 "FunctionalityToAmountRelation": "Linear",
                 "UnmetDemandToAmountRelation": "Constant"
             }
-        }   
+        },
+        "OperationDemand": {
+            "BridgeService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Constant"
+            }
+        }
     },
-
     "PotableWaterPipe": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "Repair": {
-                    "Duration": {"Deterministic": {"Value": 20}}    
-                }    
-            },           
+                    "Duration": {
+                        "Deterministic": {
+                            "Value": 20
+                        }
+                    }
+                }
+            },
             "DamageFunctionalityRelation": {
                 "Type": "ReverseLinear"
-            }   
+            }
         },
         "Supply": {
             "PotableWaterTransferService": {
@@ -249,21 +289,31 @@
                 "FunctionalityToAmountRelation": "Linear",
                 "UnmetDemandToAmountRelation": "Constant"
             }
-        }   
+        },
+        "OperationDemand": {
+            "BridgeService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Constant"
+            }
+        }
     },
-
     "CoolingWaterPipe": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "Repair": {
-                    "Duration": {"Deterministic": {"Value": 20}}    
-                }    
-            },           
+                    "Duration": {
+                        "Deterministic": {
+                            "Value": 20
+                        }
+                    }
+                }
+            },
             "DamageFunctionalityRelation": {
                 "Type": "ReverseLinear"
-            }   
+            }
         },
         "Supply": {
             "CoolingWaterTransferService": {
@@ -271,28 +321,38 @@
                 "FunctionalityToAmountRelation": "Linear",
                 "UnmetDemandToAmountRelation": "Constant"
             }
-        }   
+        },
+        "OperationDemand": {
+            "BridgeService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Constant"
+            }
+        }
     },
-
     "Bridge": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "Repair": {
-                    "Duration": {"Deterministic": {"Value": 100}}    
-                }    
-            },           
+                    "Duration": {
+                        "Deterministic": {
+                            "Value": 100
+                        }
+                    }
+                }
+            },
             "DamageFunctionalityRelation": {
                 "Type": "ReverseLinear"
-            }   
+            }
         },
         "Supply": {
-            "CarrierService": {
-                "Amount": 1000,
+            "BridgeService": {
+                "Amount": 1,
                 "FunctionalityToAmountRelation": "Linear",
                 "UnmetDemandToAmountRelation": "Constant"
             }
-        }   
+        }
     }
 }

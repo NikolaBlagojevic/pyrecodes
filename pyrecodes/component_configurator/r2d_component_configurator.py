@@ -1,25 +1,22 @@
 from pyrecodes.component_configurator.component_configurator import ComponentConfigurator
 from pyrecodes.component.component import Component
-from pyrecodes.component_configurator.r2d_dict_getter import R2DDictGetter
-from pyrecodes.component_configurator.r2d_dict_getter import R2DPipeDictGetter
-from pyrecodes.component_configurator.r2d_repair_configurator import R2DBuildingRepairConfigurator
-from pyrecodes.component_configurator.r2d_repair_configurator import R2DRoadwayRepairConfigurator
-from pyrecodes.component_configurator.r2d_repair_configurator import R2DPipeRepairConfigurator
-from pyrecodes.component_configurator.r2d_repair_configurator import R2DBridgeRepairConfigurator
-from pyrecodes.component_configurator.r2d_repair_configurator import R2DTunnelRepairConfigurator
+from pyrecodes.component_configurator.r2d_dict_getter import R2DDictGetter, R2DPipeDictGetter
+from pyrecodes.component_configurator.r2d_repair_configurator import R2DBuildingRepairConfigurator, R2DRoadwayRepairConfigurator, R2DPipeRepairConfigurator, R2DBridgeRepairConfigurator, R2DTunnelRepairConfigurator
 from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComponent
 import json
-import re
 import shapely
 import pyproj
 from abc import abstractmethod
 
 class R2DComponentConfigurator(ComponentConfigurator):
     """
-    Abstract parent class for all R2D component configurators.
+    Abstract class for R2D component configurators.
     """
 
     def set_parameters(self, component: Component, locality: list, component_data: dict, component_damage_state: int): 
+        """
+        Method to set component parameters based on the data provided in the R2D output files.
+        """
         self.set_geometry(component, component_data)   
         super().set_parameters(component, locality, component_data, component_damage_state)
         self.set_general_information(component, component_data)
@@ -48,9 +45,6 @@ class R2DComponentConfigurator(ComponentConfigurator):
         pass
 
     def set_asset_ids(self, component, component_data:dict):
-        """
-        TODO: Write why this method is needed. Probably these attributes are needed during system creation.
-        """
         component.asset_type = component_data['AssetType']
         component.asset_subtype = component_data['AssetSubtype']
         component.aim_id = component_data['Information']['GeneralInformation']['AIM_id']
@@ -67,11 +61,15 @@ class R2DComponentConfigurator(ComponentConfigurator):
         component.r2d_dict_getter = R2DDictGetter(component)
 
     def get_damage_state(self, damage_info: dict) -> int:
+        """
+        | Method to set the damage state of an R2D component based on the damage information provided in the R2D output files.
+        | At the moment, the maximum damage state of all damage states provided in the R2D output files is used.
+        """
         return max([value for key, value in damage_info['Damage'].items() if not('collapse' in key)]+ [0])
     
 class R2DBuildingConfigurator(R2DComponentConfigurator):
     """
-    Class that configures parameters of building components as provided in the R2D output files
+    Class that configures parameters of building components as provided in the R2D output files.
     """
 
     SYSTEM_LEVEL_DATA = ['START_TIME_STEP', 'MAX_TIME_STEP', 'MAX_REPAIR_CREW_DEMAND_PER_BUILDING',
@@ -80,11 +78,7 @@ class R2DBuildingConfigurator(R2DComponentConfigurator):
 
     def set_parameters(self, component: Component, locality: list, component_data: dict, component_DS: int): 
         super().set_parameters(component, locality, component_data, component_DS)     
-        self.set_operation_demand_parameters(component, component_data) 
-        # TODO: Find a better way of implementing this. A subclass of R2DBuildingConfigurator should be created. 
-        # But then change how R2D component configurators are created in the subsystem creator.   
-        if "Households" in component_data['Information']['GeneralInformation']:
-            component.create_households(component_data['Information']['GeneralInformation']['Households']) 
+        self.set_operation_demand_parameters(component, component_data)
         return component
     
     def set_repair_configurator(self, component: Component) -> None:
@@ -129,28 +123,41 @@ class R2DBuildingConfigurator(R2DComponentConfigurator):
             for housing_resource_name in self.system_level_data.get('HOUSING_RESOURCES', []):
                 self.set_component_operation_demand(component, housing_resource_name, building_housing_capacity)
 
-    def set_infrastructure_demand_parameters(self, component: Component, building_data: dict) -> None:      
+    def set_infrastructure_demand_parameters(self, component: Component, building_data: dict) -> None:
+        """
+        |  Method sets the infrastructure demand for a building component based on two sources:
+        |  1. Based on the number of people living in the building.
+        | 2. Based on the demand data provided in the building data dictionary.
+
+        | Note that the demand provided in the building data dictionary overwrites the demand based on the number of people.
+        """          
         self.set_infrastructure_demand_parameters_based_on_number_of_people(component, building_data)
-        # Demand from building data overwrites demand based on number of people.
         self.set_infrastructure_demand_parameters_directly_based_on_building_data(component, building_data)
         
     def set_infrastructure_demand_parameters_based_on_number_of_people(self, component: Component, building_data: dict) -> None:
+        """
+        | Method sets the infrastructure demand for a building component based on the number of people living in the building (i.e., housing capacity).
+        | Note that only the resources defined in the "DEMAND_PER_PERSON" attribute in the system configuration file are considered.
+        """
         if self.system_level_data['DEMAND_PER_PERSON'] is not None:
             building_housing_capacity = self.get_building_housing_capacity(building_data)
-            # consider only those resources defined in the "DEMAND_PER_PERSON" attribute in the system configuration file
             operation_demand_resources = [resource_name for resource_name in self.system_level_data.get('DEMAND_PER_PERSON', {}).keys()]
             for operation_demand_resource in operation_demand_resources:
                 amount = building_housing_capacity*self.system_level_data['DEMAND_PER_PERSON'][operation_demand_resource]
                 self.set_component_operation_demand(component, operation_demand_resource, amount)
 
     def set_infrastructure_demand_parameters_directly_based_on_building_data(self, component: Component, building_data: dict) -> None:
+        """
+        | Method sets the infrastructure demand for a building component based on the demand data provided in the building data dictionary.
+        | This allows to overwrite the demand based on the number of people living in the building in case building's demand is not correlated to the number of people living in the building (e.g., a commercial or industrial building).
+        """
         if 'Demand' in building_data['Information']['GeneralInformation']:
             for resource_name, amount in building_data['Information']['GeneralInformation']['Demand'].items():
                 self.set_component_operation_demand(component, resource_name, amount)
 
 class R2DRoadwayConfigurator(R2DComponentConfigurator):
     """
-    Class that sets parameters of a Roadway as provided in the R2D output files
+    Class that sets parameters of a Roadway as provided in the R2D output files.
     """
 
     SYSTEM_LEVEL_DATA = ['START_TIME_STEP', 'MAX_TIME_STEP',                       
@@ -178,7 +185,7 @@ class R2DRoadwayConfigurator(R2DComponentConfigurator):
     
 class R2DPipeConfigurator(R2DComponentConfigurator):
     """
-    Class that sets parameters of a Pipe as provided in the R2D output files
+    Class that sets parameters of a Pipe as provided in the R2D output files.
     """
 
     SYSTEM_LEVEL_DATA = ['START_TIME_STEP', 'MAX_TIME_STEP',                       
@@ -194,7 +201,9 @@ class R2DPipeConfigurator(R2DComponentConfigurator):
         self.repair_configurator = R2DPipeRepairConfigurator(component, self.system_level_data)  
     
     def set_supply_parameters(self, component: Component, component_data: dict) -> None:
-        # TODO: Not sure what is really needed here.
+        """
+        At the moment, pipe supply is not defined. Pipe's ability to transfer water is based on its functionality level and defined in the r2d_dict attribute.
+        """
         pass
     
     def set_r2d_dict_getter(self, component: Component):        
@@ -202,7 +211,9 @@ class R2DPipeConfigurator(R2DComponentConfigurator):
 
 class R2DBridgeConfigurator(R2DComponentConfigurator):
     """
-    Class that sets parameters of a Bridge as provided in the R2D output files
+    Class that sets parameters of a Bridge as provided in the R2D output files.
+
+    Not clear how the class should look like at the moment. Future work.
     """
 
     SYSTEM_LEVEL_DATA = ['START_TIME_STEP', 'MAX_TIME_STEP',                       
@@ -219,12 +230,13 @@ class R2DBridgeConfigurator(R2DComponentConfigurator):
         self.repair_configurator = R2DBridgeRepairConfigurator(component, self.system_level_data)  
 
     def set_supply_parameters(self, component: Component, component_data: dict) -> None:
-        # TODO: Not sure how to define this yet.
         pass
     
 class R2DTunnelConfigurator(R2DComponentConfigurator):
     """
-    Class that sets parameters of a Tunnel as provided in the R2D output files
+    Class that sets parameters of a Tunnel as provided in the R2D output files.
+
+    Not clear how the class should look like at the moment. Future work.
     """
 
     SYSTEM_LEVEL_DATA = ['START_TIME_STEP', 'MAX_TIME_STEP',                       
@@ -237,6 +249,5 @@ class R2DTunnelConfigurator(R2DComponentConfigurator):
         self.repair_configurator = R2DTunnelRepairConfigurator(component, self.system_level_data)  
     
     def set_supply_parameters(self, component: Component, component_data: dict) -> None:
-        # TODO: Not sure how to define this yet.
         pass       
     

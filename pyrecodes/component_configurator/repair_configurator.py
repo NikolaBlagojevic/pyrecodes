@@ -3,10 +3,10 @@ from pyrecodes.constants import RECOVERY_FINANCING_ACTIVITY_NAME, MONEY_RESOURCE
 
 class RepairConfigurator():
     """
-    Class that configures repair parameters for components.
-    Repair parameters are repair duration and repair resource demand.
+    | Class that configures repair parameters for components.
+    | Repair parameters are repair duration and repair resource demand.
 
-    TODO: Create a more general class "RecoveryActivityConfigurator" that configures all recovery activities once it is needed. For now only repair is configured.
+    | TODO: Create a more general class "RecoveryActivityConfigurator" that configures all recovery activities once it is needed. For now only repair is configured.
     """
 
     def __init__(self, component: Component, system_level_data: dict) -> None:

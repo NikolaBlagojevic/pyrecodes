@@ -2,6 +2,9 @@ from pyrecodes.component_configurator.component_configurator import ComponentCon
 from pyrecodes.component.component import Component
 
 class Tier1InterfaceConfigurator(ComponentConfigurator):
+    """
+    Class that configures a Tier 1 or Tier 2 infrastructure interface component based on the infrastructure performance parameters provided in the system configuration file.
+    """
 
     def set_parameters(self, component: Component, locality: dict, interface_parameters: dict) -> Component:
         super().set_parameters(component, locality)

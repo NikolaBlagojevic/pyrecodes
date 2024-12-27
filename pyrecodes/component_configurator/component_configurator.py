@@ -6,7 +6,7 @@ from pyrecodes.component_configurator.repair_configurator import RepairConfigura
 
 class ComponentConfigurator():    
     """
-    Class that reads, modifies and sets component parameters unique to each component and defined during system creation.
+    Class that reads, modifies and sets component parameters unique to each component, different than the default parameters defined in component library, and defined during system creation.
     """
 
     SYSTEM_LEVEL_DATA = ['START_TIME_STEP', 'MAX_TIME_STEP']
@@ -29,7 +29,7 @@ class ComponentConfigurator():
     
     def set_recovery_time_steps(self, component: Component) -> None:
         """
-        Set recovery time stepping rules for the component.
+        Set recovery time stepping rules for the component. These define at which time steps component's recovery will be simulated and thus reduce the computational cost.
         """
         component.set_recovery_time_steps(self.recovery_time_steps)
 
@@ -58,7 +58,7 @@ class ComponentConfigurator():
 
     def set_repair_parameters(self, component_data: dict, component_damage_state: int) -> None:
         """
-        Set repair parameters for the component.
+        Set repair parameters (duration and resource demand) for the component.
         """
         self.repair_configurator.set_parameters(component_data, component_damage_state, self.set_component_recovery_demand)
 

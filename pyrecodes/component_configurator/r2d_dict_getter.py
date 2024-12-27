@@ -2,7 +2,7 @@ from pyrecodes.component.component import Component
 
 class R2DDictGetter():
     """
-    Class used to create a dictionary representing component characteristics to recreate the R2D JSON file later used to call resource distribution models.
+    Class used to create a dictionary representing component characteristics to recreate the R2D JSON file that acts as the interfaces between pyrecodes and SimCenter's infrastructure simulators.
 
     Component characteristics are obtained from the component object.
     """

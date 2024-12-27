@@ -4,7 +4,7 @@ import math
 
 class BuildingWithEmergencyCalls(StandardiReCoDeSComponent):
     """
-    Subclass of the StandardiReCoDeSComponent class that simulates the performance of building stock units 
+    Subclass of the StandardiReCoDeSComponent class that simulates the performance of a building 
     with increased post-disaster demand for communication services due to emergency calls.
 
     Attributes
@@ -19,7 +19,7 @@ class BuildingWithEmergencyCalls(StandardiReCoDeSComponent):
         is increased after a disaster.
     COMMUNICATION_DEMAND_INCREASE_TIME_STEP : int
         | Define at which time step of the recovery simulation will the demand for communication resource increase.
-        | **Note**: this time step should be after the DISASTER_TIME_STEP defined in the system configuration file.
+        | **Note**: this time step should be at or after the DISASTER_TIME_STEP defined in the system configuration file.
     COMMUNICATION_DEMAND_EXP_DECREASE_COEFF : float
         Define the parameter of the exponential function that simulates the post-disaster decrease of the
         demand for communication resource following the initial demand surge.   
@@ -85,6 +85,6 @@ class BuildingWithEmergencyCalls(StandardiReCoDeSComponent):
         | Check if the resource demand should be increased following the disaster for the resource resource_name.
         | Communication resource parameters dict in ComponentLibrary should have the 'PostDisasterIncreaseDueToEmergencyCalls' key with a 'True' value.
         """
-        if resource_parameters.get('PostDisasterIncreaseDueToEmergencyCalls', None) == "True":
+        if resource_parameters.get('PostDisasterIncreaseDueToEmergencyCalls', 'False') == "True":
             self.COMMUNICATION_RESOURCE_NAME = resource_name
 

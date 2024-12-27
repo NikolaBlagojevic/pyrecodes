@@ -1,20 +1,16 @@
-"""
-Module used to define the Component class and its subclasses.
-"""
-
 from abc import ABC, abstractmethod
 from enum import Enum
 
 class SupplyOrDemand(Enum):
     """
-    Enum Class to specify the strings used for component's supply and demand parameters.
+    Enum Class to specify the strings used for component's supply and demand attributes.
     """
     SUPPLY = 'supply'
     DEMAND = 'demand'
 
 class Component(ABC):
     """
-    Abstract Class to define the required methods and properties of a component.
+    Interface to define the required methods and properties of a component.
     """
     name: str
     functionality_level: float 

@@ -6,7 +6,7 @@ from pyrecodes.relation import relation
 
 class StandardiReCoDeSComponent(Component):
     """
-    Implementation of the Component abstract class to define standard functionality of a component in iRe-CoDeS. 
+    Implementation of the Component interface to define standard functionality of a component in pyrecodes.
     """
     class SupplyTypes(Enum):
         """

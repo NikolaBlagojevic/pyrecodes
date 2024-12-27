@@ -6,7 +6,7 @@ from abc import ABC, abstractmethod
 
 class ComponentLibraryCreator(ABC):
     """
-    Abstract class for ComponentLibraryCreator class used to create component library based on which system components are constructed.
+    Interface for ComponentLibraryCreator class used to create component library based on which system components are constructed.
     """
 
     library: dict

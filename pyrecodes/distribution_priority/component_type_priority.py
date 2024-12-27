@@ -3,10 +3,11 @@ from pyrecodes.distribution_priority.distribution_priority import DistributionPr
 
 class ComponentTypePriority(DistributionPriority):
     """
-    Components are prioritized based on their type (i.e., name). Components higher in the system's component list are prioritized among same type components.
+    | Class that prioritizes components based on their type (i.e., name) as defined in the component library. 
+    | Components higher in the system's component list are prioritized among same type components.
     """
 
-    def __init__(self, resource_name: str, parameters, components: list([Component])):
+    def __init__(self, resource_name: str, parameters, components: list[Component]):
         self.components = components
         self.resource_name = resource_name
         self.set_distribution_priority(parameters)
@@ -29,5 +30,5 @@ class ComponentTypePriority(DistributionPriority):
                categorized_components[component.name] = [i] 
         return categorized_components     
 
-    def get_component_priorities(self) -> list([int]):  
+    def get_component_priorities(self) -> list[int]:  
         return self.distribution_priority

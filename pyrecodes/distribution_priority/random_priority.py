@@ -6,11 +6,11 @@ import copy
 
 class RandomPriority(DistributionPriority):
     """
-    Randomly shuffle components for resource distribution. 
-    Keeps resource suppliers on top of the priority list to maximize the consumption of components' supply capacity.
+    | Randomly shuffle components for resource distribution. 
+    | Keeps resource suppliers on top of the priority list to maximize the consumption of components' supply capacity.
     """
 
-    def __init__(self, resource_name: str, parameters: dict, components: list([Component])):
+    def __init__(self, resource_name: str, parameters: dict, components: list[Component]):
         self.resource_name = resource_name
         self.components = components
         self.set_distribution_priority(parameters)
@@ -36,7 +36,7 @@ class RandomPriority(DistributionPriority):
     
     def randomize_ids(self, component_ids: list, demand_types: list) -> tuple:
         """
-        The method randomizes component ids. Demand types are in the same order as in the input variable.
+        The method randomizes component ids. Demand types are in the same order as in the input.
         """
         randomized_priorities = []
         randomized_demand_types = []
@@ -46,5 +46,5 @@ class RandomPriority(DistributionPriority):
             randomized_demand_types += [demand_type for _ in component_ids]
         return randomized_priorities, randomized_demand_types
         
-    def get_component_priorities(self) -> list([int]):
+    def get_component_priorities(self) -> list[int]:
         return self.distribution_priority

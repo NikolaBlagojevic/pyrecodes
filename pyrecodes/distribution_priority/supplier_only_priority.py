@@ -4,12 +4,12 @@ from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComp
 
 class SupplierOnlyPriority(DistributionPriority):
     """
-    Find all components that have a supply for a specified resource and only include those components when distributing a resource.
-    Used for housing service distribution, as it only considers components with housing supply when distributing housing services. Makes housing distribution faster.
-    Considers Operation Demand only.
+    | Find all components that have a supply for a specified resource and only include those components when distributing a resource.
+    | Used for housing service distribution, as it only considers components with housing supply when distributing housing services. Makes housing distribution faster.
+    | Considers Operation Demand only.
     """
 
-    def __init__(self, resource_name: str, parameters: dict, components: list([Component])):
+    def __init__(self, resource_name: str, parameters: dict, components: list[Component]):
         self.resource_name = resource_name
         self.components = components
         self.set_distribution_priority(parameters)
@@ -22,5 +22,5 @@ class SupplierOnlyPriority(DistributionPriority):
         self.distribution_priority = residential_building_ids, [
             StandardiReCoDeSComponent.DemandTypes.OPERATION_DEMAND.value for _ in residential_building_ids]
 
-    def get_component_priorities(self) -> list([int]):
+    def get_component_priorities(self) -> list[int]:
         return self.distribution_priority

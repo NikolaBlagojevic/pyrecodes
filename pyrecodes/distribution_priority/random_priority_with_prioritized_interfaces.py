@@ -6,9 +6,9 @@ import copy
 
 class RandomPriorityWithPrioritizedInterfaces(RandomPriority):
     """
-    Randomly shuffle components for resource distribution. 
-    Keeps resource suppliers on top of the priority list to maximize the consumption of components' supply capacity. 
-    Prioritized infrastructure interfaces over other components to minimize shutdowns due to infrastructure interdependency effects. 
+    | Randomly shuffle components for resource distribution. 
+    | Keeps resource suppliers on top of the priority list to maximize the consumption of components' supply capacity. 
+    | Prioritized infrastructure interfaces over other components to minimize shutdowns due to infrastructure interdependency effects. 
     """
 
     def set_distribution_priority(self, parameters: dict) -> None:
@@ -30,7 +30,7 @@ class RandomPriorityWithPrioritizedInterfaces(RandomPriority):
 
         self.distribution_priority = suppliers_ids + interface_ids + random_priorities, supplier_demand_types + interface_demand_types + random_demand_types
 
-    def get_infrastructure_interface_id(self, component_ids: list([int])):
+    def get_infrastructure_interface_id(self, component_ids: list[int]):
         interface_ids = []
         remaining_component_ids = copy.deepcopy(component_ids)
         for component_id in component_ids:  

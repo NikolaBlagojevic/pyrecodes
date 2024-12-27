@@ -4,10 +4,10 @@ import copy
 
 class ComponentBasedPriority(DistributionPriority):
     """
-    Resource distribution priority of each component are explicitly defined.
+    Class that defines resource distribution priority by specifying the priority of each component.
     """
 
-    def __init__(self, resource_name: str, parameters, components: list([Component])):
+    def __init__(self, resource_name: str, parameters, components: list[Component]):
         self.resource_name = resource_name
         self.components = components
         self.set_distribution_priority(parameters)
@@ -24,8 +24,8 @@ class ComponentBasedPriority(DistributionPriority):
             component_demand_types.append(component_demand_type)
         self.distribution_priority = distribution_priority, component_demand_types
 
-    def find_component_position(self, component_name: str, component_locality: str, temp_components: list(
-        [Component])) -> 'tuple[int, list([Component])]':
+    def find_component_position(self, component_name: str, component_locality: str, temp_components: list
+        [Component]) -> 'tuple[int, list[Component]]':
         locality_id = self.get_locality_id_from_string(component_locality)
         for i, component in enumerate(temp_components):
             if self.component_not_already_in_priority_list(component):
@@ -41,8 +41,8 @@ class ComponentBasedPriority(DistributionPriority):
         return not (component is None)
 
     @staticmethod
-    def get_locality_id_from_string(locality_strings: list([str])) -> list:
+    def get_locality_id_from_string(locality_strings: list[str]) -> list:
         return [int(locality_string.split(' ')[-1]) for locality_string in locality_strings]
 
-    def get_component_priorities(self) -> list([int]):
+    def get_component_priorities(self) -> list[int]:
         return self.distribution_priority

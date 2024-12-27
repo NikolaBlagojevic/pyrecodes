@@ -7,9 +7,9 @@ class DistributionPriority(ABC):
     """
 
     @abstractmethod
-    def __init__(self, components: list([Component]), parameters, resource_name: str):
+    def __init__(self, components: list[Component], parameters, resource_name: str):
         pass
 
     @abstractmethod
-    def get_component_priorities(self) -> list([int]):
+    def get_component_priorities(self) -> list[int]:
         pass

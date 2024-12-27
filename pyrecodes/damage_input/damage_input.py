@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 class DamageInput(ABC):
     """
-    Different methods for providing initial damage information to the system class
+    Class that allows for different methods for providing initial damage information to the system class
     """
 
     @abstractmethod

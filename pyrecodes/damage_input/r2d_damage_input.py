@@ -7,6 +7,10 @@ from pyrecodes.component.component import Component
 from pyrecodes.component.r2d_component import R2DComponent
 
 class R2DDamageInput(DamageInput):
+    """
+    Class that sets the initial damage of components from an R2D output file.
+    """
+
     DAMAGE_STATE_ID_POSITION_IN_COMPONENT_NAME = 2
 
     def __init__(self, parameters, system):
@@ -14,30 +18,38 @@ class R2DDamageInput(DamageInput):
         self.system = system
 
     def set_initial_damage(self) -> None:
+        """
+        Method sets the initial damage of components and third-party infrastructure simulators.
+        """        
         self.set_damage_in_the_distribution_model()
         self.set_initial_component_damage_level()
 
     def set_initial_component_damage_level(self) -> None:
+        """
+        | Method sets the initial damage of components. 
+        | Component damage state is defined when components are constructed, since components in different damage states have different component templates in the component library when using R2D outputs.
+        | Thus, initial damage level of 1 is set for all components that are damaged (i.e., damage state above 0) and are not infrastructure interfaces, since those components have predefined supply/deman dynamics not conditioned on their initial damage. 
+        """
         for component in self.system.components:
             if self.component_is_damaged(component) and not(self.component_is_interface(component)):
                 component.set_initial_damage_level(1.0)
 
     def set_damage_in_the_distribution_model(self) -> None:
-        for resource_name in self.parameters["DistributionModelDamage"]:
+        """
+        | Method that provides initial damage information to third-party infrastructure simulators through the API.
+        | **TODO**: Generalize this method to other infrastructure systems. At the moment, it is specific to the water system defined in REWET.
+        """
+        for resource_name in self.parameters.get("DistributionModelDamage", []):
             distribution_model = self.system.resources[resource_name]['DistributionModel'] 
             r2d_state = distribution_model.r2d_dict
             r2d_damage = self.configure_damage_file(r2d_state)  
-            # TODO: Check if this can be done in a better way. 
-            # Problem is I need to call the flow simulator here so it modifies the damage of the components specified in the R2D file.
-            # Why not have that done in the R2D file itself?
             state_with_damage = distribution_model.flow_simulator.update_state_with_damages(r2d_damage, damage_time=0, state=r2d_state)
-            # TODO: Generalize this method to other infrastructure systems.
             self.set_water_system_component_damage_information(state_with_damage)
 
     def configure_damage_file(self, r2d_dict) -> dict:
-        # Configure the damage file to only take components which are in the state dict.
-        # It can happen that some components are out of the state dict but are in the damage file.
-        # This is due to the localities constraining the location of components included in the state dict.
+        """
+        Method that configures the damage file to only take components which are considered in pyrecodes model. Some components might be in the R2D damage file but not considered in the pyrecodes model.
+        """
         r2d_damage = read_json_file(self.parameters['DamageFile'])
         configured_r2d_damage = {}
         for asset_type, asset_values in r2d_dict.items():
@@ -52,7 +64,10 @@ class R2DDamageInput(DamageInput):
                 component.damage_information = pipe_damage[component.aim_id]['Damage']
 
     def component_is_damaged(self, component: Component) -> bool:
-        # R2D Damage Input only assigns damage to R2D components.
+        """
+        | Method that checks if the component is damaged.
+        | Note that the R2D Damage Input only assigns damage to R2D components.
+        """        
         if issubclass(type(component), R2DComponent):
             if isinstance(component.recovery_model, NoRecoveryActivityModel):
                 return False

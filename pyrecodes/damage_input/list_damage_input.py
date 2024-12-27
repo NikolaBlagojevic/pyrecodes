@@ -1,6 +1,9 @@
 from pyrecodes.damage_input.damage_input import DamageInput
 
 class ListDamageInput(DamageInput):
+    """
+    Class that reads the initial damage levels of components from a list specified in the system configuration file.
+    """
 
     def __init__(self, parameters, system):
         self.damage_levels = parameters

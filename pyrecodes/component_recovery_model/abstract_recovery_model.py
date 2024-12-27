@@ -3,7 +3,7 @@ from pyrecodes.relation import relation
 
 class AbstractRecoveryModel(RecoveryModel):
     """
-    Abstract class using the component recovery model interface.
+    Abstract class for all component recovery models.
     """
 
     parameters = {}
@@ -34,8 +34,8 @@ class AbstractRecoveryModel(RecoveryModel):
 
     def set_damage_functionality(self, damage_functionality_relation: dict) -> None:
         """
-        Set damage functionality relation. This relation is used to get the component's functionality level based on its current damage level.
-        If no type is specified, constant relation is used.
+        | Set damage functionality relation. This relation is used to get the component's functionality level based on its current damage level.
+        | If no type is specified, constant relation is used.
 
         Args:
             damage_functionality_relation (dict): Damage functionality relation parameters.
@@ -52,7 +52,7 @@ class AbstractRecoveryModel(RecoveryModel):
 
     def get_functionality_level(self) -> float:
         """
-        Get the functionality level of the component.
+        Get the functionality level of the component based on current damage level.
 
         Returns:
             float: The functionality level.
@@ -68,27 +68,28 @@ class AbstractRecoveryModel(RecoveryModel):
     def set_recovery_time_steps(self, time_steps: list) -> None:
         self.recovery_time_steps = time_steps
     
-    def get_time_step_length(self, time_step: int) -> int:
+    def get_time_step_length(self, time_step: int, option_to_use=3) -> int:
         """
-        | Get the time steps in the recovery time stepping interval.
-        | Explain what exactly is done here once you settle on one of the options.
+        | Get the time step length based on the recovery time stepping interval.
+        | Three options for calculating the time step length are provided.
+        | At the moment Option 3 is used, as it seems to work the best. It is not clear which one is most appropriate in general.
         """
-        # Option 1:
-        # return max(time_step - self.recovery_time_steps[max(self.recovery_time_steps.index(time_step)-1, 0)], 1)
-        # Option 2:
-        # if self.recovery_time_steps.index(time_step) == 0:
-        #     return 0, 0
-        # else:
-        #     start_time_step = self.recovery_time_steps[self.recovery_time_steps.index(time_step)-1] + 1
-        #     end_time_step = time_step + 1
-        # Option 3:
-        if self.recovery_time_steps.index(time_step) == 0:
-            return time_step, time_step+1
-        else:
-            start_time_step = self.recovery_time_steps[self.recovery_time_steps.index(time_step)-1] + 1
-            end_time_step = time_step + 1
-
-        return start_time_step, end_time_step
+        if option_to_use == 1:  
+            return max(time_step - self.recovery_time_steps[max(self.recovery_time_steps.index(time_step)-1, 0)], 1)
+        elif option_to_use == 2:
+            if self.recovery_time_steps.index(time_step) == 0:
+                return 0, 0
+            else:
+                start_time_step = self.recovery_time_steps[self.recovery_time_steps.index(time_step)-1] + 1
+                end_time_step = time_step + 1
+            return start_time_step, end_time_step
+        elif option_to_use == 3:
+            if self.recovery_time_steps.index(time_step) == 0:
+                return time_step, time_step+1
+            else:
+                start_time_step = self.recovery_time_steps[self.recovery_time_steps.index(time_step)-1] + 1
+                end_time_step = time_step + 1
+            return start_time_step, end_time_step
     
     def set_met_demand_for_recovery_activities(self, resource_name: str, percent_of_met_demand: float) -> None:
         """

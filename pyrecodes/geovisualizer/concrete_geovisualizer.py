@@ -16,14 +16,17 @@ from pyrecodes.resilience_calculator.resilience_calculator import ResilienceCalc
 
 
 class ConcreteGeoVisualizer():
+    """
+    Class that visualizes recovery using geospatial data plots.
+    """
 
-    def __init__(self, components: list([Component])) -> None:
+    def __init__(self, components: list[Component]) -> None:
         self.set_components(components)
         self.set_component_state_dict()
         self.create_geodataframe()
         self.plotter = ConcretePlotter()
 
-    def set_components(self, components: list([Component])) -> None:
+    def set_components(self, components: list[Component]) -> None:
         self.components = components  
     
     def set_component_state_dict(self) -> None:
@@ -63,7 +66,7 @@ class ConcreteGeoVisualizer():
         if show:
             plt.show()
     
-    def get_component_recovery_time_colors(self, recovery_time_resilience_calculator) -> list([str]):
+    def get_component_recovery_time_colors(self, recovery_time_resilience_calculator) -> list[str]:
         components_recovery_time = list(recovery_time_resilience_calculator.component_recovery_times.values())   
         # remove infinite values and replace them with an integer max
         components_recovery_time = [recovery_time if recovery_time != float('inf') else -1 for recovery_time in components_recovery_time]
@@ -74,14 +77,14 @@ class ConcreteGeoVisualizer():
         cmap = mcm.get_cmap('OrRd')
         return [cmap(norm(recovery_time)) for recovery_time in components_recovery_time], cmap, norm
     
-    def create_recovery_gif(self, time_steps: list([int]), file_name='./2D_buildings_with_supply_demand_TIME_STEP.png', savename='./system_recovery.gif', fps=1) -> None:        
+    def create_recovery_gif(self, time_steps: list[int], file_name='./2D_buildings_with_supply_demand_TIME_STEP.png', savename='./system_recovery.gif', fps=1) -> None:        
         frames = []
         for time_step in time_steps:           
             frame = imageio.v2.imread(file_name.replace('TIME_STEP', str(time_step)))
             frames.append(frame)
-        imageio.mimwrite(savename, # output gif
-                frames,          # array of input frames
-                fps = fps)         # optional: frame per second
+        imageio.mimwrite(savename, 
+                frames,          
+                fps = fps)         
     
     def create_current_state_buildings_and_supply_demand_figure(self, time_step: int, system: System, save=True, 
                                                                 dpi=300, resources_to_plot=['Shelter', 'RepairCrew'],
@@ -189,7 +192,7 @@ class ConcreteGeoVisualizer():
     def component_is_functional(self, component: Component, time_step: int) -> bool:        
         return time_step in component.functional
     
-    def component_is_waiting(self, component_state: list([int])):
+    def component_is_waiting(self, component_state: list[int]):
         return len(component_state) == 0
     
     def create_component_state_legend(self, axis: plt.axis):
@@ -219,7 +222,7 @@ class ConcreteGeoVisualizer():
         if save:      
             plt.savefig(f'2D_buildings_Localities.png', dpi=dpi, bbox_inches='tight', transparent=True, pad_inches=0)  
     
-    def get_component_localities_color(self, components_to_plot: list, number_of_localities: int) -> list([str]):
+    def get_component_localities_color(self, components_to_plot: list, number_of_localities: int) -> list[str]:
         component_localities_color = []
         cmap = mcm.get_cmap('seismic')
         for component in components_to_plot:

@@ -1,9 +1,11 @@
 import geopandas
 from pyrecodes.geovisualizer.concrete_geovisualizer import ConcreteGeoVisualizer
 
-
 class R2D_GeoVisualizer(ConcreteGeoVisualizer):
-
+    """
+    Class that visualizes components created using R2D output files as geospatial plots.
+    """
+    
     def create_geodataframe(self) -> None:
         # TODO: Fix this method, ugly.
         buildings_dataframe = self.create_empty_dataframe()

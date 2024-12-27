@@ -1,6 +1,9 @@
 from abc import ABC, abstractmethod
 
 class ResourceDistributionModel(ABC):
+    """
+    Interface for the Resource Distribution Model class.
+    """
 
     @abstractmethod
     def set_distribution_time_steps(self, distribution_time_steps: list) -> None:

@@ -8,7 +8,7 @@ class R2DSubsystemCreator(SubsystemCreator):
     Create a System based on SimCenter R2D Tool's JSON output file.
     """
 
-    def create_components_in_localities(self) -> list([Component]):
+    def create_components_in_localities(self) -> list[Component]:
         return self.create_components()
     
     def set_component_configurator(self) -> None:
@@ -18,7 +18,7 @@ class R2DSubsystemCreator(SubsystemCreator):
             recovery_time_stepping = self.parameters.get('RecoveryTimeStepping', None)
             self.component_configurator[component_type] = component_configurator_class(system_level_data, recovery_time_stepping)
     
-    def create_components(self) -> list([Component]):
+    def create_components(self) -> list[Component]:
         info_json_file = read_json_file(self.parameters['R2DJSONFile_Info'])
         results_json_file = read_json_file(self.damage_input['Parameters']['DamageFile'])
         components = []
@@ -38,10 +38,13 @@ class R2DSubsystemCreator(SubsystemCreator):
     
     def create_component(self, component_info: dict, damage_info: dict, 
                          asset_type: str, asset_subtype: str) -> Component:
-        component_type = component_info['GeneralInformation']['type']
+        """
+        | Method to create a component.
+        | It is assumed that the names of the components in the component library are in the format 'DS{damage_state}_{component_type}' 
+        | Component type is the same string as the asset subtype of the component in the R2D JSON file, e.g., 'Building', 'Bridge', etc.
+        """
+        component_type = asset_subtype
         component_damage_state = self.get_component_damage_state(damage_info, component_type)
-        # Here I assume that the names of the components in the component library are in the format 'DS{damage_state}_{component_type}' 
-        # Component type is the same string as the type of the component in the R2D JSON file, e.g., 'Building', 'Bridge', etc.
         component = self.get_component_object(f'DS{component_damage_state}_{component_type}')
         component_data = {'Information': component_info, 'Loss': damage_info.get('Loss', {}), 'AssetType':asset_type,
                           'AssetSubtype': asset_subtype}
@@ -50,9 +53,9 @@ class R2DSubsystemCreator(SubsystemCreator):
 
     def get_component_geometry(self, component_info: dict) -> list:
         """
-        Method creates a shapely point representing component's geometry based on the information provided in the R2D location data.
+        | Method creates a shapely point representing component's geometry based on the information provided in the R2D location data.
 
-        TODO: Needs improvement for components whose geometry are lines (roads, pipes) and polygons. Future work.        
+        | TODO: Needs improvement for components whose geometry are lines (roads, pipes) and polygons. Future work.        
         """
         return create_component_geometry_as_point([component_info['GeneralInformation']['location']['latitude'], component_info['GeneralInformation']['location']['longitude']])
     

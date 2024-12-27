@@ -3,15 +3,18 @@ from pyrecodes.resource_distribution_model.resource_distribution_model import Re
 from pyrecodes.component.component import Component
 
 class ResidualDemandTrafficDistributionModelConstructor(ConcreteResourceDistributionModelConstructor):
+    """
+    | Class for constructing the Residual Demand Traffic Distribution Model.
 
-    # from residual_demand_traffic_simulator import residual_demand_assignment
+    | **TODO**: Implement the class once the residual demand traffic distribution model is implemented.
 
-    def construct(self, resource_name: str, resource_parameters: dict, components: list([Component]), distribution_model: ResourceDistributionModel):
+    """
+
+    def construct(self, resource_name: str, resource_parameters: dict, components: list[Component], distribution_model: ResourceDistributionModel):
         super().construct(resource_name, resource_parameters, components, distribution_model)
         # distribution_model.traffic_simulator = self.residual_demand_assignment.main
         distribution_model.traffic_simulator = None
         distribution_model.r2d_dict = self.create_r2d_dict(components)
-        distribution_model.od_matrix = self.create_od_matrix(components)
 
     def create_r2d_dict(self, components):
         """
@@ -29,7 +32,3 @@ class ResidualDemandTrafficDistributionModelConstructor(ConcreteResourceDistribu
                 r2d_dict["TransportationNetwork"][component_type][component.aim_id] = component_r2d_dict
         
         return r2d_dict
-    
-    def create_od_matrix(self, components):
-        # TODO: Implement method to create OD matrix from components. If we can create an OD matrix based on the R2D JSON file then this method is not needed.
-        return []

@@ -4,13 +4,16 @@ from pyrecodes.component.component import SupplyOrDemand
 import numpy as np
 
 class SingleResourceSystemMatrixCreator():
+    """
+    Class to create the system matrix for a single resource used by the utility distribution model.
+    """
     
-    components: list([Component])
+    components: list[Component]
     matrix: np.ndarray
     NUM_COLUMN_SETS = 5  # start_locality/end_locality/supply/demand/demand_met
     ROWS_PER_COMPONENT = 2  # operation demand/recovery demand
 
-    def __init__(self, components: list([Component]), resource_name: str):
+    def __init__(self, components: list[Component], resource_name: str):
         self.components = components
         self.resource_name = resource_name
         self.RECOVERY_DEMAND_ROW_OFFSET = len(components)
@@ -75,5 +78,5 @@ class SingleResourceSystemMatrixCreator():
     def get_demand(self, component_row_id: int) -> None:
         return self.matrix[component_row_id, self.DEMAND_COL_ID]
 
-    def update_components(self, components: list([Component])) -> None:
+    def update_components(self, components: list[Component]) -> None:
         self.components = components

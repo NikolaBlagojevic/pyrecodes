@@ -6,6 +6,11 @@ from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComp
 from pyrecodes.component.component import SupplyOrDemand
 
 class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
+    """
+    | Class that connects pyrecodes with the residual demand traffic simulator.
+
+    | **TODO**: Implement the class once the residual demand traffic distribution model is implemented.
+    """
 
     def __init__(self, resource_name: str, resource_parameters: dict, components: list([Component])):
         self.constructor = ResidualDemandTrafficDistributionModelConstructor()

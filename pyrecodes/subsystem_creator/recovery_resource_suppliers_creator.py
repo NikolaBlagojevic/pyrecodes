@@ -2,6 +2,9 @@ from pyrecodes.subsystem_creator.subsystem_creator import SubsystemCreator
 from pyrecodes.component.component import Component
 
 class RecoveryResourceSuppliersCreator(SubsystemCreator):
+    """
+    Class to create recovery resource supplier components.
+    """
 
     def create_components_in_localities(self) -> list[Component]:     
         return self.create_recovery_resource_suppliers()

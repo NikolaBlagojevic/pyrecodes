@@ -2,6 +2,9 @@ from pyrecodes.resource.resource import Resource
 from pyrecodes.relation import relation
 
 class ConcreteResource(Resource):
+    """
+    Class to represent a resource in a component object.
+    """
 
     def __init__(self, name: str, parameters: dict, default_relation='Constant') -> None:
         self.name = name
@@ -49,6 +52,7 @@ class ConcreteResource(Resource):
 
     def update_based_on_consumption(self, consumption: float) -> None:
         """
-        Concrete Resource is non-consumable.
+        | Concrete Resource is assumed to be non-consumable.
+        | Use ConsumableResource class for consumable resources.
         """
         pass 

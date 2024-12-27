@@ -7,15 +7,19 @@ import json
 import math
 
 class TransferServiceDistributionModelPotentialPaths(AbstractResourceDistributionModel): 
+    """
+    | Class to check whether a resource can be transferred between localities. 
+    | Potential paths are defined among localities. The class checks whether any of the potential paths can be used to transfer the resource.
+    """
 
-    components: list([Component])
+    components: list[Component]
     resource_name: str
     potential_paths: dict
 
-    def __init__(self, resource_name: str, resource_parameters: dict, components: list([Component])) -> None:
+    def __init__(self, resource_name: str, resource_parameters: dict, components: list[Component]) -> None:
         self.constructor = ConcreteResourceDistributionModelConstructor()
         self.constructor.construct(resource_name, resource_parameters, components, self)
-        self.set_potential_paths(resource_parameters["PathSetsFile"])
+        self.set_potential_paths(resource_parameters.get("PathSetsFile", ''))
         self.create_potential_paths() 
 
     def set_potential_paths(self, filename='') -> None:
@@ -26,9 +30,11 @@ class TransferServiceDistributionModelPotentialPaths(AbstractResourceDistributio
                 self.potential_paths_list = json.load(file)
     
     def create_potential_paths(self) -> None:
-        """ The method finds the links that are used in potential paths. 
-        It creates a list of links that is latter queried to find the 
-        optimal path from the list of potential paths."""     
+        """ 
+        | The method finds the links that are used in potential paths. 
+        | It creates a list of links that is latter queried to find the 
+        optimal path from the list of potential paths.
+        """     
         self.potential_paths = {} 
         for path_string, localities_list in self.potential_paths_list.items():       
             self.potential_paths[path_string] = [] 
@@ -60,15 +66,19 @@ class TransferServiceDistributionModelPotentialPaths(AbstractResourceDistributio
                 break
 
     def distribute(self, time_step: int) -> None:
-        """Distribute method updates the potential paths between all locality pairs.
-        This is done implicitly when using the potential path sets,
-        as components' transfer service supply is updated in the system class. """
+        """
+        | Distribute method updates the potential paths between all locality pairs.
+        | This is done implicitly when using the potential path sets,
+        as components' transfer service supply is updated in the system class.
+        """
         pass                                                                                    
                         
     def get_optimal_path(self, start_locality: int, end_locality: int) -> tuple:
-        """Method finds the optimal path, from all potential paths between two localities.
-            Optimality is defined as maximizing the transfer service supply.
-            Transfer service supply of a path is the minimal supply among its constitutive links."""   
+        """
+        | Method finds the optimal path, from all potential paths between two localities.
+        | Optimality is defined as maximizing the transfer service supply.
+        | Transfer service supply of a path is the minimal supply among its constitutive links.
+        """   
         potential_path_links = self.potential_paths.get(f'from {int(start_locality)} to {int(end_locality)}', None)
       
         if potential_path_links is None:
@@ -88,8 +98,10 @@ class TransferServiceDistributionModelPotentialPaths(AbstractResourceDistributio
             
             return optimal_transfer_supply, optimal_path      
 
-    def get_path_supply(self, path: list([Component])) -> float:
-        """Get the supply capacity of a path as the minimum of links supply."""    
+    def get_path_supply(self, path: list[Component]) -> float:
+        """
+        Get the supply capacity of a path as the minimum of links supply.
+        """    
         return min([link.get_current_resource_amount(SupplyOrDemand.SUPPLY.value, 
                                                     StandardiReCoDeSComponent.SupplyTypes.SUPPLY.value, 
                                                     self.resource_name) for link in path])       

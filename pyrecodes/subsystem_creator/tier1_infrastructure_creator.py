@@ -4,6 +4,9 @@ from pyrecodes.component_configurator.tier1_interface_configurator import Tier1I
 from pyrecodes.component.component import Component
 
 class Tier1InfrastructureCreator(SubsystemCreator):
+    """
+    Class to create Tier 1 or Tier 2 infrastructure interface components.
+    """
 
     def set_component_configurator(self) -> None:
         system_level_data = {key: self.constants.get(key, None) for key in ComponentConfigurator.SYSTEM_LEVEL_DATA}

@@ -3,7 +3,7 @@ import copy
 
 class JSONSubsystemCreator(SubsystemCreator):
     """
-    Subsystem Creator where all components are explicitly specified in JSON system configuration file.
+    Subsystem Creator where all components are explicitly specified in a JSON system configuration file.
     """
 
     def create_components_in_localities(self) -> None:

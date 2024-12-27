@@ -12,7 +12,7 @@ class SystemCreator(ABC):
         pass
 
     @abstractmethod
-    def create_components(self) -> list([Component]):
+    def create_components(self) -> list[Component]:
         pass
 
     @abstractmethod

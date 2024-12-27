@@ -11,15 +11,20 @@ import numpy as np
 import itertools
 
 class UtilityDistributionModel(AbstractResourceDistributionModel):
-    components: list([Component])
+    """
+    | Class to distribute resources in the system. This is the simplest distribution model, which distributes resources based on the priority of the components.
+    | Resource distribution is done using the system matrix, contianing the supply and demand of each component.
+    | No physical laws (e.g., power flow or water flow physics) are considered in the distribution of resources.
+    """
+    components: list[Component]
     resource_name: str
     transfer_service_distribution_model: ResourceDistributionModel
     system_matrix: SingleResourceSystemMatrixCreator
 
-    def __init__(self, resource_name: str, resource_parameters: dict, components: list([Component])):
+    def __init__(self, resource_name: str, resource_parameters: dict, components: list[Component]):
         self.constructor = UtilityDistributionModelConstructor()
         self.constructor.construct(resource_name, resource_parameters, components, self)
-        self.transfer_service_distribution_model = None #consider moving this into the constructor or finding a better solution-the point is to have an initial value for this property
+        self.transfer_service_distribution_model = None
 
     def distribute(self, time_step: int) -> None:
         if self.distribute_at_this_time_step(time_step):
@@ -47,8 +52,8 @@ class UtilityDistributionModel(AbstractResourceDistributionModel):
                                                                                      component_demand_types)
         return component_row_in_system_matrix, component_demand_types
 
-    def set_component_row_based_on_demand_type(self, component_priorities_id: list([int]),
-                                               component_demand_types: list([str])):
+    def set_component_row_based_on_demand_type(self, component_priorities_id: list[int],
+                                               component_demand_types: list[str]):
         component_row_ids = []
         for component_priority_id, component_demand_type in zip(component_priorities_id, component_demand_types):
             if component_demand_type == StandardiReCoDeSComponent.DemandTypes.RECOVERY_DEMAND.value:
@@ -96,7 +101,7 @@ class UtilityDistributionModel(AbstractResourceDistributionModel):
                 elif component_demand_type == StandardiReCoDeSComponent.DemandTypes.RECOVERY_DEMAND.value:
                     self.set_met_demand_for_recovery_activities(component_row_id, percent_of_met_demand)
                 
-                # suppliers = self.reset_suppliers(initial_suppliers) # TODO: why is this commented out? CHECK!   
+                # suppliers = self.reset_suppliers(initial_suppliers) # TODO: why is this commented out? Check.  
 
         return suppliers
 
@@ -163,9 +168,11 @@ class UtilityDistributionModel(AbstractResourceDistributionModel):
         return self.system_matrix.get_demand(component_row_id)
 
     def get_transfer_service_demand(self, component_row_id: int, demand_type: str) -> float:
-        """Method assumes that the transfer service demand is the same as the demand for the utility resource."""
+        """
+        Method assumes that the transfer service demand is the same as the demand for the utility resource.
+        """
         resource_name = self.resource_name
-        # consider moving if statement to a separate method
+        
         if demand_type == StandardiReCoDeSComponent.DemandTypes.RECOVERY_DEMAND.value:
             component_row_id -= self.system_matrix.RECOVERY_DEMAND_ROW_OFFSET
         return self.components[component_row_id].get_current_resource_amount(
@@ -173,7 +180,7 @@ class UtilityDistributionModel(AbstractResourceDistributionModel):
                                                                             demand_type, resource_name)       
 
     def modify_demand_to_account_for_resource_transfer(self, supplier_start_locality: int, supplier_end_locality: int,
-                                                       component_demand: float, component_localities: list([int]),
+                                                       component_demand: float, component_localities: list[int],
                                                        transfer_service_demand: float) -> float:
         locality_pairs = self.get_locality_pairs(supplier_start_locality, supplier_end_locality, component_localities)
         
@@ -185,7 +192,9 @@ class UtilityDistributionModel(AbstractResourceDistributionModel):
             return math.inf, best_path_functionality
 
     def get_locality_pairs(self, supplier_start_locality: int, supplier_end_locality: int, component_localities: list) -> list:
-        """Finds non-duplicate locality pairs between supplier and component."""
+        """
+        Finds non-duplicate locality pairs between supplier and component.
+        """
         locality_pairs = [[supplier_start_locality, component_localities[0]], [supplier_start_locality, component_localities[1]], 
                             [supplier_end_locality, component_localities[0]], [supplier_end_locality, component_localities[1]]]
         locality_pairs.sort()
@@ -200,9 +209,11 @@ class UtilityDistributionModel(AbstractResourceDistributionModel):
         return best_path_functionality
     
     def get_path_functionality(self, start_locality, end_locality, transfer_service_demand):
-        """Method calculates path functionality by comparing the transfer service supply
-            of the optimal path with the demand.
-            Optimal path not used at the moment. If we need which links are used this is important. Future work."""   
+        """
+        Method calculates path functionality by comparing the transfer service supply
+        of the optimal path with the demand.
+        TODO: Optimal path not used at the moment. If we need which links are used this is important. Future work.
+            """   
         if start_locality == end_locality:            
             return 1.0
         else:
@@ -210,10 +221,12 @@ class UtilityDistributionModel(AbstractResourceDistributionModel):
             return [1.0 if optimal_transfer_supply > transfer_service_demand else 0.0][0]
 
     def get_optimal_path(self, start_locality: int, end_locality: int) -> float:
-        """Method outputs the supply capacity and the localities of the optimal path between two localities.
+        """
+        Method outputs the supply capacity and the localities of the optimal path between two localities.
         If transfer services are not needed to transfer the resource, transfer service distribution model
         should not be assigned (stay None) and the method will return math.inf as the optimal path supply capacity.
-        Works only when start and end locality are different. If they are the same, method get_path_functionality returns the appropriate values."""
+        Works only when start and end locality are different. If they are the same, method get_path_functionality returns the appropriate values.
+        """
         if self.transfer_service_distribution_model:
             return self.transfer_service_distribution_model.get_optimal_path(start_locality, end_locality)
         else:
@@ -224,8 +237,6 @@ class UtilityDistributionModel(AbstractResourceDistributionModel):
         Get the scope of the Re-CoDeS Resilience Calculator to get total supply and demand.
 
         Scope can be 'All' or 'Locality X', where X is the locality number.
-
-        TODO: Consider moving this method to the ResilienceCalculator class.
 
         This method works only if you have the system matrix in the distribution model.
         """

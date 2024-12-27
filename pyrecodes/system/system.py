@@ -12,7 +12,7 @@ class System(ABC):
         | system_creator (SystemCreator): The system creator object responsible for system initialization.
 
     """
-    components: list([Component])
+    components: list[Component]
     resources: dict
     system_creator: SystemCreator
 

@@ -23,7 +23,7 @@ class BuiltEnvironment(System):
 
     """
 
-    components: list([Component])
+    components: list[Component]
     resources: dict
     system_creator: SystemCreator
     FINISH = False

@@ -2,6 +2,9 @@ from abc import ABC, abstractmethod
 from pyrecodes.relation import relation
 
 class Resource(ABC):
+    """
+    Interface for a resource class in a component object.    
+    """
     name: str
     initial_amount: float
     current_amount: float

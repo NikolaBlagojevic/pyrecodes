@@ -1,5 +1,5 @@
 """
-Module used to define probability distributions used in the system.
+Module used to define probability distributions used in pyrecodes.
 """
 
 from abc import ABC, abstractmethod

@@ -6,13 +6,13 @@ from pyrecodes.component.component import SupplyOrDemand
 
 class HousingDistributionModel(AbstractResourceDistributionModel):
     """
-    Class to distribute housing resources in the system. 
+    | Class to distribute housing resources in the system. 
 
-    This class checks whether people living in a house can keep living there - it compares a house's supply of housing with its demand for housing.
-    Does not account for temporary shelter or distribution of people between houses.
+    | This class checks whether people living in a house can keep living there - it compares a house's supply of housing with its demand for housing.
+    | Does not account for temporary shelter or distribution of people between houses.
     """
 
-    def __init__(self, resource_name: str, resource_parameters: dict, components: list([Component])):
+    def __init__(self, resource_name: str, resource_parameters: dict, components: list[Component]):
         self.constructor = ConcreteResourceDistributionModelConstructor()
         self.constructor.construct(resource_name, resource_parameters, components, self)
         self.transfer_service_distribution_model = None

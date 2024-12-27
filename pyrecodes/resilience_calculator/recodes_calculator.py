@@ -2,6 +2,9 @@ import numpy as np
 from pyrecodes.resilience_calculator.resilience_calculator import ResilienceCalculator
 
 class ReCoDeSCalculator(ResilienceCalculator):
+    """
+    Resilience calculator class that assesses the resilience of a system based on the ReCoDeS framework.    
+    """
 
     def __init__(self, parameters: dict) -> None:   
         self.system_supply = {}
@@ -15,7 +18,6 @@ class ReCoDeSCalculator(ResilienceCalculator):
             self.system_consumption[resource_name] = []
     
     def __str__(self):
-        # define what the print() method should return
         lack_of_resilience = self.calculate_resilience()
         output = 'Re-CoDeS Resilience Calculator \n'
         output += 'Scope: ' + self.scope + '\n'

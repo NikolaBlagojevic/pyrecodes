@@ -1,12 +1,14 @@
 from pyrecodes.resilience_calculator.resilience_calculator import ResilienceCalculator
 
 class FullRecoveryTimeCalculator(ResilienceCalculator):
+    """
+    Resilience calculator class that calculates the recovery time for the system defined as the time at which all components are damage-free.
+    """
 
     def __init__(self) -> None:
         self.current_recovery_time = None
 
     def __str__(self):
-        # define what the print() method should return
         if self.current_recovery_time is None:
             return 'Full Recovery Time Resilience Calculator \n' + 'Recovery time: ' + 'Not yet recovered.' + '\n'
         else:

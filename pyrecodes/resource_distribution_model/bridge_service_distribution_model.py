@@ -7,7 +7,8 @@ from pyrecodes.component.component import SupplyOrDemand
 
 class BridgeServiceDistributionModel(AbstractResourceDistributionModel):   
     """  
-    Bridge service is not consumable!
+    | Class that captures the effect of bridge functionality on the functionality of components located on a bridge. If the bridge is not functional, the components (e.g., roadways, power lines) on the bridge are not functional either.
+    | Bridge service cannot be consumable with the current implementation.
     """    
 
     def __init__(self, resource_name: str, resource_parameters: dict, components: list([Component])) -> None:
@@ -23,8 +24,11 @@ class BridgeServiceDistributionModel(AbstractResourceDistributionModel):
                 self.bridges.append(component)
     
     def component_is_a_bridge(self, component):
-        # TODO: This is a workaround until a Bridge class is created. Then check the class name instead of the component name.
-        return component.name == 'Bridge'   
+        """
+        | Method to identify components that are bridges.
+        | This method is a workaround until a Bridge class is created. Then check the class name instead of the component name.
+        """
+        return 'Bridge' in component.name
     
     def map_links_to_bridges(self):
         """
@@ -37,7 +41,10 @@ class BridgeServiceDistributionModel(AbstractResourceDistributionModel):
                     self.links_on_a_bridge[bridge_id].append(component)
     
     def component_is_on_the_bridge(self, component, bridge_component):
-        # assume bridges go in single direction - that's why use sort
+        """
+        | Method to identify components that are on a bridge.
+        | Assume bridges are in a single direction - that's why use sort.
+        """
         component_localities = component.get_locality()
         bridges_localities = bridge_component.get_locality()
         return component_localities == bridges_localities 
@@ -49,7 +56,6 @@ class BridgeServiceDistributionModel(AbstractResourceDistributionModel):
                                                         StandardiReCoDeSComponent.SupplyTypes.SUPPLY.value, 
                                                         self.resource_name)
                 for link in self.links_on_a_bridge[bridge_id]:
-                    # TODO: what happens with recovery demand? - if workers need a bridge to cross? but that's the roads then? not sure if needed?
                     bridge_demand = link.get_current_resource_amount(SupplyOrDemand.DEMAND.value, 
                                                         StandardiReCoDeSComponent.DemandTypes.OPERATION_DEMAND.value, 
                                                         self.resource_name)

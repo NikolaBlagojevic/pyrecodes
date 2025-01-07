@@ -155,7 +155,13 @@ class R2DBuildingConfigurator(R2DComponentConfigurator):
             for resource_name, amount in building_data['Information']['GeneralInformation']['Demand'].items():
                 self.set_component_operation_demand(component, resource_name, amount)
 
-class R2DRoadwayConfigurator(R2DComponentConfigurator):
+class R2DTransportationComponentConfigurator(R2DComponentConfigurator):
+
+    def set_general_information(self, component: Component, component_data: dict):
+        super().set_general_information(component, component_data)
+        component.general_information['FunctionalityLevel'] = 1.0
+
+class R2DRoadwayConfigurator(R2DTransportationComponentConfigurator):
     """
     Class that sets parameters of a Roadway as provided in the R2D output files.
     """
@@ -165,7 +171,7 @@ class R2DRoadwayConfigurator(R2DComponentConfigurator):
 
     def set_geometry(self, component, component_data: dict):
         component.geometry = component_data['Information']['GeneralInformation']['geometry']
-        component.length = self.get_road_length(component)        
+        component.length = self.get_road_length(component)
 
     def set_repair_configurator(self, component: Component) -> None:
         self.repair_configurator = R2DRoadwayRepairConfigurator(component, self.system_level_data)  
@@ -209,7 +215,7 @@ class R2DPipeConfigurator(R2DComponentConfigurator):
     def set_r2d_dict_getter(self, component: Component):        
         component.r2d_dict_getter = R2DPipeDictGetter(component)
 
-class R2DBridgeConfigurator(R2DComponentConfigurator):
+class R2DBridgeConfigurator(R2DTransportationComponentConfigurator):
     """
     Class that sets parameters of a Bridge as provided in the R2D output files.
 
@@ -232,7 +238,7 @@ class R2DBridgeConfigurator(R2DComponentConfigurator):
     def set_supply_parameters(self, component: Component, component_data: dict) -> None:
         pass
     
-class R2DTunnelConfigurator(R2DComponentConfigurator):
+class R2DTunnelConfigurator(R2DTransportationComponentConfigurator):
     """
     Class that sets parameters of a Tunnel as provided in the R2D output files.
 

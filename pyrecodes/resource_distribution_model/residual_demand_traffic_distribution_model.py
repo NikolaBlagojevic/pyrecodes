@@ -2,52 +2,70 @@ from pyrecodes.resource_distribution_model.abstract_resource_distribution_model 
 from pyrecodes.resource_distribution_model.residual_demand_traffic_distribution_model_constructor import ResidualDemandTrafficDistributionModelConstructor
 from pyrecodes.resource_distribution_model.spatial_resource_aggregator import SpatialResourceAggregator
 from pyrecodes.component.component import Component
-from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComponent
-from pyrecodes.component.component import SupplyOrDemand
 
 class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
-    """
-    | Class that connects pyrecodes with the residual demand traffic simulator.
 
-    | **TODO**: Implement the class once the residual demand traffic distribution model is implemented.
-    """
-
-    def __init__(self, resource_name: str, resource_parameters: dict, components: list([Component])):
+    def __init__(self, resource_name: str, resource_parameters: dict, components: list[Component]):
         self.constructor = ResidualDemandTrafficDistributionModelConstructor()
         self.constructor.construct(resource_name, resource_parameters, components, self)
         self.transfer_service_distribution_model = None #consider moving this into the constructor or finding a better solution-the point is to have an initial value for this property
         self.spatial_resource_aggregator = SpatialResourceAggregator()
+        self.travel_times = []
 
     def distribute(self, time_step: int) -> None:
+        """
+        | Calculate travel times if the model is supposed to distribute traffic at this time step.
+        | If not, append an empty list to the travel_times list to keep the length of the list consistent with the number of time steps.
+        """
         if self.distribute_at_this_time_step(time_step):
             self.update_r2d_dict()
-            self.update_od_matrix()
             self.distribute_traffic()
+        else:
+            self.travel_times.append([])
 
     def update_r2d_dict(self):
-        # update the values for each component related to its functionality in the dict that follows the structure of the R2D JSON files 
-        self.r2d_dict = self.r2d_dict
+        """
+        | Method to update the r2d_dict based on the current state of the components.
+        | At the moment, the r2d_dict is created from scratch at each time step. Not efficient, optimize later.
+        """
+        self.r2d_dict = self.constructor.create_r2d_dict(self.components)
 
-    def distribute_traffic(self):
-        # Call the residual demand traffic simulator to distribute traffic. Not sure what to do with travel times atm, save them as file or store as a property?
-        pass
-        # self.travel_times = self.traffic_simulator(self.r2d_dict, self.od_matrix, hour_list=list(range(5, 24)), quarter_list=[0,1,2,3,4,5], closure_hours=[])
-            
-    def update_od_matrix(self):
-        # modify the od matrix based on population dislocation 
-        # if it's possible to create the od matrix based on r2d json, than this method is not needed
-        population_per_locality = self.spatial_resource_aggregator.aggregate_per_locality(self.components, 'Shelter', supply_or_demand=SupplyOrDemand.SUPPLY.value, supply_or_demand_type=StandardiReCoDeSComponent.SupplyTypes.SUPPLY.value)
-        self.od_matrix = self.change_od_matrix_based_on_population_dislocation(population_per_locality)
-
-    def change_od_matrix_based_on_population_dislocation(self, population_per_locality: dict) -> dict:
-        # modify the od matrix based on population dislocation
-        return self.od_matrix
+    def distribute_traffic(self) -> None:
+        self.travel_times.append(self.flow_simulator.simulate(self.r2d_dict))
 
     def get_total_supply(self, scope: str) -> float:
-        pass
+        """
+        Supply is calculated the same as consumption.
+        """
+        return self.get_total_consumption(scope)
 
     def get_total_demand(self, scope: str) -> float:
-        pass
+        """
+        | Demand for the transportation service is the number of agents that need to travel from one location to another.
+        | If traffic is not distributed at the current time step, demand is 0.
+        """
+        if scope == 'All':
+            if len(self.travel_times[-1]) > 0:
+                return len(self.travel_times[-1])
+            else:
+                return 0
+        else:
+            raise ValueError("Scope not implemented. Only 'All' is supported.")
 
     def get_total_consumption(self, scope: str) -> float:
-        pass
+        """
+        | Consumption of the transportation service is the number of agents whose travel time is not extended beyond the pre-disaster time times the TRIP_CUTOFF_THRESHOLD.
+        | If traffic is not distributed at the current time step, consumption is 0.
+        """
+        if scope == 'All':
+            if len(self.travel_times[-1]) > 0:
+                completed_trips = 0
+                for agent_pre_disaster, agent_now in zip(self.travel_times[0]['travel_time_used'], self.travel_times[-1]['travel_time_used']):
+                    if agent_pre_disaster * self.TRIP_CUTOFF_THRESHOLD >= agent_now:
+                        completed_trips += 1
+                return completed_trips
+            else:
+                return 0
+        else:
+            raise ValueError("Scope not implemented. Only 'All' is supported.")
+        

@@ -6,7 +6,7 @@ from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComp
 from pyrecodes.utilities import get_class
 from pyrecodes.system.distribution_list_creator import DistributionListCreator
 from pyrecodes.system.recovery_target_checker import NoDamageRecoveryTargetChecker
-import pickle
+import dill
 import json
 import math
 
@@ -281,8 +281,8 @@ class BuiltEnvironment(System):
         Args:
             savename (str, optional): The name of the pickle file to save the system object. Defaults to './system_object.pickle'.
         """
-        with open(savename, 'wb') as file:
-            pickle.dump(self, file) 
+        with open(savename, 'wb') as file: 
+            dill.dump(self, file) 
     
     def load_as_pickle(self, loadname='./system_object.pickle') -> None:
         """
@@ -295,5 +295,5 @@ class BuiltEnvironment(System):
             BuiltEnvironmentSystem: The loaded system object.
         """
         with open(loadname, 'rb') as file:
-            system = pickle.load(file) 
+            system = dill.load(file) 
         return system 

@@ -1344,7 +1344,7 @@
                         {
                             "start": 0,
                             "end": 50,
-                            "step": 10
+                            "step": 5
                         },
                         {
                             "start": 50,
@@ -1352,7 +1352,16 @@
                             "step": 50
                         }
                     ],
-                    "Directory": "./Example 5/traffic_simulation_data/"
+                    "Directory": "./Example 5/transportation_network/",
+                    "EdgeFile": "./Example 5/transportation_network/ProcessedRoadNetworkRoads.geojson",
+                    "NodeFile": "./Example 5/transportation_network/ProcessedRoadNetworkNodes.geojson",
+                    "ODFilePre":"./Example 5/transportation_network/OD_Matrix.csv",
+                    "TwoWayEdges":true,
+                    "HourList": [7, 8],
+                    "CapacityRuleset":"./Example 5/transportation_network/transportation_capacity_ruleset.py",
+                    "DemandRuleset":"./Example 5/transportation_network/transportation_demand_ruleset.py",
+                    "ResultsFolder": "./Example 5/transportation_network/results",
+                    "TripCutoffThreshold": 3
                 }
             }
         },
@@ -1394,7 +1403,8 @@
                     "Money",
                     "RepairCrew_Buildings",
                     "RepairCrew_Transportation",
-                    "RepairCrew_Water"
+                    "RepairCrew_Water",
+                    "TransportationService"
                 ]
             }
         },

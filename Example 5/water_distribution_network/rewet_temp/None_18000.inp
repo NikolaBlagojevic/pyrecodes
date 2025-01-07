@@ -1,6 +1,6 @@
 ; Filename: /Users/nikola/pyrecodes/Example 5/water_distribution_network/waterNetwork.inp
 ; WNTR: 1.1.0.1.2
-; Created: 2024-12-20 14:30:17
+; Created: 2025-01-06 17:13:38
 [TITLE]
 
 [JUNCTIONS]
@@ -1434,8 +1434,8 @@
  node_1428                          0               0                            ;
  node_1429                          0    3.2465677873                            ;
  node_1430                          0    3.2465677873                            ;
- 6TH_3_breakA_1                     0               0                            ;
- 6TH_3_breakB_1                     0               0                            ;
+ 2ND_breakA_1                       0               0                            ;
+ 2ND_breakB_1                       0               0                            ;
 
 [RESERVOIRS]
 ;ID                                   Head                  Pattern
@@ -1443,15 +1443,15 @@
  res_2                   164.04199475                            ;
  res_3                   164.04199475                            ;
  1                                  0                            ;
- 6TH_3_breakA_1_nn                  0                            ;
- 6TH_3_breakB_1_nn                  0                            ;
+ 2ND_breakA_1_nn                    0                            ;
+ 2ND_breakB_1_nn                    0                            ;
 
 [TANKS]
 ;ID                              Elevation           Init Level            Min Level            Max Level             Diameter           Min Volume Volume Curve         Overflow            
 
 [PIPES]
 ;ID                   Node1                Node2                              Length             Diameter            Roughness           Minor Loss               Status
- 2ND                  node_1247            node_835                366.08775506               6             100               0                 Open   ;
+ 2ND                  node_1247            2ND_breakA_1            91.521938765               6             100               0                 Open   ;
  2ND_1                node_200             node_1247               435.96844458               6             100               0                 Open   ;
  3RD                  node_649             node_738                332.21233674               6             100               0                 Open   ;
  3RD_1                node_858             node_833                 246.6051123               6             100               0                 Open   ;
@@ -1491,7 +1491,7 @@
  6TH                  node_85              node_86                 265.18212862               6             100               0                 Open   ;
  6TH_1                node_430             node_976                383.10105334               6             100               0                 Open   ;
  6TH_2                node_664             node_1102               332.94691794               6             100               0                 Open   ;
- 6TH_3                node_1102            6TH_3_breakA_1          86.922002463               6             100               0                 Open   ;
+ 6TH_3                node_1102            node_430                347.68800985               6             100               0                 Open   ;
  6TH_4                node_86              node_713                 74.11665365               6             100               0                 Open   ;
  6TH_5                node_784             node_664                278.14953922               6             100               0                 Open   ;
  6TH_6                node_713             node_784                 66.22809648               6             100               0                 Open   ;
@@ -3474,9 +3474,9 @@
  from_res_2           res_2                node_685                 32.80839895    472.44094488             100               0                   CV   ;
  from_res_3           res_3                node_8                   32.80839895    629.92125984             100               0                   CV   ;
  2                    node_537             1                                  1              16             100               0                 Open   ;
- 6TH_3_Break_1        6TH_3_breakB_1       node_430                260.76600739               6             100               0                 Open   ;
- 6TH_3_breakA_1-rlk   6TH_3_breakA_1       6TH_3_breakA_1_nn        3.280839895               6         1000000               1                   CV   ;
- 6TH_3_breakB_1-rlk   6TH_3_breakB_1       6TH_3_breakB_1_nn        3.280839895               6         1000000               1                   CV   ;
+ 2ND_Break_1          2ND_breakB_1         node_835                274.56581629               6             100               0                 Open   ;
+ 2ND_breakA_1-rlk     2ND_breakA_1         2ND_breakA_1_nn          3.280839895               6         1000000               1                   CV   ;
+ 2ND_breakB_1-rlk     2ND_breakB_1         2ND_breakB_1_nn          3.280839895               6         1000000               1                   CV   ;
 
 [PUMPS]
 ;ID                   Node1                Node2                Properties          
@@ -5002,10 +5002,10 @@ res_1            -122.273000000         37.788000000
 res_2            -122.234000000         37.771000000
 res_3            -122.231000000         37.769000000
 1                -122.236000000         37.745000000
-6TH_3_breakA_1       -122.279000000         37.774250000
-6TH_3_breakB_1       -122.279000000         37.774250000
-6TH_3_breakA_1_nn       -121.279000000         38.774250000
-6TH_3_breakB_1_nn       -121.279000000         38.774250000
+2ND_breakA_1       -122.289750000         37.778250000
+2ND_breakB_1       -122.289750000         37.778250000
+2ND_breakA_1_nn       -121.289750000         38.778250000
+2ND_breakB_1_nn       -121.289750000         38.778250000
 
 [VERTICES]
 ;Link      X-Coord    Y-Coord   

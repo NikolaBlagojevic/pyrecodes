@@ -19,5 +19,5 @@
 - Code coverage is 86%.
 
 ### Breaking Changes
-- File and Folder structure in pyrecodes is modified to increase clarity. This requires updating import module statements.
-- Structure of input JSON files is modified (system configuration, component library and main). This requires updating existing input JSON files. Please consult updated example input files.
+- File and Folder structure is modified compared to 0.1.0 to increase clarity. System creation and import module statements for code compatible with pyrecodes 0.1.0 needs to be updated.
+- Structure of input JSON files is modified (system configuration, component library and main). This requires updating input JSON files compatible with pyrecodes 0.1.0. Please consult updated example input files.

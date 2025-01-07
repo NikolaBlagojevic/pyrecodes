@@ -20,7 +20,7 @@ class InfrastructureInterfaceRecoveryModel(AbstractRecoveryModel):
         self.set_damage_functionality()
         self.set_parameters(recovery_model_parameters['Parameters'])        
     
-    def set_parameters(self, parameters: dict, default_duration=[{"Deterministic": {"Value": 0}}]) -> None:
+    def set_parameters(self, parameters: dict, default_duration=0) -> None:
         """
         Set model parameters. These include setting the post-disaster functionality levels and the time steps at which they change as multiple steps to achieve the predefined supply/demand dynamics as set in the system configuration file.
 
@@ -30,17 +30,15 @@ class InfrastructureInterfaceRecoveryModel(AbstractRecoveryModel):
 
         Notes:
             - This method sets step durations and demands for the recovery activity.
+            - RestoredIn is the time it takes for the infrastructure interface to be restored to full functionality. It is sampled before passed to this method. That's why it's a deterministic value here.
             - The implementation should be improved in the future.
 
         TODO:
             - Improve the method. See if StepLimits are redundant as RestoredIn is already defined.
-            - The for loop setting the duration is a temporary solution. It should be replaced by a more general solution, just take the max.
         """
-        self.damage_to_functionality_relation.set_steps(parameters.get('StepLimits', []), parameters.get('StepValues', []))
-        step_durations = parameters.get('RestoredIn', default_duration)
-        for step_duration in step_durations:
-            self.recovery_activities[self.RECOVERY_ACTIVITY_NAME].set_duration(step_duration)
-            self.recovery_activities[self.RECOVERY_ACTIVITY_NAME].set_demand('')  
+        self.damage_to_functionality_relation.set_steps(parameters.get('StepLimits', []), parameters.get('StepValues', []))       
+        self.recovery_activities[self.RECOVERY_ACTIVITY_NAME].set_duration({"Deterministic": {"Value": parameters.get('RestoredIn', default_duration)}})
+        self.recovery_activities[self.RECOVERY_ACTIVITY_NAME].set_demand('')  
 
     def set_initial_damage_level(self, damage_level: float) -> None:
         """

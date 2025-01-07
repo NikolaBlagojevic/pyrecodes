@@ -1,23 +1,51 @@
-## [v0.2.0] - 2024-12-24
 
-### New Features
-- pyrecodes can use exposure and damage information provided by the NHERI R2D Tool as JSON files to simulate regional recovery of buildings, water distribution and transportation systems.
-- Water flow in damaged water distribution networks can be simulated using the REWET flow simulator connected to pyrecodes through a novel API based on exchanging JSON files between pyrecodes and REWET during the recovery simulation.
-- Traffic flow in damaged road networks can be simulated using residual demand traffic flow simulator connected to pyrecodes through a novel API based on exchanging JSON files between pyrecodes and traffic flow simulator during the recovery simulation.
-- Sparse resource distribution time stepping is implemented in case resource distribution models are too computationally demanding. User can specify at which time steps each resource distribution model should be run to conserve computational resources.
-- Sparse recovery model time stepping is implemented in case recovery models are too computationally demanding. User can specify time steps at which recovery models of each component should be run to conserve computational resources.
-- pyrecodes system can have subsystems defined in different ways: using pyrecodes JSON files, R2D files and pyrecodes supply/demand infrastructure interfaces. 
-- Example 5 is introduced to illustrate the use of third-party resource flow simulators through APIs in pyrecodes.
+# pyrecodes Release Notes
 
-### Bug Fixes
-- potential_path_sets are not required if not used by the transportation service distribution model.
-- Dependency issues with external libraries are resolved.
-- Type hints fixed.
+## [v0.2.0] - Jan 2025
 
-### Improvements
-- Comments provided for most classes.
-- Code coverage is 86%.
+### **New Features**
+- **Integration with NHERI R2D Tool**:  
+  Pyrecodes now supports exposure and damage data provided by the NHERI R2D Tool in JSON format, enabling simulations of regional recovery for buildings, water distribution systems, and transportation networks.
+  
+- **Water Flow Simulation**:  
+  Integration with the **REWET water flow simulator** allows simulation of water flow in damaged water distribution networks at each time step of the recovery simulation. The connection is facilitated via a novel API that exchanges JSON files between REWET and pyrecodes during the recovery simulation.
 
-### Breaking Changes
-- File and Folder structure is modified compared to 0.1.0 to increase clarity. System creation and import module statements for code compatible with pyrecodes 0.1.0 needs to be updated.
-- Structure of input JSON files is modified (system configuration, component library and main). This requires updating input JSON files compatible with pyrecodes 0.1.0. Please consult updated example input files.
+- **Traffic Flow Simulation**:  
+  Traffic flow in damaged road networks can now be simulated using the **residual demand traffic flow simulator** at each time step of the recovery simulation, integrated via a JSON-based API similar to REWET.
+
+- **Sparse Resource Distribution Time Stepping**:  
+  Users can optimize computational resource usage by specifying time steps at which resource distribution models are executed during the recovery simulation.
+
+- **Sparse Recovery Model Time Stepping**:  
+  Recovery models for individual components can be run at user-specified time steps, reducing the computational demand.
+
+- **Flexible Subsystem Definitions**:  
+  Subsystems (e.g., power, housing, water distribution) within the same pyrecodes system (e.g., a city)  can now be defined using:
+  - Pyrecodes JSON files,  
+  - NHERI R2D Tool files, or  
+  - Pyrecodes supply/demand infrastructure interfaces.
+
+- **New Example (Example 5)**:  
+  Demonstrates the use of third-party resource flow simulators (e.g., REWET) via APIs in pyrecodes.
+
+---
+
+### **Bug Fixes**
+- Eliminated the requirement for `potential_path_sets` in transportation service distribution models when unused.  
+- Resolved dependency conflicts with external libraries.  
+- Fixed inconsistencies in type hints.
+
+---
+
+### **Improvements**
+- Added detailed comments for most classes, improving code readability.  
+- Increased test coverage to **86%**.
+
+---
+
+### **Breaking Changes**
+- **File and Folder Structure**:  
+  The overall structure has been updated for clarity. System creation and import statements compatible with v0.1.0 need to be revised to align with v0.2.0.
+  
+- **JSON Input File Structure**:  
+  The formats for system configuration, component libraries, and main input files have been modified. Users must update JSON files created for v0.1.0. Updated example files are available for reference.

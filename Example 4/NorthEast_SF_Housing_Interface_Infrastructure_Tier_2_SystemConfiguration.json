@@ -1,12 +1,13 @@
 {
     "Constants": {
         "START_TIME_STEP": 0,
-        "MAX_TIME_STEP": 3650,
+        "MAX_TIME_STEP": 200,
         "DISASTER_TIME_STEP": 1,
-        "DS4_REPAIR_DURATION": 240,
         "MAX_REPAIR_CREW_DEMAND_PER_BUILDING": 50,
-        "MAX_RESIDENTS_PER_BUILDING": 2000,
-        "HOUSING_RESOURCES": ["Shelter", "FunctionalHousing"],
+        "HOUSING_RESOURCES": [
+            "Shelter",
+            "FunctionalHousing"
+        ],
         "REPAIR_CREW_DEMAND_PER_SQFT": {
             "DS1": 5400,
             "DS2": 5400,
@@ -21,481 +22,538 @@
         },
         "DEMAND_PER_PERSON": {
             "ElectricPower": 0.02,
-            "PotableWater": 150,
-            "CellularCommunication": 0.033
+            "PotableWater": 150
         }
     },
     "Content": {
         "Locality 1": {
-            "ComponentsInLocality": {
-                "Coordinates": {
-                    "BoundingBox": {
-                        "Latitude": [
-                            37.809410,
-                            37.809991,
-                            37.795523,
-                            37.791310
-                        ],
-                        "Longitude": [
-                            -122.426388,
-                            -122.397014,
-                            -122.391161,
-                            -122.422544
-                        ]
-                    }
-                },
+            "Coordinates": {
+                "BoundingBox": [
+                    [
+                        -122.426388,
+                        37.809410
+                    ],
+                    [
+                        -122.397014,
+                        37.809991
+                    ],
+                    [
+                        -122.391161,
+                        37.795523
+                    ],
+                    [
+                        -122.422544,
+                        37.791310
+                    ]
+                ]
+            },
+            "Components": {
                 "RecoveryResourceSuppliers": [
-                    "EmergencyResponseCenter"
+                    {
+                        "EmergencyResponseCenter": {
+                            "CreatorClassName": "RecoveryResourceSuppliersCreator",
+                            "CreatorFileName": "recovery_resource_suppliers_creator",
+                            "Parameters": {
+                                "ComponentName": [
+                                    "EmergencyResponseCenter"
+                                ]
+                            }
+                        }
+                    }
                 ],
                 "Infrastructure": [
                     {
                         "ElectricPowerSupplySystem": {
-                            "Resource": "ElectricPower",
-                            "Amount": [
-                                150,
-                                450
-                            ],
-                            "RestoredIn": [
-                                {
-                                    "Deterministic": {
-                                        "Value": 0
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["ElectricPowerSupplySystem"],
+                                "Resource": "ElectricPower",
+                                "Amount": [
+                                    150,
+                                    450
+                                ],
+                                "RestoredIn": [
+                                    {
+                                        "Deterministic": {
+                                            "Value": 0
+                                        }
+                                    },
+                                    {
+                                        "Deterministic": {
+                                            "Value": 60
+                                        }
                                     }
-                                },
-                                {
-                                    "Deterministic": {
-                                        "Value": 60
-                                    }
-                                }
-                            ]
+                                ]
+                            }
                         }
                     },
                     {
                         "WaterSupplySystem": {
-                            "Resource": "PotableWater",
-                            "Amount": [
-                                3400000
-                            ],
-                            "RestoredIn": [
-                                {
-                                    "Deterministic": {
-                                        "Value": 100
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["WaterSupplySystem"],
+                                "Resource": "PotableWater",
+                                "Amount": [
+                                    3400000
+                                ],
+                                "RestoredIn": [
+                                    {
+                                        "Deterministic": {
+                                            "Value": 100
+                                        }
                                     }
+                                ],
+                                "Demand": {
+                                    "Resource": "ElectricPower",
+                                    "Amount": 2.5
                                 }
-                            ],
-                            "Demand": {
-                                "Resource": "ElectricPower",
-                                "Amount": 2.5
-                            }
-                        }
-                    },
-                    {
-                        "CellularCommunicationSystem": {
-                            "Resource": "CellularCommunication",
-                            "Amount": [
-                                750
-                            ],
-                            "RestoredIn": [
-                                {
-                                    "Deterministic": {
-                                        "Value": 0
-                                    }
-                                }
-                            ],
-                            "Demand": {
-                                "Resource": "ElectricPower",
-                                "Amount": 0.5
                             }
                         }
                     }
                 ],
-                "BuildingsInfoFolder": "./Example 3/R2D Output/",
-                "BuildingIDsRange": [
-                    8000,
-                    9000
-                ],
-                "MaxNumBuildings": 50,
-                "AreaPerPerson": 541
+                "BuildingStock": [
+                    {
+                        "Buildings": {
+                            "CreatorClassName": "R2DSubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "Shelter"
+                                ],
+                                "R2DJSONFile_Info": "./Example 4/NorthEast_SF_Housing_Exposure.json",
+                                "SubsystemNameInR2DJSON": "Buildings",
+                                "AssetTypes": [
+                                    "Building"
+                                ],
+                                "MaxNumComponents": 100
+                            }
+                        }
+                    }
+                ]
             }
         },
         "Locality 2": {
-            "ComponentsInLocality": {
-                "Coordinates": {
-                    "BoundingBox": {
-                        "Latitude": [
-                            37.790065,
-                            37.803214,
-                            37.804204,
-                            37.791310
-                        ],
-                        "Longitude": [
-                            -122.432440,
-                            -122.432965,
-                            -122.425129,
-                            -122.422585
-                        ]
-                    }
-                },
-                "RecoveryResourceSuppliers": [],
+            "Coordinates": {
+                "BoundingBox": [
+                    [
+                        -122.432440,
+                        37.790065
+                    ],
+                    [
+                        -122.432965,
+                        37.803214
+                    ],
+                    [
+                        -122.425129,
+                        37.804204
+                    ],
+                    [
+                        -122.422585,
+                        37.791310
+                    ]
+                ]
+            },
+            "Components": {
                 "Infrastructure": [
                     {
                         "ElectricPowerSupplySystem": {
-                            "Resource": "ElectricPower",
-                            "Amount": [
-                                40,
-                                80
-                            ],
-                            "RestoredIn": [
-                                {
-                                    "Deterministic": {
-                                        "Value": 15
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["ElectricPowerSupplySystem"],
+                                "Resource": "ElectricPower",
+                                "Amount": [
+                                    40,
+                                    80
+                                ],
+                                "RestoredIn": [
+                                    {
+                                        "Deterministic": {
+                                            "Value": 15
+                                        }
+                                    },
+                                    {
+                                        "Deterministic": {
+                                            "Value": 30
+                                        }
                                     }
-                                },
-                                {
-                                    "Deterministic": {
-                                        "Value": 30
-                                    }
-                                }
-                            ]
+                                ]
+                            }
                         }
                     },
                     {
                         "WaterSupplySystem": {
-                            "Resource": "PotableWater",
-                            "Amount": [
-                                600000
-                            ],
-                            "RestoredIn": [
-                                {
-                                    "Deterministic": {
-                                        "Value": 10
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["WaterSupplySystem"],
+                                "Resource": "PotableWater",
+                                "Amount": [
+                                    600000
+                                ],
+                                "RestoredIn": [
+                                    {
+                                        "Deterministic": {
+                                            "Value": 10
+                                        }
                                     }
+                                ],
+                                "Demand": {
+                                    "Resource": "ElectricPower",
+                                    "Amount": 1.5
                                 }
-                            ],
-                            "Demand": {
-                                "Resource": "ElectricPower",
-                                "Amount": 1.5
-                            }
-                        }
-                    },
-                    {
-                        "CellularCommunicationSystem": {
-                            "Resource": "CellularCommunication",
-                            "Amount": [
-                                130
-                            ],
-                            "RestoredIn": [
-                                {
-                                    "Deterministic": {
-                                        "Value": 5
-                                    }
-                                }
-                            ],
-                            "Demand": {
-                                "Resource": "ElectricPower",
-                                "Amount": 0.2
                             }
                         }
                     }
                 ],
-                "BuildingsInfoFolder": "./Example 3/R2D Output/",
-                "BuildingIDsRange": [
-                    8000,
-                    9000
-                ],
-                "MaxNumBuildings": 50,
-                "AreaPerPerson": 541
+                "BuildingStock": [
+                    {
+                        "Buildings": {
+                            "CreatorClassName": "R2DSubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "Shelter"
+                                ],
+                                "R2DJSONFile_Info": "./Example 4/NorthEast_SF_Housing_Exposure.json",
+                                "SubsystemNameInR2DJSON": "Buildings",
+                                "AssetTypes": [
+                                    "Building"
+                                ],
+                                "MaxNumComponents": 100
+                            }
+                        }
+                    }
+                ]
             }
         },
         "Locality 3": {
-            "ComponentsInLocality": {
-                "Coordinates": {
-                    "BoundingBox": {
-                        "Latitude": [
-                            37.791342,
-                            37.777871,
-                            37.776836,
-                            37.790065
-                        ],
-                        "Longitude": [
-                            -122.422585,
-                            -122.419838,
-                            -122.431406,
-                            -122.432644
-                        ]
-                    }
-                },
-                "RecoveryResourceSuppliers": [],
+            "Coordinates": {
+                "BoundingBox": [
+                    [
+                        -122.422585,
+                        37.791342
+                    ],
+                    [
+                        -122.419838,
+                        37.777871
+                    ],
+                    [
+                        -122.431406,
+                        37.776836
+                    ],
+                    [
+                        -122.432644,
+                        37.790065
+                    ]
+                ]
+            },
+            "Components": {
                 "Infrastructure": [
                     {
                         "ElectricPowerSupplySystem": {
-                            "Resource": "ElectricPower",
-                            "Amount": [
-                                60
-                            ],
-                            "RestoredIn": [
-                                {
-                                    "Deterministic": {
-                                        "Value": 10
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["ElectricPowerSupplySystem"],
+                                "Resource": "ElectricPower",
+                                "Amount": [
+                                    60
+                                ],
+                                "RestoredIn": [
+                                    {
+                                        "Deterministic": {
+                                            "Value": 10
+                                        }
                                     }
-                                }
-                            ]
+                                ]
+                            }
                         }
                     },
                     {
                         "WaterSupplySystem": {
-                            "Resource": "PotableWater",
-                            "Amount": [
-                                450000
-                            ],
-                            "RestoredIn": [
-                                {
-                                    "Deterministic": {
-                                        "Value": 15
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["WaterSupplySystem"],
+                                "Resource": "PotableWater",
+                                "Amount": [
+                                    450000
+                                ],
+                                "RestoredIn": [
+                                    {
+                                        "Deterministic": {
+                                            "Value": 15
+                                        }
                                     }
+                                ],
+                                "Demand": {
+                                    "Resource": "ElectricPower",
+                                    "Amount": 0.5
                                 }
-                            ],
-                            "Demand": {
-                                "Resource": "ElectricPower",
-                                "Amount": 0.5
-                            }
-                        }
-                    },
-                    {
-                        "CellularCommunicationSystem": {
-                            "Resource": "CellularCommunication",
-                            "Amount": [
-                                100
-                            ],
-                            "RestoredIn": [
-                                {
-                                    "Deterministic": {
-                                        "Value": 5
-                                    }
-                                }
-                            ],
-                            "Demand": {
-                                "Resource": "ElectricPower",
-                                "Amount": 0.1
                             }
                         }
                     }
                 ],
-                "BuildingsInfoFolder": "./Example 3/R2D Output/",
-                "BuildingIDsRange": [
-                    8000,
-                    9000
-                ],
-                "MaxNumBuildings": 50,
-                "AreaPerPerson": 541
+                "BuildingStock": [
+                    {
+                        "Buildings": {
+                            "CreatorClassName": "R2DSubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "Shelter"
+                                ],
+                                "R2DJSONFile_Info": "./Example 4/NorthEast_SF_Housing_Exposure.json",
+                                "SubsystemNameInR2DJSON": "Buildings",
+                                "AssetTypes": [
+                                    "Building"
+                                ],
+                                "MaxNumComponents": 100
+                            }
+                        }
+                    }
+                ]
             }
         },
         "Locality 4": {
-            "ComponentsInLocality": {
-                "Coordinates": {
-                    "BoundingBox": {
-                        "Latitude": [
-                            37.791388,
-                            37.794985,
-                            37.775381
-                        ],
-                        "Longitude": [
-                            -122.422568,
-                            -122.394280,
-                            -122.419321
-                        ]
-                    }
-                },
-                "RecoveryResourceSuppliers": [],
+            "Coordinates": {
+                "BoundingBox": [
+                    [
+                        -122.422568,
+                        37.791388
+                    ],
+                    [
+                        -122.394280,
+                        37.794985
+                    ],
+                    [
+                        -122.419321,
+                        37.775381
+                    ]
+                ]
+            },
+            "Components": {
                 "Infrastructure": [
                     {
                         "ElectricPowerSupplySystem": {
-                            "Resource": "ElectricPower",
-                            "Amount": [
-                                1000
-                            ],
-                            "RestoredIn": [
-                                {
-                                    "Deterministic": {
-                                        "Value": 100
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["ElectricPowerSupplySystem"],
+                                "Resource": "ElectricPower",
+                                "Amount": [
+                                    1000
+                                ],
+                                "RestoredIn": [
+                                    {
+                                        "Deterministic": {
+                                            "Value": 100
+                                        }
                                     }
-                                }
-                            ]
+                                ]
+                            }
                         }
                     },
                     {
                         "WaterSupplySystem": {
-                            "Resource": "PotableWater",
-                            "Amount": [
-                                3600000,
-                                7250000
-                            ],
-                            "RestoredIn": [
-                                {
-                                    "Deterministic": {
-                                        "Value": 20
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["WaterSupplySystem"],
+                                "Resource": "PotableWater",
+                                "Amount": [
+                                    3600000,
+                                    7250000
+                                ],
+                                "RestoredIn": [
+                                    {
+                                        "Deterministic": {
+                                            "Value": 20
+                                        }
+                                    },
+                                    {
+                                        "Deterministic": {
+                                            "Value": 80
+                                        }
                                     }
-                                },
-                                {
-                                    "Deterministic": {
-                                        "Value": 80
-                                    }
+                                ],
+                                "Demand": {
+                                    "Resource": "ElectricPower",
+                                    "Amount": 5
                                 }
-                            ],
-                            "Demand": {
-                                "Resource": "ElectricPower",
-                                "Amount": 5
-                            }
-                        }
-                    },
-                    {
-                        "CellularCommunicationSystem": {
-                            "Resource": "CellularCommunication",
-                            "Amount": [
-                                1600
-                            ],
-                            "RestoredIn": [
-                                {
-                                    "Deterministic": {
-                                        "Value": 5
-                                    }
-                                }
-                            ],
-                            "Demand": {
-                                "Resource": "ElectricPower",
-                                "Amount": 1
                             }
                         }
                     }
                 ],
-                "BuildingsInfoFolder": "./Example 3/R2D Output/",
-                "BuildingIDsRange": [
-                    8000,
-                    9000
-                ],
-                "MaxNumBuildings": 50,
-                "AreaPerPerson": 541
+                "BuildingStock": [
+                    {
+                        "Buildings": {
+                            "CreatorClassName": "R2DSubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "Shelter"
+                                ],
+                                "R2DJSONFile_Info": "./Example 4/NorthEast_SF_Housing_Exposure.json",
+                                "SubsystemNameInR2DJSON": "Buildings",
+                                "AssetTypes": [
+                                    "Building"
+                                ],
+                                "MaxNumComponents": 100
+                            }
+                        }
+                    }
+                ]
             }
         },
         "Locality 5": {
-            "ComponentsInLocality": {
-                "Coordinates": {
-                    "BoundingBox": {
-                        "Latitude": [
-                            37.794821,
-                            37.777747,
-                            37.775757
-                        ],
-                        "Longitude": [
-                            -122.394309,
-                            -122.391442,
-                            -122.418291
-                        ]
-                    }
-                },
-                "RecoveryResourceSuppliers": [],
+            "Coordinates": {
+                "BoundingBox": [
+                    [
+                        -122.394309,
+                        37.794821
+                    ],
+                    [
+                        -122.391442,
+                        37.777747
+                    ],
+                    [
+                        -122.418291,
+                        37.775757
+                    ]
+                ]
+            },
+            "Components": {
                 "Infrastructure": [
                     {
                         "ElectricPowerSupplySystem": {
-                            "Resource": "ElectricPower",
-                            "Amount": [
-                                85
-                            ],
-                            "RestoredIn": [
-                                {
-                                    "Deterministic": {
-                                        "Value": 60
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["ElectricPowerSupplySystem"],
+                                "Resource": "ElectricPower",
+                                "Amount": [
+                                    85
+                                ],
+                                "RestoredIn": [
+                                    {
+                                        "Deterministic": {
+                                            "Value": 60
+                                        }
                                     }
-                                }
-                            ]
+                                ]
+                            }
                         }
                     },
                     {
                         "WaterSupplySystem": {
-                            "Resource": "PotableWater",
-                            "Amount": [
-                                610000
-                            ],
-                            "RestoredIn": [
-                                {
-                                    "Deterministic": {
-                                        "Value": 80
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["WaterSupplySystem"],
+                                "Resource": "PotableWater",
+                                "Amount": [
+                                    610000
+                                ],
+                                "RestoredIn": [
+                                    {
+                                        "Deterministic": {
+                                            "Value": 80
+                                        }
                                     }
+                                ],
+                                "Demand": {
+                                    "Resource": "ElectricPower",
+                                    "Amount": 1.5
                                 }
-                            ],
-                            "Demand": {
-                                "Resource": "ElectricPower",
-                                "Amount": 1.5
-                            }
-                        }
-                    },
-                    {
-                        "CellularCommunicationSystem": {
-                            "Resource": "CellularCommunication",
-                            "Amount": [
-                                140
-                            ],
-                            "RestoredIn": [
-                                {
-                                    "Deterministic": {
-                                        "Value": 100
-                                    }
-                                }
-                            ],
-                            "Demand": {
-                                "Resource": "ElectricPower",
-                                "Amount": 0.2
                             }
                         }
                     }
                 ],
-                "BuildingsInfoFolder": "./Example 3/R2D Output/",
-                "BuildingIDsRange": [
-                    8000,
-                    9000
-                ],
-                "MaxNumBuildings": 50,
-                "AreaPerPerson": 541
+                "BuildingStock": [
+                    {
+                        "Buildings": {
+                            "CreatorClassName": "R2DSubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "Shelter"
+                                ],
+                                "R2DJSONFile_Info": "./Example 4/NorthEast_SF_Housing_Exposure.json",
+                                "SubsystemNameInR2DJSON": "Buildings",
+                                "AssetTypes": [
+                                    "Building"
+                                ],
+                                "MaxNumComponents": 100
+                            }
+                        }
+                    }
+                ]
             }
         }
     },
     "DamageInput": {
-        "Type": "R2DDamageInput",
+        "FileName": "r2d_damage_input",
+        "ClassName": "R2DDamageInput",
         "Parameters": {
-            "ScenarioID": 1
+            "DamageFile": "./Example 4/NorthEast_SF_Housing_Damage.json"
         }
     },
     "Resources": {
         "Shelter": {
             "Group": "Utilities",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "HousingDistributionModel",
+                "FileName": "housing_distribution_model",
                 "Parameters": {
-                    "DistributionPriority": {
-                        "Type": "SupplierOnlyDistributionPriority",
-                        "Parameters": {}
-                    }
+                    "DistributionTimeStepping": [
+                        {
+                            "start": 0,
+                            "end": 50,
+                            "step": 1
+                        },
+                        {
+                            "start": 50,
+                            "end": 1000,
+                            "step": 50
+                        }
+                    ]
                 }
             }
         },
         "FunctionalHousing": {
             "Group": "Utilities",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "HousingDistributionModel",
+                "FileName": "housing_distribution_model",
                 "Parameters": {
-                    "DistributionPriority": {
-                        "Type": "SupplierOnlyDistributionPriority",
-                        "Parameters": {}
-                    }
+                    "DistributionTimeStepping": [
+                        {
+                            "start": 0,
+                            "end": 50,
+                            "step": 1
+                        },
+                        {
+                            "start": 50,
+                            "end": 1000,
+                            "step": 50
+                        }
+                    ]
                 }
             }
         },
         "FirstResponderEngineer": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -509,10 +567,12 @@
         "SeniorEngineer": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -526,10 +586,12 @@
         "Contractor": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -543,10 +605,12 @@
         "Money": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -560,10 +624,12 @@
         "PlanCheckEngineeringTeam": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -577,10 +643,12 @@
         "SitePreparationCrew": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -594,10 +662,12 @@
         "CleanUpCrew": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -611,10 +681,12 @@
         "EngineeringDesignTeam": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -628,10 +700,12 @@
         "DemolitionCrew": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -645,10 +719,12 @@
         "RepairCrew": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -662,10 +738,12 @@
         "ElectricPower": {
             "Group": "Utilities",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriorityWithPrioritizedInterfaces",
+                        "FileName": "random_priority_with_prioritized_interfaces",
+                        "ClassName": "RandomPriorityWithPrioritizedInterfaces",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -680,10 +758,12 @@
         "PotableWater": {
             "Group": "Utilities",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriorityWithPrioritizedInterfaces",
+                        "FileName": "random_priority_with_prioritized_interfaces",
+                        "ClassName": "RandomPriorityWithPrioritizedInterfaces",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -695,112 +775,91 @@
                 }
             }
         },
-        "CellularCommunication": {
-            "Group": "Utilities",
-            "IsCommunicationResource": "True",
-            "DistributionModel": {
-                "Type": "UtilityDistributionModel",
-                "Parameters": {
-                    "DistributionPriority": {
-                        "Type": "RandomPriorityWithPrioritizedInterfaces",
-                        "Parameters": {
-                            "Seed": 42.0,
-                            "DemandType": [
-                                "OperationDemand"
-                            ]
-                        }
-                    },
-                    "TransferService": "IsolatingLocalitiesTransferService",
-                    "IsCommunicationResource": "True"
-                }
-            }
-        },
         "IsolatingLocalitiesTransferService": {
             "Group": "TransferService",
             "DistributionModel": {
-                "Type": "TransferServiceDistributionModelPotentialPathSets",
-                "Parameters": {
-                    "PathSetsFile": "./Example 4/potential_path_sets.json"
-                }
+                "ClassName":"TransferServiceDistributionModelPotentialPaths",
+                "FileName": "transfer_service_distribution_model_potential_paths",
+                "Parameters": {}
             }
         }
     },
     "ResilienceCalculator": [
         {
-            "Type": "ReCoDeSResilienceCalculator",
+            "ClassName": "ReCoDeSCalculator",
+            "FileName": "recodes_calculator",
             "Parameters": {
                 "Scope": "All",
                 "Resources": [
                     "Shelter",
                     "FunctionalHousing",
                     "ElectricPower",
-                    "PotableWater",
-                    "CellularCommunication"
+                    "PotableWater"
                 ]
             }
         },
         {
-            "Type": "ReCoDeSResilienceCalculator",
+            "ClassName": "ReCoDeSCalculator",
+            "FileName": "recodes_calculator",
             "Parameters": {
                 "Scope": "Locality 1",
                 "Resources": [
                     "Shelter",
                     "FunctionalHousing",
                     "ElectricPower",
-                    "PotableWater",
-                    "CellularCommunication"
+                    "PotableWater"
                 ]
             }
         },
         {
-            "Type": "ReCoDeSResilienceCalculator",
+            "ClassName": "ReCoDeSCalculator",
+            "FileName": "recodes_calculator",
             "Parameters": {
                 "Scope": "Locality 2",
                 "Resources": [
                     "Shelter",
                     "FunctionalHousing",
                     "ElectricPower",
-                    "PotableWater",
-                    "CellularCommunication"
+                    "PotableWater"
                 ]
             }
         },
         {
-            "Type": "ReCoDeSResilienceCalculator",
+            "ClassName": "ReCoDeSCalculator",
+            "FileName": "recodes_calculator",
             "Parameters": {
                 "Scope": "Locality 3",
                 "Resources": [
                     "Shelter",
                     "FunctionalHousing",
                     "ElectricPower",
-                    "PotableWater",
-                    "CellularCommunication"
+                    "PotableWater"
                 ]
             }
         },
         {
-            "Type": "ReCoDeSResilienceCalculator",
+            "ClassName": "ReCoDeSCalculator",
+            "FileName": "recodes_calculator",
             "Parameters": {
                 "Scope": "Locality 4",
                 "Resources": [
                     "Shelter",
                     "FunctionalHousing",
                     "ElectricPower",
-                    "PotableWater",
-                    "CellularCommunication"
+                    "PotableWater"
                 ]
             }
         },
         {
-            "Type": "ReCoDeSResilienceCalculator",
+            "ClassName": "ReCoDeSCalculator",
+            "FileName": "recodes_calculator",
             "Parameters": {
                 "Scope": "Locality 5",
                 "Resources": [
                     "Shelter",
                     "FunctionalHousing",
                     "ElectricPower",
-                    "PotableWater",
-                    "CellularCommunication"
+                    "PotableWater"
                 ]
             }
         }

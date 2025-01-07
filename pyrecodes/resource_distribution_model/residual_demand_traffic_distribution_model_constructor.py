@@ -1,34 +1,19 @@
-from pyrecodes.resource_distribution_model.concrete_resource_distribution_model_constructor import ConcreteResourceDistributionModelConstructor
+from pyrecodes.resource_distribution_model.simcenter_resource_distribution_model_constructor import SimCenterResourceDistributionModelConstructor
 from pyrecodes.resource_distribution_model.resource_distribution_model import ResourceDistributionModel
 from pyrecodes.component.component import Component
+from residual_demand_API import transportation
 
-class ResidualDemandTrafficDistributionModelConstructor(ConcreteResourceDistributionModelConstructor):
-    """
-    | Class for constructing the Residual Demand Traffic Distribution Model.
 
-    | **TODO**: Implement the class once the residual demand traffic distribution model is implemented.
-
-    """
+class ResidualDemandTrafficDistributionModelConstructor(SimCenterResourceDistributionModelConstructor):
 
     def construct(self, resource_name: str, resource_parameters: dict, components: list[Component], distribution_model: ResourceDistributionModel):
         super().construct(resource_name, resource_parameters, components, distribution_model)
-        # distribution_model.traffic_simulator = self.residual_demand_assignment.main
-        distribution_model.traffic_simulator = None
-        distribution_model.r2d_dict = self.create_r2d_dict(components)
-
-    def create_r2d_dict(self, components):
-        """
-        Create a dictionary that follows the structure of the R2D JSON files used as inputs for the residual demand traffic simulator.
-        
-        The dictionary consists of component characteristics of the transportation network.
-        """
-
-        r2d_dict = {"TransportationNetwork": {"Bridge": {}, "Tunnel": {}, "Roadway": {}}}
-
-        for component in components:
-            component_type = getattr(component, 'asset_subtype', None)
-            if component_type in r2d_dict["TransportationNetwork"].keys():
-                component_r2d_dict = component.r2d_dict_getter.get_dict()
-                r2d_dict["TransportationNetwork"][component_type][component.aim_id] = component_r2d_dict
-        
-        return r2d_dict
+        distribution_model.TRIP_CUTOFF_THRESHOLD = resource_parameters['TripCutoffThreshold']
+        distribution_model.flow_simulator = transportation.pyrecodes_residual_demand(
+            resource_parameters['EdgeFile'], resource_parameters['NodeFile'],
+            resource_parameters['ODFilePre'], resource_parameters['HourList'], 
+            resource_parameters['ResultsFolder'],
+            resource_parameters['CapacityRuleset'], resource_parameters['DemandRuleset'],
+            resource_parameters['TwoWayEdges']
+        )
+        distribution_model.r2d_dict = self.r2d_dict

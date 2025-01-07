@@ -21,7 +21,19 @@ class R2DComponent(StandardiReCoDeSComponent):
             for resource in self.demand[demand_type].values():
                 self.general_information[demand_type][resource.name] = resource.current_amount
 
-class R2DBridge(R2DComponent):
+class R2DTransportationComponent(R2DComponent):
+    """
+    Subclass used to identify transportation components in a system. For now that's the only purpose.
+
+    """
+
+    def update_r2d_dict(self) -> None:
+        """
+        Update the resource-to-damage dictionary based on the current damage level of the pipe.
+        """
+        self.general_information['FunctionalityLevel'] = self.functionality_level
+
+class R2DBridge(R2DTransportationComponent):
     """
     Subclass used to identify R2D Bridges in a system. For now that's the only purpose.
 
@@ -29,7 +41,7 @@ class R2DBridge(R2DComponent):
     """
     pass
 
-class R2DRoadway(R2DComponent):
+class R2DRoadway(R2DTransportationComponent):
     """
     Subclass used to identify R2D Roadways in a system. For now that's the only purpose.
 
@@ -37,7 +49,7 @@ class R2DRoadway(R2DComponent):
     """
     pass
 
-class R2DTunnel(R2DComponent):
+class R2DTunnel(R2DTransportationComponent):
     """
     Subclass used to identify R2D Tunnels in a system. For now that's the only purpose.
 

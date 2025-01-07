@@ -64,6 +64,9 @@ def run(main_file: str) -> System:
     return system
 
 def load_system(loadname, system_class_name='BuiltEnvironment', system_file_name='built_environment') -> System:
+    """
+    Loads a previously saved system. Does not yet work for systems which use SimCenter API infrastructure models.
+    """
     target_system_class = get_class(system_file_name, system_class_name, 'system')
     system_object = target_system_class({}, {}, None) 
     return system_object.load_as_pickle(loadname)

@@ -1,8 +1,9 @@
 {
     "EmergencyResponseCenter": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
         "RecoveryModel": {
-            "Type": "NoRecoveryActivityModel",
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
             "Parameters": {},
             "DamageFunctionalityRelation": {
                 "Type": "Constant"
@@ -24,7 +25,7 @@
             "Money": {
                 "Amount": 5500000000,
                 "FunctionalityToAmountRelation": "Linear",
-                "ResourceClass": "ConsumableResource"
+                "ResourceClass": {"FileName": "consumable_resource", "ClassName": "ConsumableResource"}
             },
             "PlanCheckEngineeringTeam": {
                 "Amount": 20,
@@ -52,10 +53,11 @@
             }
         }
     },
-    "DS0_ResidentialBuilding": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+    "DS0_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
         "RecoveryModel": {
-            "Type": "NoRecoveryActivityModel",
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
             "Parameters": {},
             "DamageFunctionalityRelation": {
                 "Type": "Constant"
@@ -77,10 +79,11 @@
             }
         }
     },
-    "DS1_ResidentialBuilding": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+    "DS1_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "RapidInspection": {
                     "Duration": {
@@ -153,10 +156,11 @@
             }
         }
     },
-    "DS2_ResidentialBuilding": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+    "DS2_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "RapidInspection": {
                     "Duration": {
@@ -323,10 +327,11 @@
             }
         }
     },
-    "DS3_ResidentialBuilding": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+    "DS3_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "RapidInspection": {
                     "Duration": {
@@ -511,10 +516,11 @@
             }
         }
     },
-    "DS4_ResidentialBuilding": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+    "DS4_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "RapidInspection": {
                     "Duration": {

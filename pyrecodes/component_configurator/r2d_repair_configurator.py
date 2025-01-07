@@ -41,11 +41,11 @@ class R2DRepairConfigurator(RepairConfigurator):
     def get_repair_cost(self, component_data: dict) -> float:
         """
         | Method to get the repair cost of the component from the R2D output files.
-        | It is assumed that R2D provides the repair cost ratio as a percentage of the replacement cost.
+        | It is assumed that R2D provides the repair cost ratio as a value from 0 to 1.
         | Repair cost is taken as the maximum over all repair cost ratios provided by R2D.
         """
         if 'Repair' in component_data['Loss']:
-            repair_cost_ratio = max(list(component_data['Loss']['Repair']['Cost'].values())) / 100
+            repair_cost_ratio = max(list(component_data['Loss']['Repair']['Cost'].values()))
             return repair_cost_ratio * component_data['Information']['GeneralInformation'].get('ReplacementCost', 0)
         else:
             return None
@@ -69,22 +69,6 @@ class R2DBuildingRepairConfigurator(R2DRepairConfigurator):
         repair_crew_demand = math.ceil(self.component.area / self.system_level_data['REPAIR_CREW_DEMAND_PER_SQFT'].get(f'DS{component_damage_state}', math.inf))
         return min(self.system_level_data['MAX_REPAIR_CREW_DEMAND_PER_BUILDING'], repair_crew_demand)
     
-class R2DRoadwayRepairConfigurator(R2DRepairConfigurator):
-    """
-    Class that configures repair activities of R2D roadways.
-    """
-
-    def get_repair_demand(self, component_damage_state: int) -> int:
-        """
-        | Method that calculates the repair crew demand for the roadway component.
-        | The demand is calculated based on the length of the roadway and the repair crew demand per mile defined in the system configuration file.
-        | It is assumed that roadway length is defined in meters in the component object.
-        """
-        if component_damage_state > 0:
-            return math.ceil((self.component.length/METER_TO_MILE) * self.system_level_data['REPAIR_CREW_DEMAND_PER_MILE_ROADWAY'])
-        else:
-            return 0
-    
 class R2DPipeRepairConfigurator(R2DRepairConfigurator):
     """
     Class that configures repair activities of R2D pipes.
@@ -100,8 +84,37 @@ class R2DPipeRepairConfigurator(R2DRepairConfigurator):
             return math.ceil((self.component.length/METER_TO_MILE) * self.system_level_data['REPAIR_CREW_DEMAND_PER_MILE_PIPE'])
         else:
             return 0
+        
+class R2DTransportationRepairConfigurator(R2DRepairConfigurator):
+
+    def get_repair_cost(self, component_data: dict) -> float:
+        """
+        | Method to get the repair cost of the component from the R2D output files.
+        | R2D provides the repair cost of transportation components (Bridge, Roadway, Tunnel) in (2020) dollar values, not ratios as for buildings.
+        | Repair cost is taken as the maximum over all repair cost ratios provided by R2D.
+        """
+        if 'Repair' in component_data['Loss']:
+            return max(list(component_data['Loss']['Repair']['Cost'].values()))
+        else:
+            return None
+        
+class R2DRoadwayRepairConfigurator(R2DTransportationRepairConfigurator):
+    """
+    Class that configures repair activities of R2D roadways.
+    """
+
+    def get_repair_demand(self, component_damage_state: int) -> int:
+        """
+        | Method that calculates the repair crew demand for the roadway component.
+        | The demand is calculated based on the length of the roadway and the repair crew demand per mile defined in the system configuration file.
+        | It is assumed that roadway length is defined in meters in the component object.
+        """
+        if component_damage_state > 0:
+            return math.ceil((self.component.length/METER_TO_MILE) * self.system_level_data['REPAIR_CREW_DEMAND_PER_MILE_ROADWAY'])
+        else:
+            return 0
     
-class R2DBridgeRepairConfigurator(R2DRepairConfigurator):
+class R2DBridgeRepairConfigurator(R2DTransportationRepairConfigurator):
     """
     Class that configures repair activities of R2D bridges.
     """
@@ -119,7 +132,7 @@ class R2DBridgeRepairConfigurator(R2DRepairConfigurator):
         else:
             return 0
 
-class R2DTunnelRepairConfigurator(R2DRepairConfigurator):
+class R2DTunnelRepairConfigurator(R2DTransportationRepairConfigurator):
     """
     Class that configures repair activities of R2D tunnels.
     """

@@ -284,7 +284,7 @@ class REWETPyReCoDes:
                 ratio = population_ratio
             else:
                 ratio = 1
-                building_state[building_id]['GeneralInformation']['Population_Ratio'] = 1
+                building_state[building_id]['GeneralInformation']['PopulationRatio'] = 1
 
             cur_building = {}
             cur_building['initial_population_ratio'] = ratio
@@ -826,7 +826,7 @@ class REWETPyReCoDes:
                 # cur_bldg_initial_demand = self.buildings[bldg_id]['initial_demand']
 
                 # cur_bldg_deamnd_ratio = building[bldg_id]['GeneralInformation'][
-                #     'Population_Ratio'
+                #     'PopulationRatio'
                 # ]
 
                 # cur_bldg_new_deamnd = cur_bldg_deamnd_ratio * cur_bldg_initial_demand

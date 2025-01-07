@@ -40,8 +40,6 @@ RECOVERY_MODEL_PARAMETERS_INFRASTRUCTURE_INTERFACE = {"Type": "InfrastructureInt
                                 "Parameters": {},
                                 "DamageFunctionalityRelation": ""}
     
-STEP_DICT = {'StepLimits': [0.2, 0.4, 1.0],
-            'StepValues': [0.1, 0.6, 1.0],
-            'RestoredIn': [{'Deterministic': {'Value': 10}},
-                        {'Deterministic': {'Value': 20}},
-                        {'Deterministic': {'Value': 50}}]}
+STEP_DICT = {'StepLimits': [0.0, 0.2, 0.4, 1.0],
+            'StepValues': [0.0, 0.1, 0.6, 1.0],
+            'RestoredIn': 50}

@@ -56,11 +56,6 @@ class TestComponentLevelRecoveryActivitiesModel_SingleActivity:
         assert recovery_model.recovery_activities['Repair'].level == 0.7
         assert recovery_model.recovery_activities['Repair'].rate == 0.3/10      
 
-    def test_set_damage_functionality(self, recovery_model: AbstractRecoveryModel):
-        recovery_model.set_damage_functionality(RECOVERY_MODEL_PARAMETERS_SINGLE_ACTIVITY['DamageFunctionalityRelation'])
-        damage_functionality_type = RECOVERY_MODEL_PARAMETERS_SINGLE_ACTIVITY['DamageFunctionalityRelation']['Type']
-        assert isinstance(recovery_model.damage_to_functionality_relation, getattr(relation, damage_functionality_type))
-
     def test_recover_once(self, recovery_model: AbstractRecoveryModel):
         damage_level = 0.6
         recovery_model.set_recovery_time_steps(RECOVERY_TIME_STEPS_DENSE)
@@ -329,13 +324,6 @@ class TestComponentLevelRecoveryActivitiesModel_MultipleActivities:
         target_bools = [True, True, False]
         for target_bool, recovery_activity in zip(target_bools, recovery_model.recovery_activities.values()):
             assert recovery_model.preceding_activities_finished(recovery_activity) == target_bool
-    
-    def test_get_functionality_level(self, recovery_model: AbstractRecoveryModel):
-        assert recovery_model.get_functionality_level() == 1.0
-        recovery_model.set_initial_damage_level(1.0)
-        assert recovery_model.get_functionality_level() == 0.0
-        recovery_model.set_initial_damage_level(0.6)
-        assert recovery_model.get_functionality_level() == 0.4
 
     def test_get_damage_level(self, recovery_model: AbstractRecoveryModel):
         assert recovery_model.get_damage_level() == 0.0
@@ -344,6 +332,13 @@ class TestComponentLevelRecoveryActivitiesModel_MultipleActivities:
         recovery_model.set_initial_damage_level(0.6)
         assert recovery_model.get_damage_level() == 0.6   
 
+    def test_get_functionality_level(self, recovery_model: AbstractRecoveryModel):
+        assert recovery_model.get_functionality_level() == 1.0
+        recovery_model.set_initial_damage_level(1.0)
+        assert recovery_model.get_functionality_level() == 0.0
+        recovery_model.set_initial_damage_level(0.6)
+        assert recovery_model.get_functionality_level() == 0.4
+        
     def test_get_demand(self, recovery_model: AbstractRecoveryModel):
         assert recovery_model.get_demand() == {}
 

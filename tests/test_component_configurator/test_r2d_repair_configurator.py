@@ -50,7 +50,7 @@ class TestR2DRepairConfigurator:
         assert repair_configurator.get_repair_time(R2D_COMPONENT_DAMAGE_DATA) == 30.0
 
     def test_get_repair_cost(self, repair_configurator: R2DRepairConfigurator):
-        assert repair_configurator.get_repair_cost(R2D_COMPONENT_DATA) == R2D_COMPONENT_DATA['Loss']['Repair']['Cost']['LF.IND2-LF.W1.MC']/100 * R2D_COMPONENT_DATA['Information']['GeneralInformation']['ReplacementCost']
+        assert repair_configurator.get_repair_cost(R2D_COMPONENT_DATA) == R2D_COMPONENT_DATA['Loss']['Repair']['Cost']['LF.IND2-LF.W1.MC'] * R2D_COMPONENT_DATA['Information']['GeneralInformation']['ReplacementCost']
 
     def test_get_repair_cost_no_cost(self, repair_configurator: R2DRepairConfigurator):
         component_data_no_repair_cost = {'Loss': {}}

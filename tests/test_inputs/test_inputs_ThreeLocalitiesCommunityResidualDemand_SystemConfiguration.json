@@ -1,0 +1,443 @@
+{
+    "Constants": {
+        "START_TIME_STEP": 0,
+        "MAX_TIME_STEP": 500,
+        "DISASTER_TIME_STEP": 1,
+        "REPAIR_CREW_DEMAND_PER_SQFT": {"DS1": 5400, "DS2": 5400, "DS3": 2700, "DS4": 2700},  
+        "REPAIR_CREW_DEMAND_PER_MILE_ROADWAY": 10,
+        "REPAIR_CREW_DEMAND_PER_MILE_TUNNEL": 40,
+        "REPAIR_CREW_DEMAND_PER_MILE_BRIDGE": 20,
+        "REPAIR_CREW_DEMAND_PER_MILE_PIPE": 5,
+        "DEFAULT_REPAIR_DURATION_DICT": {"Lognormal": {"Median": 0, "Dispersion": 0.3}},
+        "DEMAND_PER_PERSON": {"PotableWater": 0.1}
+    },
+    "Content": {
+        "Locality 1": {
+            "Coordinates": {
+                "BoundingBox": [[0.05, 0.15], [0.05, 0.05], [0.15, 0.05], [0.15, 0.15]]
+            },
+            "Components": {
+                "Infrastructure": [
+                    {
+                        "ElectricPowerSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "ElectricPowerPlant": 1
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "TransportationSystem": {
+                            "CreatorClassName": "R2DSubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": ["TransportationService"],
+                                "R2DJSONFile_Info": "./tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_Transportation_det.json",
+                                "SubsystemNameInR2DJSON": "TransportationNetwork",
+                                "AssetTypes": ["Roadway"]
+                                }
+                        }
+                    },
+                    {
+                        "CommunicationSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "BaseTransceiverStation_1": 1
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "Links": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 2": [
+                                        "SuperLink"
+                                    ],
+                                    "Locality 3": [
+                                        "SuperLink"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "Locality 2": {
+            "Coordinates": {
+                "BoundingBox": [[-0.05, 0.05], [-0.05, -0.05], [0.05, -0.05], [0.05, 0.05]]
+            },
+            "Components": {
+                "Infrastructure": [
+                    {
+                        "CoolingWaterSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "CoolingWaterFacility": 1
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "TransportationSystem": {
+                            "CreatorClassName": "R2DSubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": ["TransportationService"],
+                                "R2DJSONFile_Info": "./tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_Transportation_det.json",
+                                "SubsystemNameInR2DJSON": "TransportationNetwork",
+                                "AssetTypes": ["Roadway"]
+                                }
+                        }
+                    },
+                    {
+                        "Links": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 1": [
+                                        "SuperLink"
+                                    ],
+                                    "Locality 3": [
+                                        "SuperLink"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "Locality 3": {
+            "Coordinates": {
+                "BoundingBox": [[-0.05, 0.25], [-0.05, 0.15], [0.05, 0.15], [0.05, 0.25]]
+            },
+            "Components": {
+                "Infrastructure": [
+                    {
+                        "CommunicationSystem": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsInLocality": {
+                                    "BaseTransceiverStation_2": 1
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "TransportationSystem": {
+                            "CreatorClassName": "R2DSubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": ["TransportationService"],
+                                "R2DJSONFile_Info": "./tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_Transportation_det.json",
+                                "SubsystemNameInR2DJSON": "TransportationNetwork",
+                                "AssetTypes": ["Roadway"]
+                                }
+                        }
+                    },
+                    {
+                        "Links": {
+                            "CreatorClassName": "JSONSubsystemCreator",
+                            "CreatorFileName": "json_subsystem_creator",
+                            "Parameters": {
+                                "ComponentsBetweenLocalities": {
+                                    "Locality 1": [
+                                        "SuperLink"
+                                    ],
+                                    "Locality 2": [
+                                        "SuperLink"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ],
+                "BuildingStock": [
+                    {
+                        "ResidentialBuildings": {
+                        "CreatorClassName": "R2DSubsystemCreator",
+                        "CreatorFileName": "r2d_subsystem_creator",
+                        "Parameters": {
+                            "Resource": ["Housing"],
+                            "R2DJSONFile_Info": "./tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_Transportation_det.json",
+                            "SubsystemNameInR2DJSON": "Buildings",
+                            "AssetTypes": ["Building"]
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "DamageInput": {
+        "ClassName": "R2DDamageInput",
+        "FileName": "r2d_damage_input",
+        "Parameters": {"DamageFile": "./tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_Transportation_0.json",
+        "DistributionModelDamage": [
+            "PotableWater"
+        ]
+        }
+    },
+    "Resources": {
+        "ElectricPower": {
+            "Group": "Utilities",
+            "DistributionModel": {
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "FileName": "component_based_priority",
+                        "ClassName": "ComponentBasedPriority",
+                        "Parameters": [
+                            [
+                                "ElectricPowerPlant",
+                                [
+                                    "Locality 1"
+                                ],
+                                "OperationDemand"
+                            ],
+                            [
+                                "BaseTransceiverStation_1",
+                                [
+                                    "Locality 1"
+                                ],
+                                "OperationDemand"
+                            ],
+                            [
+                                "CoolingWaterFacility",
+                                [
+                                    "Locality 2"
+                                ],
+                                "OperationDemand"
+                            ],
+                            [
+                                "BaseTransceiverStation_2",
+                                [
+                                    "Locality 3"
+                                ],
+                                "OperationDemand"
+                            ],
+                            [
+                                "DS1_Building",
+                                [
+                                    "Locality 3"
+                                ],
+                                "OperationDemand"
+                            ]
+                        ]
+                    },
+                    "TransferService": "SuperTransferService"
+                }
+            }
+        },
+        "CoolingWater": {
+            "Group": "Utilities",
+            "DistributionModel": {
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "FileName": "component_based_priority",
+                        "ClassName": "ComponentBasedPriority",
+                        "Parameters": [
+                            [
+                                "CoolingWaterFacility",
+                                [
+                                    "Locality 2"
+                                ],
+                                "OperationDemand"
+                            ],
+                            [
+                                "ElectricPowerPlant",
+                                [
+                                    "Locality 1"
+                                ],
+                                "OperationDemand"
+                            ],
+                            [
+                                "BaseTransceiverStation_1",
+                                [
+                                    "Locality 1"
+                                ],
+                                "OperationDemand"
+                            ],
+                            [
+                                "BaseTransceiverStation_2",
+                                [
+                                    "Locality 3"
+                                ],
+                                "OperationDemand"
+                            ],
+                            [
+                                "DS1_Building",
+                                [
+                                    "Locality 3"
+                                ],
+                                "OperationDemand"
+                            ]
+                        ]
+                    },
+                    "TransferService": "SuperTransferService"
+                }
+            }
+        },
+        "TransportationService": {
+            "Group": "Utilities",
+            "DistributionModel": {
+                "ClassName": "ResidualDemandTrafficDistributionModel",
+                "FileName": "residual_demand_traffic_distribution_model",
+                "Parameters": {
+                        "DistributionTimeStepping": [
+                            {
+                                "start": 0,
+                                "end": 50,
+                                "step": 1
+                            },
+                            {
+                                "start": 50,
+                                "end": 1000,
+                                "step": 50
+                            }
+                        ],
+                        "Directory": "./tests/test_inputs/test_ThreeLocalities_transportation_network/",
+                        "EdgeFile": "./tests/test_inputs/test_ThreeLocalities_transportation_network/ProcessedRoadNetworkRoads.geojson",
+                        "NodeFile": "./tests/test_inputs/test_ThreeLocalities_transportation_network/ProcessedRoadNetworkNodes.geojson",
+                        "ODFilePre":"./tests/test_inputs/test_ThreeLocalities_transportation_network/OD_Matrix.csv",
+                        "TwoWayEdges":true,
+                        "HourList": [7, 8],
+                        "CapacityRuleset":"./tests/test_inputs/test_ThreeLocalities_transportation_network/transportation_capacity_ruleset.py",
+                        "DemandRuleset":"./tests/test_inputs/test_ThreeLocalities_transportation_network/transportation_demand_ruleset.py",
+                        "ResultsFolder": "./tests/test_inputs/test_ThreeLocalities_transportation_network/results",
+                        "TripCutoffThreshold": 3
+                    }
+            }
+        },
+        "Communication": {
+            "Group": "Utilities",
+            "DistributionModel": {
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "FileName": "component_based_priority",
+                        "ClassName": "ComponentBasedPriority",
+                        "Parameters": [
+                            [
+                                "BaseTransceiverStation_1",
+                                [
+                                    "Locality 1"
+                                ],
+                                "OperationDemand"
+                            ],
+                            [
+                                "BaseTransceiverStation_2",
+                                [
+                                    "Locality 3"
+                                ],
+                                "OperationDemand"
+                            ],
+                            [
+                                "ElectricPowerPlant",
+                                [
+                                    "Locality 1"
+                                ],
+                                "OperationDemand"
+                            ],
+                            [
+                                "CoolingWaterFacility",
+                                [
+                                    "Locality 2"
+                                ],
+                                "OperationDemand"
+                            ],
+                            [
+                                "DS1_Building",
+                                [
+                                    "Locality 3"
+                                ],
+                                "OperationDemand"
+                            ]
+                        ]
+                    }
+                }
+            }
+        },
+        "SuperTransferService": {
+            "Group": "TransferService",
+            "DistributionModel": {
+                "ClassName": "TransferServiceDistributionModelPotentialPaths",
+                "FileName": "transfer_service_distribution_model_potential_paths",
+                "Parameters": {
+                    "PathSetsFile": "./tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_potential_path_sets.json"
+                }
+            }
+        },
+        "Shelter": {
+            "Group": "Utilities",
+            "DistributionModel": {
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
+                        "Parameters": {
+                            "Seed": 0.0,
+                            "DemandType": [
+                                "OperationDemand"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "ResilienceCalculator": [
+        {
+            "FileName": "recodes_calculator",
+            "ClassName": "ReCoDeSCalculator",
+            "Parameters": {
+                "Scope": "All",
+                "Resources": [
+                    "ElectricPower",
+                    "CoolingWater",
+                    "Communication"
+                ]
+            }
+        },
+        {
+            "FileName": "nist_goals_calculator",
+            "ClassName": "NISTGoalsCalculator",
+            "Parameters": [
+                {
+                    "Resource": "ElectricPower",
+                    "DesiredFunctionalityLevel": 0.95,
+                    "Scope": "All"
+                },
+                {
+                    "Resource": "CoolingWater",
+                    "DesiredFunctionalityLevel": 0.9,
+                    "Scope": "All"
+                },
+                {
+                    "Resource": "Communication",
+                    "DesiredFunctionalityLevel": 0.8,
+                    "Scope": "All"
+                }
+            ]
+        }
+    ]
+}

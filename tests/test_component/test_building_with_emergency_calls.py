@@ -3,6 +3,7 @@ from pyrecodes.component.building_with_emergency_calls import BuildingWithEmerge
 from test_component_inputs import COMPONENT_NAME, COMPONENT_PARAMETERS, RECOVERY_TIME_STEPS_DENSE, RECOVERY_TIME_STEPS_SPARSE
 import pytest
 import math
+import copy
 
 
 class TestBuildingWithEmergencyCalls():
@@ -12,15 +13,16 @@ class TestBuildingWithEmergencyCalls():
         return BuildingWithEmergencyCalls()
     
     @pytest.fixture
-    def COMPONENT_PARAMETERS(self):
-        COMPONENT_PARAMETERS['ComponentClass'] = 'BuidlingStockUnitWithEmergencyCalls'
-        COMPONENT_PARAMETERS['OperationDemand']['Communication'] = {'Amount': 1.0, 
+    def COMPONENT_PARAMETERS_BUILDING(self):
+        COMPONENT_PARAMETERS_BUILDING = copy.deepcopy(COMPONENT_PARAMETERS)
+        COMPONENT_PARAMETERS_BUILDING['ComponentClass'] = 'BuidlingStockUnitWithEmergencyCalls'
+        COMPONENT_PARAMETERS_BUILDING['OperationDemand']['Communication'] = {'Amount': 1.0, 
                                                                     'FunctionalityToAmountRelation': 'Linear',
                                                                     'PostDisasterIncreaseDueToEmergencyCalls': 'True'}
-        return COMPONENT_PARAMETERS
+        return COMPONENT_PARAMETERS_BUILDING
 
-    def test_update_communication_demand(self, component, COMPONENT_PARAMETERS):
-        component.construct(COMPONENT_NAME, COMPONENT_PARAMETERS)
+    def test_update_communication_demand(self, component, COMPONENT_PARAMETERS_BUILDING):
+        component.construct(COMPONENT_NAME, COMPONENT_PARAMETERS_BUILDING)
         initial_communication_demand = component.demand['OperationDemand']['Communication'].current_amount
         time_steps = [0, 1, 5, 10, 50]
         target_communication_demands = [initial_communication_demand,
@@ -34,8 +36,8 @@ class TestBuildingWithEmergencyCalls():
             assert math.isclose(target_communication_demand,
                                 component.demand['OperationDemand']['Communication'].current_amount)
 
-    def test_modify_emergency_calls(self, component, COMPONENT_PARAMETERS):
-        component.construct(COMPONENT_NAME, COMPONENT_PARAMETERS)
+    def test_modify_emergency_calls(self, component, COMPONENT_PARAMETERS_BUILDING):
+        component.construct(COMPONENT_NAME, COMPONENT_PARAMETERS_BUILDING)
         initial_communication_demand = component.demand['OperationDemand']['Communication'].current_amount
         component.COMMUNICATION_RESOURCE_NAME = 'Communication'
         time_steps = [1, 3, 50]
@@ -47,12 +49,12 @@ class TestBuildingWithEmergencyCalls():
             communication_demand = component.modify_emergency_calls_demand(initial_communication_demand, time_step)
             assert math.isclose(communication_demand, target_communication_demand)
     
-    def test_check_if_demand_increase_considered(self, component, COMPONENT_PARAMETERS):
-        component.check_if_demand_increase_considered('DemandResource1', COMPONENT_PARAMETERS['OperationDemand']['DemandResource1'])
+    def test_check_if_demand_increase_considered(self, component, COMPONENT_PARAMETERS_BUILDING):
+        component.check_if_demand_increase_considered('DemandResource1', COMPONENT_PARAMETERS_BUILDING['OperationDemand']['DemandResource1'])
         assert component.COMMUNICATION_RESOURCE_NAME == ''
 
-        component.check_if_demand_increase_considered('SupplyResource1', COMPONENT_PARAMETERS['Supply']['SupplyResource1'])
+        component.check_if_demand_increase_considered('SupplyResource1', COMPONENT_PARAMETERS_BUILDING['Supply']['SupplyResource1'])
         assert component.COMMUNICATION_RESOURCE_NAME == ''
 
-        component.check_if_demand_increase_considered('Communication', COMPONENT_PARAMETERS['OperationDemand']['Communication'])
+        component.check_if_demand_increase_considered('Communication', COMPONENT_PARAMETERS_BUILDING['OperationDemand']['Communication'])
         assert component.COMMUNICATION_RESOURCE_NAME == 'Communication'

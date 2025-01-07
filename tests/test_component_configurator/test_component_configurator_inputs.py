@@ -65,7 +65,7 @@ R2D_COMPONENT_DATA = {
             "time": "sec"
           },
           "DesignLevel": "MC",
-          "Population_Ratio": 1
+          "PopulationRatio": 1
         },
         "R2Dres": {
           "R2Dres_MostLikelyCriticalDamageState": 2.0,
@@ -96,7 +96,7 @@ R2D_COMPONENT_DATA = {
     "Loss": {
           "Repair": {
             "Cost": {
-              "LF.IND2-LF.W1.MC": 10.0,
+              "LF.IND2-LF.W1.MC": 0.1,
               "replacement-collapse": 0.0
             },
             "Time": {
@@ -128,7 +128,7 @@ R2D_COMPONENT_DAMAGE_DATA = {
         "Loss": {
           "Repair": {
             "Cost": {
-              "LF.IND2-LF.W1.MC": 10.0,
+              "LF.IND2-LF.W1.MC": 0.1,
               "replacement-collapse": 0.0
             },
             "Time": {

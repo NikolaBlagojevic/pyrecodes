@@ -64,7 +64,7 @@ class TestRelation():
         self.construct_relation_object('MultipleStep')
         self.relation.set_steps([0.0, 0.2, 0.4, 0.6, 0.8], [0.15, 0.25, 0.55, 0.75, 0.95])
         output = []
-        correct_output = [0.15, 0.25, 0.55, 1.0, 1.0]
+        correct_output = [0.15, 0.25, 0.55, 0.95, 0.95]
         for value in self.test_values:
             output.append(self.relation.get_output(value))
         assert all([math.isclose(a, b) for a, b in zip(output, correct_output)])

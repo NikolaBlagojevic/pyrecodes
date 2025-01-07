@@ -1,10 +1,24 @@
 
 MAIN_FILE_REWET = './tests/test_inputs/test_inputs_ThreeLocalitiesCommunityREWET_Main.json'
+MAIN_FILE_RESIDUAL_DEMAND = './tests/test_inputs/test_inputs_ThreeLocalitiesCommunityResidualDemand_Main.json'
 RESOURCE_NAME_REWET = 'PotableWater'
+RESOURCE_NAME_RESIDUAL_DEMAND = 'TransportationService'
 RESOURCE_PARAMETERS_REWET = {
     "INPFile": "./tests/test_inputs/test_ThreeLocalities_water_distribution_network/ThreeLocalitiesWaterNetwork.inp",
     "Results_folder": "./tests/test_inputs/test_ThreeLocalities_water_distribution_network/rewet_results",
     "Temp_folder": "./tests/test_inputs/test_ThreeLocalities_water_distribution_network/rewet_temp"
+}
+RESOURCE_PARAMETERS_RESIDUAL_DEMAND = {
+    "Directory": "./tests/test_inputs/test_ThreeLocalities_transportation_network/",
+    "EdgeFile": "./tests/test_inputs/test_ThreeLocalities_transportation_network/ProcessedRoadNetworkRoads.geojson",
+    "NodeFile": "./tests/test_inputs/test_ThreeLocalities_transportation_network/ProcessedRoadNetworkNodes.geojson",
+    "ODFilePre":"./tests/test_inputs/test_ThreeLocalities_transportation_network/OD_Matrix.csv",
+    "TwoWayEdges":True,
+    "HourList": [7, 8],
+    "CapacityRuleset":"./tests/test_inputs/test_ThreeLocalities_transportation_network/transportation_capacity_ruleset.py",
+    "DemandRuleset":"./tests/test_inputs/test_ThreeLocalities_transportation_network/transportation_demand_ruleset.py",
+    "ResultsFolder": "./tests/test_inputs/test_ThreeLocalities_transportation_network/results",
+    "TripCutoffThreshold": 3
 }
 
 INITIAL_R2D_DICT_REWET = {
@@ -26,6 +40,7 @@ INITIAL_R2D_DICT_REWET = {
                     "PlanArea": 18615.30048,
                     "ReplacementCost": 38781.876,
                     "Population": 5,
+                    "PopulationRatio": 1.0,
                     "SoilType": "B",
                     "type": "Building",
                     "Footprint": "{\"type\":\"Feature\",\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-122.293878,37.771004],[-122.293973,37.771029],[-122.294025,37.770903],[-122.293931,37.770878],[-122.293878,37.771004]]]},\"properties\":{}}",
@@ -35,7 +50,7 @@ INITIAL_R2D_DICT_REWET = {
                         "time": "sec"
                     },
                     "DesignLevel": "MC",
-                    "Population_Ratio": 1.0,
+                    "PopulationRatio": 1.0,
                     "OperationDemand": {
                         "Communication": 1.0,
                         "ElectricPower": 1.0,
@@ -193,6 +208,148 @@ INITIAL_R2D_DICT_REWET = {
                     "Type": []
                 }
             }
+        }
+    }
+}
+
+INITIAL_R2D_DICT_RESIDUAL_DEMAND = {
+    "Buildings": {
+        "Building": {
+            "1": {
+                "GeneralInformation": {
+                    "AIM_id": "1",
+                    "location": {
+                        "latitude": 0.2,
+                        "longitude": 0
+                    },
+                    "Latitude": 0.2,
+                    "Longitude": 0,
+                    "NumberOfStories": 1,
+                    "YearBuilt": 1953,
+                    "OccupancyClass": "RES1",
+                    "StructureType": "W1",
+                    "PlanArea": 18615.30048,
+                    "ReplacementCost": 38781.876,
+                    "Population": 5,
+                    "PopulationRatio": 1.0,
+                    "SoilType": "B",
+                    "type": "Building",
+                    "Footprint": "{\"type\":\"Feature\",\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-122.293878,37.771004],[-122.293973,37.771029],[-122.294025,37.770903],[-122.293931,37.770878],[-122.293878,37.771004]]]},\"properties\":{}}",
+                    "units": {
+                        "force": "kips",
+                        "length": "inch",
+                        "time": "sec"
+                    },
+                    "DesignLevel": "MC",
+                    "PopulationRatio": 1.0,
+                    "OperationDemand": {'Communication': 1.0, 'ElectricPower': 1.0, 'PotableWater': 1.0},
+                    "RecoveryDemand": {}
+                },
+                "Damage": {}
+            }
+        }
+    },
+    "TransportationNetwork": {
+        "Roadway": {
+            "1": {
+                "GeneralInformation": {
+                    "AIM_id": "1",
+                    "location": {
+                        "latitude": 0,
+                        "longitude": 0
+                    },
+                    "geometry": "LINESTRING (0 0, 0.1 0.1)",
+                    "TigerOID": "11029704599947",
+                    "RoadType": "residential",
+                    "NumOfLanes": 1,
+                    "MaxMPH": 25,
+                    "MTFCC": "S1400",
+                    "NAME": "Santa Clara Ave",
+                    "StartNode": 243,
+                    "EndNode": 757,
+                    "ExplodeID": 23,
+                    "SegID": 0,
+                    "type": "Roadway",
+                    "assetSubtype": "Roadway",
+                    "SoilType": "A",
+                    "units": {
+                        "force": "kips",
+                        "length": "inch",
+                        "time": "sec"
+                    },
+                    "RoadHazusClass": "HRD2",
+                    "OperationDemand": {},
+                    "RecoveryDemand": {},
+                    "FunctionalityLevel": 1.0
+                },
+                "Damage": {}     
+            },
+            "2": {
+                "GeneralInformation": {
+                    "AIM_id": "2",
+                    "location": {
+                        "latitude": 0.1,
+                        "longitude": 0.1
+                    },
+                    "geometry": "LINESTRING (0.1 0.1, 0.2 0)",
+                    "TigerOID": "11029704599947",
+                    "RoadType": "residential",
+                    "NumOfLanes": 1,
+                    "MaxMPH": 25,
+                    "MTFCC": "S1400",
+                    "NAME": "Santa Clara Ave",
+                    "StartNode": 243,
+                    "EndNode": 757,
+                    "ExplodeID": 23,
+                    "SegID": 0,
+                    "type": "Roadway",
+                    "assetSubtype": "Roadway",
+                    "SoilType": "A",
+                    "units": {
+                        "force": "kips",
+                        "length": "inch",
+                        "time": "sec"
+                    },
+                    "RoadHazusClass": "HRD2",
+                    "OperationDemand": {},
+                    "RecoveryDemand": {},
+                    "FunctionalityLevel": 1.0
+                },
+                "Damage": {}
+            },
+            "3": {
+                "GeneralInformation": {
+                    "AIM_id": "3",
+                    "location": {
+                        "latitude": 0.2,
+                        "longitude": 0
+                    },
+                    "geometry": "LINESTRING (0.2 0, 0 0)",
+                    "TigerOID": "11029704599947",
+                    "RoadType": "residential",
+                    "NumOfLanes": 1,
+                    "MaxMPH": 25,
+                    "MTFCC": "S1400",
+                    "NAME": "Santa Clara Ave",
+                    "StartNode": 243,
+                    "EndNode": 757,
+                    "ExplodeID": 23,
+                    "SegID": 0,
+                    "type": "Roadway",
+                    "assetSubtype": "Roadway",
+                    "SoilType": "A",
+                    "units": {
+                        "force": "kips",
+                        "length": "inch",
+                        "time": "sec"
+                    },
+                    "RoadHazusClass": "HRD2",
+                    "OperationDemand": {},
+                    "RecoveryDemand": {},
+                    "FunctionalityLevel": 1.0
+                },
+                "Damage": {}
+            }          
         }
     }
 }

@@ -7,6 +7,7 @@ from pyrecodes.system_creator.concrete_system_creator import ConcreteSystemCreat
 from pyrecodes.system_creator.system_creator import SystemCreator
 from pyrecodes.damage_input.list_damage_input import ListDamageInput
 from pyrecodes.system.recovery_target_checker import NoDamageRecoveryTargetChecker
+from pyrecodes.system.system import System
    
 
 class TestBuiltEnvironmentSystem():
@@ -115,6 +116,10 @@ class TestThreeLocalitiesSystem(TestBuiltEnvironmentSystem):
         for target_damage_level, component in zip(target_damage_levels, system.components):
             assert component.get_damage_level() == target_damage_level
 
+    def test_save_and_load_as_pickle(self, system):
+        system.save_as_pickle('./tests/test_inputs/test_inputs_ThreeLocalitiesCommunitySystem.pickle')
+        system_loaded = system.load_as_pickle('./tests/test_inputs/test_inputs_ThreeLocalitiesCommunitySystem.pickle')
+        assert isinstance(system_loaded, System)
         
 class TestVirtualCommunity(TestBuiltEnvironmentSystem):
 

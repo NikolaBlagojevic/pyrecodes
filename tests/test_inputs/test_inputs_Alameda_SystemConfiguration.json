@@ -456,9 +456,7 @@
             "DistributionModel": {
                 "ClassName": "TransferServiceDistributionModelPotentialPaths",
                 "FileName": "transfer_service_distribution_model_potential_paths",
-                "Parameters": {
-                    "PathSetsFile": "./Alameda_Case_Study/potential_path_sets.json"
-                }
+                "Parameters": { }
             }
         },
         "TransportationService": {
@@ -479,7 +477,16 @@
                             "step": 50
                         }
                     ],
-                    "Directory": "./Alameda_Case_Study/traffic_simulation_data/"
+                    "Directory": "./tests/test_inputs/test_Alameda_transportation_network/",
+                    "EdgeFile": "./tests/test_inputs/test_Alameda_transportation_network/ProcessedRoadNetworkRoads.geojson",
+                    "NodeFile": "./tests/test_inputs/test_Alameda_transportation_network/ProcessedRoadNetworkNodes.geojson",
+                    "ODFilePre":"./tests/test_inputs/test_Alameda_transportation_network/OD_Matrix.csv",
+                    "TwoWayEdges":true,
+                    "HourList": [7, 8],
+                    "CapacityRuleset":"./tests/test_inputs/test_Alameda_transportation_network/transportation_capacity_ruleset.py",
+                    "DemandRuleset":"./tests/test_inputs/test_Alameda_transportation_network/transportation_demand_ruleset.py",
+                    "ResultsFolder": "./tests/test_inputs/test_Alameda_transportation_network/results",
+                    "TripCutoffThreshold": 3
                 }
             }
         }

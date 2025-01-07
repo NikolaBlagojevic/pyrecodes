@@ -8,10 +8,17 @@ class Relation(ABC):
     Class used to define various relations between component attributes in pyrecodes.
     """
     @abstractmethod
+    def __init__(self, parameters: dict):
+        pass
+
+    @abstractmethod
     def get_output(self, input: float) -> float:
         pass
 
 class ConcreteRelation(Relation):
+
+    def __init__(self, parameters={}):
+        pass
 
     def get_output(self, input: float):
         pass
@@ -78,16 +85,24 @@ class MultipleStep(ConcreteRelation):
 
     | Note: input has to be rounded, otherwise comparison does not work. 
     """
+
+    def __init__(self, parameters={}):
+        self.set_steps(parameters.get('StepLimits', []), parameters.get('StepValues', []))
+
     def get_output(self, input: float) -> float:
         if self.valid_input(input):
             input = round(input, int(math.log10(1 / ABS_TOL)))
-            for i in range(len(self.step_limits) - 1):
-                if input < self.step_limits[0]:
-                    return 0.0
-                elif self.step_limits[i] <= input < self.step_limits[i + 1]:
-                    return self.step_values[i]
-                elif input >= self.step_limits[-1]:
-                    return 1.0
+            input_step = self.get_step_id(input)
+            return self.step_values[input_step]
+            
+    def get_step_id(self, input: float) -> int:
+        for i in range(len(self.step_limits) - 1):
+            if self.step_limits[i] <= input < self.step_limits[i + 1]:
+                return i
+        if input < self.step_limits[0]:
+            return 0
+        elif input >= self.step_limits[-1]:
+            return len(self.step_limits) - 1
         
     def set_steps(self, step_limits: list[float], step_values: list[float]):   
         if len(step_limits) != len(step_values):

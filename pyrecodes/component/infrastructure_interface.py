@@ -16,15 +16,16 @@ class InfrastructureInterface(StandardiReCoDeSComponent):
         | **Note 2**: It is assumed that last value in the Amount key is the initial supply amount and the highest value that the infrastructure system provides. 
         """
         restoration_times = self.get_restoration_times(supply_dynamics)
+        total_restoration_time = max(restoration_times)
         # avoid divison with zero if the last restoration time is zero
         if restoration_times[-1] != 0.0:
-            step_limits = list(np.divide(restoration_times, restoration_times[-1]))
+            step_limits = list(np.divide(restoration_times, total_restoration_time))
         else:
             step_limits = [1.0]
         step_values = list(np.divide(supply_dynamics['Amount'], max(supply_dynamics['Amount'])))   
         step_limits, step_values = self.add_initial_zero_supply(step_limits, step_values)
         
-        self.recovery_model.set_parameters({'RestoredIn': supply_dynamics['RestoredIn'],
+        self.recovery_model.set_parameters({'RestoredIn': total_restoration_time,
                                             'StepLimits': step_limits,
                                             'StepValues': step_values})
         self.supply['Supply'][supply_dynamics['Resource']].set_initial_amount(max(supply_dynamics['Amount']))

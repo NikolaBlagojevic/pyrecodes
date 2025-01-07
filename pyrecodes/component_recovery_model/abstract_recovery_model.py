@@ -38,11 +38,12 @@ class AbstractRecoveryModel(RecoveryModel):
         | If no type is specified, constant relation is used.
 
         Args:
-            damage_functionality_relation (dict): Damage functionality relation parameters.
+            damage_functionality_relation (dict): Damage functionality relation type and parameters.
         """
         damage_functionality_relation_type = damage_functionality_relation.get('Type', 'Constant')
+        damage_functionality_relation_parameters = damage_functionality_relation.get('Parameters', {})
         target_damage_functionality = getattr(relation, damage_functionality_relation_type)
-        self.damage_to_functionality_relation = target_damage_functionality()
+        self.damage_to_functionality_relation = target_damage_functionality(damage_functionality_relation_parameters)
 
     def recover(self, time_step: int) -> None:
         """

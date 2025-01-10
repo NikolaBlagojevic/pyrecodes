@@ -25,7 +25,8 @@ def closest_neighbour(building_df, nodes_df):
     # Find the nearest road network node to each building
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        merged_df = nodes_df.sjoin_nearest(building_df, how = 'left')
+        merged_df = building_df.sjoin_nearest(nodes_df, how = 'left')
+        # merged_df = nodes_df.sjoin_nearest(building_df, how = 'left')
     merged_df = merged_df.drop(columns=['AIM_id', 'Latitude', 'Longitude', 'index_right'])
     merged_df = merged_df.fillna(0)
     merged_df['Population'] = merged_df['Population'] * merged_df['PopulationRatio']

@@ -7,7 +7,7 @@ from pyrecodes.resource_distribution_model.residual_demand_traffic_distribution_
 from pyrecodes.resource_distribution_model.residual_demand_traffic_distribution_model import ResidualDemandTrafficDistributionModel
 from tests.test_resource_distribution_model.test_resource_distribution_model_inputs import MAIN_FILE_RESIDUAL_DEMAND, RESOURCE_NAME_RESIDUAL_DEMAND, RESOURCE_PARAMETERS_RESIDUAL_DEMAND, INITIAL_R2D_DICT_RESIDUAL_DEMAND
 
-UNDAMAGED_TRAVEL_TIMES = [1874.03, 1874.03, 2660.83, 2660.83, 1874.03, 1874.03]
+UNDAMAGED_TRAVEL_TIMES = [2660.83, 2660.83, 1874.03, 1874.03]
 
 class TestResidualDemandTrafficDistributionModel:
 
@@ -129,10 +129,10 @@ class TestResidualDemandTrafficDistributionModel:
         for travel_time_used, target_travel_time in zip(residual_demand_traffic_distribution_model.travel_times[2]['travel_time_used'], UNDAMAGED_TRAVEL_TIMES):
             assert travel_time_used == target_travel_time
 
-    def test_distribute_traffic_damaged_road_1(self, residual_demand_traffic_distribution_model, system):
-        TARGET_TRAVEL_TIMES = [2660.83+1874.03, 2660.83+1874.03, 2660.83, 2660.83, 1874.03, 1874.03]
+    def test_distribute_traffic_damaged_road_2(self, residual_demand_traffic_distribution_model, system):
+        TARGET_TRAVEL_TIMES = [2660.83, 2660.83, 1874.03+2660.83, 1874.03+2660.83]
         
-        system = self.create_damaged_system('./tests/test_inputs/test_inputs_ThreeLocalitiesCommunityResidualDemand_Main_Road1Damaged.json')
+        system = self.create_damaged_system('./tests/test_inputs/test_inputs_ThreeLocalitiesCommunityResidualDemand_Main_Road2Damaged.json')
         system.time_step = 0
         system.set_initial_damage()
         system.update()
@@ -170,7 +170,7 @@ class TestResidualDemandTrafficDistributionModel:
             assert travel_time_used == target_travel_time
 
     def test_distribute_traffic_od_changed(self, residual_demand_traffic_distribution_model, system):
-        TARGET_TRAVEL_TIMES = [1874.03, 1874.03, 2660.83, 0, 1874.03, 0]
+        TARGET_TRAVEL_TIMES = [2660.83, 0, 1874.03, 0]
         system = self.create_damaged_system('./tests/test_inputs/test_inputs_ThreeLocalitiesCommunityResidualDemand_Main_BuildingDamaged.json')
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
@@ -228,7 +228,7 @@ class TestResidualDemandTrafficDistributionModel:
 
     def test_get_total_supply(self, residual_demand_traffic_distribution_model, system):
         residual_demand_traffic_distribution_model.distribute(0)
-        assert residual_demand_traffic_distribution_model.get_total_supply('All') == 6
+        assert residual_demand_traffic_distribution_model.get_total_supply('All') == 4
 
         system = self.create_damaged_system('./tests/test_inputs/test_inputs_ThreeLocalitiesCommunityResidualDemand_Main_AllRoadsDamaged.json')
         system.time_step = 0
@@ -239,7 +239,7 @@ class TestResidualDemandTrafficDistributionModel:
         residual_demand_traffic_distribution_model.distribute(1)
         assert residual_demand_traffic_distribution_model.get_total_supply('All') == 0
         
-        system = self.create_damaged_system('./tests/test_inputs/test_inputs_ThreeLocalitiesCommunityResidualDemand_Main_Road1Damaged.json')
+        system = self.create_damaged_system('./tests/test_inputs/test_inputs_ThreeLocalitiesCommunityResidualDemand_Main_Road2Damaged.json')
         system.time_step = 0
         system.set_initial_damage()
         system.update()
@@ -247,11 +247,11 @@ class TestResidualDemandTrafficDistributionModel:
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
         residual_demand_traffic_distribution_model.distribute(1)
-        assert residual_demand_traffic_distribution_model.get_total_supply('All') == 4
+        assert residual_demand_traffic_distribution_model.get_total_supply('All') == 2
 
     def test_get_total_demand(self, residual_demand_traffic_distribution_model, system):
         residual_demand_traffic_distribution_model.distribute(0)
-        assert residual_demand_traffic_distribution_model.get_total_demand('All') == 6
+        assert residual_demand_traffic_distribution_model.get_total_demand('All') == 4
 
         system = self.create_damaged_system('./tests/test_inputs/test_inputs_ThreeLocalitiesCommunityResidualDemand_Main_AllRoadsDamaged.json')
         system.time_step = 0
@@ -260,9 +260,9 @@ class TestResidualDemandTrafficDistributionModel:
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
         residual_demand_traffic_distribution_model.distribute(1)
-        assert residual_demand_traffic_distribution_model.get_total_demand('All') == 6
+        assert residual_demand_traffic_distribution_model.get_total_demand('All') == 4
         
-        system = self.create_damaged_system('./tests/test_inputs/test_inputs_ThreeLocalitiesCommunityResidualDemand_Main_Road1Damaged.json')
+        system = self.create_damaged_system('./tests/test_inputs/test_inputs_ThreeLocalitiesCommunityResidualDemand_Main_Road2Damaged.json')
         system.time_step = 0
         system.set_initial_damage()
         system.update()
@@ -270,7 +270,7 @@ class TestResidualDemandTrafficDistributionModel:
         residual_demand_traffic_distribution_model.components = system.components
         residual_demand_traffic_distribution_model.update_r2d_dict()
         residual_demand_traffic_distribution_model.distribute(1)
-        assert residual_demand_traffic_distribution_model.get_total_demand('All') == 6
+        assert residual_demand_traffic_distribution_model.get_total_demand('All') == 4
 
 
 

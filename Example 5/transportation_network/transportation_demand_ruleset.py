@@ -21,10 +21,12 @@ def extract_building_from_det(det):
             return gpd.GeoDataFrame(extracted_df, geometry=gpd.points_from_xy(extracted_df.Longitude, extracted_df.Latitude), crs='epsg:4326')
 # Aggregate the population in buildings to the closest road network node
 def closest_neighbour(building_df, nodes_df):
+    # Nikola: I think there is an issue with this method. I have multiple nodes and one building in the system and the population of the one building (which is in one of the nodes) is assigned to all nodes. So the sum of the population in nodes is multiple times higher than the actual population in the system. I assume the population from one building should only be linked to one (closest) node, not to multiple nodes.
     # Find the nearest road network node to each building
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        merged_df = nodes_df.sjoin_nearest(building_df, how = 'left')
+        merged_df = building_df.sjoin_nearest(nodes_df, how = 'left')
+        # merged_df = nodes_df.sjoin_nearest(building_df, how = 'left')
     merged_df = merged_df.drop(columns=['AIM_id', 'Latitude', 'Longitude', 'index_right'])
     merged_df = merged_df.fillna(0)
     merged_df['Population'] = merged_df['Population'] * merged_df['PopulationRatio']

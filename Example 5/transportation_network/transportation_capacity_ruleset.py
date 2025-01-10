@@ -1,13 +1,6 @@
 import pandas as pd
 
-
 def update_edges(edges, r2d_dict):
-    capacity_map = {'Bridge':{0: 1.0, 1: 1.0, 2:0.75, 3:0.5, 4:0.0},
-                    'Tunnel':{0: 1.0, 1: 1.0, 2:0.75, 3:0.5, 4:0.0},
-                    'Roadway':{0: 1.0, 1: 1.0, 2:0.75, 3:0.5, 4:0.0}}
-    free_flow_speed_map = {'Bridge':{0: 1.0, 1: 0.75, 2:0.5, 3:0.5, 4:0.0},
-                           'Tunnel':{0: 1.0, 1: 0.75, 2:0.5, 3:0.5, 4:0.0},
-                           'Roadway':{0: 1.0, 1: 0.75, 2:0.5, 3:0.5, 4:0.0}}
     transportation_damage = r2d_dict['TransportationNetwork']
     orig_capacity = edges['capacity'].to_dict()
     orig_maxspeed = edges['maxspeed'].to_dict()
@@ -15,11 +8,6 @@ def update_edges(edges, r2d_dict):
     new_maxspeed = edges['maxspeed'].apply(lambda x: [x]).to_dict()
     for asset_type in transportation_damage:
         for asset_id, asset_id_dict in transportation_damage[asset_type].items():
-            # Nikola: Let's use component's functionality level which is also stored in the general information, instead of the initial damage state (which depends on the fragility curves)
-            # User can define how damage states affect the functionality level, and then capacity and fre flow speed ratio, in the component library. It does not have to be done here.
-            # initial_ds = int(asset_id_dict['GeneralInformation']['initial_damage_state'])
-            # capacity_ratio = capacity_map[asset_type][initial_ds]
-            # free_flow_speed_ratio = free_flow_speed_map[asset_type][initial_ds]
             capacity_ratio = asset_id_dict['GeneralInformation']['FunctionalityLevel']
             free_flow_speed_ratio = asset_id_dict['GeneralInformation']['FunctionalityLevel']
             if asset_type == 'Roadway':
@@ -30,12 +18,16 @@ def update_edges(edges, r2d_dict):
                 ]['GeneralInformation']['RoadID']
                 road_ids = list(road_id_str.split(','))
             for road_id in road_ids:
-                new_capacity[road_id].append(
-                    orig_capacity[road_id] * capacity_ratio
-                )
-                new_maxspeed[road_id].append(
-                    orig_maxspeed[road_id] * free_flow_speed_ratio
-                )
+                # It is assumed that removed duplicate roads cannot be damaged. Thus, only road ids that stayed in the edges_gdf after removing duplicates are considered here.
+                if road_id in new_capacity.keys():
+                    new_capacity[road_id].append(
+                        orig_capacity[road_id] * capacity_ratio
+                    )
+                    new_maxspeed[road_id].append(
+                        orig_maxspeed[road_id] * free_flow_speed_ratio
+                    )
+                else:
+                    print(road_id)
     for key, value in new_capacity.items():
         new_capacity[key] = min(value)
     for key, value in new_maxspeed.items():

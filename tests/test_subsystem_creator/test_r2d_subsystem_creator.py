@@ -108,13 +108,21 @@ class TestR2DSubsystemCreator:
           "LF.W1.MC-1": 0,
           "collapse-0": 1
         }}
-        assert r2d_subsystem_creator_alameda.get_component_damage_state(damage_info, 'Building') == 0
+        assert r2d_subsystem_creator_alameda.get_component_damage_state(damage_info, 'Building') == 4
 
         damage_info = {"Damage": {
           "GF.H.S-1": 1,
           "GF.V.S-1": 0,
           "LF.W1.MC-1": 0,
           "collapse-0": 1
+        }}
+        assert r2d_subsystem_creator_alameda.get_component_damage_state(damage_info, 'Building') == 4
+
+        damage_info = {"Damage": {
+          "GF.H.S-1": 1,
+          "GF.V.S-1": 0,
+          "LF.W1.MC-1": 0,
+          "collapse-0": 0
         }}
         assert r2d_subsystem_creator_alameda.get_component_damage_state(damage_info, 'Building') == 1
 

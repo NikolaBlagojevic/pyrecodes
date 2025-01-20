@@ -2,18 +2,26 @@ import pandas as pd
 
 
 def update_edges(edges, r2d_dict):
+    capacity_map = {'Bridge':{0: 1.0, 1: 1.0, 2:0.75, 3:0.5, 4:0.0},
+                    'Tunnel':{0: 1.0, 1: 1.0, 2:0.75, 3:0.5, 4:0.0},
+                    'Roadway':{0: 1.0, 1: 1.0, 2:0.75, 3:0.5, 4:0.0}}
+    free_flow_speed_map = {'Bridge':{0: 1.0, 1: 0.75, 2:0.5, 3:0.5, 4:0.0},
+                           'Tunnel':{0: 1.0, 1: 0.75, 2:0.5, 3:0.5, 4:0.0},
+                           'Roadway':{0: 1.0, 1: 0.75, 2:0.5, 3:0.5, 4:0.0}}
     transportation_damage = r2d_dict['TransportationNetwork']
     orig_capacity = edges['capacity'].to_dict()
     orig_maxspeed = edges['maxspeed'].to_dict()
     new_capacity = edges['capacity'].apply(lambda x: [x]).to_dict()
     new_maxspeed = edges['maxspeed'].apply(lambda x: [x]).to_dict()
-    closed_links_roads_id = []
     for asset_type in transportation_damage:
         for asset_id, asset_id_dict in transportation_damage[asset_type].items():
+            # Nikola: Let's use component's functionality level which is also stored in the general information, instead of the initial damage state (which depends on the fragility curves)
+            # User can define how damage states affect the functionality level, and then capacity and fre flow speed ratio, in the component library. It does not have to be done here.
+            # initial_ds = int(asset_id_dict['GeneralInformation']['initial_damage_state'])
+            # capacity_ratio = capacity_map[asset_type][initial_ds]
+            # free_flow_speed_ratio = free_flow_speed_map[asset_type][initial_ds]
             capacity_ratio = asset_id_dict['GeneralInformation']['FunctionalityLevel']
             free_flow_speed_ratio = asset_id_dict['GeneralInformation']['FunctionalityLevel']
-            if asset_id_dict['GeneralInformation']['FunctionalityLevel'] == 0:
-                closed_links_roads_id.append(asset_id)
             if asset_type == 'Roadway':
                 road_ids = [asset_id]
             else:
@@ -44,10 +52,6 @@ def update_edges(edges, r2d_dict):
     edges = edges.rename(
         columns={'capacity_y': 'capacity', 'maxspeed_y': 'maxspeed'}
     )
-    # The closed_links will be deleted from the network if Residual Demand API is used
-    closed_links = edges[edges.index.isin(closed_links_roads_id)]
-    # The capacity and maxspeed are set as small values if other transportation simulation models are used and
-    # the closed roads need to be kept in the network
     edges['capacity'] = edges['capacity'].apply(lambda x: 1 if x == 0 else x)
     edges['maxspeed'] = edges['maxspeed'].apply(lambda x: 0.001 if x == 0 else x)
-    return edges, closed_links
+    return edges

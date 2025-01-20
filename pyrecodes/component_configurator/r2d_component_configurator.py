@@ -8,6 +8,8 @@ import shapely
 import pyproj
 from abc import abstractmethod
 
+MAX_DAMAGE_STATE = 4
+
 class R2DComponentConfigurator(ComponentConfigurator):
     """
     Abstract class for R2D component configurators.
@@ -62,10 +64,15 @@ class R2DComponentConfigurator(ComponentConfigurator):
 
     def get_damage_state(self, damage_info: dict) -> int:
         """
-        | Method to set the damage state of an R2D component based on the damage information provided in the R2D output files.
-        | At the moment, the maximum damage state of all damage states provided in the R2D output files is used.
+        | Method to get the damage state of an R2D component based on the damage information provided in the R2D output files.
+        | If building collapsed, damage state 4 is returned.
+        | If not collapsed, maximum damage state of all damage states provided in the R2D output files is used.
         """
-        return max([value for key, value in damage_info['Damage'].items() if not('collapse' in key)]+ [0])
+        if damage_info['Damage']['collapse-0'] == 1:
+            return MAX_DAMAGE_STATE
+        else:
+            return max([value for key, value in damage_info['Damage'].items() if not('collapse' in key)]+ [0])
+
     
 class R2DBuildingConfigurator(R2DComponentConfigurator):
     """
@@ -214,6 +221,13 @@ class R2DPipeConfigurator(R2DComponentConfigurator):
     
     def set_r2d_dict_getter(self, component: Component):        
         component.r2d_dict_getter = R2DPipeDictGetter(component)
+
+    def get_damage_state(self, damage_info: dict) -> int:
+        """
+        | Method to get the damage state of R2D pipes based on the damage information provided in the R2D output files.
+        | Aggreggate dmage states are considered. Leak = 1. Break = 2.
+        """
+        return max([damage_info['Damage'].get('aggregate-1', 0), damage_info['Damage'].get('aggregate-2', 0)])
 
 class R2DBridgeConfigurator(R2DTransportationComponentConfigurator):
     """

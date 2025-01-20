@@ -29,12 +29,16 @@ class R2DRepairConfigurator(RepairConfigurator):
             self.component.recovery_model.recovery_activities['Repair'].set_duration(
                 {"Deterministic": {"Value": repair_time}})                       
             
-    def get_repair_time(self, component_data: dict) -> int:   
+    def get_repair_time(self, component_data: dict, default_repair_time=30) -> int:   
         """
         | Method that gets the repair duration of the component from the R2D output files. 
         """ 
         if 'Repair' in component_data['Loss']:
-            return max(list(component_data['Loss']['Repair']['Time'].values()))
+            repair_time = max(list(component_data['Loss']['Repair']['Time'].values()))
+            if repair_time == 0:
+                print(f'Repair time is 0 for component {component_data["Information"]["GeneralInformation"]["AIM_id"]}. Setting it to default value of {default_repair_time} days.')
+                return default_repair_time
+            return repair_time
         else:
             return None
 

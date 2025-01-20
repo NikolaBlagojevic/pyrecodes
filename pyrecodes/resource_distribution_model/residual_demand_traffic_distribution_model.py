@@ -3,6 +3,9 @@ from pyrecodes.resource_distribution_model.residual_demand_traffic_distribution_
 from pyrecodes.resource_distribution_model.spatial_resource_aggregator import SpatialResourceAggregator
 from pyrecodes.component.component import Component
 
+import subprocess
+import os
+
 class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
 
     def __init__(self, resource_name: str, resource_parameters: dict, components: list[Component]):
@@ -31,8 +34,19 @@ class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
         self.r2d_dict = self.constructor.create_r2d_dict(self.components)
 
     def distribute_traffic(self) -> None:
-        self.travel_times.append(self.flow_simulator.simulate(self.r2d_dict))
-
+        """
+        | Run the traffic simulator to calculate travel times.
+        | Supress output to the console from low-level libraries.
+        """
+        with open(os.devnull, 'w') as devnull:
+            original_stdout_fd = os.dup(1) 
+            try:
+                os.dup2(devnull.fileno(), 1) 
+                self.travel_times.append(self.flow_simulator.simulate(self.r2d_dict))
+            finally:
+                os.dup2(original_stdout_fd, 1)  
+                os.close(original_stdout_fd) 
+          
     def get_total_supply(self, scope: str) -> float:
         """
         Supply is calculated the same as consumption.

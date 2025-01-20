@@ -1,33 +1,33 @@
 import pandas as pd
 
+
 def update_edges(edges, r2d_dict):
     transportation_damage = r2d_dict['TransportationNetwork']
     orig_capacity = edges['capacity'].to_dict()
     orig_maxspeed = edges['maxspeed'].to_dict()
     new_capacity = edges['capacity'].apply(lambda x: [x]).to_dict()
     new_maxspeed = edges['maxspeed'].apply(lambda x: [x]).to_dict()
+    closed_links_roads_id = []
     for asset_type in transportation_damage:
         for asset_id, asset_id_dict in transportation_damage[asset_type].items():
             capacity_ratio = asset_id_dict['GeneralInformation']['FunctionalityLevel']
             free_flow_speed_ratio = asset_id_dict['GeneralInformation']['FunctionalityLevel']
             if asset_type == 'Roadway':
-                road_ids = [asset_id]
+                road_ids = [asset_id]                
             else:
                 road_id_str = r2d_dict['TransportationNetwork'][asset_type][
                     asset_id
                 ]['GeneralInformation']['RoadID']
                 road_ids = list(road_id_str.split(','))
             for road_id in road_ids:
-                # It is assumed that removed duplicate roads cannot be damaged. Thus, only road ids that stayed in the edges_gdf after removing duplicates are considered here.
-                if road_id in new_capacity.keys():
-                    new_capacity[road_id].append(
-                        orig_capacity[road_id] * capacity_ratio
-                    )
-                    new_maxspeed[road_id].append(
-                        orig_maxspeed[road_id] * free_flow_speed_ratio
-                    )
-                else:
-                    print(road_id)
+                if asset_id_dict['GeneralInformation']['FunctionalityLevel'] == 0:
+                    closed_links_roads_id.append(road_id)
+                new_capacity[road_id].append(
+                    orig_capacity[road_id] * capacity_ratio
+                )
+                new_maxspeed[road_id].append(
+                    orig_maxspeed[road_id] * free_flow_speed_ratio
+                )
     for key, value in new_capacity.items():
         new_capacity[key] = min(value)
     for key, value in new_maxspeed.items():
@@ -44,6 +44,10 @@ def update_edges(edges, r2d_dict):
     edges = edges.rename(
         columns={'capacity_y': 'capacity', 'maxspeed_y': 'maxspeed'}
     )
+    # The closed_links will be deleted from the network if Residual Demand API is used
+    closed_links = edges[edges.index.isin(closed_links_roads_id)]
+    # The capacity and maxspeed are set as small values if other transportation simulation models are used and
+    # the closed roads need to be kept in the network
     edges['capacity'] = edges['capacity'].apply(lambda x: 1 if x == 0 else x)
     edges['maxspeed'] = edges['maxspeed'].apply(lambda x: 0.001 if x == 0 else x)
-    return edges
+    return edges, closed_links

@@ -11,7 +11,7 @@
         },
         "Supply": {
             "FirstResponderEngineer": {
-                "Amount": 5000,
+                "Amount": 1000,
                 "FunctionalityToAmountRelation": "Linear"
             },
             "SeniorEngineer": {
@@ -27,11 +27,11 @@
                 "FunctionalityToAmountRelation": "Linear"
             },
             "PlanCheckEngineeringTeam": {
-                "Amount": 2000,
+                "Amount": 1000,
                 "FunctionalityToAmountRelation": "Linear"
             },
             "SitePreparationCrew": {
-                "Amount": 2000,
+                "Amount": 5000,
                 "FunctionalityToAmountRelation": "Linear"
             },
             "CleanUpCrew": {
@@ -47,7 +47,7 @@
                 "FunctionalityToAmountRelation": "Linear"
             },
             "RepairCrew_Buildings": {
-                "Amount": 40000,
+                "Amount": 4000,
                 "FunctionalityToAmountRelation": "Linear"
             },
             "RepairCrew_Transportation": {
@@ -55,7 +55,7 @@
                 "FunctionalityToAmountRelation": "Linear"
             },
             "RepairCrew_Water": {
-                "Amount": 50,
+                "Amount": 1500,
                 "FunctionalityToAmountRelation": "Linear"
             }
         }
@@ -356,7 +356,7 @@
                 }
             },
             "DamageFunctionalityRelation": {
-                "Type": "ReverseBinary"
+                "Type": "Constant"
             }
         },
         "Supply": {
@@ -812,28 +812,6 @@
                 "Amount": 0,
                 "PostDisasterIncreaseDueToEmergencyCalls": "True",
                 "FunctionalityToAmountRelation": "Linear"
-            }
-        }
-    },
-    "ElectricPowerSupplySystem": {
-        "ComponentClass": {"FileName": "infrastructure_interface", "ClassName": "InfrastructureInterface"},
-        "RecoveryModel": {
-            "FileName": "infrastructure_interface_recovery_model",
-            "ClassName": "InfrastructureInterfaceRecoveryModel",
-            "Parameters": {},
-            "DamageFunctionalityRelation": "MultipleSteps"
-        },
-        "Supply": {
-            "ElectricPower": {
-                "Amount": 0,
-                "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Binary"
-            }
-        },
-        "OperationDemand": {
-            "CellularCommunication": {
-                "Amount": 0.0,
-                "FunctionalityToAmountRelation": "Constant"
             }
         }
     },

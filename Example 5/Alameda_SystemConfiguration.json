@@ -1,7 +1,7 @@
 {
     "Constants": {
         "START_TIME_STEP": 0,
-        "MAX_TIME_STEP": 300,
+        "MAX_TIME_STEP": 1000,
         "DISASTER_TIME_STEP": 1,
         "MAX_REPAIR_CREW_DEMAND_PER_BUILDING": 50,
         "HOUSING_RESOURCES": [
@@ -14,9 +14,9 @@
             "DS3": 2700,
             "DS4": 2700
         },
-        "REPAIR_CREW_DEMAND_PER_MILE_ROADWAY": 10,
-        "REPAIR_CREW_DEMAND_PER_MILE_TUNNEL": 40,
-        "REPAIR_CREW_DEMAND_PER_MILE_BRIDGE": 20,
+        "REPAIR_CREW_DEMAND_PER_MILE_ROADWAY": 5,
+        "REPAIR_CREW_DEMAND_PER_MILE_TUNNEL": 5,
+        "REPAIR_CREW_DEMAND_PER_MILE_BRIDGE": 5,
         "REPAIR_CREW_DEMAND_PER_MILE_PIPE": 5,
         "DEFAULT_REPAIR_DURATION_DICT": {
             "Lognormal": {
@@ -46,18 +46,6 @@
                             "Parameters": {
                                 "ComponentName": [
                                     "EmergencyResponseCenter"
-                                ],
-                                "RecoveryTimeStepping": [
-                                    {
-                                        "start": 0,
-                                        "end": 50,
-                                        "step": 1
-                                    },
-                                    {
-                                        "start": 50,
-                                        "end": 1000,
-                                        "step": 5
-                                    }
                                 ]
                             }
                         }
@@ -119,11 +107,11 @@
                                 "RecoveryTimeStepping": [
                                     {
                                         "start": 0,
-                                        "end": 80,
+                                        "end": 100,
                                         "step": 1
                                     },
                                     {
-                                        "start": 80,
+                                        "start": 100,
                                         "end": 1000,
                                         "step": 10
                                     }
@@ -1334,7 +1322,7 @@
                         {
                             "start": 50,
                             "end": 1000,
-                            "step": 50
+                            "step": 25
                         }
                     ],
                     "Directory": "./Example 5/transportation_network/",
@@ -1394,164 +1382,9 @@
             }
         },
         {
-            "ClassName": "ComponentRecoveryTimeCalculator",
-            "FileName": "component_recovery_time_calculator",
-            "Parameters": {}
-        },
-        {
             "ClassName": "R2DComponentRecoveryTimeCalculator",
             "FileName": "r2d_component_recovery_time_calculator",
             "Parameters": {}
-        },
-        {
-            "FileName": "recodes_calculator",
-            "ClassName": "ReCoDeSCalculator",
-            "Parameters": {
-                "Scope": "Locality 1",
-                "Resources": [
-                    "Shelter"
-                ]
-            }
-        },
-        {
-            "FileName": "recodes_calculator",
-            "ClassName": "ReCoDeSCalculator",
-            "Parameters": {
-                "Scope": "Locality 2",
-                "Resources": [
-                    "Shelter"
-                ]
-            }
-        },
-        {
-            "FileName": "recodes_calculator",
-            "ClassName": "ReCoDeSCalculator",
-            "Parameters": {
-                "Scope": "Locality 3",
-                "Resources": [
-                    "Shelter"
-                ]
-            }
-        },
-        {
-            "FileName": "recodes_calculator",
-            "ClassName": "ReCoDeSCalculator",
-            "Parameters": {
-                "Scope": "Locality 4",
-                "Resources": [
-                    "Shelter"
-                ]
-            }
-        },
-        {
-            "FileName": "recodes_calculator",
-            "ClassName": "ReCoDeSCalculator",
-            "Parameters": {
-                "Scope": "Locality 5",
-                "Resources": [
-                    "Shelter"
-                ]
-            }
-        },
-        {
-            "FileName": "recodes_calculator",
-            "ClassName": "ReCoDeSCalculator",
-            "Parameters": {
-                "Scope": "Locality 6",
-                "Resources": [
-                    "Shelter"
-                ]
-            }
-        },
-        {
-            "FileName": "recodes_calculator",
-            "ClassName": "ReCoDeSCalculator",
-            "Parameters": {
-                "Scope": "Locality 7",
-                "Resources": [
-                    "Shelter"
-                ]
-            }
-        },
-        {
-            "FileName": "recodes_calculator",
-            "ClassName": "ReCoDeSCalculator",
-            "Parameters": {
-                "Scope": "Locality 8",
-                "Resources": [
-                    "Shelter"
-                ]
-            }
-        },
-        {
-            "FileName": "recodes_calculator",
-            "ClassName": "ReCoDeSCalculator",
-            "Parameters": {
-                "Scope": "Locality 9",
-                "Resources": [
-                    "Shelter"
-                ]
-            }
-        },
-        {
-            "FileName": "recodes_calculator",
-            "ClassName": "ReCoDeSCalculator",
-            "Parameters": {
-                "Scope": "Locality 10",
-                "Resources": [
-                    "Shelter"
-                ]
-            }
-        },
-        {
-            "FileName": "recodes_calculator",
-            "ClassName": "ReCoDeSCalculator",
-            "Parameters": {
-                "Scope": "Locality 11",
-                "Resources": [
-                    "Shelter"
-                ]
-            }
-        },
-        {
-            "FileName": "recodes_calculator",
-            "ClassName": "ReCoDeSCalculator",
-            "Parameters": {
-                "Scope": "Locality 12",
-                "Resources": [
-                    "Shelter"
-                ]
-            }
-        },
-        {
-            "FileName": "recodes_calculator",
-            "ClassName": "ReCoDeSCalculator",
-            "Parameters": {
-                "Scope": "Locality 13",
-                "Resources": [
-                    "Shelter"
-                ]
-            }
-        },
-        {
-            "FileName": "recodes_calculator",
-            "ClassName": "ReCoDeSCalculator",
-            "Parameters": {
-                "Scope": "Locality 14",
-                "Resources": [
-                    "Shelter"
-                ]
-            }
-        },
-        {
-            "FileName": "recodes_calculator",
-            "ClassName": "ReCoDeSCalculator",
-            "Parameters": {
-                "Scope": "Locality 15",
-                "Resources": [
-                    "Shelter"
-                ]
-            }
         }
     ]
 }

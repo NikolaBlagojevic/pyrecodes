@@ -1,0 +1,454 @@
+{
+    "Constants": {
+        "START_TIME_STEP": 0,
+        "MAX_TIME_STEP": 500,
+        "DISASTER_TIME_STEP": 1,
+        "MAX_REPAIR_CREW_DEMAND_PER_BUILDING": 50,
+        "HOUSING_RESOURCES": [
+            "Shelter",
+            "FunctionalHousing"
+        ],
+        "REPAIR_CREW_DEMAND_PER_SQFT": {
+            "DS1": 5400,
+            "DS2": 5400,
+            "DS3": 2700,
+            "DS4": 2700
+        },
+        "REPAIR_CREW_DEMAND_PER_MILE_ROADWAY": 5,
+        "REPAIR_CREW_DEMAND_PER_MILE_TUNNEL": 5,
+        "REPAIR_CREW_DEMAND_PER_MILE_BRIDGE": 5,
+        "REPAIR_CREW_DEMAND_PER_MILE_PIPE": 5,
+        "DEFAULT_REPAIR_DURATION_DICT": {
+            "Lognormal": {
+                "Median": 0,
+                "Dispersion": 0.3
+            }
+        },
+        "DEMAND_PER_PERSON": {
+            "ElectricPower": 0.02,
+            "PotableWater": 150,
+            "CellularCommunication": 0.033
+        }
+    },
+    "Content": {
+        "Locality 2": {
+            "Coordinates": {
+                "GeoJSON": {
+                    "Filename": "./Example 5/Alameda TAZ/Alameda_TravelAnalysisZone_963.geojson"
+                }
+            },
+            "Components": {
+                "RecoveryResourceSuppliers": [
+                    {
+                        "EmergencyResponseCenter": {
+                            "CreatorClassName": "RecoveryResourceSuppliersCreator",
+                            "CreatorFileName": "recovery_resource_suppliers_creator",
+                            "Parameters": {
+                                "ComponentName": [
+                                    "EmergencyResponseCenter"
+                                ]
+                            }
+                        }
+                    }
+                ],
+                "Infrastructure": [
+                    {
+                        "TransportationSystem": {
+                            "CreatorClassName": "R2DSubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "TransportationService"
+                                ],
+                                "R2DJSONFile_Info": "./Example 5/Alameda_Exposure.json",
+                                "SubsystemNameInR2DJSON": "TransportationNetwork",
+                                "AssetTypes": [
+                                    "Bridge",
+                                    "Roadway",
+                                    "Tunnel"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "WaterSupplySystem": {
+                            "CreatorClassName": "R2DSubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "Water"
+                                ],
+                                "R2DJSONFile_Info": "./Example 5/Alameda_Exposure.json",
+                                "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
+                                "AssetTypes": [
+                                    "Pipe"
+                                ],
+                                "MaxNumComponents": 10000
+                            }
+                        }
+                    }
+                ],
+                "BuildingStock": [
+                    {
+                        "Buildings": {
+                            "CreatorClassName": "R2DSubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "Shelter",
+                                    "FunctionalHousing"
+                                ],
+                                "R2DJSONFile_Info": "./Example 5/Alameda_Exposure.json",
+                                "SubsystemNameInR2DJSON": "Buildings",
+                                "AssetTypes": [
+                                    "Building"
+                                ],
+                                "MaxNumComponents": 10000
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "DamageInput": {
+        "FileName": "r2d_damage_input",
+        "ClassName": "R2DDamageInput",
+        "Parameters": {
+            "DamageFile": "./Example 5/Alameda_Damage.json",
+            "DistributionModelDamage": [
+                "PotableWater"
+            ]
+        }
+    },
+    "Resources": {
+        "Shelter": {
+            "Group": "Utilities",
+            "DistributionModel": {
+                "ClassName": "HousingDistributionModel",
+                "FileName": "housing_distribution_model",
+                "Parameters": {
+                    "DistributionTimeStepping": [
+                        {
+                            "start": 0,
+                            "end": 50,
+                            "step": 5
+                        },
+                        {
+                            "start": 50,
+                            "end": 1000,
+                            "step": 50
+                        }
+                    ]
+                }
+            }
+        },
+        "FirstResponderEngineer": {
+            "Group": "RecoveryResources",
+            "DistributionModel": {
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
+                        "Parameters": {
+                            "Seed": 42.0,
+                            "DemandType": [
+                                "RecoveryDemand"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SeniorEngineer": {
+            "Group": "RecoveryResources",
+            "DistributionModel": {
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
+                        "Parameters": {
+                            "Seed": 42.0,
+                            "DemandType": [
+                                "RecoveryDemand"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Contractor": {
+            "Group": "RecoveryResources",
+            "DistributionModel": {
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
+                        "Parameters": {
+                            "Seed": 42.0,
+                            "DemandType": [
+                                "RecoveryDemand"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Money": {
+            "Group": "RecoveryResources",
+            "DistributionModel": {
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
+                        "Parameters": {
+                            "Seed": 42.0,
+                            "DemandType": [
+                                "RecoveryDemand"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "PlanCheckEngineeringTeam": {
+            "Group": "RecoveryResources",
+            "DistributionModel": {
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
+                        "Parameters": {
+                            "Seed": 42.0,
+                            "DemandType": [
+                                "RecoveryDemand"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SitePreparationCrew": {
+            "Group": "RecoveryResources",
+            "DistributionModel": {
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
+                        "Parameters": {
+                            "Seed": 42.0,
+                            "DemandType": [
+                                "RecoveryDemand"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CleanUpCrew": {
+            "Group": "RecoveryResources",
+            "DistributionModel": {
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
+                        "Parameters": {
+                            "Seed": 42.0,
+                            "DemandType": [
+                                "RecoveryDemand"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "EngineeringDesignTeam": {
+            "Group": "RecoveryResources",
+            "DistributionModel": {
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
+                        "Parameters": {
+                            "Seed": 42.0,
+                            "DemandType": [
+                                "RecoveryDemand"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "DemolitionCrew": {
+            "Group": "RecoveryResources",
+            "DistributionModel": {
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
+                        "Parameters": {
+                            "Seed": 42.0,
+                            "DemandType": [
+                                "RecoveryDemand"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RepairCrew_Buildings": {
+            "Group": "RecoveryResources",
+            "DistributionModel": {
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
+                        "Parameters": {
+                            "Seed": 42.0,
+                            "DemandType": [
+                                "RecoveryDemand"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RepairCrew_Transportation": {
+            "Group": "RecoveryResources",
+            "DistributionModel": {
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
+                        "Parameters": {
+                            "Seed": 42.0,
+                            "DemandType": [
+                                "RecoveryDemand"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RepairCrew_Water": {
+            "Group": "RecoveryResources",
+            "DistributionModel": {
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
+                "Parameters": {
+                    "DistributionPriority": {
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
+                        "Parameters": {
+                            "Seed": 42.0,
+                            "DemandType": [
+                                "RecoveryDemand"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "TransportationService": {
+            "Group": "TransferService",
+            "DistributionModel": {
+                "ClassName": "ResidualDemandTrafficDistributionModel",
+                "FileName": "residual_demand_traffic_distribution_model",
+                "Parameters": {
+                    "DistributionTimeStepping": [
+                        {
+                            "start": 0,
+                            "end": 50,
+                            "step": 5
+                        },
+                        {
+                            "start": 50,
+                            "end": 1000,
+                            "step": 25
+                        }
+                    ],
+                    "Directory": "./Example 5/transportation_network/",
+                    "EdgeFile": "./Example 5/transportation_network/ProcessedRoadNetworkRoads.geojson",
+                    "NodeFile": "./Example 5/transportation_network/ProcessedRoadNetworkNodes.geojson",
+                    "ODFilePre":"./Example 5/transportation_network/OD_Matrix.csv",
+                    "TwoWayEdges":true,
+                    "HourList": [7, 8],
+                    "CapacityRuleset":"./Example 5/transportation_network/transportation_capacity_ruleset.py",
+                    "DemandRuleset":"./Example 5/transportation_network/transportation_demand_ruleset.py",
+                    "ResultsFolder": "./Example 5/transportation_network/results",
+                    "TripCutoffThreshold": 3
+                }
+            }
+        },
+        "PotableWater": {
+            "Group": "Utilities",
+            "DistributionModel": {
+                "ClassName": "REWETDistributionModel",
+                "FileName": "rewet_distribution_model",
+                "Parameters": {
+                    "DistributionTimeStepping": [
+                        {
+                            "start": 0,
+                            "end": 50,
+                            "step": 5
+                        },
+                        {
+                            "start": 50,
+                            "end": 1000,
+                            "step": 50
+                        }
+                    ],
+                    "INPFile": "Example 5/water_distribution_network/waterNetwork.inp",
+                    "Results_folder": "Example 5/water_distribution_network/rewet_results",
+                    "Temp_folder": "Example 5/water_distribution_network/rewet_temp"
+                }
+            }
+        }
+    },
+    "ResilienceCalculator": [
+        {
+            "FileName": "recodes_calculator",
+            "ClassName": "ReCoDeSCalculator",
+            "Parameters": {
+                "Scope": "All",
+                "Resources": [
+                    "Shelter",
+                    "PotableWater",
+                    "PlanCheckEngineeringTeam",
+                    "Money",
+                    "RepairCrew_Buildings",
+                    "RepairCrew_Transportation",
+                    "RepairCrew_Water",
+                    "TransportationService"
+                ]
+            }
+        },
+        {
+            "ClassName": "R2DComponentRecoveryTimeCalculator",
+            "FileName": "r2d_component_recovery_time_calculator",
+            "Parameters": {}
+        }
+    ]
+}

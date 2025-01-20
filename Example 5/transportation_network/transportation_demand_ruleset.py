@@ -21,18 +21,22 @@ def extract_building_from_det(det):
             return gpd.GeoDataFrame(extracted_df, geometry=gpd.points_from_xy(extracted_df.Longitude, extracted_df.Latitude), crs='epsg:4326')
 # Aggregate the population in buildings to the closest road network node
 def closest_neighbour(building_df, nodes_df):
-    # Nikola: I think there is an issue with this method. I have multiple nodes and one building in the system and the population of the one building (which is in one of the nodes) is assigned to all nodes. So the sum of the population in nodes is multiple times higher than the actual population in the system. I assume the population from one building should only be linked to one (closest) node, not to multiple nodes.
-    # Find the nearest road network node to each building
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        merged_df = building_df.sjoin_nearest(nodes_df, how = 'left')
-        # merged_df = nodes_df.sjoin_nearest(building_df, how = 'left')
+        # merged_df = building_df.sjoin_nearest(nodes_df, how = 'left')
+        # Use the population of the nearest building to the road network node as the reference population
+        # of the road network node. This is not the true population at each node. This is only used to calculate the percentage change of the population at each node. 
+        # The percentage change of trips generated at each node is euqal to the percentage change of the
+        # population of the nearest building to the node.
+        merged_df = nodes_df.sjoin_nearest(building_df, how = 'left').drop_duplicates(subset = ['node_id'], keep = 'first')
     merged_df = merged_df.drop(columns=['AIM_id', 'Latitude', 'Longitude', 'index_right'])
+    merged_df = merged_df.rename(columns={'Population': 'PopulationOfNearestBuilding'})
     merged_df = merged_df.fillna(0)
-    merged_df['Population'] = merged_df['Population'] * merged_df['PopulationRatio']
+    merged_df['PopulationOfNearestBuilding'] = merged_df['PopulationOfNearestBuilding'] * merged_df['PopulationRatio']
 
     # Aggregate the population of the neareast buildings to the road network node
-    return merged_df.groupby('node_id').agg({'x': 'first', 'y': 'first', 'geometry': 'first', 'Population': 'sum'}).reset_index()
+    # return merged_df.groupby('node_id').agg({'x': 'first', 'y': 'first', 'geometry': 'first', 'Population': 'sum'}).reset_index()
+    return merged_df
 # Function to add the population information to the nodes file
 def find_population(nodes, det):
     # Extract the building information from the det file and convert it to a pandas dataframe
@@ -52,7 +56,7 @@ def update_od(initial_od, nodes_df, initial_r2d_dict, new_r2d_dict):
     old_population = find_population(nodes_df, initial_r2d_dict)
     # new population at each node
     new_population = find_population(nodes_df, new_r2d_dict)
-    population_change = new_population['Population'] - old_population['Population']
+    population_change = new_population['PopulationOfNearestBuilding'] - old_population['PopulationOfNearestBuilding']
     # population change percentage at each node
     trips_index_set = set()
     for i in old_population.index:
@@ -64,12 +68,12 @@ def update_od(initial_od, nodes_df, initial_r2d_dict, new_r2d_dict):
         # If the population changed and if the original OD starting and ending at this node is zero,
         # Generate new OD starting and ending at this node. This is considered impossible in this
         # implementation as new population can only be generated at nodes with non-zero pre-event population
-        elif old_population.loc[i, 'Population'] == 0:
+        elif old_population.loc[i, 'PopulationOfNearestBuilding'] == 0:
             print(f'Warning: New population generated at node {node_id}, which had zero pre-event population')
         # If the population changed and if the original OD starting and ending at this node is not zero,
         # Modify the trips starting and ending at this node according to the population change percentage
         else:
-            change_percentage = population_change[i] / old_population.loc[i, 'Population']
+            change_percentage = population_change[i] / old_population.loc[i, 'PopulationOfNearestBuilding']
             origin_trips = trips_starting_at_nodes.get(node_id, [])
             origin_trips = np.random.choice(origin_trips, int(len(origin_trips) * (1+change_percentage)), replace=False)
             destin_trips = trips_ending_at_nodes.get(node_id, [])

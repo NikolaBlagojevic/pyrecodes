@@ -855,17 +855,3 @@ def get_rewet_hydraulic_basic_setting():
     settings_dict = settings.process.settings
 
     return settings_dict  # noqa: RET504
-
-
-if __name__ == '__main__':
-    with open('Results_det.json') as f:  # noqa: PTH123
-        state = json.load(f)
-
-    with open('Results_0.json') as f:  # noqa: PTH123
-        damage = json.load(f)
-
-    inp_file = 'waterNetwork.inp'
-
-    interface = REWETPyReCoDes(inp_file)
-    interface.system_state(state, damage)
-    result = interface.system_performance(state, 0, 24 * 3600)

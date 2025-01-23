@@ -136,7 +136,7 @@ class ConcretePlotter():
 
     def save_component_recovery_progress(self, components: list):
         for component in components:
-            savename = f'{component.__str__()}_recovery_progress.json'
+            savename = f'{component.name}_Locality_{component.locality[0]}_ID_{getattr(component, "aim_id", "None")}_recovery_progress.json'
             component_recovery_progress, _ = self.get_component_recovery_progress(component)
             with open(savename, mode="w") as file:
                 json.dump(component_recovery_progress, file)

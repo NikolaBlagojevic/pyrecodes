@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
+import json
 from pyrecodes.component.component import Component
 from pyrecodes.system.system import System
+from pyrecodes.resilience_calculator.recodes_calculator import ReCoDeSCalculator
 from pyrecodes.constants import LOR_ALPHA, GANTT_BAR_DISTANCE, GANTT_BAR_WIDTH, ALL_RECOVERY_ACTIVITIES_COLORS
 
 class ConcretePlotter():
@@ -17,6 +19,22 @@ class ConcretePlotter():
         plt.grid(True)
         return plt.gca()
     
+    def get_supply_demand_consumption(self, system: System, resource_name: str, resilience_calculator_id=0) -> list[list]:
+        """
+        | Method returns a list of lists containing the supply, demand, and consumption dynamics during recovery for a list of resources.
+
+        | Default values are set for the resilience calculator id. It is assumed that the first resilience calculator in system.resilience_calculators list is a recodes calculator with scope='All'. The user can specify a different resilience calculator id as long as it is a recodes calculator.
+        """
+        if isinstance(system.resilience_calculators[resilience_calculator_id], ReCoDeSCalculator):
+            supply_demand_consumption = {'TimeStep': [], 'Supply': [], 'Demand': [], 'Consumption': []}
+            supply_demand_consumption['TimeStep'] = list(range(system.START_TIME_STEP, system.time_step+1))
+            supply_demand_consumption['Supply'] = system.resilience_calculators[resilience_calculator_id].system_supply[resource_name]
+            supply_demand_consumption['Demand'] = system.resilience_calculators[resilience_calculator_id].system_demand[resource_name]
+            supply_demand_consumption['Consumption'] = system.resilience_calculators[resilience_calculator_id].system_consumption[resource_name]
+            return supply_demand_consumption
+        else:
+            raise ValueError('To get supply/demand/consumption, the resilience calculator must be a ReCoDeS calculator.')
+        
     def plot_supply_demand_dynamics(self, system: System, resources: list[str], units: list[str], resilience_calculator_id=0, x_axis_label='Time step [day]'):
         """
         | Method plots regional supply, demand, and consumption dynamics during recovery for a list of resources.
@@ -26,12 +44,13 @@ class ConcretePlotter():
         | - the x-axis label. It is assumed that the x-axis label is 'Time step [day]'.
         """
         for resource_name, unit in zip(resources, units):
-            y_axis_label= f'{resource_name} Demand/Supply/Consumption {unit}'
+            y_axis_label= f'{resource_name} {unit}'
             axis_object = self.setup_lor_plot_fig(x_axis_label, y_axis_label)
             # supply/demand/consumption information is in the ReCoDeS resilience calculator object, which is stored in the system object: system.resilience_calculators[0]
-            self.plot_single_resource(list(range(system.time_step+1)), system.resilience_calculators[resilience_calculator_id].system_supply[resource_name],
-                                                system.resilience_calculators[resilience_calculator_id].system_demand[resource_name],
-                                                system.resilience_calculators[resilience_calculator_id].system_consumption[resource_name], axis_object)
+            supply_demand_consumption = self.get_supply_demand_consumption(system, resource_name, resilience_calculator_id)
+            self.plot_single_resource(supply_demand_consumption['TimeStep'], supply_demand_consumption['Supply'],
+                                                supply_demand_consumption['Demand'],
+                                                supply_demand_consumption['Consumption'], axis_object)
 
 
     def plot_single_resource(self, time_steps: list, supply: list, demand: list, consumption: list,
@@ -88,15 +107,39 @@ class ConcretePlotter():
             legend_handles.append(plt.Rectangle((0, 0), 1, 1, fc=ALL_RECOVERY_ACTIVITIES_COLORS[recovery_activity_name]))
         axis_object.legend(legend_handles, legend_labels, loc='upper left', bbox_to_anchor=(1.02, 1.0))
 
-    def plot_component_gantt_bar(self, component_row: int, component: Component, axis_object: plt.axis) -> list:
+    def get_component_recovery_progress(self, component: Component) -> dict:
+        component_recovery_progress = {}
         active_recovery_activities = []
         for recovery_activity_name, recovery_activity_object in component.recovery_model.recovery_activities.items():
             duration = len(recovery_activity_object.time_steps)
-            if duration > 0:
-                Y_position = component_row * GANTT_BAR_DISTANCE - GANTT_BAR_WIDTH/2
+            if duration > 0:                
                 active_recovery_activities.append(recovery_activity_name)
                 start = recovery_activity_object.time_steps[0]
-                axis_object.broken_barh([(start, duration)], (Y_position, GANTT_BAR_WIDTH),
+                component_recovery_progress[recovery_activity_name] = {'Start': start, 'Duration': duration}
+        return component_recovery_progress, active_recovery_activities
+
+    def plot_component_gantt_bar(self, component_row: int, component: Component, axis_object: plt.axis) -> list:        
+        component_recovery_progress, active_recovery_activities = self.get_component_recovery_progress(component)
+        for recovery_activity_name, recovery_activity_progress in component_recovery_progress.items():
+            Y_position = component_row * GANTT_BAR_DISTANCE - GANTT_BAR_WIDTH/2
+            axis_object.broken_barh([(recovery_activity_progress['Start'], recovery_activity_progress['Duration'])], (Y_position, GANTT_BAR_WIDTH),
                                         facecolors=ALL_RECOVERY_ACTIVITIES_COLORS[recovery_activity_name],
-                                        edgecolor="none")
-        return active_recovery_activities
+                                        edgecolor="none")        
+        return active_recovery_activities        
+    
+    def save_supply_demand_consumption(self, system, resource_names: list, resilience_calculator_id=0):
+        for resource in resource_names:
+            savename = f'{resource}_supply_demand_consumption.json'
+            supply_demand_consumption = self.get_supply_demand_consumption(system, resource, resilience_calculator_id)
+            with open(savename, mode="w") as file:
+                json.dump(supply_demand_consumption, file) 
+
+    def save_component_recovery_progress(self, components: list):
+        for component in components:
+            savename = f'{component.__str__()}_recovery_progress.json'
+            component_recovery_progress, _ = self.get_component_recovery_progress(component)
+            with open(savename, mode="w") as file:
+                json.dump(component_recovery_progress, file)
+
+            
+        

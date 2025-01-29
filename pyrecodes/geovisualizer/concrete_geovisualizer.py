@@ -88,6 +88,7 @@ class ConcreteGeoVisualizer():
     
     def create_current_state_buildings_and_supply_demand_figure(self, time_step: int, system: System, save=True, 
                                                                 dpi=300, resources_to_plot=['Shelter', 'RepairCrew'],
+                                                                units=['[beds/day]', '[crews/day]'],
                                                                 show=False, supply_demand_resilience_calculator_id=0,
                                                                 savename=f'2D_buildings_with_supply_demand_TIME_STEP.png') -> None:
         fig, ax_dict = plt.subplot_mosaic([['left', 'upper right'],
@@ -96,8 +97,8 @@ class ConcreteGeoVisualizer():
            
         self.create_current_state_figure(time_step, ax=ax_dict['left'])
         x_axis_label = 'Time step [day]'
-        for axis_name, resource_to_plot in zip(['upper right', 'lower right'], resources_to_plot):
-            y_axis_label = f'{resource_to_plot} Demand/Supply/Consumption'
+        for axis_name, resource_to_plot, unit in zip(['upper right', 'lower right'], resources_to_plot, units):
+            y_axis_label = f'{resource_to_plot} {unit}'
             self.plotter.plot_single_resource(list(range(0, time_step+1)), system.resilience_calculators[supply_demand_resilience_calculator_id].system_supply[resource_to_plot][:time_step+1], 
                                         system.resilience_calculators[supply_demand_resilience_calculator_id].system_demand[resource_to_plot][:time_step+1], 
                                         system.resilience_calculators[supply_demand_resilience_calculator_id].system_consumption[resource_to_plot][:time_step+1], ax_dict[axis_name])

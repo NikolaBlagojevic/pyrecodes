@@ -13,7 +13,7 @@ import itertools
 class UtilityDistributionModel(AbstractResourceDistributionModel):
     """
     | Class to distribute resources in the system. This is the simplest distribution model, which distributes resources based on the priority of the components.
-    | Resource distribution is done using the system matrix, contianing the supply and demand of each component.
+    | Resource distribution is done using the system matrix, containing the supply and demand of each component.
     | No physical laws (e.g., power flow or water flow physics) are considered in the distribution of resources.
     """
     components: list[Component]
@@ -101,7 +101,7 @@ class UtilityDistributionModel(AbstractResourceDistributionModel):
                 elif component_demand_type == StandardiReCoDeSComponent.DemandTypes.RECOVERY_DEMAND.value:
                     self.set_met_demand_for_recovery_activities(component_row_id, percent_of_met_demand)
                 
-                # suppliers = self.reset_suppliers(initial_suppliers) # TODO: why is this commented out? Check.  
+                # suppliers = self.reset_suppliers(initial_suppliers)
 
         return suppliers
 
@@ -210,10 +210,9 @@ class UtilityDistributionModel(AbstractResourceDistributionModel):
     
     def get_path_functionality(self, start_locality, end_locality, transfer_service_demand):
         """
-        Method calculates path functionality by comparing the transfer service supply
+        | Method calculates path functionality by comparing the transfer service supply
         of the optimal path with the demand.
-        TODO: Optimal path not used at the moment. If we need which links are used this is important. Future work.
-            """   
+        """   
         if start_locality == end_locality:            
             return 1.0
         else:

@@ -34,7 +34,8 @@ class TransferServiceDistributionModelPotentialPaths(AbstractResourceDistributio
         | The method finds the links that are used in potential paths. 
         | It creates a list of links that is latter queried to find the 
         optimal path from the list of potential paths.
-        """     
+        """    
+
         self.potential_paths = {} 
         for path_string, localities_list in self.potential_paths_list.items():       
             self.potential_paths[path_string] = [] 
@@ -71,6 +72,7 @@ class TransferServiceDistributionModelPotentialPaths(AbstractResourceDistributio
         | This is done implicitly when using the potential path sets,
         as components' transfer service supply is updated in the system class.
         """
+
         pass                                                                                    
                         
     def get_optimal_path(self, start_locality: int, end_locality: int) -> tuple:
@@ -79,6 +81,7 @@ class TransferServiceDistributionModelPotentialPaths(AbstractResourceDistributio
         | Optimality is defined as maximizing the transfer service supply.
         | Transfer service supply of a path is the minimal supply among its constitutive links.
         """   
+
         potential_path_links = self.potential_paths.get(f'from {int(start_locality)} to {int(end_locality)}', None)
       
         if potential_path_links is None:
@@ -102,6 +105,7 @@ class TransferServiceDistributionModelPotentialPaths(AbstractResourceDistributio
         """
         Get the supply capacity of a path as the minimum of links supply.
         """    
+        
         return min([link.get_current_resource_amount(SupplyOrDemand.SUPPLY.value, 
                                                     StandardiReCoDeSComponent.SupplyTypes.SUPPLY.value, 
                                                     self.resource_name) for link in path])       

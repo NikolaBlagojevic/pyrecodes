@@ -70,6 +70,7 @@ class InfrastructureInterfaceRecoveryModel(AbstractRecoveryModel):
         Args:
             time_step (int): The time step for which recovery is performed.
         """
+        
         self.recovery_activities[self.RECOVERY_ACTIVITY_NAME].recover(time_step)
     
     def get_damage_level(self) -> float:

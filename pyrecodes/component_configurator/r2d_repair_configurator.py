@@ -45,12 +45,15 @@ class R2DRepairConfigurator(RepairConfigurator):
     def get_repair_cost(self, component_data: dict) -> float:
         """
         | Method to get the repair cost of the component from the R2D output files.
-        | It is assumed that R2D provides the repair cost ratio as a value from 0 to 1.
-        | Repair cost is taken as the maximum over all repair cost ratios provided by R2D.
+        | It is assumed that R2D provides the repair cost ratio as a value from 0 to 1. If repair cost is higher than 1, it is assumed that repair cost is provided in (2020) dollar values.
+        | Repair cost is taken as the maximum over all repair costs provided by R2D.
         """
         if 'Repair' in component_data['Loss']:
-            repair_cost_ratio = max(list(component_data['Loss']['Repair']['Cost'].values()))
-            return repair_cost_ratio * component_data['Information']['GeneralInformation'].get('ReplacementCost', 0)
+            repair_cost = max(list(component_data['Loss']['Repair']['Cost'].values()))
+            if repair_cost < 1.0:
+                return repair_cost * component_data['Information']['GeneralInformation'].get('ReplacementCost', 0)
+            else:
+                return repair_cost
         else:
             return None
 
@@ -96,6 +99,7 @@ class R2DTransportationRepairConfigurator(R2DRepairConfigurator):
         | Method to get the repair cost of the component from the R2D output files.
         | R2D provides the repair cost of transportation components (Bridge, Roadway, Tunnel) in (2020) dollar values, not ratios as for buildings.
         | Repair cost is taken as the maximum over all repair cost ratios provided by R2D.
+        *TODO* This method might be redundant, since parent class takes care of the repair cost calculation.
         """
         if 'Repair' in component_data['Loss']:
             return max(list(component_data['Loss']['Repair']['Cost'].values()))

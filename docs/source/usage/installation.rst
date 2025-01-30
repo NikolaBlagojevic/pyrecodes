@@ -17,6 +17,10 @@ It's good practice to use a virtual environment when installing pyrecodes to kee
 
     pip install -r requirements.txt
 
+.. note::
+
+    Please note that python version x86_64 is required to run the third-party infrastructure simulators presented in Example 5. Further instructions are available `here <https://nheri-simcenter.github.io/R2D-Documentation/common/user_manual/installation/desktop/install_macOS.html>`_
+
 
 Running Examples
 ----------------

@@ -1,6 +1,6 @@
 ; Filename: /Users/nikola/pyrecodes/Example 5/water_distribution_network/waterNetwork.inp
 ; WNTR: 1.1.0.1.2
-; Created: 2025-01-27 09:51:53
+; Created: 2025-01-30 10:54:44
 [TITLE]
 
 [JUNCTIONS]
@@ -1433,16 +1433,16 @@
  node_1428                          0               0                            ;
  node_1429                          0    3.2465677873                            ;
  node_1430                          0    3.2465677873                            ;
- TAYLOR_3_breakA_1                  0               0                            ;
- TAYLOR_3_breakB_1                  0               0                            ;
+ CENTRAL_36_breakA_1                0               0                            ;
+ CENTRAL_36_breakB_1                0               0                            ;
 
 [RESERVOIRS]
 ;ID                                   Head                  Pattern
  res_1                            164                            ;
  res_2                   164.04199475                            ;
  res_3                   164.04199475                            ;
- TAYLOR_3_breakA_1_nn               0                            ;
- TAYLOR_3_breakB_1_nn               0                            ;
+ CENTRAL_36_breakA_1_nn               0                            ;
+ CENTRAL_36_breakB_1_nn               0                            ;
 
 [TANKS]
 ;ID                              Elevation           Init Level            Min Level            Max Level             Diameter           Min Volume Volume Curve         Overflow            
@@ -1819,7 +1819,7 @@
  CENTRAL_33           node_939             node_653                299.04424994              16             100               0                 Open   ;
  CENTRAL_34           node_653             node_959                566.81440569              16             100               0                 Open   ;
  CENTRAL_35           node_616             node_998                161.89820221              16             100               0                 Open   ;
- CENTRAL_36           node_998             node_85                 468.40395039              16             100               0                 Open   ;
+ CENTRAL_36           node_998             CENTRAL_36_breakA_1      117.1009876              16             100               0                 Open   ;
  CENTRAL_37           node_85              node_886                 334.1122071              16             100               0                 Open   ;
  CENTRAL_38           node_886             node_84                   421.141807              16             100               0                 Open   ;
  CENTRAL_39           node_915             node_243                235.25718106              16             100               0                 Open   ;
@@ -3213,7 +3213,7 @@
  TAYLOR               node_78              node_79                 660.14905225              12             100               0                 Open   ;
  TAYLOR_1             node_79              node_559                 646.8263781              12             100               0                 Open   ;
  TAYLOR_2             node_559             node_560                707.72488433              12             100               0                 Open   ;
- TAYLOR_3             node_713             TAYLOR_3_breakA_1       94.358551358              12             100               0                 Open   ;
+ TAYLOR_3             node_713             node_714                754.86841086              12             100               0                 Open   ;
  TAYLOR_4             node_783             node_784                 853.0995693              12             100               0                 Open   ;
  TAYLOR_5             node_840             node_88                 623.44941919              12             100               0                 Open   ;
  TAYLOR_6             node_88              node_791                1045.8824685              12             100               0                 Open   ;
@@ -3471,9 +3471,9 @@
  from_res_1           res_1                node_1                   32.80839895    944.88188976             100               0                   CV   ;
  from_res_2           res_2                node_685                 32.80839895    472.44094488             100               0                   CV   ;
  from_res_3           res_3                node_8                   32.80839895    629.92125984             100               0                   CV   ;
- TAYLOR_3_Break_1     TAYLOR_3_breakB_1    node_714                 660.5098595              12             100               0                 Open   ;
- TAYLOR_3_breakA_1-rlk TAYLOR_3_breakA_1    TAYLOR_3_breakA_1_nn     3.280839895              12         1000000               1                   CV   ;
- TAYLOR_3_breakB_1-rlk TAYLOR_3_breakB_1    TAYLOR_3_breakB_1_nn     3.280839895              12         1000000               1                   CV   ;
+ CENTRAL_36_Break_1   CENTRAL_36_breakB_1  node_85                 351.30296279              16             100               0                 Open   ;
+ CENTRAL_36_breakA_1-rlk CENTRAL_36_breakA_1  CENTRAL_36_breakA_1_nn     3.280839895              16         1000000               1                   CV   ;
+ CENTRAL_36_breakB_1-rlk CENTRAL_36_breakB_1  CENTRAL_36_breakB_1_nn     3.280839895              16         1000000               1                   CV   ;
 
 [PUMPS]
 ;ID                   Node1                Node2                Properties          
@@ -4996,10 +4996,10 @@ node_1430        -122.244000000         37.775000000
 res_1            -122.273000000         37.788000000
 res_2            -122.234000000         37.771000000
 res_3            -122.231000000         37.769000000
-TAYLOR_3_breakA_1       -122.278750000         37.772000000
-TAYLOR_3_breakB_1       -122.278750000         37.772000000
-TAYLOR_3_breakA_1_nn       -121.278750000         38.772000000
-TAYLOR_3_breakB_1_nn       -121.278750000         38.772000000
+CENTRAL_36_breakA_1       -122.280500000         37.772000000
+CENTRAL_36_breakB_1       -122.280500000         37.772000000
+CENTRAL_36_breakA_1_nn       -121.280500000         38.772000000
+CENTRAL_36_breakB_1_nn       -121.280500000         38.772000000
 
 [VERTICES]
 ;Link      X-Coord    Y-Coord   

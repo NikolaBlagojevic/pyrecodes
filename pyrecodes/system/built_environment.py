@@ -276,20 +276,20 @@ class BuiltEnvironment(System):
 
     def save_as_pickle(self, savename='./system_object.pickle') -> None:
         """
-        Saves the system object as a pickle file.
+        Saves the system object as a pickle (i.e., dill) file.
 
         Args:
-            savename (str, optional): The name of the pickle file to save the system object. Defaults to './system_object.pickle'.
+            savename (str, optional): The name of the pickle (i.e., dill) file to save the system object. Defaults to './system_object.pickle'.
         """
         with open(savename, 'wb') as file: 
             dill.dump(self, file) 
     
     def load_as_pickle(self, loadname='./system_object.pickle') -> None:
         """
-        Loads the system object from a pickle file and returns it.
+        Loads the system object from a pickle (i.e., dill) file and returns it.
 
         Args:
-            loadname (str, optional): The name of the pickle file to load the system object. Defaults to './system_object.pickle'.
+            loadname (str, optional): The name of the pickle (i.e., dill) file to load the system object. Defaults to './system_object.pickle'.
 
         Returns:
             BuiltEnvironmentSystem: The loaded system object.

@@ -32,6 +32,6 @@ class TestMain():
 
     def test_load_system(self):
         # Test loading a previously saved system and check if it is an instance of System.System
-        loadname = "./tests/test_inputs/test_system.pkl"
+        loadname = "./tests/test_inputs/test_system.pickle"
         system = main.load_system(loadname)
         assert isinstance(system, System)

@@ -3,7 +3,7 @@ pyrecodes license
 
 pyrecodes is licensed under the BSD-3 Clause license. The license is reproduced below:
 
-**Copyright (c) 2023 Chair of Structural Dynamics and Earthquake Engineering, ETH Zurich, Switzerland. All rights reserved.**
+**Copyright (c) 2025 Chair of Structural Dynamics and Earthquake Engineering, ETH Zurich, Switzerland. All rights reserved.**
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 

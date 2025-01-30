@@ -3,14 +3,14 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="System Creator" href="system_creator_class_docs.html" /><link rel="prev" title="Main" href="main_docs.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
-    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
-        <title>System - pyrecodes v0.1.0 documentation</title>
+    <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
+        <title>System - pyrecodes v0.2.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=302659d7" />
     
     
 
@@ -69,7 +69,7 @@
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -84,22 +84,63 @@
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
     </svg>
   </symbol>
-  <symbol id="svg-sun-half" viewBox="0 0 24 24">
-    <title>Auto light/dark mode</title>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M13 12h5" />
-      <path d="M13 15h4" />
-      <path d="M13 18h1" />
-      <path d="M13 9h4" />
-      <path d="M13 6h1" />
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
     </svg>
   </symbol>
 </svg>
@@ -113,6 +154,8 @@
   <div class="visually-hidden">Hide table of contents sidebar</div>
 </label>
 
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
 
 
 <div class="page">
@@ -124,18 +167,19 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">pyrecodes v0.1.0 documentation</div></a>
+      <a href="../../index.html"><div class="brand">pyrecodes v0.2.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
         <button class="theme-toggle">
           <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -150,7 +194,7 @@
     <img class="sidebar-logo" src="../../_static/pyrecodes_logo.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">pyrecodes v0.1.0 documentation</span>
+  <span class="sidebar-brand-text">pyrecodes v0.2.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -159,7 +203,7 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../what_is_pyrecodes.html">What is pyrecodes?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing pyrecodes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user_guide.html">How to use pyrecodes?</a></li>
@@ -170,22 +214,29 @@
 <li class="toctree-l2"><a class="reference internal" href="../examples/example_4.html">Example 4</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="../documentation.html">Documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="main_docs.html">Main</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="system_creator_class_docs.html">System Creator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_class_docs.html">Component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_library_creator_class_docs.html">Component Library Creator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="component_recovery_model_class_docs.html">Component Recovery Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="damage_input_class_docs.html">Damage Input</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distribution_priority_class_docs.html">Distribution Priority</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geovisualizer_class_docs.html">Geovisualizer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotter_class_docs.html">Plotter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="probability_distribution_class_docs.html">Probability Distribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="relation_class_docs.html">Relation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resilience_calculators_class_docs.html">Resilience Calculator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resource_class_docs.html">Resource</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resource_distribution_class_docs.html">Resource Distribution Model</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../documentation.html">Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="main_docs.html">main</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities_docs.html">utilities</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="component_configurator_docs.html">component configurator</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of component configurator</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="component_configurator_docs/component_configurator_docs.html">component_configurator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component_configurator_docs/r2d_component_configurator_docs.html">r2d_component_configurator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component_configurator_docs/r2d_dict_getter_docs.html">r2d_dict_getter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component_configurator_docs/repair_configurator_docs.html">repair_configurator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component_configurator_docs/r2d_repair_configurator_docs.html">r2d_repair_configurator</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="component_docs.html">component</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of component</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="component_docs/component_component_docs.html">component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component_docs/component_standard_irecodes_component_docs.html">standard_irecodes_component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component_docs/component_infrastructure_interface_docs.html">infrastructure_interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component_docs/component_r2d_component_docs.html">r2d_component</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="component_library_creator_docs.html">Component Library Creator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="component_recovery_model_docs.html">Component Recovery Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="damage_input_docs.html">Damage Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distribution_priority_docs.html">Distribution Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geovisualizer_docs.html">Geovisualizer</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../how_to_cite.html">How to cite</a></li>
@@ -210,411 +261,29 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/usage/documentation/system_class_docs.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
 <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <article role="main">
-          <section id="module-pyrecodes.System">
-<span id="system"></span><h1>System<a class="headerlink" href="#module-pyrecodes.System" title="Link to this heading">#</a></h1>
-<p>Module that defines the <strong>pyrecodes</strong> System class and its two helper classes: DistributionListCreator and RecoveryTargetChecker.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.System.</span></span><span class="sig-name descname"><span class="pre">BuiltEnvironmentSystem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system_configuration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_library</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_creator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="system_creator_class_docs.html#pyrecodes.SystemCreator.SystemCreator" title="pyrecodes.SystemCreator.SystemCreator"><span class="pre">SystemCreator</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem" title="Link to this definition">#</a></dt>
-<dd><p>This class represents a built environment system using the iRe-CoDeS framework as an assembly of components that exchange resources. It inherits from the System abstract class
-and implements the necessary methods to run the resilience assessment for the built environment.</p>
-<dl>
-<dt>Attributes:</dt><dd><div class="line-block">
-<div class="line">components (list[Component.Component]): List of system components represented as Component objects.</div>
-<div class="line">resources (dict): Dictionary containing resource parameters.</div>
-<div class="line">system_creator (SystemCreator.SystemCreator): The system creator object responsible for system initialization.</div>
-<div class="line">FINISH (bool): Flag indicating if the resilience assessment has finished.</div>
-</div>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.calculate_resilience">
-<span class="sig-name descname"><span class="pre">calculate_resilience</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">print_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.calculate_resilience" title="Link to this definition">#</a></dt>
-<dd><p>Calculates and returns the resilience metrics for the system.</p>
-<dl class="simple">
-<dt>Returns:</dt><dd><p>list: A list containing resilience metrics specific to each of the resilience calculators.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.check_system_convergence">
-<span class="sig-name descname"><span class="pre">check_system_convergence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system_supply</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">updated_system_supply</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.check_system_convergence" title="Link to this definition">#</a></dt>
-<dd><p>Checks whether the system has converged to a stable state.</p>
-<p>This is checked by comparing the system-level resource supply before and after the resource distribution.</p>
-<dl class="simple">
-<dt>Returns:</dt><dd><p>bool: True if the system has converged, False otherwise.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.create_system">
-<span class="sig-name descname"><span class="pre">create_system</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.create_system" title="Link to this definition">#</a></dt>
-<dd><p>Creates the system based on the provided SystemCreator object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.distribute_resources">
-<span class="sig-name descname"><span class="pre">distribute_resources</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.distribute_resources" title="Link to this definition">#</a></dt>
-<dd><p>Distributes resources among components following the resource distribution list.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.get_supply_of_interdependent_resources">
-<span class="sig-name descname"><span class="pre">get_supply_of_interdependent_resources</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.get_supply_of_interdependent_resources" title="Link to this definition">#</a></dt>
-<dd><p>Gets the supply of interdependent resources in the system.</p>
-<dl class="simple">
-<dt>Returns:</dt><dd><p>dict: A dictionary with the supply of interdependent resources in the system.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.get_system_supply">
-<span class="sig-name descname"><span class="pre">get_system_supply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.get_system_supply" title="Link to this definition">#</a></dt>
-<dd><p>Get the system-level supply for a resource resource_name based on current components’ state.</p>
-<p>This method is already implemented in the ResourceDistributionClass but uses the system matrix. However, using that method requires one to update the system matrix outside of resource distribution which then screws up consumption calculation. This method is a workaround to avoid that.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.load_as_pickle">
-<span class="sig-name descname"><span class="pre">load_as_pickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loadname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./system_object.pickle'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.load_as_pickle" title="Link to this definition">#</a></dt>
-<dd><p>Loads the system object from a pickle file and returns it.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>loadname (str, optional): The name of the pickle file to load the system object. Defaults to ‘./system_object.pickle’.</p>
-</dd>
-<dt>Returns:</dt><dd><p>BuiltEnvironmentSystem: The loaded system object.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.recover">
-<span class="sig-name descname"><span class="pre">recover</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.recover" title="Link to this definition">#</a></dt>
-<dd><p>Simulates the recovery process in the system at a single time step.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.recovery_target_met">
-<span class="sig-name descname"><span class="pre">recovery_target_met</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.recovery_target_met" title="Link to this definition">#</a></dt>
-<dd><p>Checks whether the recovery target has been met for the built environment system.</p>
-<dl class="simple">
-<dt>Returns:</dt><dd><p>bool: True if the recovery target is met, False otherwise.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.save_as_pickle">
-<span class="sig-name descname"><span class="pre">save_as_pickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">savename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./system_object.pickle'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.save_as_pickle" title="Link to this definition">#</a></dt>
-<dd><p>Saves the system object as a pickle file.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>savename (str, optional): The name of the pickle file to save the system object. Defaults to ‘./system_object.pickle’.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.set_component_library">
-<span class="sig-name descname"><span class="pre">set_component_library</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_library</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.set_component_library" title="Link to this definition">#</a></dt>
-<dd><p>Sets the component library for the system.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>component_library (dict): The component library to set for the system.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.set_configuration_file">
-<span class="sig-name descname"><span class="pre">set_configuration_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system_configuration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.set_configuration_file" title="Link to this definition">#</a></dt>
-<dd><p>Sets the configuration file for the system.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>system_configuration (dict): Dict with system configuration parameters.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.set_damage_input">
-<span class="sig-name descname"><span class="pre">set_damage_input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.set_damage_input" title="Link to this definition">#</a></dt>
-<dd><p>Sets the damage input for the system based on the specified damage input type and parameters.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.set_initial_damage">
-<span class="sig-name descname"><span class="pre">set_initial_damage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.set_initial_damage" title="Link to this definition">#</a></dt>
-<dd><p>Sets the initial damage for the components based on the damage input.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.set_resource_distribution_dict">
-<span class="sig-name descname"><span class="pre">set_resource_distribution_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.set_resource_distribution_dict" title="Link to this definition">#</a></dt>
-<dd><p>Sets the resource distribution list for the system based on components and resource parameters using the DistributionListCreator object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.set_system_creator">
-<span class="sig-name descname"><span class="pre">set_system_creator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system_creator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="system_creator_class_docs.html#pyrecodes.SystemCreator.SystemCreator" title="pyrecodes.SystemCreator.SystemCreator"><span class="pre">SystemCreator</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.set_system_creator" title="Link to this definition">#</a></dt>
-<dd><p>This method allows setting the SystemCreator object responsible for system initialization.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>system_creator (SystemCreator.SystemCreator): The SystemCreator object to set for the system.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.start_resilience_assessment">
-<span class="sig-name descname"><span class="pre">start_resilience_assessment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.start_resilience_assessment" title="Link to this definition">#</a></dt>
-<dd><p>Initiates the resilience assessment for the built environment.</p>
-<p>The assessment consits of running a for loop where each pass represents the next time step in the system’s recovery.</p>
-<p>At each time step, components’ state is update, resources are distributed among components to capture their interaction, and components recover following their recovery model.</p>
-<p>Recovery starts after the disaster has occured.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.update" title="Link to this definition">#</a></dt>
-<dd><p>Updates the system state during the resilience assessment by updating the state of components.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.BuiltEnvironmentSystem.update_resilience_calculators">
-<span class="sig-name descname"><span class="pre">update_resilience_calculators</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.System.BuiltEnvironmentSystem.update_resilience_calculators" title="Link to this definition">#</a></dt>
-<dd><p>Updates the resilience calculators with the current resource allocations.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="pyrecodes.System.CompleteDamageRecoveryTargetChecker">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.System.</span></span><span class="sig-name descname"><span class="pre">CompleteDamageRecoveryTargetChecker</span></span><a class="headerlink" href="#pyrecodes.System.CompleteDamageRecoveryTargetChecker" title="Link to this definition">#</a></dt>
-<dd><p>Concrete subclass of RecoveryTargetChecker.</p>
-<p>This class implements the recovery target checker where the system has recovered once all components are damage-free.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.CompleteDamageRecoveryTargetChecker.recovery_target_met">
-<span class="sig-name descname"><span class="pre">recovery_target_met</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyrecodes.System.System" title="pyrecodes.System.System"><span class="pre">System</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pyrecodes.System.CompleteDamageRecoveryTargetChecker.recovery_target_met" title="Link to this definition">#</a></dt>
-<dd><p>Check whether the recovery target has been met for the given system.</p>
-<p>The system is considered to have recovered once all components are damage-free (damage level close to 0).</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>system (System): The system object to check for recovery.</p>
-</dd>
-<dt>Returns:</dt><dd><p>bool: True if the recovery target is met, False otherwise.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="pyrecodes.System.DistributionListCreator">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.System.</span></span><span class="sig-name descname"><span class="pre">DistributionListCreator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="component_class_docs.html#pyrecodes.Component.Component" title="pyrecodes.Component.Component"><span class="pre">Component</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resources</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.DistributionListCreator" title="Link to this definition">#</a></dt>
-<dd><p>Creates a list specifying the order of resource distribution in the system.</p>
-<p>This class determines the order in which resources should be distributed to capture components’ interdependencies and calculate consumption.
-The resource order is fixed: Bridge Services, Transfer Services, Independent Resources, Interdependent Resources.</p>
-<dl>
-<dt>Attributes:</dt><dd><div class="line-block">
-<div class="line">components (list[Component.Component]): A list of components in the system.</div>
-<div class="line">resources (dict): A dictionary containing resource parameters for the system.</div>
-</div>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.DistributionListCreator.form_resource_distribution_vector">
-<span class="sig-name descname"><span class="pre">form_resource_distribution_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interdependent_resources</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.DistributionListCreator.form_resource_distribution_vector" title="Link to this definition">#</a></dt>
-<dd><p>Form the resource distribution vector by repeating Interdependent Resources.</p>
-<p>The number of repetitions is equal to the number of Interdependent Resources.</p>
-<dl class="simple">
-<dt>Reasoning behind this is provided in:</dt><dd><p>Blagojevic et al. (2022) Quantifying disaster resilience of a community with
-interdependent civil infrastructure systems</p>
-</dd>
-<dt>Args:</dt><dd><p>interdependent_resources (list[str]): List of Interdependent Resources.</p>
-</dd>
-<dt>Returns:</dt><dd><p>list[str]: The resource distribution vector.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.DistributionListCreator.get_independent_interdependent_resources">
-<span class="sig-name descname"><span class="pre">get_independent_interdependent_resources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_distribution_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.DistributionListCreator.get_independent_interdependent_resources" title="Link to this definition">#</a></dt>
-<dd><p>Separate resources that are not Bridge or Transfer services into Independent and Interdependent Resources.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>resource_distribution_list (list[str]): The list specifying the order of resource distribution.</p>
-</dd>
-<dt>Returns:</dt><dd><p>tuple[list[str], list[str]]: Two lists containing Independent and Interdependent Resources, respectively.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.DistributionListCreator.get_resource_distribution_dict">
-<span class="sig-name descname"><span class="pre">get_resource_distribution_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.DistributionListCreator.get_resource_distribution_dict" title="Link to this definition">#</a></dt>
-<dd><p>Generate the resource distribution dict based on the specified order.</p>
-<p>The resource distribution dict is formed by grouping resources into four categories:
-1. Bridge Services
-2. Transfer Services
-3. Other Independent Resources
-4. Interdependent Resources</p>
-<p>The reason is that Bridge Services are here assumed always to be independent resources that only affect Transfer Services.
-Transfer Services are assumed to only be affected by Bridge Services and to affect other resources, 
-both the distribution of Independent and Interdependent Resources.
-Remaining Independent Resources can only be distriuted once per time step, as their supply won’t be affected by unmet demand for other resources.
-The supply of Interdependent Resources can be affected by unmet demand and to capture potential cascading effects,
-their distribution is last and in an iterative manner.</p>
-<p>TODO: this method can be improved by making it more generic and flexible. Future work.</p>
-<dl class="simple">
-<dt>Returns:</dt><dd><p>dict: A dict separating independent and interdependent resources and specifying the order of resource distribution.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.DistributionListCreator.get_resource_group">
-<span class="sig-name descname"><span class="pre">get_resource_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.DistributionListCreator.get_resource_group" title="Link to this definition">#</a></dt>
-<dd><p>Get a list of resource names belonging to the specified group.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>group_name (str): The name of the resource group.</p>
-</dd>
-<dt>Returns:</dt><dd><p>list[str]: A list of resource names in the specified group.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.DistributionListCreator.resource_is_interdependent">
-<span class="sig-name descname"><span class="pre">resource_is_interdependent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="component_class_docs.html#pyrecodes.Component.Component" title="pyrecodes.Component.Component"><span class="pre">Component</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pyrecodes.System.DistributionListCreator.resource_is_interdependent" title="Link to this definition">#</a></dt>
-<dd><p>Check whether the specified resource is interdependent.</p>
-<p>A resource is assumed interdependent if there is a single component that:
-1. Has a supply of the resource
-2. Has an operation demand
-3. Component’s supply can be affected by unmet demand of the resource (i.e., the relation is not Constant)</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>resource_name (str): The name of the resource.
-component (Component.Component): The component to check.</p>
-</dd>
-<dt>Returns:</dt><dd><p>bool: True if the resource is interdependent, False otherwise.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="pyrecodes.System.RecoveryTargetChecker">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.System.</span></span><span class="sig-name descname"><span class="pre">RecoveryTargetChecker</span></span><a class="headerlink" href="#pyrecodes.System.RecoveryTargetChecker" title="Link to this definition">#</a></dt>
-<dd><p>Abstract base class for a recovery target checker.</p>
-<p>This class defines the interface for checking whether the system has recovered and the resilience assessment interval
-is finished.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.RecoveryTargetChecker.recovery_target_met">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">recovery_target_met</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pyrecodes.System.System" title="pyrecodes.System.System"><span class="pre">System</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pyrecodes.System.RecoveryTargetChecker.recovery_target_met" title="Link to this definition">#</a></dt>
-<dd><p>Check whether the recovery target has been met for the given system.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>system (System): The system object to check for recovery.</p>
-</dd>
-<dt>Returns:</dt><dd><p>bool: True if the recovery target is met, False otherwise.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="pyrecodes.System.System">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.System.</span></span><span class="sig-name descname"><span class="pre">System</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system_configuration_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_library</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_creator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="system_creator_class_docs.html#pyrecodes.SystemCreator.SystemCreator" title="pyrecodes.SystemCreator.SystemCreator"><span class="pre">SystemCreator</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.System" title="Link to this definition">#</a></dt>
-<dd><p>Abstract base class representing a generic system for resilience assessment.</p>
-<dl>
-<dt>Attributes:</dt><dd><div class="line-block">
-<div class="line">components (list[Component.Component]): List of system components represented as Component objects.</div>
-<div class="line">resources (dict): Dictionary containing resource parameters.</div>
-<div class="line">system_creator (SystemCreator.SystemCreator): The system creator object responsible for system initialization.</div>
-</div>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.System.calculate_resilience">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">calculate_resilience</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.System.calculate_resilience" title="Link to this definition">#</a></dt>
-<dd><p>Calculates and returns the resilience metric for the system.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.System.create_system">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_system</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system_creator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="system_creator_class_docs.html#pyrecodes.SystemCreator.SystemCreator" title="pyrecodes.SystemCreator.SystemCreator"><span class="pre">SystemCreator</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.System.create_system" title="Link to this definition">#</a></dt>
-<dd><p>Creates the system based on the provided SystemCreator object.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>system_creator (SystemCreator.SystemCreator): The system creator object responsible for system initialization.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.System.distribute_resources">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">distribute_resources</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.System.distribute_resources" title="Link to this definition">#</a></dt>
-<dd><p>Distributes resources among the system component’s.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.System.recover">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">recover</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.System.recover" title="Link to this definition">#</a></dt>
-<dd><p>Simulates the recovery process in the system.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.System.set_component_library">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_component_library</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_library</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.System.set_component_library" title="Link to this definition">#</a></dt>
-<dd><p>Sets the component library for the system.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>component_library (dict): The component library to set for the system.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.System.set_configuration_file">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_configuration_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system_configuration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.System.set_configuration_file" title="Link to this definition">#</a></dt>
-<dd><p>Sets the configuration file for the system.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>system_configuration (dict): System configuration dictionary.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.System.set_initial_damage">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_initial_damage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.System.set_initial_damage" title="Link to this definition">#</a></dt>
-<dd><p>Sets the initial damage state of the system components.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.System.start_resilience_assessment">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start_resilience_assessment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.System.start_resilience_assessment" title="Link to this definition">#</a></dt>
-<dd><p>Initiates the resilience assessment for the system. This is the entry point for running the assessment.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.System.System.update">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.System.System.update" title="Link to this definition">#</a></dt>
-<dd><p>Updates the system state at a time step of the resilience assessment.</p>
-</dd></dl>
-
-</dd></dl>
-
+        <article role="main" id="furo-main-content">
+          <section id="module-pyrecodes.system">
+<span id="system"></span><h1>System<a class="headerlink" href="#module-pyrecodes.system" title="Link to this heading">¶</a></h1>
 </section>
 
         </article>
@@ -622,31 +291,13 @@ is finished.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="system_creator_class_docs.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">System Creator</div>
-              </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="main_docs.html">
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-              <div class="page-info">
-                <div class="context">
-                  <span>Previous</span>
-                </div>
-                
-                <div class="title">Main</div>
-                
-              </div>
-            </a>
+          
+          
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2023, Nikola Blagojević
+                Copyright &#169; 2024, Nikola Blagojević
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -660,84 +311,16 @@ is finished.</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            On this page
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">System</a><ul>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem</span></code></a><ul>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.calculate_resilience"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.calculate_resilience()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.check_system_convergence"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.check_system_convergence()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.create_system"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.create_system()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.distribute_resources"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.distribute_resources()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.get_supply_of_interdependent_resources"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.get_supply_of_interdependent_resources()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.get_system_supply"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.get_system_supply()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.load_as_pickle"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.load_as_pickle()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.recover"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.recover()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.recovery_target_met"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.recovery_target_met()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.save_as_pickle"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.save_as_pickle()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.set_component_library"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.set_component_library()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.set_configuration_file"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.set_configuration_file()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.set_damage_input"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.set_damage_input()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.set_initial_damage"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.set_initial_damage()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.set_resource_distribution_dict"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.set_resource_distribution_dict()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.set_system_creator"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.set_system_creator()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.start_resilience_assessment"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.start_resilience_assessment()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.update"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.update()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.BuiltEnvironmentSystem.update_resilience_calculators"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironmentSystem.update_resilience_calculators()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#pyrecodes.System.CompleteDamageRecoveryTargetChecker"><code class="docutils literal notranslate"><span class="pre">CompleteDamageRecoveryTargetChecker</span></code></a><ul>
-<li><a class="reference internal" href="#pyrecodes.System.CompleteDamageRecoveryTargetChecker.recovery_target_met"><code class="docutils literal notranslate"><span class="pre">CompleteDamageRecoveryTargetChecker.recovery_target_met()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#pyrecodes.System.DistributionListCreator"><code class="docutils literal notranslate"><span class="pre">DistributionListCreator</span></code></a><ul>
-<li><a class="reference internal" href="#pyrecodes.System.DistributionListCreator.form_resource_distribution_vector"><code class="docutils literal notranslate"><span class="pre">DistributionListCreator.form_resource_distribution_vector()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.DistributionListCreator.get_independent_interdependent_resources"><code class="docutils literal notranslate"><span class="pre">DistributionListCreator.get_independent_interdependent_resources()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.DistributionListCreator.get_resource_distribution_dict"><code class="docutils literal notranslate"><span class="pre">DistributionListCreator.get_resource_distribution_dict()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.DistributionListCreator.get_resource_group"><code class="docutils literal notranslate"><span class="pre">DistributionListCreator.get_resource_group()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.DistributionListCreator.resource_is_interdependent"><code class="docutils literal notranslate"><span class="pre">DistributionListCreator.resource_is_interdependent()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#pyrecodes.System.RecoveryTargetChecker"><code class="docutils literal notranslate"><span class="pre">RecoveryTargetChecker</span></code></a><ul>
-<li><a class="reference internal" href="#pyrecodes.System.RecoveryTargetChecker.recovery_target_met"><code class="docutils literal notranslate"><span class="pre">RecoveryTargetChecker.recovery_target_met()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#pyrecodes.System.System"><code class="docutils literal notranslate"><span class="pre">System</span></code></a><ul>
-<li><a class="reference internal" href="#pyrecodes.System.System.calculate_resilience"><code class="docutils literal notranslate"><span class="pre">System.calculate_resilience()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.System.create_system"><code class="docutils literal notranslate"><span class="pre">System.create_system()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.System.distribute_resources"><code class="docutils literal notranslate"><span class="pre">System.distribute_resources()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.System.recover"><code class="docutils literal notranslate"><span class="pre">System.recover()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.System.set_component_library"><code class="docutils literal notranslate"><span class="pre">System.set_component_library()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.System.set_configuration_file"><code class="docutils literal notranslate"><span class="pre">System.set_configuration_file()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.System.set_initial_damage"><code class="docutils literal notranslate"><span class="pre">System.set_initial_damage()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.System.start_resilience_assessment"><code class="docutils literal notranslate"><span class="pre">System.start_resilience_assessment()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.System.System.update"><code class="docutils literal notranslate"><span class="pre">System.update()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=fa47ad08"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
+</div><script src="../../_static/documentation_options.js?v=683873e3"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>

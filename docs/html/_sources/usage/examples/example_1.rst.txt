@@ -24,7 +24,7 @@ Component library
 
 Component library JSON file contains the parameters for each of the considered components.
 
-The component template parameters for BTSs are explained in more detail below, while for other components the logic is the same.
+The component template parameters for BTSs are explained in more detail below. The logic is the same for other components.
 
 There are two BTSs in the system: one that supplies 1 unit of communication service, and the other that supplies 2 units of communication service. Remaining parameters are identical. This simple example illustrates how very similar componets can be defined using slightly different templates in the component library file. An alternative would be to define their supply when system is created, as done in Example 3.
 
@@ -42,36 +42,38 @@ Base Transceiver Stations
     .. code-block:: json
 
         "BaseTransceiverStation_1": {
-            "ComponentClass": "StandardiReCoDeSComponent",
-            "RecoveryModel": {
-                "Type": "ComponentLevelRecoveryActivitiesModel",
-                "Parameters": {
-                    "Repair": {
-                        "Duration": {"Deterministic": {"Value": 10}}   
-                    }                
+            "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
+                "RecoveryModel": {
+                    "FileName": "component_level_recovery_activities_model",
+                    "ClassName": "ComponentLevelRecoveryActivitiesModel",
+                    "Parameters": {
+                        "Repair": {
+                            "Duration": {"Deterministic": {"Value": 10}}   
+                        }                
+                    },
+                    "DamageFunctionalityRelation": {
+                        "Type": "ReverseBinary"
+                    }
+                },       
+                "Supply": {
+                    "Communication": {
+                        "Amount": 1,
+                        "FunctionalityToAmountRelation": "Linear",
+                        "UnmetDemandToAmountRelation": "Binary"
+                    }
                 },
-                "DamageFunctionalityRelation": {
-                    "Type": "ReverseBinary"
-                }
-            },       
-            "Supply": {
-                "Communication": {
-                    "Amount": 1,
-                    "FunctionalityToAmountRelation": "Linear",
-                    "UnmetDemandToAmountRelation": "Binary"
+                "OperationDemand": {
+                    "ElectricPower": {
+                        "Amount": 1,
+                        "FunctionalityToAmountRelation": "Linear"                
+                    }
                 }
             },
-            "OperationDemand": {
-                "ElectricPower": {
-                    "Amount": 1,
-                    "FunctionalityToAmountRelation": "Linear"                
-                }
-            }
-        },
         "BaseTransceiverStation_2": {
-            "ComponentClass": "StandardiReCoDeSComponent",
+            "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
             "RecoveryModel": {
-                "Type": "ComponentLevelRecoveryActivitiesModel",
+                "FileName": "component_level_recovery_activities_model",
+                "ClassName": "ComponentLevelRecoveryActivitiesModel",
                 "Parameters": {
                     "Repair": {
                         "Duration": {"Deterministic": {"Value": 10}} 
@@ -106,9 +108,10 @@ Electric Power Plant
 
         
         "ElectricPowerPlant": {
-            "ComponentClass": "StandardiReCoDeSComponent",
+            "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
             "RecoveryModel": {
-                "Type": "ComponentLevelRecoveryActivitiesModel",
+                "FileName": "component_level_recovery_activities_model",
+                "ClassName": "ComponentLevelRecoveryActivitiesModel",
                 "Parameters": {
                     "Repair": {
                         "Duration": {"Deterministic": {"Value": 10}}   
@@ -146,9 +149,10 @@ Cooling Water Facility
     .. code-block:: json
         
             "CoolingWaterFacility": {
-                "ComponentClass": "StandardiReCoDeSComponent",
+                "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
                 "RecoveryModel": {
-                    "Type": "ComponentLevelRecoveryActivitiesModel",
+                    "FileName": "component_level_recovery_activities_model",
+                    "ClassName": "ComponentLevelRecoveryActivitiesModel",
                     "Parameters": {
                         "Repair": {
                             "Duration": {"Deterministic": {"Value": 10}}  
@@ -183,12 +187,12 @@ Building Stock Unit
 .. toggle::
 
     .. code-block:: json
-
-        
+  
         "BuildingStockUnit": {
-            "ComponentClass": "BuildingStockUnitWithEmergencyCalls",
+            "ComponentClass": {"FileName": "building_with_emergency_calls", "ClassName": "BuildingWithEmergencyCalls"},
             "RecoveryModel": {
-                "Type": "ComponentLevelRecoveryActivitiesModel",
+                "FileName": "component_level_recovery_activities_model",
+                "ClassName": "ComponentLevelRecoveryActivitiesModel",
                 "Parameters": {
                     "Repair": {
                         "Duration": {"Deterministic": {"Value": 10}}  
@@ -219,9 +223,10 @@ Link
     .. code-block:: json
         
         "SuperLink": {
-            "ComponentClass": "StandardiReCoDeSComponent",
+            "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
             "RecoveryModel": {
-                "Type": "ComponentLevelRecoveryActivitiesModel",
+                "FileName": "component_level_recovery_activities_model",
+                "ClassName": "ComponentLevelRecoveryActivitiesModel",
                 "Parameters": {
                     "Repair": {
                         "Duration": {"Deterministic": {"Value": 10}}    
@@ -243,7 +248,7 @@ Link
 System configuration
 --------------------
 
-System's configuration is defined in a JSON file and consists of sections presented in the `How to use pyrecodes? <../user_guide.html>`_ page.
+System's configuration is defined in a JSON file and consists of sections presented in the `How to use pyrecodes <../user_guide.html>`_ page.
 
 Constants
 `````````
@@ -264,7 +269,7 @@ Example 1 uses the BuiltEnvironmentSystem class which requires the definition of
 Content
 ```````
 
-Content section defines the components in and between localities. The coordinates of Locality 1 centroids are set to (1, 1). The locality contains one BTS and one EPP. Two link components of class SuperLink start at Locality 1 and connect to Locality 2 and 3. The content of other localities is similarly defined.
+Content section defines the components in and between localities. The coordinates of Locality 1 centroids are set to (1, 1). The locality contains one BTS, representing the communication system, and one EPP, representing the power supply system. Two link components of class SuperLink start at Locality 1 and connect to Locality 2 and 3. The content of other localities is similarly defined.
 
 .. toggle::
 
@@ -275,41 +280,108 @@ Content section defines the components in and between localities. The coordinate
                     "Coordinates": {"X": 1,
                                     "Y": 1
                                 },
-                    "ComponentsInLocality": {
-                        "BaseTransceiverStation_1": 1,
-                        "ElectricPowerPlant": 1
-                            },
-                    "LinkTo":  {
-                        "Locality 2": ["SuperLink"],
-                        "Locality 3": ["SuperLink"]
-                    }   
+                    "Components": {
+                        "Infrastructure": [
+                            {"ElectricPowerSystem": {
+                                "CreatorClassName": "JSONSubsystemCreator",
+                                "CreatorFileName": "json_subsystem_creator",
+                                "Parameters": {
+                                    "ComponentsInLocality": {
+                                        "ElectricPowerPlant": 1
+                                    }
+                                }
+                            }},
+                            {"CommunicationSystem": {
+                                "CreatorClassName": "JSONSubsystemCreator",
+                                "CreatorFileName": "json_subsystem_creator",
+                                "Parameters": {
+                                    "ComponentsInLocality": {
+                                        "BaseTransceiverStation_1": 1
+                                    }
+                                }
+                            }},
+                            {"Links": {
+                                "CreatorClassName": "JSONSubsystemCreator",
+                                "CreatorFileName": "json_subsystem_creator",
+                                "Parameters": {
+                                    "ComponentsBetweenLocalities": {
+                                        "Locality 2": ["SuperLink"],
+                                        "Locality 3": ["SuperLink"]
+                                    }
+                                }
+                            }
+                            }                    
+                        ]
+                    }
                 },
                 "Locality 2": {
                     "Coordinates": {"X": 0,
                                     "Y": 0
                                 },
-                    "ComponentsInLocality": {
-                        "CoolingWaterFacility": 1
-                    },        
-                    "LinkTo":  {
-                        "Locality 1": ["SuperLink"],
-                        "Locality 3": ["SuperLink"]
-                    }  
+                    "Components": {
+                        "Infrastructure": [
+                            {"CoolingWaterSystem": {
+                                "CreatorClassName": "JSONSubsystemCreator",
+                                "CreatorFileName": "json_subsystem_creator",
+                                "Parameters": {
+                                    "ComponentsInLocality": {
+                                        "CoolingWaterFacility": 1                            
+                            }
+                            }
+                        }
+                    },
+                            {"Links": {
+                                "CreatorClassName": "JSONSubsystemCreator",
+                                "CreatorFileName": "json_subsystem_creator",
+                                "Parameters": {
+                                    "ComponentsBetweenLocalities": {
+                                        "Locality 1": ["SuperLink"],
+                                        "Locality 3": ["SuperLink"]
+                                    }
+                                }
+                            }
+                            }                    
+                        ]
+                    }
                 },
                 "Locality 3": {
                     "Coordinates": {"X": 2,
                                     "Y": 0
                                 },
-                    "ComponentsInLocality": {
-                        "BuildingStockUnit": 1,
-                        "BaseTransceiverStation_2": 1
-                    },        
-                    "LinkTo":  {
-                        "Locality 1": ["SuperLink"],
-                        "Locality 2": ["SuperLink"]
-                    }  
+                    "Components": {
+                        "Infrastructure": [
+                            {"CommunicationSystem": {
+                                "CreatorClassName": "JSONSubsystemCreator",
+                                "CreatorFileName": "json_subsystem_creator",
+                                "Parameters": {
+                                    "ComponentsInLocality": {
+                                        "BaseTransceiverStation_2": 1
+                                }
+                            }
+                            }},
+                            {"Links": {
+                                "CreatorClassName": "JSONSubsystemCreator",
+                                "CreatorFileName": "json_subsystem_creator",
+                                "Parameters": {
+                                    "ComponentsBetweenLocalities": {
+                                        "Locality 1": ["SuperLink"],
+                                        "Locality 2": ["SuperLink"]
+                                    }
+                                }
+                            }
+                            }],
+                        "BuildingStock": [
+                            {"Buildings": {
+                                "CreatorClassName": "JSONSubsystemCreator",
+                                "CreatorFileName": "json_subsystem_creator",
+                                "Parameters": {
+                                    "ComponentsInLocality": {
+                                        "BuildingStockUnit": 1
+                                }
+                            }}}]
+                    }
                 }
-            },
+            }
 
 Damage Input
 ````````````
@@ -321,9 +393,10 @@ Components' damage is assigned using the ListDamageInput class, whose parameter 
     .. code-block:: json
        
         "DamageInput": {
-            "Type": "ListDamageInput",
-            "Parameters": [0.0, 0.4, 0.0, 0.0, 0.4, 0.0, 0.0, 0.4, 0.4, 0.0, 0.0]
-        }
+        "ClassName": "ListDamageInput",
+        "FileName": "list_damage_input",
+        "Parameters": [0.4, 0.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.4, 0.4, 0.0, 0.0]
+    },  
 
 Resources
 `````````
@@ -334,81 +407,92 @@ Four resources are considered in Example 1: Electric Power, Cooling Water, Commu
 
     .. code-block:: json
 
-            "Resources": {
-                "ElectricPower": {
-                    "Group": "Utilities",
-                    "DistributionModel": {"Type": "UtilityDistributionModel",
-                                        "Parameters": {
-                                            "DistributionPriority": {"Type": "ComponentBasedPriority",
-                                                                    "Parameters": [
-                                                                        ["ElectricPowerPlant", ["Locality 1"], "OperationDemand"],
-                                                                        ["BaseTransceiverStation_1", ["Locality 1"], "OperationDemand"],
-                                                                        ["CoolingWaterFacility", ["Locality 2"], "OperationDemand"],
-                                                                        ["BaseTransceiverStation_2", ["Locality 3"], "OperationDemand"],
-                                                                        ["BuildingStockUnit", ["Locality 3"], "OperationDemand"]
-                                                                    ]},
-                                            "TransferService": "SuperTransferService"}
-                                            }
-                                        },    
-                "CoolingWater": {  
-                    "Group": "Utilities",
-                    "DistributionModel": {"Type": "UtilityDistributionModel",
-                                        "Parameters": {
-                                            "DistributionPriority": {"Type": "ComponentBasedPriority",
+        "Resources": {
+            "ElectricPower": {
+                "Group": "Utilities",
+                "DistributionModel": {"ClassName": "UtilityDistributionModel",
+                                    "FileName": "utility_distribution_model",
+                                    "Parameters": {
+                                        "DistributionPriority": {"FileName": "component_based_priority",
+                                                                "ClassName": "ComponentBasedPriority",
                                                                 "Parameters": [
-                                                                    ["CoolingWaterFacility", ["Locality 2"], "OperationDemand"],       
-                                                                    ["ElectricPowerPlant", ["Locality 1"], "OperationDemand"],                            
+                                                                    ["ElectricPowerPlant", ["Locality 1"], "OperationDemand"],
                                                                     ["BaseTransceiverStation_1", ["Locality 1"], "OperationDemand"],
-                                                                    ["BaseTransceiverStation_2", ["Locality 3"], "OperationDemand"],                                                                                                                
+                                                                    ["CoolingWaterFacility", ["Locality 2"], "OperationDemand"],
+                                                                    ["BaseTransceiverStation_2", ["Locality 3"], "OperationDemand"],
                                                                     ["BuildingStockUnit", ["Locality 3"], "OperationDemand"]
                                                                 ]},
-                                            "TransferService": "SuperTransferService"}
-                                            }
-                                        },         
-                "Communication": {     
-                    "Group": "Utilities",
-                    "DistributionModel": {"Type": "UtilityDistributionModel",
-                                        "Parameters": {
-                                            "DistributionPriority": {"Type": "ComponentBasedPriority",
+                                        "TransferService": "SuperTransferService"}
+                                        }
+                                    },    
+            "CoolingWater": {  
+                "Group": "Utilities",
+                "DistributionModel": {"ClassName": "UtilityDistributionModel",
+                                    "FileName": "utility_distribution_model",
+                                    "Parameters": {
+                                        "DistributionPriority": {"FileName": "component_based_priority",
+                                                                "ClassName": "ComponentBasedPriority",
                                                             "Parameters": [
+                                                                ["CoolingWaterFacility", ["Locality 2"], "OperationDemand"],       
+                                                                ["ElectricPowerPlant", ["Locality 1"], "OperationDemand"],                            
                                                                 ["BaseTransceiverStation_1", ["Locality 1"], "OperationDemand"],
-                                                                ["BaseTransceiverStation_2", ["Locality 3"], "OperationDemand"],
-                                                                ["ElectricPowerPlant", ["Locality 1"], "OperationDemand"],
-                                                                ["CoolingWaterFacility", ["Locality 2"], "OperationDemand"],                                        
+                                                                ["BaseTransceiverStation_2", ["Locality 3"], "OperationDemand"],                                                                                                                
                                                                 ["BuildingStockUnit", ["Locality 3"], "OperationDemand"]
-                                                            ]}
-                                                }
-                                            }
-                                        },
-                "SuperTransferService": {
-                    "Group": "TransferService",
-                    "DistributionModel": {
-                        "Type": "TransferServiceDistributionModelPotentialPathSets",
-                        "Parameters": {
-                            "PathSetsFile": "./Example 1/potential_path_sets.json"
-                        }
+                                                            ]},
+                                        "TransferService": "SuperTransferService"}
+                                        }
+                                    },         
+            "Communication": {     
+                "Group": "Utilities",
+                "DistributionModel": {"ClassName": "UtilityDistributionModel",
+                                    "FileName": "utility_distribution_model",
+                                    "Parameters": {
+                                        "DistributionPriority": {"FileName": "component_based_priority",
+                                                                "ClassName": "ComponentBasedPriority",
+                                                        "Parameters": [
+                                                            ["BaseTransceiverStation_1", ["Locality 1"], "OperationDemand"],
+                                                            ["BaseTransceiverStation_2", ["Locality 3"], "OperationDemand"],
+                                                            ["ElectricPowerPlant", ["Locality 1"], "OperationDemand"],
+                                                            ["CoolingWaterFacility", ["Locality 2"], "OperationDemand"],                                        
+                                                            ["BuildingStockUnit", ["Locality 3"], "OperationDemand"]
+                                                        ]}
+                                        }
+                                        }
+                                    },
+            "SuperTransferService": {
+                "Group": "TransferService",
+                "DistributionModel": {
+                    "ClassName": "TransferServiceDistributionModelPotentialPaths",
+                    "FileName": "transfer_service_distribution_model_potential_paths",
+                    "Parameters": {
+                        "PathSetsFile": "./tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_potential_path_sets.json"
                     }
-                }          
+                }
+            }       
+        }  
 
 Resilience Calculators
 ``````````````````````
 
-Two resilience calculators are employed in Example 1: the ReCoDeSResilienceCalculator and the NISTGoalsResilienceCalculator.
+Two resilience calculators are employed in Example 1: the ReCoDeSCalculator and the NISTGoalsCalculator.
 
-The ReCoDeSResilienceCalculator assesses resilience by calculating the total unmet demand of the system during the resilience assessment interval. This is done for the entire system (Scope: All) and for three utility resources: Electric Power, Cooling Water and Communication.
+The ReCoDeSCalculator assesses resilience by calculating the unmet demand of the system during the resilience assessment interval. This is done for the entire system (Scope: All) and for three utility resources: Electric Power, Cooling Water and Communication.
 
-The NISTGoalsResilienceCalculator calculates the time that the system needs to reach the desired system's functionality level as specified by the resilience goal. In **pyrecodes** functionality level of a system is defined as the percent of met system demand at each time step of the resilience assessment interval. Three resilience goals are defined in Example 1, which consider the three utility resources, the entire system (as opposed to a subset of localities/components) and are set to different desired functionality levels.
+The NISTGoalsCalculator calculates the time that the system needs to reach the desired system's functionality level as specified by the resilience goal. In **pyrecodes** functionality level of a system is defined as the percent of met system demand at each time step of the resilience assessment interval. Three resilience goals are defined in Example 1, which consider the three utility resources, the entire system (as opposed to a subset of localities/components) and are set to different desired functionality levels.
 
 .. toggle::
 
     .. code-block:: json
 
             "ResilienceCalculator": [{
-                "Type": "ReCoDeSResilienceCalculator",
+                "FileName": "recodes_calculator",
+                "ClassName": "ReCoDeSCalculator",
                 "Parameters": {"Scope": "All", 
                             "Resources": ["ElectricPower", "CoolingWater", "Communication"]}                  
             },
-                {"Type": "NISTGoalsResilienceCalculator",
+                {
+                "FileName": "nist_goals_calculator",
+                "ClassName": "NISTGoalsCalculator",
                 "Parameters": [{"Resource": "ElectricPower", "DesiredFunctionalityLevel": 0.95, "Scope": "All"},
                             {"Resource": "CoolingWater", "DesiredFunctionalityLevel": 0.9, "Scope": "All"},
                             {"Resource": "Communication", "DesiredFunctionalityLevel": 0.8, "Scope": "All"}]
@@ -425,12 +509,15 @@ The main file to run Example 1 is defined as follows:
 
         {
             "ComponentLibrary": {
-                "ComponentLibraryCreatorClass": "JSONComponentLibraryCreator",
+                "ComponentLibraryCreatorFileName": "json_component_library_creator",
+                "ComponentLibraryCreatorClassName": "JSONComponentLibraryCreator",
                 "ComponentLibraryFile": "./Example 1/ThreeLocalitiesCommunity_ComponentLibrary.json"
             },
             "System": {
-                "SystemCreatorClass": "JSONSystemCreator",
-                "SystemClass": "BuiltEnvironmentSystem",
+                "SystemCreatorClassName": "ConcreteSystemCreator",
+                "SystemCreatorFileName": "concrete_system_creator",
+                "SystemClassName": "BuiltEnvironment",
+                "SystemFileName": "built_environment",
                 "SystemConfigurationFile": "./Example 1/ThreeLocalitiesCommunity_SystemConfiguration.json"
             }
         }

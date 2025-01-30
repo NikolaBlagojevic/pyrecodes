@@ -28,10 +28,10 @@ class R2DDamageInput(DamageInput):
         """
         | Method sets the initial damage of components. 
         | Component damage state is defined when components are constructed, since components in different damage states have different component templates in the component library when using R2D outputs.
-        | Thus, initial damage level of 1 is set for all components that are damaged (i.e., damage state above 0) and are not infrastructure interfaces, since those components have predefined supply/deman dynamics not conditioned on their initial damage. 
+        | Initial damage level of 1 is set for all components that are damaged (i.e., damage state above 0) or are infrastructure interfaces, since those components have predefined supply/demand dynamics triggered once the initial damage is set. 
         """
         for component in self.system.components:
-            if self.component_is_damaged(component) and not(self.component_is_interface(component)):
+            if self.component_is_damaged(component) or self.component_is_interface(component):
                 component.set_initial_damage_level(1.0)
 
     def set_damage_in_the_distribution_model(self) -> None:

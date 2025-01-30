@@ -3,6 +3,8 @@ What is pyrecodes?
 
 As disasters worlwide are becoming more frequent and severe, there is a growing need for tools that can help communities and cities assess their disaster resilience and identify the most effective resilience improvement strategies. **pyrecodes** is an open-source Python library for regional disaster recovery simulation and disaster resilience assessment of the built environment with the primary goal to respond to this pressing need. **pyrecodes** is based on the iRe-CoDeS framework developed in the research group of Professor Božidar Stojadinović at the `Chair of Structural Dynamics and Earthquake Engineering <https://stojadinovic.ibk.ethz.ch/>`_ at ETH Zurich, Switzerland.
 
+`GitHub Repository <https://github.com/NikolaBlagojevic/pyrecodes/tree/main>`_
+
 .. figure:: ../figures/1slide_iRe-CoDeS.gif
         :alt: Overview of the iRe-CoDeS framework.
 

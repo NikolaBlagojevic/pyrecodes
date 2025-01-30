@@ -1,7 +1,7 @@
 Installing pyrecodes
 ====================
 
-The prerequist for installing pyrecodes is to have Python v3.9.6 installed on your machine. 
+The prerequisite for installing pyrecodes is having Python version 3.9.6 installed on your machine.
 
 The simplest way to install pyrecodes is to use `pip`:
 
@@ -11,7 +11,11 @@ The simplest way to install pyrecodes is to use `pip`:
 
 pyrecodes can also be installed by `cloning <https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository>`_ the source code available on `Github <https://github.com/NikolaBlagojevic/pyrecodes/tree/main>`_.
 
-It's good practice to use a virtual environment when installing pyrecodes, to ensure dependencies are isolated from other Python projects on your machine.
+It's good practice to use a virtual environment when installing pyrecodes to keep its dependencies isolated from other Python projects on your machine. The repository includes a requirements.txt file in the root directory, which allows you to install all dependencies at once.
+
+.. code-block:: Python
+
+    pip install -r requirements.txt
 
 
 Running Examples

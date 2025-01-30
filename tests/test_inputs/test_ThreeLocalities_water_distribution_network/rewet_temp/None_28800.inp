@@ -1,0 +1,151 @@
+; Filename: /Users/nikola/pyrecodes/tests/test_inputs/test_ThreeLocalities_water_distribution_network/ThreeLocalitiesWaterNetwork.inp
+; WNTR: 1.1.0.1.2
+; Created: 2025-01-20 12:48:24
+[TITLE]
+
+[JUNCTIONS]
+;ID                      Elevation       Demand Pattern                 
+ 3                                  0               0                            ;
+ 4                                  0               1                            ;
+ 5                                  0               0                            ;
+ 6                                  0               0                            ;
+ 4_breakA_1                         0               0                            ;
+ 4_breakB_1                         0               0                            ;
+
+[RESERVOIRS]
+;ID                                   Head                  Pattern
+ 1                                300                            ;
+ 4_breakA_1_nn                      0                            ;
+ 4_breakB_1_nn                      0                            ;
+
+[TANKS]
+;ID                              Elevation           Init Level            Min Level            Max Level             Diameter           Min Volume Volume Curve         Overflow            
+
+[PIPES]
+;ID                   Node1                Node2                              Length             Diameter            Roughness           Minor Loss               Status
+ 1                    1                    3                              18559              12             100               0                 Open   ;
+ 2                    3                    4                              13123              12             100               0                 Open   ;
+ 3                    1                    5                               9280              50             100               0                 Open   ;
+ 4                    6                    4_breakA_1                      2320              50             100               0                 Open   ;
+ 4_Break_1            4_breakB_1           4                               6960              50             100               0                 Open   ;
+ 4_breakA_1-rlk       4_breakA_1           4_breakA_1_nn                      1              50         1000000               1                   CV   ;
+ 4_breakB_1-rlk       4_breakB_1           4_breakB_1_nn                      1              50         1000000               1                   CV   ;
+
+[PUMPS]
+;ID                   Node1                Node2                Properties          
+ 5                    5                    6                    HEAD     1                      ;
+
+[VALVES]
+;ID                   Node1                Node2                            Diameter Type              Setting           Minor Loss
+
+[TAGS]
+;type      name       tag       
+
+[DEMANDS]
+;ID        Demand     Pattern   
+
+[STATUS]
+;ID        Setting   
+
+[PATTERNS]
+;ID        Multipliers
+
+[CURVES]
+;ID         X-Value      Y-Value     
+;PUMP: 1
+ 1              0.000000   240.000000   ;
+ 1           6283.000000   150.000000   ;
+ 1           9424.000000    60.000000   ;
+ 1          10995.000000     0.000000   ;
+
+
+[CONTROLS]
+
+[RULES]
+
+[ENERGY]
+GLOBAL EFFICIENCY      75.0000
+GLOBAL PRICE           0.0000
+DEMAND CHARGE          0.0000
+
+[EMITTERS]
+;ID        Flow coefficient
+
+[QUALITY]
+
+[SOURCES]
+;Node      Type       Quality    Pattern   
+
+[REACTIONS]
+;Type           Pipe/Tank               Coefficient
+
+ ORDER BULK 1
+ ORDER TANK 1
+ ORDER WALL 1
+ GLOBAL BULK 0.0000    
+ GLOBAL WALL 0.0000    
+ LIMITING POTENTIAL 0.0000    
+ ROUGHNESS CORRELATION 0.0000    
+
+[MIXING]
+;Tank ID             Model Fraction
+
+[TIMES]
+DURATION             01:00:00
+HYDRAULIC TIMESTEP   00:15:00
+QUALITY TIMESTEP     00:05:00
+PATTERN TIMESTEP     01:00:00
+PATTERN START        08:00:00
+REPORT TIMESTEP      01:00:00
+REPORT START         00:00:00
+START CLOCKTIME      08:00:00 AM
+RULE TIMESTEP        00:06:00
+STATISTIC            NONE      
+
+[REPORT]
+SUMMARY    NO
+PAGE       0
+
+[OPTIONS]
+UNITS                LPM                 
+HEADLOSS             H-W                 
+SPECIFIC GRAVITY     1
+VISCOSITY            1
+TRIALS               40
+ACCURACY             0.001
+CHECKFREQ            1
+MAXCHECK             10
+UNBALANCED           CONTINUE 100
+DEMAND MULTIPLIER    1
+DEMAND MODEL         PDA
+MINIMUM PRESSURE     8.00
+REQUIRED PRESSURE    25.00
+PRESSURE EXPONENT    0.75
+EMITTER EXPONENT     0.5
+QUALITY              NONE                
+DIFFUSIVITY          1
+TOLERANCE            0.01
+
+[COORDINATES]
+;Node      X-Coord    Y-Coord   
+3                -122.303000000         37.772000000
+4                -122.303000000         37.772000000
+5                -122.269000000         37.783000000
+6                -122.265000000         37.780000000
+1                -122.276000000         37.792000000
+4_breakA_1       -122.274500000         37.778000000
+4_breakB_1       -122.274500000         37.778000000
+4_breakA_1_nn       -121.274500000         38.778000000
+4_breakB_1_nn       -121.274500000         38.778000000
+
+[VERTICES]
+;Link      X-Coord    Y-Coord   
+
+[LABELS]
+
+[BACKDROP]
+DIMENSIONS    0.000    0.000    10000.000    10000.000
+UNITS    NONE
+OFFSET    0.00    0.00
+
+[END]

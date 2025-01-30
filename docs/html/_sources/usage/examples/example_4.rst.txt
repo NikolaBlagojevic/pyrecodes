@@ -1,7 +1,7 @@
 Example 4
 =========
 
-Example 4 shows how infrastructure simulators can be integrated within an iRe-CoDeS system-of-systems model using the supply/demand interfaces. Such interfaces allow the integration of third-party infrastructure simulators to capture their interdependencies and their impact on buildings' functional recovery. Interfaces are tiered to accomodate infrastructure managers privacy and/or security concerns. Interface application is illustrated by extending the Example 3 North-East San Francisco Case Study to include the impact of infrastructure systems on building's functionality. Further details are available `here <https://link.springer.com/article/10.1007/s10669-023-09931-0>`_.
+Example 4 shows how infrastructure performance data can be integrated within an iRe-CoDeS system-of-systems model using supply/demand interfaces. Such interfaces allow the integration of individual infrastructure performance assessment performed outside of pyrecodes that can capture interdependencies among systems and their impact on buildings' functional recovery. Interfaces are tiered to accomodate infrastructure managers privacy and/or security concerns. Interface application is illustrated by extending the Example 3 North-East San Francisco Case Study to include the impact of infrastructure systems on building's functionality. Further details are available `here <https://link.springer.com/article/10.1007/s10669-023-09931-0>`_.
 
 .. figure:: ../../figures/Example_4_infrastructure_interfaces.png
         :alt: Tiered supply/demand interfaces for infrastructure systems
@@ -36,9 +36,10 @@ EmergencyResponseCenter
     .. code-block:: json
 
         "EmergencyResponseCenter": {
-                "ComponentClass": "StandardiReCoDeSComponent",
+                "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
                 "RecoveryModel": {
-                    "Type": "NoRecoveryActivityModel",
+                    "FileName": "no_recovery_activity_model",
+                    "ClassName": "NoRecoveryActivityModel",
                     "Parameters": {},
                     "DamageFunctionalityRelation": {
                         "Type": "Constant"
@@ -88,17 +89,18 @@ EmergencyResponseCenter
                 }
             } 
 
-DS0 Residential Building
+DS0 Building
 ````````````````````````
 
 .. toggle::
 
     .. code-block:: json
 
-        "DS0_ResidentialBuilding": {
-                "ComponentClass": "StandardiReCoDeSComponent",
+        "DS0_Building": {
+                "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
                 "RecoveryModel": {
-                    "Type": "NoRecoveryActivityModel",
+                    "FileName": "no_recovery_activity_model",
+                    "ClassName": "NoRecoveryActivityModel",
                     "Parameters": {},
                     "DamageFunctionalityRelation": {
                         "Type": "Constant"
@@ -132,22 +134,18 @@ DS0 Residential Building
                     "PotableWater": {
                         "Amount": 0,
                         "FunctionalityToAmountRelation": "Linear"
-                    },
-                    "CellularCommunication": {
-                        "Amount": 0,
-                        "FunctionalityToAmountRelation": "Linear"
                     }
                 }
             }
 
-DS1 Residential Building
+DS1 Building
 ````````````````````````
 
 .. toggle::
 
     .. code-block:: json
 
-        "DS1_ResidentialBuilding": {
+        "DS1_Building": {
                 "ComponentClass": "BuildingStockUnitWithEmergencyCalls",
                 "RecoveryModel": {
                     "Type": "ComponentLevelRecoveryActivitiesModel",
@@ -235,26 +233,22 @@ DS1 Residential Building
                     "PotableWater": {
                         "Amount": 0,
                         "FunctionalityToAmountRelation": "Linear"
-                    },
-                    "CellularCommunication": {
-                        "Amount": 0,
-                        "PostDisasterIncreaseDueToEmergencyCalls": "True",
-                        "FunctionalityToAmountRelation": "Linear"
                     }
                 }
             }
 
-DS2 Residential Building
+DS2 Building
 ````````````````````````
 
 .. toggle::
 
     .. code-block:: json
 
-        "DS2_ResidentialBuilding": {
-                "ComponentClass": "BuildingStockUnitWithEmergencyCalls",
+        "DS2_Building": {
+                "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
                 "RecoveryModel": {
-                    "Type": "ComponentLevelRecoveryActivitiesModel",
+                    "FileName": "component_level_recovery_activities_model",
+                    "ClassName": "ComponentLevelRecoveryActivitiesModel",
                     "Parameters": {
                         "RapidInspection": {
                             "Duration": {
@@ -435,27 +429,23 @@ DS2 Residential Building
                     "PotableWater": {
                         "Amount": 0,
                         "FunctionalityToAmountRelation": "Linear"
-                    },
-                    "CellularCommunication": {
-                        "Amount": 0,
-                        "PostDisasterIncreaseDueToEmergencyCalls": "True",
-                        "FunctionalityToAmountRelation": "Linear"
                     }
                 }
             }
 
 
-DS3 Residential Building
+DS3 Building
 ````````````````````````
 
 .. toggle::
 
     .. code-block:: json
 
-        "DS3_ResidentialBuilding": {
-            "ComponentClass": "BuildingStockUnitWithEmergencyCalls",
+        "DS3_Building": {
+            "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
             "RecoveryModel": {
-                "Type": "ComponentLevelRecoveryActivitiesModel",
+                "FileName": "component_level_recovery_activities_model",
+                "ClassName": "ComponentLevelRecoveryActivitiesModel",
                 "Parameters": {
                     "RapidInspection": {
                         "Duration": {
@@ -654,26 +644,22 @@ DS3 Residential Building
                 "PotableWater": {
                     "Amount": 0,
                     "FunctionalityToAmountRelation": "Linear"
-                },
-                "CellularCommunication": {
-                    "Amount": 0,
-                    "PostDisasterIncreaseDueToEmergencyCalls": "True",
-                    "FunctionalityToAmountRelation": "Linear"
                 }
             }
         }
 
-DS4 Residential Building
+DS4 Building
 ````````````````````````
 
 .. toggle::
 
     .. code-block:: json
 
-        "DS4_ResidentialBuilding": {
-            "ComponentClass": "BuildingStockUnitWithEmergencyCalls",
+        "DS4_Building": {
+            "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
             "RecoveryModel": {
-                "Type": "ComponentLevelRecoveryActivitiesModel",
+                "FileName": "component_level_recovery_activities_model",
+                "ClassName": "ComponentLevelRecoveryActivitiesModel",
                 "Parameters": {
                     "RapidInspection": {
                         "Duration": {
@@ -870,11 +856,6 @@ DS4 Residential Building
                 "PotableWater": {
                     "Amount": 0,
                     "FunctionalityToAmountRelation": "Linear"
-                },
-                "CellularCommunication": {
-                    "Amount": 0,
-                    "PostDisasterIncreaseDueToEmergencyCalls": "True",
-                    "FunctionalityToAmountRelation": "Linear"
                 }
             }
         }
@@ -889,9 +870,10 @@ The Electric Power Supply System component represents the electric power supply 
     .. code-block:: json
 
         "ElectricPowerSupplySystem": {
-            "ComponentClass": "InfrastructureInterface",
+            "ComponentClass": {"FileName": "infrastructure_interface", "ClassName": "InfrastructureInterface"},
             "RecoveryModel": {
-                "Type": "InfrastructureInterfaceRecoveryModel",
+                "FileName": "infrastructure_interface_recovery_model",
+                "ClassName": "InfrastructureInterfaceRecoveryModel",
                 "Parameters": {},
                 "DamageFunctionalityRelation": "MultipleSteps"
             },
@@ -900,12 +882,6 @@ The Electric Power Supply System component represents the electric power supply 
                     "Amount": 0,
                     "FunctionalityToAmountRelation": "Linear",
                     "UnmetDemandToAmountRelation": "Binary"
-                }
-            },
-            "OperationDemand": {
-                "CellularCommunication": {
-                    "Amount": 0.0,
-                    "FunctionalityToAmountRelation": "Constant"
                 }
             }
         }  
@@ -918,9 +894,10 @@ Water Supply System
     .. code-block:: json
 
         "WaterSupplySystem": {
-            "ComponentClass": "InfrastructureInterface",
+            "ComponentClass": {"FileName": "infrastructure_interface", "ClassName": "InfrastructureInterface"},            
             "RecoveryModel": {
-                "Type": "InfrastructureInterfaceRecoveryModel",
+                "FileName": "infrastructure_interface_recovery_model",
+                "ClassName": "InfrastructureInterfaceRecoveryModel",
                 "Parameters": {},
                 "DamageFunctionalityRelation": ""
             },
@@ -935,43 +912,6 @@ Water Supply System
                 "ElectricPower": {
                     "Amount": 0.0,
                     "FunctionalityToAmountRelation": "Constant"
-                },
-                "CellularCommunication": {
-                    "Amount": 0.0,
-                    "FunctionalityToAmountRelation": "Binary"
-                }
-            }
-        }
-
-Cellular Communication System
-`````````````````````````````
-
-.. toggle::
-
-    .. code-block:: json
-
-        "CellularCommunicationSystem": {
-            "ComponentClass": "InfrastructureInterface",
-            "RecoveryModel": {
-                "Type": "InfrastructureInterfaceRecoveryModel",
-                "Parameters": {},
-                "DamageFunctionalityRelation": ""
-            },
-            "Supply": {
-                "CellularCommunication": {
-                    "Amount": 0,
-                    "FunctionalityToAmountRelation": "Linear",
-                    "UnmetDemandToAmountRelation": "Binary"
-                }
-            },
-            "OperationDemand": {
-                "ElectricPower": {
-                    "Amount": 0.0,
-                    "FunctionalityToAmountRelation": "Constant"
-                },
-                "CellularCommunication": {
-                    "Amount": 0,
-                    "FunctionalityToAmountRelation": "Binary"
                 }
             }
         }
@@ -981,11 +921,12 @@ System configuration
 
 System configuration file in Example 4 is very similar to the one used in Example 3. The only differences come from the consideration of infrastructure systems. These differences are outlined next.
 
+Note that two system configuration files are provided: one illustrating the implemention of Tier 1 interface, and the other illustrating the Tier 2 interface implementation. Tier 1 is presented here.
 
 Constants
 `````````
 
-Novel constants introduced in Example 4 are contained in the **DEMAND_PER_PERSON** key. They include the values used to estimate operational demand of residential buildings for infrastructure services. Such values are obtained by multiplying the number of residents in a building at a time step of the resilience assessment interval and the resource demand per person. Remaining constants are explained in Example 3.
+Novel constants introduced in Example 4 are contained in the **DEMAND_PER_PERSON** key. They include the values used to estimate operational demand of buildings for infrastructure services. Such values are obtained by multiplying the number of residents in a building at a time step of the resilience assessment interval and the resource demand per person. Remaining constants are explained in Example 3.
 
 .. toggle::
 
@@ -995,10 +936,11 @@ Novel constants introduced in Example 4 are contained in the **DEMAND_PER_PERSON
             "START_TIME_STEP": 0,
             "MAX_TIME_STEP": 3650,
             "DISASTER_TIME_STEP": 1,
-            "DS4_REPAIR_DURATION": 240,
             "MAX_REPAIR_CREW_DEMAND_PER_BUILDING": 50,
-            "MAX_RESIDENTS_PER_BUILDING": 2000,
-            "HOUSING_RESOURCES": ["Shelter"],
+            "HOUSING_RESOURCES": [
+                "Shelter",
+                "FunctionalHousing"
+            ],
             "REPAIR_CREW_DEMAND_PER_SQFT": {
                 "DS1": 5400,
                 "DS2": 5400,
@@ -1013,8 +955,7 @@ Novel constants introduced in Example 4 are contained in the **DEMAND_PER_PERSON
             },
             "DEMAND_PER_PERSON": {
                 "ElectricPower": 0.02,
-                "PotableWater": 150,
-                "CellularCommunication": 0.033
+                "PotableWater": 150
             }
         },
 
@@ -1025,7 +966,7 @@ Example 4 divides the considered region, north-east San Francisco, into 5 locali
 
 .. hint::
 
-    The number of buildings per locality is limited to 50 to reduce the computational time of the example. This number can be increased to consider more buildings in the region.
+    The number of buildings per locality is limited to 100 to reduce the computational time of the example. This number can be increased to consider more buildings in the region.
 
 .. toggle::
 
@@ -1033,118 +974,141 @@ Example 4 divides the considered region, north-east San Francisco, into 5 locali
 
         "Content": {
             "Locality 1": {
-                "ComponentsInLocality": {
-                    "Coordinates": {
-                        "BoundingBox": {
-                            "Latitude": [
-                                37.809410,
-                                37.809991,
-                                37.795523,
-                                37.791310
-                            ],
-                            "Longitude": [
-                                -122.426388,
-                                -122.397014,
-                                -122.391161,
-                                -122.422544
-                            ]
-                        }
-                    },
+                "Coordinates": {
+                    "BoundingBox": [
+                        [
+                            -122.426388,
+                            37.809410
+                        ],
+                        [
+                            -122.397014,
+                            37.809991
+                        ],
+                        [
+                            -122.391161,
+                            37.795523
+                        ],
+                        [
+                            -122.422544,
+                            37.791310
+                        ]
+                    ]
+                },
+                "Components": {
                     "RecoveryResourceSuppliers": [
-                        "EmergencyResponseCenter"
+                        {
+                            "EmergencyResponseCenter": {
+                                "CreatorClassName": "RecoveryResourceSuppliersCreator",
+                                "CreatorFileName": "recovery_resource_suppliers_creator",
+                                "Parameters": {
+                                    "ComponentName": [
+                                        "EmergencyResponseCenter"
+                                    ]
+                                }
+                            }
+                        }
                     ],
                     "Infrastructure": [
                         {
                             "ElectricPowerSupplySystem": {
-                                "Resource": "ElectricPower",
-                                "Amount": [
-                                    150,
-                                    450
-                                ],
-                                "RestoredIn": [
-                                    {
-                                        "Deterministic": {
-                                            "Value": 0
+                                "CreatorClassName": "Tier1InfrastructureCreator",
+                                "CreatorFileName": "tier1_infrastructure_creator",
+                                "Parameters": {
+                                    "ComponentName": ["ElectricPowerSupplySystem"],
+                                    "Resource": "ElectricPower",
+                                    "Amount": [
+                                        150,
+                                        450
+                                    ],
+                                    "RestoredIn": [
+                                        {
+                                            "Deterministic": {
+                                                "Value": 0
+                                            }
+                                        },
+                                        {
+                                            "Deterministic": {
+                                                "Value": 60
+                                            }
                                         }
-                                    },
-                                    {
-                                        "Deterministic": {
-                                            "Value": 60
-                                        }
-                                    }
-                                ]
+                                    ]
+                                }
                             }
                         },
                         {
                             "WaterSupplySystem": {
-                                "Resource": "PotableWater",
-                                "Amount": [
-                                    3400000
-                                ],
-                                "RestoredIn": [
-                                    {
-                                        "Deterministic": {
-                                            "Value": 100
+                                "CreatorClassName": "Tier1InfrastructureCreator",
+                                "CreatorFileName": "tier1_infrastructure_creator",
+                                "Parameters": {
+                                    "ComponentName": ["WaterSupplySystem"],
+                                    "Resource": "PotableWater",
+                                    "Amount": [
+                                        3400000
+                                    ],
+                                    "RestoredIn": [
+                                        {
+                                            "Deterministic": {
+                                                "Value": 100
+                                            }
                                         }
+                                    ],
+                                    "Demand": {
+                                        "Resource": "ElectricPower",
+                                        "Amount": 0.0
                                     }
-                                ],
-                                "Demand": {
-                                    "Resource": "ElectricPower",
-                                    "Amount": 2.5
-                                }
-                            }
-                        },
-                        {
-                            "CellularCommunicationSystem": {
-                                "Resource": "CellularCommunication",
-                                "Amount": [
-                                    750
-                                ],
-                                "RestoredIn": [
-                                    {
-                                        "Deterministic": {
-                                            "Value": 0
-                                        }
-                                    }
-                                ],
-                                "Demand": {
-                                    "Resource": "ElectricPower",
-                                    "Amount": 0.5
                                 }
                             }
                         }
                     ],
-                    "BuildingsInfoFolder": "./Example 3/R2D Output/",
-                    "BuildingIDsRange": [
-                        8000,
-                        9000
+                    "BuildingStock": [
+                        {
+                            "Buildings": {
+                                "CreatorClassName": "R2DSubsystemCreator",
+                                "CreatorFileName": "r2d_subsystem_creator",
+                                "Parameters": {
+                                    "Resource": [
+                                        "Shelter"
+                                    ],
+                                    "R2DJSONFile_Info": "./Example 4/NorthEast_SF_Housing_Exposure.json",
+                                    "SubsystemNameInR2DJSON": "Buildings",
+                                    "AssetTypes": [
+                                        "Building"
+                                    ],
+                                    "MaxNumComponents": 100
+                                }
+                            }
+                        }
+                    ]
+                },
+                "Locality 2": {
+            "Coordinates": {
+                "BoundingBox": [
+                    [
+                        -122.432440,
+                        37.790065
                     ],
-                    "MaxNumBuildings": 50,
-                    "AreaPerPerson": 541
-                }
+                    [
+                        -122.432965,
+                        37.803214
+                    ],
+                    [
+                        -122.425129,
+                        37.804204
+                    ],
+                    [
+                        -122.422585,
+                        37.791310
+                    ]
+                ]
             },
-            "Locality 2": {
-                "ComponentsInLocality": {
-                    "Coordinates": {
-                        "BoundingBox": {
-                            "Latitude": [
-                                37.790065,
-                                37.803214,
-                                37.804204,
-                                37.791310
-                            ],
-                            "Longitude": [
-                                -122.432440,
-                                -122.432965,
-                                -122.425129,
-                                -122.422585
-                            ]
-                        }
-                    },
-                    "RecoveryResourceSuppliers": [],
-                    "Infrastructure": [
-                        {
-                            "ElectricPowerSupplySystem": {
+            "Components": {
+                "Infrastructure": [
+                    {
+                        "ElectricPowerSupplySystem": {
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["ElectricPowerSupplySystem"],
                                 "Resource": "ElectricPower",
                                 "Amount": [
                                     40,
@@ -1163,9 +1127,14 @@ Example 4 divides the considered region, north-east San Francisco, into 5 locali
                                     }
                                 ]
                             }
-                        },
-                        {
-                            "WaterSupplySystem": {
+                        }
+                    },
+                    {
+                        "WaterSupplySystem": {
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["WaterSupplySystem"],
                                 "Resource": "PotableWater",
                                 "Amount": [
                                     600000
@@ -1179,61 +1148,62 @@ Example 4 divides the considered region, north-east San Francisco, into 5 locali
                                 ],
                                 "Demand": {
                                     "Resource": "ElectricPower",
-                                    "Amount": 1.5
-                                }
-                            }
-                        },
-                        {
-                            "CellularCommunicationSystem": {
-                                "Resource": "CellularCommunication",
-                                "Amount": [
-                                    130
-                                ],
-                                "RestoredIn": [
-                                    {
-                                        "Deterministic": {
-                                            "Value": 5
-                                        }
-                                    }
-                                ],
-                                "Demand": {
-                                    "Resource": "ElectricPower",
-                                    "Amount": 0.2
+                                    "Amount": 0.0
                                 }
                             }
                         }
+                    }
+                ],
+                "BuildingStock": [
+                    {
+                        "Buildings": {
+                            "CreatorClassName": "R2DSubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "Shelter"
+                                ],
+                                "R2DJSONFile_Info": "./Example 4/NorthEast_SF_Housing_Exposure.json",
+                                "SubsystemNameInR2DJSON": "Buildings",
+                                "AssetTypes": [
+                                    "Building"
+                                ],
+                                "MaxNumComponents": 100
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "Locality 3": {
+            "Coordinates": {
+                "BoundingBox": [
+                    [
+                        -122.422585,
+                        37.791342
                     ],
-                    "BuildingsInfoFolder": "./Example 3/R2D Output/",
-                    "BuildingIDsRange": [
-                        8000,
-                        9000
+                    [
+                        -122.419838,
+                        37.777871
                     ],
-                    "MaxNumBuildings": 50,
-                    "AreaPerPerson": 541
-                }
+                    [
+                        -122.431406,
+                        37.776836
+                    ],
+                    [
+                        -122.432644,
+                        37.790065
+                    ]
+                ]
             },
-            "Locality 3": {
-                "ComponentsInLocality": {
-                    "Coordinates": {
-                        "BoundingBox": {
-                            "Latitude": [
-                                37.791342,
-                                37.777871,
-                                37.776836,
-                                37.790065
-                            ],
-                            "Longitude": [
-                                -122.422585,
-                                -122.419838,
-                                -122.431406,
-                                -122.432644
-                            ]
-                        }
-                    },
-                    "RecoveryResourceSuppliers": [],
-                    "Infrastructure": [
-                        {
-                            "ElectricPowerSupplySystem": {
+            "Components": {
+                "Infrastructure": [
+                    {
+                        "ElectricPowerSupplySystem": {
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["ElectricPowerSupplySystem"],
                                 "Resource": "ElectricPower",
                                 "Amount": [
                                     60
@@ -1246,9 +1216,14 @@ Example 4 divides the considered region, north-east San Francisco, into 5 locali
                                     }
                                 ]
                             }
-                        },
-                        {
-                            "WaterSupplySystem": {
+                        }
+                    },
+                    {
+                        "WaterSupplySystem": {
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["WaterSupplySystem"],
                                 "Resource": "PotableWater",
                                 "Amount": [
                                     450000
@@ -1262,59 +1237,58 @@ Example 4 divides the considered region, north-east San Francisco, into 5 locali
                                 ],
                                 "Demand": {
                                     "Resource": "ElectricPower",
-                                    "Amount": 0.5
-                                }
-                            }
-                        },
-                        {
-                            "CellularCommunicationSystem": {
-                                "Resource": "CellularCommunication",
-                                "Amount": [
-                                    100
-                                ],
-                                "RestoredIn": [
-                                    {
-                                        "Deterministic": {
-                                            "Value": 5
-                                        }
-                                    }
-                                ],
-                                "Demand": {
-                                    "Resource": "ElectricPower",
-                                    "Amount": 0.1
+                                    "Amount": 0.0
                                 }
                             }
                         }
+                    }
+                ],
+                "BuildingStock": [
+                    {
+                        "Buildings": {
+                            "CreatorClassName": "R2DSubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "Shelter"
+                                ],
+                                "R2DJSONFile_Info": "./Example 4/NorthEast_SF_Housing_Exposure.json",
+                                "SubsystemNameInR2DJSON": "Buildings",
+                                "AssetTypes": [
+                                    "Building"
+                                ],
+                                "MaxNumComponents": 100
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "Locality 4": {
+            "Coordinates": {
+                "BoundingBox": [
+                    [
+                        -122.422568,
+                        37.791388
                     ],
-                    "BuildingsInfoFolder": "./Example 3/R2D Output/",
-                    "BuildingIDsRange": [
-                        8000,
-                        9000
+                    [
+                        -122.394280,
+                        37.794985
                     ],
-                    "MaxNumBuildings": 50,
-                    "AreaPerPerson": 541
-                }
+                    [
+                        -122.419321,
+                        37.775381
+                    ]
+                ]
             },
-            "Locality 4": {
-                "ComponentsInLocality": {
-                    "Coordinates": {
-                        "BoundingBox": {
-                            "Latitude": [
-                                37.791388,
-                                37.794985,
-                                37.775381
-                            ],
-                            "Longitude": [
-                                -122.422568,
-                                -122.394280,
-                                -122.419321
-                            ]
-                        }
-                    },
-                    "RecoveryResourceSuppliers": [],
-                    "Infrastructure": [
-                        {
-                            "ElectricPowerSupplySystem": {
+            "Components": {
+                "Infrastructure": [
+                    {
+                        "ElectricPowerSupplySystem": {
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["ElectricPowerSupplySystem"],
                                 "Resource": "ElectricPower",
                                 "Amount": [
                                     1000
@@ -1327,9 +1301,14 @@ Example 4 divides the considered region, north-east San Francisco, into 5 locali
                                     }
                                 ]
                             }
-                        },
-                        {
-                            "WaterSupplySystem": {
+                        }
+                    },
+                    {
+                        "WaterSupplySystem": {
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["WaterSupplySystem"],
                                 "Resource": "PotableWater",
                                 "Amount": [
                                     3600000,
@@ -1349,59 +1328,58 @@ Example 4 divides the considered region, north-east San Francisco, into 5 locali
                                 ],
                                 "Demand": {
                                     "Resource": "ElectricPower",
-                                    "Amount": 5
-                                }
-                            }
-                        },
-                        {
-                            "CellularCommunicationSystem": {
-                                "Resource": "CellularCommunication",
-                                "Amount": [
-                                    1600
-                                ],
-                                "RestoredIn": [
-                                    {
-                                        "Deterministic": {
-                                            "Value": 5
-                                        }
-                                    }
-                                ],
-                                "Demand": {
-                                    "Resource": "ElectricPower",
-                                    "Amount": 1
+                                    "Amount": 0.0
                                 }
                             }
                         }
+                    }
+                ],
+                "BuildingStock": [
+                    {
+                        "Buildings": {
+                            "CreatorClassName": "R2DSubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "Shelter"
+                                ],
+                                "R2DJSONFile_Info": "./Example 4/NorthEast_SF_Housing_Exposure.json",
+                                "SubsystemNameInR2DJSON": "Buildings",
+                                "AssetTypes": [
+                                    "Building"
+                                ],
+                                "MaxNumComponents": 100
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "Locality 5": {
+            "Coordinates": {
+                "BoundingBox": [
+                    [
+                        -122.394309,
+                        37.794821
                     ],
-                    "BuildingsInfoFolder": "./Example 3/R2D Output/",
-                    "BuildingIDsRange": [
-                        8000,
-                        9000
+                    [
+                        -122.391442,
+                        37.777747
                     ],
-                    "MaxNumBuildings": 50,
-                    "AreaPerPerson": 541
-                }
+                    [
+                        -122.418291,
+                        37.775757
+                    ]
+                ]
             },
-            "Locality 5": {
-                "ComponentsInLocality": {
-                    "Coordinates": {
-                        "BoundingBox": {
-                            "Latitude": [
-                                37.794821,
-                                37.777747,
-                                37.775757
-                            ],
-                            "Longitude": [
-                                -122.394309,
-                                -122.391442,
-                                -122.418291
-                            ]
-                        }
-                    },
-                    "RecoveryResourceSuppliers": [],
-                    "Infrastructure": [
-                        {
-                            "ElectricPowerSupplySystem": {
+            "Components": {
+                "Infrastructure": [
+                    {
+                        "ElectricPowerSupplySystem": {
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["ElectricPowerSupplySystem"],
                                 "Resource": "ElectricPower",
                                 "Amount": [
                                     85
@@ -1414,9 +1392,14 @@ Example 4 divides the considered region, north-east San Francisco, into 5 locali
                                     }
                                 ]
                             }
-                        },
-                        {
-                            "WaterSupplySystem": {
+                        }
+                    },
+                    {
+                        "WaterSupplySystem": {
+                            "CreatorClassName": "Tier1InfrastructureCreator",
+                            "CreatorFileName": "tier1_infrastructure_creator",
+                            "Parameters": {
+                                "ComponentName": ["WaterSupplySystem"],
                                 "Resource": "PotableWater",
                                 "Amount": [
                                     610000
@@ -1430,62 +1413,55 @@ Example 4 divides the considered region, north-east San Francisco, into 5 locali
                                 ],
                                 "Demand": {
                                     "Resource": "ElectricPower",
-                                    "Amount": 1.5
-                                }
-                            }
-                        },
-                        {
-                            "CellularCommunicationSystem": {
-                                "Resource": "CellularCommunication",
-                                "Amount": [
-                                    140
-                                ],
-                                "RestoredIn": [
-                                    {
-                                        "Deterministic": {
-                                            "Value": 100
-                                        }
-                                    }
-                                ],
-                                "Demand": {
-                                    "Resource": "ElectricPower",
-                                    "Amount": 0.2
+                                    "Amount": 0.0
                                 }
                             }
                         }
-                    ],
-                    "BuildingsInfoFolder": "./Example 3/R2D Output/",
-                    "BuildingIDsRange": [
-                        8000,
-                        9000
-                    ],
-                    "MaxNumBuildings": 50,
-                    "AreaPerPerson": 541
-                }
+                    }
+                ],
+                "BuildingStock": [
+                    {
+                        "Buildings": {
+                            "CreatorClassName": "R2DSubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "Shelter"
+                                ],
+                                "R2DJSONFile_Info": "./Example 4/NorthEast_SF_Housing_Exposure.json",
+                                "SubsystemNameInR2DJSON": "Buildings",
+                                "AssetTypes": [
+                                    "Building"
+                                ],
+                                "MaxNumComponents": 100
+                            }
+                        }
+                    }
+                ]
             }
-        },
-
+        }
 
 Damage Input
 ````````````
 
-Damage input is read from the R2DTool's output in the same manner as in Example 3. The damage of the infrastructure systems is not explicitly considered, but is implicitly contained in their post-disaster supply dynamics defined in the previous section.
+Damage input is read from the R2DTool's output as in Example 3. The damage of the infrastructure systems is not explicitly considered, but is implicitly contained in their post-disaster supply dynamics defined in the previous section.
 
 .. toggle::
 
     .. code-block:: json
 
         "DamageInput": {
-            "Type": "R2DDamageInput",
+            "FileName": "r2d_damage_input",
+            "ClassName": "R2DDamageInput",
             "Parameters": {
-                "ScenarioID": 1
+                "DamageFile": "./Example 4/NorthEast_SF_Housing_Damage.json"
             }
         },
 
 Resources
 ``````````
 
-In addition to Shelter and recovery resources considered in Example 3, Example 4 considers Functional Housing and three infrastructure resources: Electric Power, Potable Water and Communication. Functional Housing is distributed in the same way as Shelter: using the UtilityDistributionModel and the SupplierOnlyDistributionPriority object. The infrastructure resources are also distributed using UtilityDistributionModel, but components are prioritized using the RandomPriorityWithPrioritizedInterfaces class which start distributing a resource from the supplier - the infrastructure interface component - and then randomly shuffles remaining components within a locality. To ensure that an infrastructure interface component in a locality only transfer resources within that locality, IsolatingLocalitiesTransferService is introduced.
+In addition to shelter and recovery resources considered in Example 3, Example 4 considers Functional Housing and two infrastructure resources: Electric Power and Potable Water. Functional Housing is distributed in the same way as Shelter: using the UtilityDistributionModel and the SupplierOnlyDistributionPriority object. The infrastructure resources are also distributed using UtilityDistributionModel, but components are prioritized using the RandomPriorityWithPrioritizedInterfaces class which start distributing a resource from the supplier - the infrastructure interface component - and then randomly shuffles remaining components within a locality. To ensure that an infrastructure interface component in a locality only transfer resources within that locality, IsolatingLocalitiesTransferService is introduced. Sparse distribution time stepping is applied to reduce computational time.
 
 .. toggle::
 
@@ -1495,34 +1471,54 @@ In addition to Shelter and recovery resources considered in Example 3, Example 4
             "Shelter": {
                 "Group": "Utilities",
                 "DistributionModel": {
-                    "Type": "UtilityDistributionModel",
+                    "ClassName": "HousingDistributionModel",
+                    "FileName": "housing_distribution_model",
                     "Parameters": {
-                        "DistributionPriority": {
-                            "Type": "SupplierOnlyDistributionPriority",
-                            "Parameters": {}
-                        }
+                        "DistributionTimeStepping": [
+                            {
+                                "start": 0,
+                                "end": 50,
+                                "step": 1
+                            },
+                            {
+                                "start": 50,
+                                "end": 1000,
+                                "step": 50
+                            }
+                        ]
                     }
                 }
             },
             "FunctionalHousing": {
                 "Group": "Utilities",
                 "DistributionModel": {
-                    "Type": "UtilityDistributionModel",
+                    "ClassName": "HousingDistributionModel",
+                    "FileName": "housing_distribution_model",
                     "Parameters": {
-                        "DistributionPriority": {
-                            "Type": "SupplierOnlyDistributionPriority",
-                            "Parameters": {}
-                        }
+                        "DistributionTimeStepping": [
+                            {
+                                "start": 0,
+                                "end": 50,
+                                "step": 1
+                            },
+                            {
+                                "start": 50,
+                                "end": 1000,
+                                "step": 50
+                            }
+                        ]
                     }
                 }
             },
             "FirstResponderEngineer": {
                 "Group": "RecoveryResources",
                 "DistributionModel": {
-                    "Type": "UtilityDistributionModel",
+                    "ClassName": "UtilityDistributionModel",
+                    "FileName": "utility_distribution_model",
                     "Parameters": {
                         "DistributionPriority": {
-                            "Type": "RandomPriority",
+                            "FileName": "random_priority",
+                            "ClassName": "RandomPriority",
                             "Parameters": {
                                 "Seed": 42.0,
                                 "DemandType": [
@@ -1536,10 +1532,12 @@ In addition to Shelter and recovery resources considered in Example 3, Example 4
             "SeniorEngineer": {
                 "Group": "RecoveryResources",
                 "DistributionModel": {
-                    "Type": "UtilityDistributionModel",
+                    "ClassName": "UtilityDistributionModel",
+                    "FileName": "utility_distribution_model",
                     "Parameters": {
                         "DistributionPriority": {
-                            "Type": "RandomPriority",
+                            "FileName": "random_priority",
+                            "ClassName": "RandomPriority",
                             "Parameters": {
                                 "Seed": 42.0,
                                 "DemandType": [
@@ -1553,10 +1551,12 @@ In addition to Shelter and recovery resources considered in Example 3, Example 4
             "Contractor": {
                 "Group": "RecoveryResources",
                 "DistributionModel": {
-                    "Type": "UtilityDistributionModel",
+                    "ClassName": "UtilityDistributionModel",
+                    "FileName": "utility_distribution_model",
                     "Parameters": {
                         "DistributionPriority": {
-                            "Type": "RandomPriority",
+                            "FileName": "random_priority",
+                            "ClassName": "RandomPriority",
                             "Parameters": {
                                 "Seed": 42.0,
                                 "DemandType": [
@@ -1570,10 +1570,12 @@ In addition to Shelter and recovery resources considered in Example 3, Example 4
             "Money": {
                 "Group": "RecoveryResources",
                 "DistributionModel": {
-                    "Type": "UtilityDistributionModel",
+                    "ClassName": "UtilityDistributionModel",
+                    "FileName": "utility_distribution_model",
                     "Parameters": {
                         "DistributionPriority": {
-                            "Type": "RandomPriority",
+                            "FileName": "random_priority",
+                            "ClassName": "RandomPriority",
                             "Parameters": {
                                 "Seed": 42.0,
                                 "DemandType": [
@@ -1587,10 +1589,12 @@ In addition to Shelter and recovery resources considered in Example 3, Example 4
             "PlanCheckEngineeringTeam": {
                 "Group": "RecoveryResources",
                 "DistributionModel": {
-                    "Type": "UtilityDistributionModel",
+                    "ClassName": "UtilityDistributionModel",
+                    "FileName": "utility_distribution_model",
                     "Parameters": {
                         "DistributionPriority": {
-                            "Type": "RandomPriority",
+                            "FileName": "random_priority",
+                            "ClassName": "RandomPriority",
                             "Parameters": {
                                 "Seed": 42.0,
                                 "DemandType": [
@@ -1604,10 +1608,12 @@ In addition to Shelter and recovery resources considered in Example 3, Example 4
             "SitePreparationCrew": {
                 "Group": "RecoveryResources",
                 "DistributionModel": {
-                    "Type": "UtilityDistributionModel",
+                    "ClassName": "UtilityDistributionModel",
+                    "FileName": "utility_distribution_model",
                     "Parameters": {
                         "DistributionPriority": {
-                            "Type": "RandomPriority",
+                            "FileName": "random_priority",
+                            "ClassName": "RandomPriority",
                             "Parameters": {
                                 "Seed": 42.0,
                                 "DemandType": [
@@ -1621,10 +1627,12 @@ In addition to Shelter and recovery resources considered in Example 3, Example 4
             "CleanUpCrew": {
                 "Group": "RecoveryResources",
                 "DistributionModel": {
-                    "Type": "UtilityDistributionModel",
+                    "ClassName": "UtilityDistributionModel",
+                    "FileName": "utility_distribution_model",
                     "Parameters": {
                         "DistributionPriority": {
-                            "Type": "RandomPriority",
+                            "FileName": "random_priority",
+                            "ClassName": "RandomPriority",
                             "Parameters": {
                                 "Seed": 42.0,
                                 "DemandType": [
@@ -1638,10 +1646,12 @@ In addition to Shelter and recovery resources considered in Example 3, Example 4
             "EngineeringDesignTeam": {
                 "Group": "RecoveryResources",
                 "DistributionModel": {
-                    "Type": "UtilityDistributionModel",
+                    "ClassName": "UtilityDistributionModel",
+                    "FileName": "utility_distribution_model",
                     "Parameters": {
                         "DistributionPriority": {
-                            "Type": "RandomPriority",
+                            "FileName": "random_priority",
+                            "ClassName": "RandomPriority",
                             "Parameters": {
                                 "Seed": 42.0,
                                 "DemandType": [
@@ -1655,10 +1665,12 @@ In addition to Shelter and recovery resources considered in Example 3, Example 4
             "DemolitionCrew": {
                 "Group": "RecoveryResources",
                 "DistributionModel": {
-                    "Type": "UtilityDistributionModel",
+                    "ClassName": "UtilityDistributionModel",
+                    "FileName": "utility_distribution_model",
                     "Parameters": {
                         "DistributionPriority": {
-                            "Type": "RandomPriority",
+                            "FileName": "random_priority",
+                            "ClassName": "RandomPriority",
                             "Parameters": {
                                 "Seed": 42.0,
                                 "DemandType": [
@@ -1672,10 +1684,12 @@ In addition to Shelter and recovery resources considered in Example 3, Example 4
             "RepairCrew": {
                 "Group": "RecoveryResources",
                 "DistributionModel": {
-                    "Type": "UtilityDistributionModel",
+                    "ClassName": "UtilityDistributionModel",
+                    "FileName": "utility_distribution_model",
                     "Parameters": {
                         "DistributionPriority": {
-                            "Type": "RandomPriority",
+                            "FileName": "random_priority",
+                            "ClassName": "RandomPriority",
                             "Parameters": {
                                 "Seed": 42.0,
                                 "DemandType": [
@@ -1689,10 +1703,12 @@ In addition to Shelter and recovery resources considered in Example 3, Example 4
             "ElectricPower": {
                 "Group": "Utilities",
                 "DistributionModel": {
-                    "Type": "UtilityDistributionModel",
+                    "ClassName": "UtilityDistributionModel",
+                    "FileName": "utility_distribution_model",
                     "Parameters": {
                         "DistributionPriority": {
-                            "Type": "RandomPriorityWithPrioritizedInterfaces",
+                            "FileName": "random_priority_with_prioritized_interfaces",
+                            "ClassName": "RandomPriorityWithPrioritizedInterfaces",
                             "Parameters": {
                                 "Seed": 42.0,
                                 "DemandType": [
@@ -1707,10 +1723,12 @@ In addition to Shelter and recovery resources considered in Example 3, Example 4
             "PotableWater": {
                 "Group": "Utilities",
                 "DistributionModel": {
-                    "Type": "UtilityDistributionModel",
+                    "ClassName": "UtilityDistributionModel",
+                    "FileName": "utility_distribution_model",
                     "Parameters": {
                         "DistributionPriority": {
-                            "Type": "RandomPriorityWithPrioritizedInterfaces",
+                            "FileName": "random_priority_with_prioritized_interfaces",
+                            "ClassName": "RandomPriorityWithPrioritizedInterfaces",
                             "Parameters": {
                                 "Seed": 42.0,
                                 "DemandType": [
@@ -1722,33 +1740,12 @@ In addition to Shelter and recovery resources considered in Example 3, Example 4
                     }
                 }
             },
-            "CellularCommunication": {
-                "Group": "Utilities",
-                "IsCommunicationResource": "True",
-                "DistributionModel": {
-                    "Type": "UtilityDistributionModel",
-                    "Parameters": {
-                        "DistributionPriority": {
-                            "Type": "RandomPriorityWithPrioritizedInterfaces",
-                            "Parameters": {
-                                "Seed": 42.0,
-                                "DemandType": [
-                                    "OperationDemand"
-                                ]
-                            }
-                        },
-                        "TransferService": "IsolatingLocalitiesTransferService",
-                        "IsCommunicationResource": "True"
-                    }
-                }
-            },
             "IsolatingLocalitiesTransferService": {
                 "Group": "TransferService",
                 "DistributionModel": {
-                    "Type": "TransferServiceDistributionModelPotentialPathSets",
-                    "Parameters": {
-                        "PathSetsFile": "./Example 4/potential_path_sets.json"
-                    }
+                    "ClassName":"TransferServiceDistributionModelPotentialPaths",
+                    "FileName": "transfer_service_distribution_model_potential_paths",
+                    "Parameters": {}
                 }
             }
         },
@@ -1757,7 +1754,7 @@ In addition to Shelter and recovery resources considered in Example 3, Example 4
 Resilience calculators
 ``````````````````````
 
-Several ReCoDeSResilienceCalculator are used in Example 4. All calculators consider Shelter, Functional Housing, Electric Power, Potable Water and Cellular Communication, but their scope is different: they either consider the entire systems (i.e., all localities) or a single locality. This allows the user to assess resilience, that is the unmet system demand, on a locality level.
+Several ReCoDeSResilienceCalculator are used in Example 4. All calculators consider Shelter, Functional Housing, Electric Power and Potable Water, but their scope is different: they either consider the entire systems (i.e., all localities) or a single locality. This allows the user to assess resilience, that is the unmet system demand, on a locality level.
 
 .. toggle::
 
@@ -1765,80 +1762,80 @@ Several ReCoDeSResilienceCalculator are used in Example 4. All calculators consi
 
         "ResilienceCalculator": [
             {
-                "Type": "ReCoDeSResilienceCalculator",
+                "ClassName": "ReCoDeSCalculator",
+                "FileName": "recodes_calculator",
                 "Parameters": {
                     "Scope": "All",
                     "Resources": [
                         "Shelter",
                         "FunctionalHousing",
                         "ElectricPower",
-                        "PotableWater",
-                        "CellularCommunication"
+                        "PotableWater"
                     ]
                 }
             },
             {
-                "Type": "ReCoDeSResilienceCalculator",
+                "ClassName": "ReCoDeSCalculator",
+                "FileName": "recodes_calculator",
                 "Parameters": {
                     "Scope": "Locality 1",
                     "Resources": [
                         "Shelter",
                         "FunctionalHousing",
                         "ElectricPower",
-                        "PotableWater",
-                        "CellularCommunication"
+                        "PotableWater"
                     ]
                 }
             },
             {
-                "Type": "ReCoDeSResilienceCalculator",
+                "ClassName": "ReCoDeSCalculator",
+                "FileName": "recodes_calculator",
                 "Parameters": {
                     "Scope": "Locality 2",
                     "Resources": [
                         "Shelter",
                         "FunctionalHousing",
                         "ElectricPower",
-                        "PotableWater",
-                        "CellularCommunication"
+                        "PotableWater"
                     ]
                 }
             },
             {
-                "Type": "ReCoDeSResilienceCalculator",
+                "ClassName": "ReCoDeSCalculator",
+                "FileName": "recodes_calculator",
                 "Parameters": {
                     "Scope": "Locality 3",
                     "Resources": [
                         "Shelter",
                         "FunctionalHousing",
                         "ElectricPower",
-                        "PotableWater",
-                        "CellularCommunication"
+                        "PotableWater"
                     ]
                 }
             },
             {
-                "Type": "ReCoDeSResilienceCalculator",
+                "ClassName": "ReCoDeSCalculator",
+                "FileName": "recodes_calculator",
                 "Parameters": {
                     "Scope": "Locality 4",
                     "Resources": [
                         "Shelter",
                         "FunctionalHousing",
                         "ElectricPower",
-                        "PotableWater",
-                        "CellularCommunication"
+                        "PotableWater"
                     ]
                 }
             },
             {
-                "Type": "ReCoDeSResilienceCalculator",
+                "ClassName": "ReCoDeSCalculator",
+                "FileName": "recodes_calculator",
                 "Parameters": {
                     "Scope": "Locality 5",
                     "Resources": [
                         "Shelter",
                         "FunctionalHousing",
                         "ElectricPower",
-                        "PotableWater",
-                        "CellularCommunication"
+                        "PotableWater"
                     ]
                 }
             }
@@ -1854,13 +1851,16 @@ Main
 
         {
             "ComponentLibrary": {
-                "ComponentLibraryCreatorClass": "JSONComponentLibraryCreator",
+                "ComponentLibraryCreatorFileName": "json_component_library_creator",
+                "ComponentLibraryCreatorClassName": "JSONComponentLibraryCreator",
                 "ComponentLibraryFile": "./Example 4/NorthEast_SF_Housing_Interface_Infrastructure_ComponentLibrary.json"
-            },
+        },
             "System": {
-                "SystemCreatorClass": "R2DSystemWithInterfacesCreator",
-                "SystemClass": "BuiltEnvironmentSystem",
-                "SystemConfigurationFile": "./Example 4/NorthEast_SF_Housing_Interface_Infrastructure_Interdependent_SystemConfiguration.json"
+                "SystemCreatorClassName": "ConcreteSystemCreator",
+                "SystemCreatorFileName": "concrete_system_creator",
+                "SystemClassName": "BuiltEnvironment",
+                "SystemFileName": "built_environment",
+                "SystemConfigurationFile": "./Example 4/NorthEast_SF_Housing_Interface_Infrastructure_Tier_2_SystemConfiguration.json"
             }
         }
 
@@ -1869,50 +1869,40 @@ Outputs
 
 Resilience assessment outputs are provided in terms of post-earthquake supply/demand/consumption dynamics for functional housing, electric power, potable water and cellular communication. The results identify how much and for how long user demand is not met, pointing out the lack of system's resilience. The results are provided for the entire system and for Locality 4 only, to illustrate that the outputs can be provided per locality.
 
-.. figure:: ../../figures/example_4_localities_max_50_buildings.png
-        :alt: Localities in the considered region.
-
-        Localities in the considered region. Dark blue colored buildings are in Locality 1, light blue in Locality 2, ligth red in Locality 3, dark red in Locality 4 and purple in Locality 5.
-
-.. figure:: ../../figures/example_4_functional_housing_all.png
+.. figure:: ../../figures/example_4_functional_housing.png
         :alt: Functional housing supply/demand/consumption following the scenario earthquake for the considered region. Functional housing resource represents how many people are sheltered in their homes and have access to electric power, potable water and cellular communication.
 
-        Functional housing supply/demand/consumption following the scenario earthquake for the considered region. Functional housing resource represents how many people are sheltered in their homes and have access to electric power, potable water and cellular communication.
+        Functional housing supply/demand/consumption following the scenario earthquake. Functional housing resource represents how many people are sheltered in their homes and have access to electric power and potable water.
 
-.. figure:: ../../figures/example_4_electric_power_all.png
+.. figure:: ../../figures/example_4_electric_power.png
         :alt: Electric Power post-earthquake supply/demand/consumption dynamics for the considered region.
 
-        Electric Power post-earthquake supply/demand/consumption dynamics for the considered region.
+        Electric Power post-earthquake supply/demand/consumption dynamics.
 
-.. figure:: ../../figures/example_4_potable_water_all.png
+.. figure:: ../../figures/example_4_potable_water.png
         :alt: Potable Water post-earthquake supply/demand/consumption dynamics for the considered region.
 
-        Potable Water post-earthquake supply/demand/consumption dynamics for the considered region.
+        Potable Water post-earthquake supply/demand/consumption dynamics.
 
-.. figure:: ../../figures/example_4_communication_all.png
-        :alt: Cellular Communication post-earthquake supply/demand/consumption dynamics for the considered region.
+.. figure:: ../../figures/example_4_functional_housing_locality_1.png
+        :alt: Functional housing supply/demand/consumption following the scenario earthquake for Locality 1.
 
-        Cellular Communication post-earthquake supply/demand/consumption dynamics for the considered region.
+        Functional housing supply/demand/consumption following the scenario earthquake for Locality 1.
 
-.. figure:: ../../figures/example_4_functional_housing_locality_4.png
-        :alt: Functional housing supply/demand/consumption following the scenario earthquake for Locality 4.
+.. figure:: ../../figures/example_4_electric_power_locality_1.png
+        :alt: Electric Power post-earthquake supply/demand/consumption dynamics for Locality 1.
 
-        Functional housing supply/demand/consumption following the scenario earthquake for Locality 4.
+        Electric Power post-earthquake supply/demand/consumption dynamics for Locality 1.
 
-.. figure:: ../../figures/example_4_electric_power_locality_4.png
-        :alt: Electric Power post-earthquake supply/demand/consumption dynamics for Locality 4.
+.. figure:: ../../figures/example_4_potable_water_locality_1.png
+        :alt: Potable Water post-earthquake supply/demand/consumption dynamics for Locality 1.
 
-        Electric Power post-earthquake supply/demand/consumption dynamics for Locality 4.
+        Potable Water post-earthquake supply/demand/consumption dynamics for Locality 1.
 
-.. figure:: ../../figures/example_4_potable_water_locality_4.png
-        :alt: Potable Water post-earthquake supply/demand/consumption dynamics for Locality 4.
+.. figure:: ../../figures/example_4_recovery_animation.gif
+        :alt: Simulated recovery of up to 100 buildings in 5 localities in the North-East San Francisco.
 
-        Potable Water post-earthquake supply/demand/consumption dynamics for Locality 4.
-
-.. figure:: ../../figures/example_4_communication_locality_4.png
-        :alt: Cellular Communication post-earthquake supply/demand/consumption dynamics for Locality 4.
-
-        Cellular Communication post-earthquake supply/demand/consumption dynamics for Locality 4.
+        Simulated recovery of up to 100 buildings in 5 localities in the North-East San Francisco.
 
 Apart from figures, the analysis outputs the resilience metrics as text. Note that the simulation is probabilistic, thus the results among different runs might differ.
 
@@ -1922,62 +1912,55 @@ Apart from figures, the analysis outputs the resilience metrics as text. Note th
     Scope: All
     ----------------------------- 
     Total unmet demand: 
-    Shelter: 2442513.0
-    FunctionalHousing: 3538479.0
-    ElectricPower: 12498.739999999998
-    PotableWater: 152223900.0
-    CellularCommunication: 75282.58874280643
+    Shelter: 751983.0
+    FunctionalHousing: 4071202.0
+    ElectricPower: 53382.52
+    PotableWater: 324922950.0
 
     Re-CoDeS Resilience Calculator 
     Scope: Locality 1
     ----------------------------- 
     Total unmet demand: 
-    Shelter: 99197.0
-    FunctionalHousing: 435145.0
+    Shelter: 213429.0
+    FunctionalHousing: 463167.0
     ElectricPower: 0.0
-    PotableWater: 50392200.0
-    CellularCommunication: 1848.5171499241221
+    PotableWater: 37460700.0
 
     Re-CoDeS Resilience Calculator 
     Scope: Locality 2
     ----------------------------- 
     Total unmet demand: 
-    Shelter: 164184.0
-    FunctionalHousing: 174072.0
-    ElectricPower: 224.96
-    PotableWater: 1483200.0
-    CellularCommunication: 2107.391296466136
+    Shelter: 71558.0
+    FunctionalHousing: 85974.0
+    ElectricPower: 288.32000000000005
+    PotableWater: 1486650.0
 
     Re-CoDeS Resilience Calculator 
     Scope: Locality 3
     ----------------------------- 
     Total unmet demand: 
-    Shelter: 113905.0
-    FunctionalHousing: 147057.0
-    ElectricPower: 462.44000000000005
-    PotableWater: 4972800.0
-    CellularCommunication: 2478.392991861871
+    Shelter: 42245.0
+    FunctionalHousing: 62517.0
+    ElectricPower: 278.74
+    PotableWater: 3040800.0
 
     Re-CoDeS Resilience Calculator 
     Scope: Locality 4
     ----------------------------- 
     Total unmet demand: 
-    Shelter: 2062891.0
-    FunctionalHousing: 2372448.0
-    ElectricPower: 6797.139999999999
-    PotableWater: 46433550.0
-    CellularCommunication: 53510.24260081496
+    Shelter: 423199.0
+    FunctionalHousing: 1862211.0
+    ElectricPower: 28780.239999999998
+    PotableWater: 43567650.0
 
     Re-CoDeS Resilience Calculator 
     Scope: Locality 5
     ----------------------------- 
     Total unmet demand: 
-    Shelter: 2336.0
-    FunctionalHousing: 409757.0
-    ElectricPower: 5014.2
-    PotableWater: 48942150.0
-    CellularCommunication: 15338.044703739364
-
+    Shelter: 1552.0
+    FunctionalHousing: 1597333.0
+    ElectricPower: 24035.219999999998
+    PotableWater: 239367150.0
 
 
 

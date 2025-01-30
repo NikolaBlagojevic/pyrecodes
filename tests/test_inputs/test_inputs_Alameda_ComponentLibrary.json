@@ -1,0 +1,1739 @@
+{
+    "EmergencyResponseCenter": {
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
+        "RecoveryModel": {
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
+            "Parameters": {},
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "FirstResponderEngineer": {
+                "Amount": 5000,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "SeniorEngineer": {
+                "Amount": 5000,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "Contractor": {
+                "Amount": 5000,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "Money": {
+                "Amount": 150000000,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PlanCheckEngineeringTeam": {
+                "Amount": 2000,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "SitePreparationCrew": {
+                "Amount": 2000,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CleanUpCrew": {
+                "Amount": 2000,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "EngineeringDesignTeam": {
+                "Amount": 5000,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "DemolitionCrew": {
+                "Amount": 1000,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "RepairCrew_Buildings": {
+                "Amount": 40000,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "RepairCrew_Transportation": {
+                "Amount": 1500,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "RepairCrew_Water": {
+                "Amount": 50,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS0_Building": {
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
+        "RecoveryModel": {
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
+            "Parameters": {},
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CellularCommunication": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS1_Building": {
+        "ComponentClass": {"FileName": "building_with_emergency_calls", "ClassName": "BuildingWithEmergencyCalls"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "RapidInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 0.1
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "ContractorMobilization": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 7,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Contractor",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 5,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Buildings",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "ContractorMobilization"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CellularCommunication": {
+                "Amount": 0,
+                "PostDisasterIncreaseDueToEmergencyCalls": "True",
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS2_Building": {
+        "ComponentClass": {"FileName": "building_with_emergency_calls", "ClassName": "BuildingWithEmergencyCalls"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "RapidInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 0.1
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "DetailedInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 7,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "SeniorEngineer",
+                            "Amount": 2
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "CleanUp": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 3,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "CleanUpCrew",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "Financing": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 7,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Money",
+                            "Amount": 0.1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection"
+                    ]
+                },
+                "ArchAndEngDesign": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 21,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "EngineeringDesignTeam",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection"
+                    ]
+                },
+                "ContractorMobilization": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 7,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Contractor",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection",
+                        "ArchAndEngDesign"
+                    ]
+                },
+                "Permitting": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 14,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "PlanCheckEngineeringTeam",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection",
+                        "ArchAndEngDesign"
+                    ]
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 30,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Buildings",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection",
+                        "CleanUp",
+                        "Financing",
+                        "ArchAndEngDesign",
+                        "ContractorMobilization",
+                        "Permitting"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CellularCommunication": {
+                "Amount": 0,
+                "PostDisasterIncreaseDueToEmergencyCalls": "True",
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS3_Building": {
+        "ComponentClass": {"FileName": "building_with_emergency_calls", "ClassName": "BuildingWithEmergencyCalls"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "RapidInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 0.1
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "DetailedInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 14,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "SeniorEngineer",
+                            "Amount": 2
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "CleanUp": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 7,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "CleanUpCrew",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "SitePreparation": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 7,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "SitePreparationCrew",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "Financing": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 42,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Money",
+                            "Amount": 0.4
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection"
+                    ]
+                },
+                "ArchAndEngDesign": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 42,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "EngineeringDesignTeam",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection"
+                    ]
+                },
+                "ContractorMobilization": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 14,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Contractor",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection",
+                        "ArchAndEngDesign"
+                    ]
+                },
+                "Permitting": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 28,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "PlanCheckEngineeringTeam",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection",
+                        "ArchAndEngDesign"
+                    ]
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 120,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Buildings",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection",
+                        "CleanUp",
+                        "SitePreparation",
+                        "Financing",
+                        "ArchAndEngDesign",
+                        "ContractorMobilization",
+                        "Permitting"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CellularCommunication": {
+                "Amount": 0,
+                "PostDisasterIncreaseDueToEmergencyCalls": "True",
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS4_Building": {
+        "ComponentClass": {"FileName": "building_with_emergency_calls", "ClassName": "BuildingWithEmergencyCalls"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "RapidInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 0.1
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "CleanUp": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 7,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "CleanUpCrew",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "SitePreparation": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 7,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "SitePreparationCrew",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "Demolition": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 10,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "DemolitionCrew",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "SitePreparation",
+                        "CleanUp"
+                    ]
+                },
+                "Financing": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 42,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Money",
+                            "Amount": 1.0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "ArchAndEngDesign": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 42,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "EngineeringDesignTeam",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "ContractorMobilization": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 14,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Contractor",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "ArchAndEngDesign"
+                    ]
+                },
+                "Permitting": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 28,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "PlanCheckEngineeringTeam",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "ArchAndEngDesign"
+                    ]
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 240,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Buildings",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "CleanUp",
+                        "SitePreparation",
+                        "Financing",
+                        "ArchAndEngDesign",
+                        "ContractorMobilization",
+                        "Permitting",
+                        "Demolition"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CellularCommunication": {
+                "Amount": 0,
+                "PostDisasterIncreaseDueToEmergencyCalls": "True",
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "ElectricPowerSupplySystem": {
+        "ComponentClass": {"FileName": "infrastructure_interface", "ClassName": "InfrastructureInterface"},
+        "RecoveryModel": {
+            "FileName": "infrastructure_interface_recovery_model",
+            "ClassName": "InfrastructureInterfaceRecoveryModel",
+            "Parameters": {},
+            "DamageFunctionalityRelation": "MultipleSteps"
+        },
+        "Supply": {
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Binary"
+            }
+        },
+        "OperationDemand": {
+            "CellularCommunication": {
+                "Amount": 0.0,
+                "FunctionalityToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS0_Bridge": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBridge"},
+        "RecoveryModel": {
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
+            "Parameters": {},
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "BridgeService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS1_Bridge": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBridge"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "DetailedInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 2
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "Financing": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 14,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Money",
+                            "Amount": 0.0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "DetailedInspection"
+                    ]
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Transportation",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": ["DetailedInspection", "Financing"]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "BridgeService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS2_Bridge": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBridge"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "DetailedInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 2
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "Financing": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 14,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Money",
+                            "Amount": 0.0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "DetailedInspection"
+                    ]
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 2,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Transportation",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": ["DetailedInspection", "Financing"]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "BridgeService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS3_Bridge": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBridge"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "DetailedInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 2
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "Financing": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 42,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Money",
+                            "Amount": 0.0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "DetailedInspection"
+                    ]
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 75,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Transportation",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": ["DetailedInspection", "Financing"]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "BridgeService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS4_Bridge": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBridge"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "DetailedInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 2
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "Financing": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 42,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Money",
+                            "Amount": 0.0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "DetailedInspection"
+                    ]
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 230,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Transportation",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": ["DetailedInspection", "Financing"]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "BridgeService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS0_Tunnel": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DTunnel"},
+        "RecoveryModel": {
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
+            "Parameters": {},
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "TunnelService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS1_Tunnel": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DTunnel"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "DetailedInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 2
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "Financing": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 14,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Money",
+                            "Amount": 0.0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "DetailedInspection"
+                    ]
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Transportation",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": ["DetailedInspection", "Financing"]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "TunnelService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS2_Tunnel": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DTunnel"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "DetailedInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 2
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "Financing": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 21,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Money",
+                            "Amount": 0.0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "DetailedInspection"
+                    ]
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 3,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Transportation",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": ["DetailedInspection", "Financing"]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "TunnelService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS3_Tunnel": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DTunnel"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "DetailedInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 2
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "Financing": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 42,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Money",
+                            "Amount": 0.0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "DetailedInspection"
+                    ]
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 45,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Transportation",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": ["DetailedInspection", "Financing"]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "TunnelService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS4_Tunnel": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DTunnel"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "DetailedInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 2
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "Financing": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 42,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Money",
+                            "Amount": 0.0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "DetailedInspection"
+                    ]
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 210,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Transportation",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": ["DetailedInspection", "Financing"]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "TunnelService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS0_Roadway": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DRoadway"},
+        "RecoveryModel": {
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
+            "Parameters": {},
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "TransportationService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS1_Roadway": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DRoadway"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "DetailedInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 0.5
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Transportation",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": ["DetailedInspection"]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "TransportationService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS2_Roadway": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DRoadway"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "DetailedInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 0.5
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 2.0,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Transportation",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": ["DetailedInspection"]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "TransportationService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS3_Roadway": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DRoadway"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "DetailedInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 0.5
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 21.0,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Transportation",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": ["DetailedInspection"]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "TransportationService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS4_Roadway": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DRoadway"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "DetailedInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 0.5
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 21,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Transportation",
+                            "Amount": 0.0
+                        }
+                    ],
+                    "PrecedingActivities": ["DetailedInspection"]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "TransportationService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS0_Pipe": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DPipe"},
+        "RecoveryModel": {
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
+            "Parameters": {
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "WaterTransferService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS1_Pipe": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DPipe"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Inspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 0.0
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 10,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Water",
+                            "Amount": 1.0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "Inspection"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "WaterTransferService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS2_Pipe": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DPipe"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Inspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 0.0
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 20,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Water",
+                            "Amount": 1.0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "Inspection"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "WaterTransferService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    }
+}

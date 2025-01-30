@@ -1,8 +1,9 @@
 {
     "EmergencyResponseCenter": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
         "RecoveryModel": {
-            "Type": "NoRecoveryActivityModel",
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
             "Parameters": {},
             "DamageFunctionalityRelation": {
                 "Type": "Constant"
@@ -51,10 +52,11 @@
             }
         }
     },
-    "DS0_ResidentialBuilding": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+    "DS0_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
         "RecoveryModel": {
-            "Type": "NoRecoveryActivityModel",
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
             "Parameters": {},
             "DamageFunctionalityRelation": {
                 "Type": "Constant"
@@ -88,17 +90,14 @@
             "PotableWater": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear"
-            },
-            "CellularCommunication": {
-                "Amount": 0,
-                "FunctionalityToAmountRelation": "Linear"
             }
         }
     },
-    "DS1_ResidentialBuilding": {
-        "ComponentClass": "BuildingStockUnitWithEmergencyCalls",
+    "DS1_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "RapidInspection": {
                     "Duration": {
@@ -183,18 +182,14 @@
             "PotableWater": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear"
-            },
-            "CellularCommunication": {
-                "Amount": 0,
-                "PostDisasterIncreaseDueToEmergencyCalls": "True",
-                "FunctionalityToAmountRelation": "Linear"
             }
         }
     },
-    "DS2_ResidentialBuilding": {
-        "ComponentClass": "BuildingStockUnitWithEmergencyCalls",
+    "DS2_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "RapidInspection": {
                     "Duration": {
@@ -375,18 +370,14 @@
             "PotableWater": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear"
-            },
-            "CellularCommunication": {
-                "Amount": 0,
-                "PostDisasterIncreaseDueToEmergencyCalls": "True",
-                "FunctionalityToAmountRelation": "Linear"
             }
         }
     },
-    "DS3_ResidentialBuilding": {
-        "ComponentClass": "BuildingStockUnitWithEmergencyCalls",
+    "DS3_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "RapidInspection": {
                     "Duration": {
@@ -585,18 +576,14 @@
             "PotableWater": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear"
-            },
-            "CellularCommunication": {
-                "Amount": 0,
-                "PostDisasterIncreaseDueToEmergencyCalls": "True",
-                "FunctionalityToAmountRelation": "Linear"
             }
         }
     },
-    "DS4_ResidentialBuilding": {
-        "ComponentClass": "BuildingStockUnitWithEmergencyCalls",
+    "DS4_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "RapidInspection": {
                     "Duration": {
@@ -793,18 +780,14 @@
             "PotableWater": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear"
-            },
-            "CellularCommunication": {
-                "Amount": 0,
-                "PostDisasterIncreaseDueToEmergencyCalls": "True",
-                "FunctionalityToAmountRelation": "Linear"
             }
         }
     },
     "ElectricPowerSupplySystem": {
-        "ComponentClass": "InfrastructureInterface",
+        "ComponentClass": {"FileName": "infrastructure_interface", "ClassName": "InfrastructureInterface"},            
         "RecoveryModel": {
-            "Type": "InfrastructureInterfaceRecoveryModel",
+            "FileName": "infrastructure_interface_recovery_model",
+            "ClassName": "InfrastructureInterfaceRecoveryModel",
             "Parameters": {},
             "DamageFunctionalityRelation": "MultipleSteps"
         },
@@ -814,18 +797,13 @@
                 "FunctionalityToAmountRelation": "Linear",
                 "UnmetDemandToAmountRelation": "Binary"
             }
-        },
-        "OperationDemand": {
-            "CellularCommunication": {
-                "Amount": 0.0,
-                "FunctionalityToAmountRelation": "Constant"
-            }
         }
     },
     "WaterSupplySystem": {
-        "ComponentClass": "InfrastructureInterface",
+        "ComponentClass": {"FileName": "infrastructure_interface", "ClassName": "InfrastructureInterface"},            
         "RecoveryModel": {
-            "Type": "InfrastructureInterfaceRecoveryModel",
+            "FileName": "infrastructure_interface_recovery_model",
+            "ClassName": "InfrastructureInterfaceRecoveryModel",
             "Parameters": {},
             "DamageFunctionalityRelation": ""
         },
@@ -840,35 +818,6 @@
             "ElectricPower": {
                 "Amount": 0.0,
                 "FunctionalityToAmountRelation": "Constant"
-            },
-            "CellularCommunication": {
-                "Amount": 0.0,
-                "FunctionalityToAmountRelation": "Binary"
-            }
-        }
-    },
-    "CellularCommunicationSystem": {
-        "ComponentClass": "InfrastructureInterface",
-        "RecoveryModel": {
-            "Type": "InfrastructureInterfaceRecoveryModel",
-            "Parameters": {},
-            "DamageFunctionalityRelation": ""
-        },
-        "Supply": {
-            "CellularCommunication": {
-                "Amount": 0,
-                "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Binary"
-            }
-        },
-        "OperationDemand": {
-            "ElectricPower": {
-                "Amount": 0.0,
-                "FunctionalityToAmountRelation": "Constant"
-            },
-            "CellularCommunication": {
-                "Amount": 0,
-                "FunctionalityToAmountRelation": "Binary"
             }
         }
     }

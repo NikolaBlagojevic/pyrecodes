@@ -1,8 +1,9 @@
 {
     "BaseTransceiverStation_1": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+      "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "Repair": {
                     "Duration": {"Deterministic": {"Value": 10}}   
@@ -27,9 +28,10 @@
         }
     },
     "BaseTransceiverStation_2": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "Repair": {
                     "Duration": {"Deterministic": {"Value": 10}} 
@@ -54,9 +56,10 @@
         }
     },
     "ElectricPowerPlant": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "Repair": {
                     "Duration": {"Deterministic": {"Value": 10}}   
@@ -85,9 +88,10 @@
         }
     },
     "CoolingWaterFacility": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "Repair": {
                     "Duration": {"Deterministic": {"Value": 10}}  
@@ -116,9 +120,10 @@
         }
     },
     "BuildingStockUnit": {
-        "ComponentClass": "BuildingStockUnitWithEmergencyCalls",
+        "ComponentClass": {"FileName": "building_with_emergency_calls", "ClassName": "BuildingWithEmergencyCalls"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "Repair": {
                     "Duration": {"Deterministic": {"Value": 10}}  
@@ -141,9 +146,10 @@
         }
     },
     "SuperLink": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "Repair": {
                     "Duration": {"Deterministic": {"Value": 10}}    

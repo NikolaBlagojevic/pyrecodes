@@ -5,14 +5,14 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Installing pyrecodes" href="installation.html" /><link rel="prev" title="Welcome to pyrecodes’s documentation!" href="../index.html" />
 
-    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
-        <title>What is pyrecodes? - pyrecodes v0.1.0 documentation</title>
+    <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
+        <title>What is pyrecodes? - pyrecodes v0.2.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-carousel.min.css?v=fd277c8b" />
     <link rel="stylesheet" type="text/css" href="../_static/carousel-custom.css?v=6fe5d8c5" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
     
     
 
@@ -71,7 +71,7 @@
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -86,22 +86,63 @@
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
     </svg>
   </symbol>
-  <symbol id="svg-sun-half" viewBox="0 0 24 24">
-    <title>Auto light/dark mode</title>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M13 12h5" />
-      <path d="M13 15h4" />
-      <path d="M13 18h1" />
-      <path d="M13 9h4" />
-      <path d="M13 6h1" />
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
     </svg>
   </symbol>
 </svg>
@@ -115,6 +156,8 @@
   <div class="visually-hidden">Hide table of contents sidebar</div>
 </label>
 
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
 
 
 <div class="page">
@@ -126,13 +169,14 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">pyrecodes v0.1.0 documentation</div></a>
+      <a href="../index.html"><div class="brand">pyrecodes v0.2.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
         <button class="theme-toggle">
           <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
@@ -152,7 +196,7 @@
     <img class="sidebar-logo" src="../_static/pyrecodes_logo.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">pyrecodes v0.1.0 documentation</span>
+  <span class="sidebar-brand-text">pyrecodes v0.2.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -173,21 +217,28 @@
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="documentation.html">Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="documentation/main_docs.html">Main</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation/system_class_docs.html">System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation/system_creator_class_docs.html">System Creator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation/component_class_docs.html">Component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation/component_library_creator_class_docs.html">Component Library Creator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation/component_recovery_model_class_docs.html">Component Recovery Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation/damage_input_class_docs.html">Damage Input</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation/distribution_priority_class_docs.html">Distribution Priority</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation/geovisualizer_class_docs.html">Geovisualizer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation/plotter_class_docs.html">Plotter</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation/probability_distribution_class_docs.html">Probability Distribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation/relation_class_docs.html">Relation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation/resilience_calculators_class_docs.html">Resilience Calculator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation/resource_class_docs.html">Resource</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation/resource_distribution_class_docs.html">Resource Distribution Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/main_docs.html">main</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/utilities_docs.html">utilities</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="documentation/component_configurator_docs.html">component configurator</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of component configurator</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="documentation/component_configurator_docs/component_configurator_docs.html">component_configurator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/component_configurator_docs/r2d_component_configurator_docs.html">r2d_component_configurator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/component_configurator_docs/r2d_dict_getter_docs.html">r2d_dict_getter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/component_configurator_docs/repair_configurator_docs.html">repair_configurator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/component_configurator_docs/r2d_repair_configurator_docs.html">r2d_repair_configurator</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="documentation/component_docs.html">component</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of component</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="documentation/component_docs/component_component_docs.html">component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/component_docs/component_standard_irecodes_component_docs.html">standard_irecodes_component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/component_docs/component_infrastructure_interface_docs.html">infrastructure_interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/component_docs/component_r2d_component_docs.html">r2d_component</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/component_library_creator_docs.html">Component Library Creator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/component_recovery_model_docs.html">Component Recovery Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/damage_input_docs.html">Damage Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/distribution_priority_docs.html">Distribution Priority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/geovisualizer_docs.html">Geovisualizer</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="how_to_cite.html">How to cite</a></li>
@@ -212,11 +263,17 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/usage/what_is_pyrecodes.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
 <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
@@ -226,18 +283,18 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <article role="main">
+        <article role="main" id="furo-main-content">
           <section id="what-is-pyrecodes">
-<h1>What is pyrecodes?<a class="headerlink" href="#what-is-pyrecodes" title="Link to this heading">#</a></h1>
+<h1>What is pyrecodes?<a class="headerlink" href="#what-is-pyrecodes" title="Link to this heading">¶</a></h1>
 <p>As disasters worlwide are becoming more frequent and severe, there is a growing need for tools that can help communities and cities assess their disaster resilience and identify the most effective resilience improvement strategies. <strong>pyrecodes</strong> is an open-source Python library for regional disaster recovery simulation and disaster resilience assessment of the built environment with the primary goal to respond to this pressing need. <strong>pyrecodes</strong> is based on the iRe-CoDeS framework developed in the research group of Professor Božidar Stojadinović at the <a class="reference external" href="https://stojadinovic.ibk.ethz.ch/">Chair of Structural Dynamics and Earthquake Engineering</a> at ETH Zurich, Switzerland.</p>
 <figure class="align-default" id="id1">
 <img alt="Overview of the iRe-CoDeS framework." src="../_images/1slide_iRe-CoDeS.gif" />
 <figcaption>
-<p><span class="caption-text">Overview of the iRe-CoDeS framework.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-text">Overview of the iRe-CoDeS framework.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <section id="ire-codes-framework">
-<h2>iRe-CoDeS framework<a class="headerlink" href="#ire-codes-framework" title="Link to this heading">#</a></h2>
+<h2>iRe-CoDeS framework<a class="headerlink" href="#ire-codes-framework" title="Link to this heading">¶</a></h2>
 <p>The iRe-CoDeS framework for disaster resilience quantification discretizes a system into components and simulates the change in components’ supply and demand for various resources over the post-disaster recovery period. Components’ interactions are captured by simulating the flow of operation and recovery resources among components and conditioning their ability to operate and recover on their resource demand fulfillment. System’s resilience is then assessed by contrasting the post-disaster system-level evolution of supply, demand and consumption of various resources and identifying the magnitude and duration of unmet resource demands in the system.</p>
 <p>The iRe-CoDeS framework has been used to:</p>
 <p>(click to the side of the figure to cycle through, and in the center to see further details):</p>
@@ -259,7 +316,8 @@
 </div>
 <div class="scbs-carousel-inner">
 <div class="scbs-carousel-item scbs-active">
-<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/587004"><img alt="../_images/SF_HousingRecovery_small.gif" class="scbs-d-block scbs-w-100" src="../_images/SF_HousingRecovery_small.gif" /></a>
+<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/587004"><img alt="../_images/SF_HousingRecovery_small.gif" class="scbs-d-block scbs-w-100" src="../_images/SF_HousingRecovery_small.gif" />
+</a>
 <div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
 <h5>Simulate recovery impeding factors and the effect of regional resource constraints on the recovery of San Francisco following a hypothetical earthquake.</h5>
 <p>
@@ -268,7 +326,8 @@ Figures show the simulated building-level recovery and the resulting increase in
 </div>
 </div>
 <div class="scbs-carousel-item">
-<a class="reference external image-reference" href="https://doi.org/10.1080/15732479.2022.2052912"><img alt="../_images/irecodes_SIE_paper_EP_plot.png" class="scbs-d-block scbs-w-100" src="../_images/irecodes_SIE_paper_EP_plot.png" /></a>
+<a class="reference external image-reference" href="https://doi.org/10.1080/15732479.2022.2052912"><img alt="../_images/irecodes_SIE_paper_EP_plot.png" class="scbs-d-block scbs-w-100" src="../_images/irecodes_SIE_paper_EP_plot.png" />
+</a>
 <div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
 <h5>Capture cascading effects caused by interdependencies among infrastructure systems following a disaster.</h5>
 <p>
@@ -277,7 +336,8 @@ Figures shows supply, demand and consumption of electric power after a scenario 
 </div>
 </div>
 <div class="scbs-carousel-item">
-<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/463555/1/7d-0003_Published.pdf"><img alt="../_images/irecodes_workflow.png" class="scbs-d-block scbs-w-100" src="../_images/irecodes_workflow.png" /></a>
+<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/463555/1/7d-0003_Published.pdf"><img alt="../_images/irecodes_workflow.png" class="scbs-d-block scbs-w-100" src="../_images/irecodes_workflow.png" />
+</a>
 <div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
 <h5>Conduct scenario-based seismic resilience assessment of a virtual community by integrating iRe-CoDeS with ground motion models and HAZUS fragility and recovery functions.</h5>
 <p>
@@ -286,7 +346,8 @@ Figure shows the workflow of resilience assessment in iRe-CoDeS which extends th
 </div>
 </div>
 <div class="scbs-carousel-item">
-<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/463549"><img alt="../_images/17WCEE_LoR_LossCurves_CIS_1.png" class="scbs-d-block scbs-w-100" src="../_images/17WCEE_LoR_LossCurves_CIS_1.png" /></a>
+<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/463549"><img alt="../_images/17WCEE_LoR_LossCurves_CIS_1.png" class="scbs-d-block scbs-w-100" src="../_images/17WCEE_LoR_LossCurves_CIS_1.png" />
+</a>
 <div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
 <h5>Conduct probabilistic seismic resilience assessment of a virtual community and obtain risk-based resilience metrics.</h5>
 <p>
@@ -295,7 +356,8 @@ Figure shows probabilistic resilience assessment results as the mean annual rate
 </div>
 </div>
 <div class="scbs-carousel-item">
-<a class="reference external image-reference" href="https://www.sciencedirect.com/science/article/pii/S0951832022003702"><img alt="../_images/sobol_indices_EPSS.png" class="scbs-d-block scbs-w-100" src="../_images/sobol_indices_EPSS.png" /></a>
+<a class="reference external image-reference" href="https://www.sciencedirect.com/science/article/pii/S0951832022003702"><img alt="../_images/sobol_indices_EPSS.png" class="scbs-d-block scbs-w-100" src="../_images/sobol_indices_EPSS.png" />
+</a>
 <div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
 <h5>Quantify component importance for disaster resilience of a system using Sobol' indices and a heuristic upper and lower-bound search.</h5>
 <p>
@@ -304,7 +366,8 @@ Figure shows component importance ranking for the resilience of an electric powe
 </div>
 </div>
 <div class="scbs-carousel-item">
-<a class="reference external image-reference" href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/eqe.3800"><img alt="../_images/substation_resilience.png" class="scbs-d-block scbs-w-100" src="../_images/substation_resilience.png" /></a>
+<a class="reference external image-reference" href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/eqe.3800"><img alt="../_images/substation_resilience.png" class="scbs-d-block scbs-w-100" src="../_images/substation_resilience.png" />
+</a>
 <div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
 <h5>Assess seismic resilience of an electrical substation.</h5>
 <p>
@@ -313,7 +376,8 @@ Figure shows resilience assessment of an electrical substation using the iRe-CoD
 </div>
 </div>
 <div class="scbs-carousel-item">
-<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/586997"><img alt="../_images/irecodes_NIST_goals.png" class="scbs-d-block scbs-w-100" src="../_images/irecodes_NIST_goals.png" /></a>
+<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/586997"><img alt="../_images/irecodes_NIST_goals.png" class="scbs-d-block scbs-w-100" src="../_images/irecodes_NIST_goals.png" />
+</a>
 <div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
 <h5>Evaluate NIST community resilience goals.</h5>
 <p>
@@ -322,7 +386,8 @@ Figure shows how NIST resilience goals can be assessed using iRe-CoDeS by defini
 </div>
 </div>
 <div class="scbs-carousel-item">
-<a class="reference external image-reference" href="https://ascelibrary.org/doi/abs/10.1061/9780784484432.082"><img alt="../_images/irecodes_housing_resilience_lifelines2021.png" class="scbs-d-block scbs-w-100" src="../_images/irecodes_housing_resilience_lifelines2021.png" /></a>
+<a class="reference external image-reference" href="https://ascelibrary.org/doi/abs/10.1061/9780784484432.082"><img alt="../_images/irecodes_housing_resilience_lifelines2021.png" class="scbs-d-block scbs-w-100" src="../_images/irecodes_housing_resilience_lifelines2021.png" />
+</a>
 <div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
 <h5>Assess housing resilience of a virtual community exposed to seismic hazard.</h5>
 <p>
@@ -331,7 +396,8 @@ Figure shows that by treating housing as a resource provided by the building sto
 </div>
 </div>
 <div class="scbs-carousel-item">
-<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/586957"><img alt="../_images/adequate_worker_supply_kraljevo.png" class="scbs-d-block scbs-w-100" src="../_images/adequate_worker_supply_kraljevo.png" /></a>
+<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/586957"><img alt="../_images/adequate_worker_supply_kraljevo.png" class="scbs-d-block scbs-w-100" src="../_images/adequate_worker_supply_kraljevo.png" />
+</a>
 <div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
 <h5>Assess the adequate post-disaster supply of recovery resources for the city of Kraljevo, Serbia to improve its seismic resilience.</h5>
 <p>
@@ -340,7 +406,8 @@ Figure shows that the relation between recovery resource supply, in this case wo
 </div>
 </div>
 <div class="scbs-carousel-item">
-<a class="reference external image-reference" href="https://www.researchgate.net/publication/363671446_Risk-Informed_Resilience_Assessment_of_Communities_using_Lack_of_Resilience_Surfaces"><img alt="../_images/lor_surface_example.png" class="scbs-d-block scbs-w-100" src="../_images/lor_surface_example.png" /></a>
+<a class="reference external image-reference" href="https://www.researchgate.net/publication/363671446_Risk-Informed_Resilience_Assessment_of_Communities_using_Lack_of_Resilience_Surfaces"><img alt="../_images/lor_surface_example.png" class="scbs-d-block scbs-w-100" src="../_images/lor_surface_example.png" />
+</a>
 <div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
 <h5>Enable risk-informed resilience assessment using Lack of Resilience surfaces.</h5>
 <p>
@@ -349,7 +416,8 @@ Figure shows an example of an LoR surface showing the annual rate of exceeding a
 </div>
 </div>
 <div class="scbs-carousel-item">
-<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/586954"><img alt="../_images/kraljevo_housing_resilience_validation.png" class="scbs-d-block scbs-w-100" src="../_images/kraljevo_housing_resilience_validation.png" /></a>
+<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/586954"><img alt="../_images/kraljevo_housing_resilience_validation.png" class="scbs-d-block scbs-w-100" src="../_images/kraljevo_housing_resilience_validation.png" />
+</a>
 <div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
 <h5>Compare the iRe-CoDeS seismic housing resilience assessment with a real-life post-earthquake recovery of the city of Kraljevo, Serbia.</h5>
 <p>
@@ -358,7 +426,8 @@ Figure compares the iRe-CoDeS seismic housing recovery estimates with the observ
 </div>
 </div>
 <div class="scbs-carousel-item">
-<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/527466"><img alt="../_images/transportation_infrastructure_community_resilience.png" class="scbs-d-block scbs-w-100" src="../_images/transportation_infrastructure_community_resilience.png" /></a>
+<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/527466"><img alt="../_images/transportation_infrastructure_community_resilience.png" class="scbs-d-block scbs-w-100" src="../_images/transportation_infrastructure_community_resilience.png" />
+</a>
 <div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
 <h5>Capture the impact of transportation infrastructure on community disaster resilience in a virtual community.</h5>
 <p>
@@ -367,7 +436,8 @@ Figure shows that post-disaster inoperability of the damaged transportation infr
 </div>
 </div>
 <div class="scbs-carousel-item">
-<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/610946"><img alt="../_images/f-rec_irecodes_example.png" class="scbs-d-block scbs-w-100" src="../_images/f-rec_irecodes_example.png" /></a>
+<a class="reference external image-reference" href="https://www.research-collection.ethz.ch/handle/20.500.11850/610946"><img alt="../_images/f-rec_irecodes_example.png" class="scbs-d-block scbs-w-100" src="../_images/f-rec_irecodes_example.png" />
+</a>
 <div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
 <h5>Integrate advanced building-component-level functional recovery modelling framework F-Rec with iRe-CoDeS.</h5>
 <p>
@@ -388,12 +458,12 @@ Figure shows that by integrating F-Rec building-level recovery models into the r
 <p>More information on the iRe-CoDeS framework can be found <a class="reference external" href="https://www.research-collection.ethz.ch/handle/20.500.11850/605682">here</a>.</p>
 </section>
 <section id="pyrecodes-architecture">
-<h2>pyrecodes architecture<a class="headerlink" href="#pyrecodes-architecture" title="Link to this heading">#</a></h2>
+<h2>pyrecodes architecture<a class="headerlink" href="#pyrecodes-architecture" title="Link to this heading">¶</a></h2>
 <p>Following figure represents the simplified object-oriented architecture of <strong>pyrecodes</strong>.</p>
 <figure class="align-default" id="id2">
 <img alt="Simplified architecture of pyrecodes." src="../_images/pyrecodes_architecture.png" />
 <figcaption>
-<p><span class="caption-text">Simplified architecture of pyrecodes.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-text">Simplified architecture of pyrecodes.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -428,7 +498,7 @@ Figure shows that by integrating F-Rec building-level recovery models into the r
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2023, Nikola Blagojević
+                Copyright &#169; 2024, Nikola Blagojević
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -468,10 +538,10 @@ Figure shows that by integrating F-Rec building-level recovery models into the r
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=fa47ad08"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+</div><script src="../_static/documentation_options.js?v=683873e3"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>

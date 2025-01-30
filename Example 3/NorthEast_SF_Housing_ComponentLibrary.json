@@ -1,8 +1,9 @@
 {
     "EmergencyResponseCenter": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
         "RecoveryModel": {
-            "Type": "NoRecoveryActivityModel",
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
             "Parameters": {},
             "DamageFunctionalityRelation": {
                 "Type": "Constant"
@@ -10,52 +11,53 @@
         },
         "Supply": {
             "FirstResponderEngineer": {
-                "Amount": 50,
+                "Amount": 500,
                 "FunctionalityToAmountRelation": "Linear"
             },
             "SeniorEngineer": {
-                "Amount": 50,
+                "Amount": 500,
                 "FunctionalityToAmountRelation": "Linear"
             },
             "Contractor": {
-                "Amount": 50,
+                "Amount": 500,
                 "FunctionalityToAmountRelation": "Linear"
             },
             "Money": {
                 "Amount": 5500000000,
                 "FunctionalityToAmountRelation": "Linear",
-                "ResourceClass": "ConsumableResource"
+                "ResourceClass": {"FileName": "consumable_resource", "ClassName": "ConsumableResource"}
             },
             "PlanCheckEngineeringTeam": {
-                "Amount": 20,
+                "Amount": 200,
                 "FunctionalityToAmountRelation": "Linear"
             },
             "SitePreparationCrew": {
-                "Amount": 20,
+                "Amount": 200,
                 "FunctionalityToAmountRelation": "Linear"
             },
             "CleanUpCrew": {
-                "Amount": 20,
+                "Amount": 200,
                 "FunctionalityToAmountRelation": "Linear"
             },
             "EngineeringDesignTeam": {
-                "Amount": 50,
+                "Amount": 500,
                 "FunctionalityToAmountRelation": "Linear"
             },
             "DemolitionCrew": {
-                "Amount": 10,
+                "Amount": 100,
                 "FunctionalityToAmountRelation": "Linear"
             },
             "RepairCrew": {
-                "Amount": 50,
+                "Amount": 500,
                 "FunctionalityToAmountRelation": "Linear"
             }
         }
     },
-    "DS0_ResidentialBuilding": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+    "DS0_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
         "RecoveryModel": {
-            "Type": "NoRecoveryActivityModel",
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
             "Parameters": {},
             "DamageFunctionalityRelation": {
                 "Type": "Constant"
@@ -65,22 +67,21 @@
             "Shelter": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Constant",
-                "IsHousingResource": "True"
+                "UnmetDemandToAmountRelation": "Constant"
             }
         },
         "OperationDemand": {
             "Shelter": {
                 "Amount": 0,
-                "FunctionalityToAmountRelation": "Constant",
-                "IsHousingResource": "True"
+                "FunctionalityToAmountRelation": "Constant"
             }
         }
     },
-    "DS1_ResidentialBuilding": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+    "DS1_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "RapidInspection": {
                     "Duration": {
@@ -141,22 +142,21 @@
             "Shelter": {
                 "Amount": 0,
                 "FunctionalityToAmountRelation": "Linear",
-                "UnmetDemandToAmountRelation": "Constant",
-                "IsHousingResource": "True"
+                "UnmetDemandToAmountRelation": "Constant"
             }
         },
         "OperationDemand": {
             "Shelter": {
                 "Amount": 0,
-                "FunctionalityToAmountRelation": "Constant",
-                "IsHousingResource": "True"
+                "FunctionalityToAmountRelation": "Constant"
             }
         }
     },
-    "DS2_ResidentialBuilding": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+    "DS2_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "RapidInspection": {
                     "Duration": {
@@ -323,10 +323,11 @@
             }
         }
     },
-    "DS3_ResidentialBuilding": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+    "DS3_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "RapidInspection": {
                     "Duration": {
@@ -511,10 +512,11 @@
             }
         }
     },
-    "DS4_ResidentialBuilding": {
-        "ComponentClass": "StandardiReCoDeSComponent",
+    "DS4_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
         "RecoveryModel": {
-            "Type": "ComponentLevelRecoveryActivitiesModel",
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
             "Parameters": {
                 "RapidInspection": {
                     "Duration": {

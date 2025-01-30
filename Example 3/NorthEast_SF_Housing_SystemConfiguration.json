@@ -3,10 +3,10 @@
         "START_TIME_STEP": 0,
         "MAX_TIME_STEP": 3650,
         "DISASTER_TIME_STEP": 1,
-        "DS4_REPAIR_DURATION": 240,
         "MAX_REPAIR_CREW_DEMAND_PER_BUILDING": 50,
-        "MAX_RESIDENTS_PER_BUILDING": 2000,
-        "HOUSING_RESOURCES": ["Shelter"],
+        "HOUSING_RESOURCES": [
+            "Shelter"
+        ],
         "REPAIR_CREW_DEMAND_PER_SQFT": {
             "DS1": 5400,
             "DS2": 5400,
@@ -20,64 +20,98 @@
             }
         }
     },
-    "Content": {
+    "Content": {               
         "Locality 1": {
-            "ComponentsInLocality": {
-                "Coordinates": {
-                    "BoundingBox": {
-                        "Latitude": [
-                            37.78,
-                            37.78,
-                            37.82,
-                            37.82
-                        ],
-                        "Longitude": [
-                            -122.43,
-                            -122.38,
-                            -122.38,
-                            -122.43
-                        ]
-                    }
-                },
+            "Coordinates": {
+                "BoundingBox":   
+                    [[-122.43, 37.78], [-122.38, 37.78], [-122.38, 37.82], [-122.43, 37.82]] 
+            },
+            "Components": {
                 "RecoveryResourceSuppliers": [
-                    "EmergencyResponseCenter"
+                    {
+                        "EmergencyResponseCenter": {
+                            "CreatorClassName": "RecoveryResourceSuppliersCreator",
+                            "CreatorFileName": "recovery_resource_suppliers_creator",
+                            "Parameters": {
+                                "ComponentName": [
+                                    "EmergencyResponseCenter"
+                                ]
+                            }
+                        }
+                    }
                 ],
-                "BuildingsInfoFolder": "./Example 3/R2D Output/",
-                "BuildingIDsRange": [
-                    8000,
-                    9000
-                ],
-                "MaxNumBuildings": 100,
-                "AreaPerPerson": 541
+                "BuildingStock": [
+                    {
+                        "Buildings": {
+                            "CreatorClassName": "R2DSubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "Shelter"
+                                ],
+                                "R2DJSONFile_Info": "./Example 3/NorthEast_SF_Housing_Exposure.json",
+                                "SubsystemNameInR2DJSON": "Buildings",
+                                "AssetTypes": [
+                                    "Building"
+                                ],
+                                "MaxNumComponents": 10000,
+                                "RecoveryTimeStepping": [
+                                    {
+                                        "start": 0,
+                                        "end": 100,
+                                        "step": 1
+                                    },
+                                    {
+                                        "start": 100,
+                                        "end": 1000,
+                                        "step": 10
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
             }
         }
     },
     "DamageInput": {
-        "Type": "R2DDamageInput",
+        "FileName": "r2d_damage_input",
+        "ClassName": "R2DDamageInput",
         "Parameters": {
-            "ScenarioID": 1
+            "DamageFile": "./Example 3/NorthEast_SF_Housing_Damage.json"
         }
     },
     "Resources": {
         "Shelter": {
             "Group": "Utilities",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "HousingDistributionModel",
+                "FileName": "housing_distribution_model",
                 "Parameters": {
-                    "DistributionPriority": {
-                        "Type": "SupplierOnlyDistributionPriority",
-                        "Parameters": {}
-                    }                    
+                    "DistributionTimeStepping": [
+                        {
+                            "start": 0,
+                            "end": 50,
+                            "step": 1
+                        },
+                        {
+                            "start": 50,
+                            "end": 1000,
+                            "step": 50
+                        }
+                    ]
                 }
             }
         },
         "FirstResponderEngineer": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -91,10 +125,12 @@
         "SeniorEngineer": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -108,10 +144,12 @@
         "Contractor": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -125,10 +163,12 @@
         "Money": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -142,10 +182,12 @@
         "PlanCheckEngineeringTeam": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -159,10 +201,12 @@
         "SitePreparationCrew": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -176,10 +220,12 @@
         "CleanUpCrew": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -193,10 +239,12 @@
         "EngineeringDesignTeam": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -210,10 +258,12 @@
         "DemolitionCrew": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -227,10 +277,12 @@
         "RepairCrew": {
             "Group": "RecoveryResources",
             "DistributionModel": {
-                "Type": "UtilityDistributionModel",
+                "ClassName": "UtilityDistributionModel",
+                "FileName": "utility_distribution_model",
                 "Parameters": {
                     "DistributionPriority": {
-                        "Type": "RandomPriority",
+                        "FileName": "random_priority",
+                        "ClassName": "RandomPriority",
                         "Parameters": {
                             "Seed": 42.0,
                             "DemandType": [
@@ -244,7 +296,8 @@
     },
     "ResilienceCalculator": [
         {
-            "Type": "ReCoDeSResilienceCalculator",
+            "ClassName": "ReCoDeSCalculator",
+            "FileName": "recodes_calculator",
             "Parameters": {
                 "Scope": "All",
                 "Resources": [
@@ -256,7 +309,8 @@
             }
         },
         {
-            "Type": "NISTGoalsResilienceCalculator",
+            "ClassName": "NISTGoalsCalculator",
+            "FileName": "nist_goals_calculator",
             "Parameters": [
                 {
                     "Resource": "Shelter",

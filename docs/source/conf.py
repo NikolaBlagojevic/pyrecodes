@@ -11,9 +11,9 @@ sys.path.insert(0, '../pyrecodes/')
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'pyrecodes'
-copyright = '2023, Nikola Blagojević'
+copyright = '2024, Nikola Blagojević'
 author = 'Nikola Blagojević'
-release = 'v0.1.0'
+release = 'v0.2.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -26,9 +26,9 @@ extensions = [
     'sphinx.ext.githubpages',
     'sphinx.ext.intersphinx',
     'sphinxcontrib.youtube'
-    
 ]
 
+autosummary_generate = True
 templates_path = ['_templates']
 exclude_patterns = []
 

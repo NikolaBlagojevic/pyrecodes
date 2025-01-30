@@ -1,0 +1,401 @@
+{
+    "BaseTransceiverStation_1": {
+      "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 10}}   
+                }                
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },       
+        "Supply": {
+            "Communication": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Binary"
+            }
+        },
+        "OperationDemand": {
+            "ElectricPower": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear"                
+            }
+        }
+    },
+    "BaseTransceiverStation_2": {
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 10}} 
+                }       
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },       
+        "Supply": {
+            "Communication": {
+                "Amount": 2,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Binary"
+            }
+        },
+        "OperationDemand": {
+            "ElectricPower": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear"                
+            }
+        }
+    },
+    "ElectricPowerPlant": {
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 10}}   
+                }     
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseLinear"
+            }
+        },
+        "Supply": {
+            "ElectricPower": {
+                "Amount": 5,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Binary"
+            }
+        },
+        "OperationDemand": {
+            "Communication": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Constant"                
+            },
+            "CoolingWater": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Constant"               
+            }
+        }
+    },
+    "CoolingWaterFacility": {
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 10}}  
+                }      
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseLinear"
+            }
+        },
+        "Supply": {
+            "CoolingWater": {
+                "Amount": 3,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Binary"
+            }
+        },
+        "OperationDemand": {
+            "Communication": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Constant"
+            }
+        }
+    },
+    "BuildingStockUnit": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 10}}  
+                }      
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseLinear"
+            }   
+        },   
+        "OperationDemand": {
+            "Communication": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Constant",
+                "PostDisasterIncreaseDueToEmergencyCalls": "True"
+            },
+            "ElectricPower": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "SuperLink": {
+        "ComponentClass": {"FileName": "standard_irecodes_component", "ClassName": "StandardiReCoDeSComponent"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 10}}    
+                }    
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseLinear"
+            }   
+        },
+        "Supply": {
+            "SuperTransferService": {
+                "Amount": 1000,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS0_Pipe": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DPipe"},
+        "RecoveryModel": {
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
+            "Parameters": {
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "WaterTransferService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS1_Pipe": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DPipe"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Inspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 0.0
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 10,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Water",
+                            "Amount": 1.0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "Inspection"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "WaterTransferService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS2_Pipe": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DPipe"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Inspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 0.0
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 20,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Water",
+                            "Amount": 1.0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "Inspection"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "WaterTransferService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS0_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "RecoveryModel": {
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
+            "Parameters": {},
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+    "Supply": {
+            "Shelter": {
+                "Amount": 10,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+        }
+    },
+       "OperationDemand": {
+            "Communication": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Constant",
+                "PostDisasterIncreaseDueToEmergencyCalls": "True"
+            },
+            "ElectricPower": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS1_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 10}}  
+                }      
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }   
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 10,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+        }
+    },
+       "OperationDemand": {
+            "Communication": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Constant",
+                "PostDisasterIncreaseDueToEmergencyCalls": "True"
+            },
+            "ElectricPower": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS2_Building": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DBuilding"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {"Deterministic": {"Value": 15}}  
+                }      
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseLinear"
+            }   
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 10,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+        }
+    },
+       "OperationDemand": {
+            "Communication": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Constant",
+                "PostDisasterIncreaseDueToEmergencyCalls": "True"
+            },
+            "ElectricPower": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    }
+}

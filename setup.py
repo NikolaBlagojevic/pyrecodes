@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pyrecodes',
-    version='0.2.0',
+    version='0.2.0a',
     author="Nikola Blagojevic and Bozidar Stojadinovic",
     author_email="nikolab@stanford.edu",
     description="Software for Regional Recovery Modelling and Resilience Assessment of the Built Environment",

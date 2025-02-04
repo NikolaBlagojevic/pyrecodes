@@ -109,7 +109,7 @@ class ConcretePlotter():
         axis_object.legend(legend_handles, legend_labels, loc='upper left', bbox_to_anchor=(1.02, 1.0))
 
     def get_component_recovery_progress(self, component: Component) -> dict:
-        component_recovery_progress = {'AIM_id': getattr(component, 'aim_id', 'None')}
+        component_recovery_progress = {}
         active_recovery_activities = []
         for recovery_activity_name, recovery_activity_object in component.recovery_model.recovery_activities.items():
             duration = len(recovery_activity_object.time_steps)

@@ -3,23 +3,43 @@ Installing pyrecodes
 
 The prerequisite for installing pyrecodes is having Python version 3.9.6 installed on your machine.
 
+pip install
+------------
+
 The simplest way to install pyrecodes is to use `pip`:
 
 .. code-block:: Python
 
-    pip install pyrecodes
+    pip install --pre pyrecodes
+
+Basic version of pyrecodes does not include dependencies required to run third-party infrastructure simulators to avoid potential dependency issues in case users do not use third-party model APIs. However, to install the version of pyrecodes with third-part infrastructure simulators, run the following command:
+
+.. code-block:: Python
+
+    pip install --pre "pyrecodes[third_party_models]"
+
+Cloning the repository
+----------------------
 
 pyrecodes can also be installed by `cloning <https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository>`_ the source code available on `Github <https://github.com/NikolaBlagojevic/pyrecodes/tree/main>`_.
 
-It's good practice to use a virtual environment when installing pyrecodes to keep its dependencies isolated from other Python projects on your machine. The repository includes a requirements.txt file in the root directory, which allows you to install all dependencies at once in case you are having trouble with pip installing pyrecodes.
+It's good practice to use a virtual environment when installing pyrecodes to keep its dependencies isolated from other Python projects on your machine. The repository includes two requirements files in the root directory, which allows you to install all dependencies at once in case you are having trouble with pip installing pyrecodes.
+
+Baisc pyrecodes requires dependencies listed in `requirements.txt` file. To install all dependencies, run the following command:
 
 .. code-block:: Python
 
     pip install -r requirements.txt
 
+Full version of pyrecodes requires dependencies listed in `requirements_third_party_models.txt` file.
+
+.. code-block:: Python
+
+    pip install -r requirements_third_party_models.txt
+
 .. note::
 
-    Please note that python version x86_64 is required to run the third-party infrastructure simulators presented in Example 5. Further instructions are available `here <https://nheri-simcenter.github.io/R2D-Documentation/common/user_manual/installation/desktop/install_macOS.html>`_
+    Please note that python version x86_64 is required to run the third-party infrastructure simulators presented in Example 5. Further instructions are available `here. <https://nheri-simcenter.github.io/R2D-Documentation/common/user_manual/installation/desktop/install_macOS.html>`_
 
 
 Running Examples

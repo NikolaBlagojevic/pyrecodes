@@ -12,7 +12,7 @@ The simplest way to install pyrecodes is to use `pip`:
 
     pip install --pre pyrecodes
 
-Basic version of pyrecodes does not include dependencies required to run third-party infrastructure simulators to avoid potential dependency issues in case users do not use third-party model APIs. However, to install the version of pyrecodes with third-part infrastructure simulators, run the following command:
+Basic version of pyrecodes does not include dependencies required to run third-party infrastructure simulators to avoid potential dependency issues in case users do not use third-party model APIs. However, to install the version of pyrecodes with third-party infrastructure simulators, run the following command:
 
 .. code-block:: Python
 
@@ -23,7 +23,7 @@ Cloning the repository
 
 pyrecodes can also be installed by `cloning <https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository>`_ the source code available on `Github <https://github.com/NikolaBlagojevic/pyrecodes/tree/main>`_.
 
-It's good practice to use a virtual environment when installing pyrecodes to keep its dependencies isolated from other Python projects on your machine. The repository includes two requirements files in the root directory, which allows you to install all dependencies at once in case you are having trouble with pip installing pyrecodes.
+It's good practice to use a virtual environment when installing pyrecodes to keep its dependencies isolated from other Python projects on your machine. The repository includes two requirements files in the root directory, allowing you to install all dependencies at once in case you are having trouble with pip installing pyrecodes.
 
 Baisc pyrecodes requires dependencies listed in `requirements.txt` file. To install all dependencies, run the following command:
 

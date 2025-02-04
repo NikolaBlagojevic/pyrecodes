@@ -13,9 +13,9 @@ Running the example
 
 Example 3 Jupyter notebook illustrates how to run the pyrecodes simulation and plot the post-disaster supply/demand/consumption dynamics and the components' recovery gantt chart, as well as animate the building recovery process.
 
-Run the example online using `Google Colab <https://colab.research.google.com/github/NikolaBlagojevic/pyrecodes/blob/main/Example3_NorthEast_SF_Housing_Colab.ipynb>`_.
+.. Run the example online using `Google Colab <https://colab.research.google.com/github/NikolaBlagojevic/pyrecodes/blob/main/Example3_NorthEast_SF_Housing_Colab.ipynb>`_.
     
-Alternatively, the example can be run locally by downloading the `Example 3 Jupyter notebook <https://github.com/NikolaBlagojevic/pyrecodes/blob/main/Example3_NorthEast_SF_Housing.ipynb>`_ and the required files from the `Example 3 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%203>`_.
+The example can be run locally by downloading the `Example 3 Jupyter notebook <https://github.com/NikolaBlagojevic/pyrecodes/blob/main/Example3_NorthEast_SF_Housing.ipynb>`_ and the required files from the `Example 3 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%203>`_.
 
 Example description
 -------------------

@@ -26,9 +26,9 @@ Example 5 Jupyter notebook illustrates how to run the pyrecodes simulation, plot
 
     To reduce the computational time, one neighbourhood in Alameda is run by default in this example. The user can run the simulation for the entire Alameda Island by setting the main file to `Alameda_Main.json` instead of `SmallAlameda_Main.json`.
 
-Run the example online using `Google Colab <https://colab.research.google.com/github/NikolaBlagojevic/pyrecodes/blob/main/Example5_Alameda_Colab.ipynb>`_.
+.. Run the example online using `Google Colab <https://colab.research.google.com/github/NikolaBlagojevic/pyrecodes/blob/main/Example5_Alameda_Colab.ipynb>`_.
     
-Alternatively, the example can be run locally by downloading the `Example 5 Jupyter notebook <https://github.com/NikolaBlagojevic/pyrecodes/blob/main/Example5_Alameda.ipynb>`_ and the required files from the `Example 5 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%205>`_. 
+The example can be run locally by downloading the `Example 5 Jupyter notebook <https://github.com/NikolaBlagojevic/pyrecodes/blob/main/Example5_Alameda.ipynb>`_ and the required files from the `Example 5 folder <https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%205>`_. 
 
 Component library
 -----------------

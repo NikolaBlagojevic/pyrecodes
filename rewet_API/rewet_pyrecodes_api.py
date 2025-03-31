@@ -48,6 +48,7 @@ import rewet
 import wntrfr
 from rewet.api import API
 from sklearn.cluster import KMeans
+from scipy.spatial import KDTree
 
 # Nikola: moved these constant into the class constructor
 # TEMP_DIR = './'
@@ -474,7 +475,9 @@ class REWETPyReCoDes:
         building_id_list = []
         for building_id, each_building in building_state.items():
             location = each_building['GeneralInformation']['location']
-            coordinate = (location['latitude'], location['longitude'])
+            # coordinate = (location['latitude'], location['longitude'])
+            # Nikola: Use long, lat to be consistent with the demand node coordinates.
+            coordinate = (location['longitude'], location['latitude'])
             building_id_list.append(building_id)
 
             self.building_coordinates.append(coordinate)
@@ -485,28 +488,8 @@ class REWETPyReCoDes:
 
         demand_node_name_list = [key for key, val in self.nodes.items()]
 
-        kmeans = KMeans(
-            n_clusters=len(demand_node_coordinate_list),
-            init=demand_node_coordinate_list,
-            n_init=1,
-            random_state=0,
-        )
-
-        kmeans.fit(self.building_coordinates)
-
-        labels = kmeans.labels_
-        labels = labels.tolist()
-
-        for group_i in range(len(demand_node_coordinate_list)):
-            node_name = demand_node_name_list[group_i]
-            for building_l in range(len(labels)):
-                cur_node_l = labels[building_l]
-                if group_i == cur_node_l:
-                    if node_name not in self.demand_node_to_building:
-                        self.demand_node_to_building[node_name] = []
-
-                    building_id = building_id_list[building_l]
-                    self.demand_node_to_building[node_name].append(building_id)
+        self.find_nearest_node_to_building(demand_node_coordinate_list, demand_node_name_list, 
+                                        self.building_coordinates, building_id_list)
 
         for node_name in self.demand_node_to_building:
             building_name_list = self.demand_node_to_building[node_name]
@@ -560,6 +543,52 @@ class REWETPyReCoDes:
             #         cur_bldg_initial_demand = None
 
             #     self.buildings[bldg_id]['initial_demand'] = cur_bldg_initial_demand
+
+    # Nikola: extracted the method for finding the nearest node to building
+    def find_nearest_node_to_building(self, demand_node_coordinate_list, 
+                                    demand_node_name_list, building_coordinates, 
+                                    building_id_list):
+
+        # Build a KDTree from the demand node coordinates
+        tree = KDTree(demand_node_coordinate_list)
+
+        # Find the nearest node for each building
+        distances, indices = tree.query(building_coordinates)
+
+        for building_i, node_index in enumerate(indices):
+            node_name = demand_node_name_list[node_index]
+            if node_name not in self.demand_node_to_building:
+                self.demand_node_to_building[node_name] = []
+            
+            building_id = building_id_list[building_i]
+            self.demand_node_to_building[node_name].append(building_id)
+            
+        # Old method that does not work if there are fewer buildings than nodes
+        # # Mapping of buildings to their closest node
+        # building_to_node = {tuple(building_coordinates[i]): tuple(demand_node_coordinate_list[indices[i]]) for i in range(len(building_coordinates))}
+
+        # kmeans = KMeans(
+        #     n_clusters=len(demand_node_coordinate_list),
+        #     init=demand_node_coordinate_list,
+        #     n_init=1,
+        #     random_state=0,
+        # )
+
+        # kmeans.fit(building_coordinates)
+
+        # labels = kmeans.labels_
+        # labels = labels.tolist()
+
+        # for group_i in range(len(demand_node_coordinate_list)):
+        #     node_name = demand_node_name_list[group_i]
+        #     for building_l in range(len(labels)):
+        #         cur_node_l = labels[building_l]
+        #         if group_i == cur_node_l:
+        #             if node_name not in self.demand_node_to_building:
+        #                 self.demand_node_to_building[node_name] = []
+
+        #             building_id = building_id_list[building_l]
+        #             self.demand_node_to_building[node_name].append(building_id)
 
     # Nikola: new method to get the demand of a node based on the buildings connected to it
     def get_node_demand(self, building_name_list):

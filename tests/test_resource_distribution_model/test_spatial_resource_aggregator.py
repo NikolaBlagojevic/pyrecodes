@@ -19,7 +19,9 @@ class TestSpatialResourceAggregator:
     
     def test_aggregate_per_locality(self, spatial_resource_aggregator, system):
         resource_per_locality = spatial_resource_aggregator.aggregate_per_locality(system.components, 'Communication', 'supply', 'Supply')
-        assert resource_per_locality == {1: 1.0, 2: 0.0, 3: 2.0}
+        assert resource_per_locality == {1: 1.0, 2: 0.0, 3: 0.0}
+        resource_per_locality = spatial_resource_aggregator.aggregate_per_locality(system.components, 'Communication', locality_ids=[1, 2], supply_or_demand='supply', supply_or_demand_type='Supply')
+        assert resource_per_locality == {1: 1.0, 2: 0.0}
 
         resource_per_locality = spatial_resource_aggregator.aggregate_per_locality(system.components, 'ElectricPower')
         assert resource_per_locality == {1: 1.0, 2: 1.0, 3: 2.0}

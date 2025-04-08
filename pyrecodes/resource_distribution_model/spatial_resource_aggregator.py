@@ -12,6 +12,7 @@ class SpatialResourceAggregator():
     """
 
     def aggregate_per_locality(self, components: list[Component], resource_name: str, 
+                               locality_ids=None,
                                supply_or_demand=SupplyOrDemand.DEMAND.value,
                                supply_or_demand_type=StandardiReCoDeSComponent.DemandTypes.OPERATION_DEMAND.value) -> float:
         """
@@ -19,10 +20,11 @@ class SpatialResourceAggregator():
         """
         resource_per_locality = {}
         for component in components:
-            if component.locality[0] in resource_per_locality.keys():
-                resource_per_locality[component.locality[0]] += component.get_current_resource_amount(supply_or_demand, supply_or_demand_type, resource_name)
-            else:
-                resource_per_locality[component.locality[0]] = component.get_current_resource_amount(supply_or_demand, supply_or_demand_type, resource_name)
+            if component.locality[0] in locality_ids or locality_ids==None:
+                if component.locality[0] in resource_per_locality.keys():
+                    resource_per_locality[component.locality[0]] += component.get_current_resource_amount(supply_or_demand, supply_or_demand_type, resource_name)
+                else:
+                    resource_per_locality[component.locality[0]] = component.get_current_resource_amount(supply_or_demand, supply_or_demand_type, resource_name)
         return resource_per_locality
     
     def aggregate_total(self, components: list[Component], resource_name: str, 

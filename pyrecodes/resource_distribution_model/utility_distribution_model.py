@@ -9,6 +9,7 @@ import json
 import math
 import numpy as np
 import itertools
+from pyrecodes.utilities import format_locality_id
 
 class UtilityDistributionModel(AbstractResourceDistributionModel):
     """
@@ -242,7 +243,7 @@ class UtilityDistributionModel(AbstractResourceDistributionModel):
         if scope == 'All':
             return list(range(self.system_matrix.matrix.shape[0]))
         elif "Locality" in scope:
-            locality_id = int(scope.split(" ")[-1])
+            locality_id = format_locality_id(scope)
             component_rows_in_locality = np.where(np.logical_or(self.system_matrix.matrix[:, self.system_matrix.START_LOCALITY_COL_ID] == locality_id, 
                                                   self.system_matrix.matrix[:, self.system_matrix.END_LOCALITY_COL_ID] == locality_id))
             return component_rows_in_locality

@@ -30,7 +30,7 @@ class AbstractResourceDistributionModel(ResourceDistributionModel):
         if scope == 'All':
             return self.components
         elif "Locality" in scope:
-            locality_id = int(scope[-1])
+            locality_id = int(scope.split(" ")[-1])
             components_in_scope = []
             for component in self.components:
                 if locality_id in component.locality:

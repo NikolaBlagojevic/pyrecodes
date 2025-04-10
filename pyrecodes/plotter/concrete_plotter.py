@@ -130,7 +130,7 @@ class ConcretePlotter():
     
     def save_supply_demand_consumption(self, system, resource_names: list, resilience_calculator_id=0):
         for resource in resource_names:
-            savename = f'{resource}_supply_demand_consumption.json'
+            savename = f'{resource}_supply_demand_consumption_{resilience_calculator_id}.json'
             supply_demand_consumption = self.get_supply_demand_consumption(system, resource, resilience_calculator_id)
             with open(savename, mode="w") as file:
                 json.dump(supply_demand_consumption, file) 

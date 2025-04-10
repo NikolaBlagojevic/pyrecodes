@@ -6,6 +6,7 @@ from pyrecodes.resource_distribution_model.abstract_resource_distribution_model 
 from pyrecodes.resource_distribution_model.rewet_distribution_model_constructor import REWETDistributionModelConstructor
 from pyrecodes.resource_distribution_model.spatial_resource_aggregator import SpatialResourceAggregator
 from pyrecodes.component.component import SupplyOrDemand
+from pyrecodes.utilities import format_locality_id
 
 class REWETDistributionModel(AbstractResourceDistributionModel):
     """
@@ -77,7 +78,7 @@ class REWETDistributionModel(AbstractResourceDistributionModel):
                                                                                supply_or_demand_type=StandardiReCoDeSComponent.DemandTypes.RECOVERY_DEMAND.value)
             return operation_demand + recovery_demand
         elif "Locality" in scope:
-            locality_id = int(scope[-1])
+            locality_id = format_locality_id(scope)
             operation_demand = self.spatial_resource_aggregator.aggregate_per_locality(self.components, self.resource_name, 
                                                                        locality_ids=[locality_id],
                                                                        supply_or_demand='demand', 
@@ -93,7 +94,7 @@ class REWETDistributionModel(AbstractResourceDistributionModel):
     def get_total_consumption(self, scope='All') -> float:
         total_consumption = 0
         if "Locality" in scope:
-            locality_id = int(scope[-1])
+            locality_id = format_locality_id(scope)
         for component in self.components:
             if scope == 'All' or component.locality[0] == locality_id:
                 operation_demand = component.get_current_resource_amount(SupplyOrDemand.DEMAND.value, 

@@ -6,13 +6,15 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import matplotlib.colors as mcolors
 import matplotlib.cm as mcm
-import imageio
 import pandas as pd
 import shapely
 from pyrecodes.component.component import Component
 from pyrecodes.plotter.concrete_plotter import ConcretePlotter
 from pyrecodes.system.system import System
 from pyrecodes.resilience_calculator.resilience_calculator import ResilienceCalculator
+import imageio.v3 as iio
+from PIL import Image
+import numpy as np
 
 
 class ConcreteGeoVisualizer():
@@ -79,12 +81,25 @@ class ConcreteGeoVisualizer():
     
     def create_recovery_gif(self, time_steps: list[int], file_name='./2D_buildings_with_supply_demand_TIME_STEP.png', savename='./system_recovery.gif', fps=1) -> None:        
         frames = []
-        for time_step in time_steps:           
-            frame = imageio.v2.imread(file_name.replace('TIME_STEP', str(time_step)))
+        target_shape = None
+        for time_step in time_steps:
+            img_path = file_name.replace('TIME_STEP', str(time_step))
+            pil_img = Image.open(img_path)
+
+            if target_shape is None:
+                target_shape = pil_img.size  # (width, height)
+
+            if pil_img.size != target_shape:
+                pil_img = pil_img.resize(target_shape, Image.LANCZOS)
+
+            frame = np.array(pil_img)  # Convert PIL image to array for imageio
             frames.append(frame)
-        imageio.mimwrite(savename, 
-                frames,          
-                fps = fps)         
+      
+        iio.imwrite(savename, 
+                frames,       
+                fps = fps,
+                subrectangles=True,
+                disposal=2)           
     
     def create_current_state_buildings_and_supply_demand_figure(self, time_step: int, system: System, save=True, 
                                                                 dpi=300, resources_to_plot=['Shelter', 'RepairCrew'],

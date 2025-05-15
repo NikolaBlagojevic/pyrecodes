@@ -1546,7 +1546,7 @@ class pyrecodes_residual_demand(TransportationPerformance):
             quarter_list=[0, 1, 2, 3, 4, 5],
             closure_hours=self.hour_list,
             closed_links=closed_links,
-            two_way_edges=self.two_way_edges,
+            two_way_edges=False, # The edges has been duplicated to consider two way edges, so no need to have two way edges when constructing pandana net
             save_edge_vol = False
         )
         return trip_info_df  # noqa: RET504

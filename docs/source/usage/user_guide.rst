@@ -162,7 +162,7 @@ Once the three files are defined, the model can be run using the following comma
 .. code-block:: Python
 
     import pyrecodes
-    system = pyrecodes.main.run('./path/to/main/file')
+    system = pyrecodes.main.run(folder_name='./path/to/folder/containing/json/files', main_file_name='main.json')
 
 When the simulation is finished, user can save the system object containing the simulation outputs:
 

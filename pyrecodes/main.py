@@ -4,10 +4,11 @@ Module used to run the **pyrecodes** resilience assessment as defined in the com
 from pyrecodes.utilities import read_json_file, get_class
 from pyrecodes.system.system import System
 
-def form_component_library(input_dict: dict) -> dict:
+def form_component_library(folder_name: str, input_dict: dict) -> dict:
     """Forms a component library based on the input dictionary.
 
     Args:
+        folder_name (str): The name of the folder containing the component library files.
         input_dict (dict): The input dictionary containing component library configuration.
 
     Returns:
@@ -16,24 +17,25 @@ def form_component_library(input_dict: dict) -> dict:
     component_library_target_class = get_class(input_dict['ComponentLibrary']['ComponentLibraryCreatorFileName'], 
                                                 input_dict['ComponentLibrary']['ComponentLibraryCreatorClassName'], 
                                                 "component_library_creator")
-    component_library_object = component_library_target_class(input_dict['ComponentLibrary']['ComponentLibraryFile'])
+    component_library_object = component_library_target_class(f"{folder_name}/{input_dict['ComponentLibrary']['ComponentLibraryFile']}")
     
     return component_library_object.form_library()
 
-def create_system(input_dict: dict) -> System:
+def create_system(folder_name: str, input_dict: dict) -> System:
     """Creates a system object using the input dictionary.
 
     Args:
+        folder_name (str): The name of the folder containing the system configuration files.
         input_dict (dict): The input dictionary containing System configuration.
 
     Returns:
         System: The created system object.
     """
     # Form the component library dict using the input dictionary.
-    component_library = form_component_library(input_dict)
+    component_library = form_component_library(folder_name, input_dict)
 
     # Read the system configuration file.
-    system_configuration = read_json_file(input_dict['System']['SystemConfigurationFile'])
+    system_configuration = read_json_file(f"{folder_name}/{input_dict['System']['SystemConfigurationFile']}")
     
     # Extract the target SystemCreator class from the input dictionary and instantiate it.
     system_creator_target_class = get_class(input_dict['System']['SystemCreatorFileName'], input_dict['System']['SystemCreatorClassName'], 'system_creator')  
@@ -45,19 +47,20 @@ def create_system(input_dict: dict) -> System:
     system.create_system()
     return system
 
-def run(main_file: str) -> System:
+def run(folder_name: str, main_file_name: str) -> System:
     """Runs the resilience assessment for the system.
 
     Args:
-        main_file (str): The name of the main JSON configuration file.
+        folder_name (str): The name of the folder containing the main JSON configuration file.
+        main_file_name (str): The name of the main JSON configuration file.
 
     Returns:
         System: The system object after running the resilience assessment.
     """
     # Read the main JSON configuration file and obtain the input dictionary.
-    input_dict = read_json_file(main_file)    
+    input_dict = read_json_file(f"{folder_name}/{main_file_name}")    
     # Create the system object using the input dictionary.
-    system = create_system(input_dict)
+    system = create_system(folder_name, input_dict)
     # Start the resilience assessment for the system.
     system.start_resilience_assessment()
     # Return the system object.

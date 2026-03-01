@@ -1,6 +1,6 @@
 ; Filename: /Users/nikola/pyrecodes/Example 5/water_distribution_network/waterNetwork.inp
 ; WNTR: 1.1.0.1.2
-; Created: 2025-01-30 10:54:13
+; Created: 2026-03-01 20:40:57
 [TITLE]
 
 [JUNCTIONS]
@@ -1439,7 +1439,6 @@
  SANTA_CLARA_39_breakB_1               0               0                            ;
  PACIFIC_30_breakA_1                0               0                            ;
  PACIFIC_30_breakB_1                0               0                            ;
- LINCOLN_44_leak_1                  0               0                            ;
  KINGS_1_breakA_1                   0               0                            ;
  KINGS_1_breakB_1                   0               0                            ;
  HAIGHT_1_breakA_1                  0               0                            ;
@@ -1460,7 +1459,6 @@
  SANTA_CLARA_39_breakB_1_nn               0                            ;
  PACIFIC_30_breakA_1_nn               0                            ;
  PACIFIC_30_breakB_1_nn               0                            ;
- LINCOLN_44_leak_1_nn               0                            ;
  KINGS_1_breakA_1_nn                0                            ;
  KINGS_1_breakB_1_nn                0                            ;
  HAIGHT_1_breakA_1_nn               0                            ;
@@ -2527,7 +2525,7 @@
  LINCOLN_41           node_1177            node_738                309.59105958              12             100               0                 Open   ;
  LINCOLN_42           node_6               node_14                 320.48545449              12             100               0                 Open   ;
  LINCOLN_43           node_14              node_674                532.88489791              12             100               0                 Open   ;
- LINCOLN_44           node_950             LINCOLN_44_leak_1        106.1100986              12             100               0                 Open   ;
+ LINCOLN_44           node_950             node_429                424.44039439              12             100               0                 Open   ;
  LINCOLN_45           node_1194            node_763                940.64204635              12             100               0                 Open   ;
  LINCOLN_46           node_763             node_6                  620.17457486              12             100               0                 Open   ;
  LINCOLN_47           node_1300            node_1194               855.44635286              12             100               0                 Open   ;
@@ -3500,7 +3498,6 @@
  TAYLOR_3_Break_1     TAYLOR_3_breakB_1    node_714                 660.5098595              12             100               0                 Open   ;
  SANTA_CLARA_39_Break_1 SANTA_CLARA_39_breakB_1 node_992                510.22058483              12             100               0                 Open   ;
  PACIFIC_30_Break_1   PACIFIC_30_breakB_1  node_1128               214.19087509               6             100               0                 Open   ;
- LINCOLN_44_leak_B_1  LINCOLN_44_leak_1    node_429                318.33029579              12             100               0                 Open   ;
  KINGS_1_Break_1      KINGS_1_breakB_1     node_1168               192.35568889               6             100               0                 Open   ;
  HAIGHT_1_Break_1     HAIGHT_1_breakB_1    node_650                936.40164273              12             100               0                 Open   ;
  CROWN_Break_1        CROWN_breakB_1       node_998                427.25249869               6             100               0                 Open   ;
@@ -3511,7 +3508,6 @@
  SANTA_CLARA_39_breakB_1-rlk SANTA_CLARA_39_breakB_1 SANTA_CLARA_39_breakB_1_nn     3.280839895              12         1000000               1                   CV   ;
  PACIFIC_30_breakA_1-rlk PACIFIC_30_breakA_1  PACIFIC_30_breakA_1_nn     3.280839895               6         1000000               1                   CV   ;
  PACIFIC_30_breakB_1-rlk PACIFIC_30_breakB_1  PACIFIC_30_breakB_1_nn     3.280839895               6         1000000               1                   CV   ;
- LINCOLN_44_leak_1-rlk LINCOLN_44_leak_1    LINCOLN_44_leak_1_nn     3.280839895     2.487545596         1000000               1                   CV   ;
  KINGS_1_breakA_1-rlk KINGS_1_breakA_1     KINGS_1_breakA_1_nn      3.280839895               6         1000000               1                   CV   ;
  KINGS_1_breakB_1-rlk KINGS_1_breakB_1     KINGS_1_breakB_1_nn      3.280839895               6         1000000               1                   CV   ;
  HAIGHT_1_breakA_1-rlk HAIGHT_1_breakA_1    HAIGHT_1_breakA_1_nn     3.280839895              12         1000000               1                   CV   ;
@@ -5048,7 +5044,6 @@ SANTA_CLARA_39_breakA_1       -122.289666667         37.774833333
 SANTA_CLARA_39_breakB_1       -122.289666667         37.774833333
 PACIFIC_30_breakA_1       -122.289750000         37.776000000
 PACIFIC_30_breakB_1       -122.289750000         37.776000000
-LINCOLN_44_leak_1       -122.281750000         37.775000000
 KINGS_1_breakA_1       -122.280750000         37.769000000
 KINGS_1_breakB_1       -122.280750000         37.769000000
 HAIGHT_1_breakA_1       -122.285600000         37.774000000
@@ -5063,7 +5058,6 @@ SANTA_CLARA_39_breakA_1_nn       -121.289666667         38.774833333
 SANTA_CLARA_39_breakB_1_nn       -121.289666667         38.774833333
 PACIFIC_30_breakA_1_nn       -121.289750000         38.776000000
 PACIFIC_30_breakB_1_nn       -121.289750000         38.776000000
-LINCOLN_44_leak_1_nn       -121.281750000         38.775000000
 KINGS_1_breakA_1_nn       -121.280750000         38.769000000
 KINGS_1_breakB_1_nn       -121.280750000         38.769000000
 HAIGHT_1_breakA_1_nn       -121.285600000         38.774000000

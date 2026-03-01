@@ -1,6 +1,6 @@
 ; Filename: /Users/nikola/pyrecodes/Example 5/water_distribution_network/waterNetwork.inp
 ; WNTR: 1.1.0.1.2
-; Created: 2025-01-30 10:54:29
+; Created: 2026-03-01 20:41:06
 [TITLE]
 
 [JUNCTIONS]
@@ -1433,16 +1433,12 @@
  node_1428                          0               0                            ;
  node_1429                          0    3.2465677873                            ;
  node_1430                          0    3.2465677873                            ;
- SANTA_CLARA_39_breakA_1               0               0                            ;
- SANTA_CLARA_39_breakB_1               0               0                            ;
- PACIFIC_30_breakA_1                0               0                            ;
- PACIFIC_30_breakB_1                0               0                            ;
+ TAYLOR_3_breakA_1                  0               0                            ;
+ TAYLOR_3_breakB_1                  0               0                            ;
  KINGS_1_breakA_1                   0               0                            ;
  KINGS_1_breakB_1                   0               0                            ;
  HAIGHT_1_breakA_1                  0               0                            ;
  HAIGHT_1_breakB_1                  0               0                            ;
- CROWN_breakA_1                     0               0                            ;
- CROWN_breakB_1                     0               0                            ;
  CENTRAL_36_breakA_1                0               0                            ;
  CENTRAL_36_breakB_1                0               0                            ;
 
@@ -1451,16 +1447,12 @@
  res_1                            164                            ;
  res_2                   164.04199475                            ;
  res_3                   164.04199475                            ;
- SANTA_CLARA_39_breakA_1_nn               0                            ;
- SANTA_CLARA_39_breakB_1_nn               0                            ;
- PACIFIC_30_breakA_1_nn               0                            ;
- PACIFIC_30_breakB_1_nn               0                            ;
+ TAYLOR_3_breakA_1_nn               0                            ;
+ TAYLOR_3_breakB_1_nn               0                            ;
  KINGS_1_breakA_1_nn                0                            ;
  KINGS_1_breakB_1_nn                0                            ;
  HAIGHT_1_breakA_1_nn               0                            ;
  HAIGHT_1_breakB_1_nn               0                            ;
- CROWN_breakA_1_nn                  0                            ;
- CROWN_breakB_1_nn                  0                            ;
  CENTRAL_36_breakA_1_nn               0                            ;
  CENTRAL_36_breakB_1_nn               0                            ;
 
@@ -2006,7 +1998,7 @@
  CRIST                node_894             node_101                473.76775276               6             100               0                 Open   ;
  CROLLS_GARDEN        node_591             node_590                268.89497091               6             100               0                 Open   ;
  CROLLS_GARDEN_1      node_590             node_617                427.09569398               6             100               0                 Open   ;
- CROWN                node_1167            CROWN_breakA_1          85.450499738               6             100               0                 Open   ;
+ CROWN                node_1167            node_998                512.70299843               6             100               0                 Open   ;
  CROWN_1              node_1170            node_1167               354.36763674               6             100               0                 Open   ;
  CROWN_2              node_1171            node_1170               296.55526882               6             100               0                 Open   ;
  CRUISER              node_1279            node_1280               151.26979481               6             100               0                 Open   ;
@@ -2825,7 +2817,7 @@
  PACIFIC_28           node_160             node_847                297.63184635               6             100               0                 Open   ;
  PACIFIC_29           node_847             node_422                679.27377342               6             100               0                 Open   ;
  PACIFIC_3            node_200             node_201                 37.24096595               6             100               0                 Open   ;
- PACIFIC_30           node_201             PACIFIC_30_breakA_1     71.396958363               6             100               0                 Open   ;
+ PACIFIC_30           node_201             node_1128               285.58783345               6             100               0                 Open   ;
  PACIFIC_31           node_308             node_131                441.19113993               6             100               0                 Open   ;
  PACIFIC_32           node_670             node_112                 161.2409207               6             100               0                 Open   ;
  PACIFIC_33           node_976             node_961                750.31759919               6             100               0                 Open   ;
@@ -3058,7 +3050,7 @@
  SANTA_CLARA_36       node_483             node_62                 316.47783596              12             100               0                 Open   ;
  SANTA_CLARA_37       node_62              node_244                292.32112918              12             100               0                 Open   ;
  SANTA_CLARA_38       node_244             node_99                 621.27461266              12             100               0                 Open   ;
- SANTA_CLARA_39       node_760             SANTA_CLARA_39_breakA_1    102.04411697              12             100               0                 Open   ;
+ SANTA_CLARA_39       node_760             node_992                612.26470179              12             100               0                 Open   ;
  SANTA_CLARA_4        node_665             node_666                516.12511795              12             100               0                 Open   ;
  SANTA_CLARA_40       node_667             node_461                557.44604567              12             100               0                 Open   ;
  SANTA_CLARA_41       node_461             node_983                147.72903148              12             100               0                 Open   ;
@@ -3233,7 +3225,7 @@
  TAYLOR               node_78              node_79                 660.14905225              12             100               0                 Open   ;
  TAYLOR_1             node_79              node_559                 646.8263781              12             100               0                 Open   ;
  TAYLOR_2             node_559             node_560                707.72488433              12             100               0                 Open   ;
- TAYLOR_3             node_713             node_714                754.86841086              12             100               0                 Open   ;
+ TAYLOR_3             node_713             TAYLOR_3_breakA_1       94.358551358              12             100               0                 Open   ;
  TAYLOR_4             node_783             node_784                 853.0995693              12             100               0                 Open   ;
  TAYLOR_5             node_840             node_88                 623.44941919              12             100               0                 Open   ;
  TAYLOR_6             node_88              node_791                1045.8824685              12             100               0                 Open   ;
@@ -3491,22 +3483,16 @@
  from_res_1           res_1                node_1                   32.80839895    944.88188976             100               0                   CV   ;
  from_res_2           res_2                node_685                 32.80839895    472.44094488             100               0                   CV   ;
  from_res_3           res_3                node_8                   32.80839895    629.92125984             100               0                   CV   ;
- SANTA_CLARA_39_Break_1 SANTA_CLARA_39_breakB_1 node_992                510.22058483              12             100               0                 Open   ;
- PACIFIC_30_Break_1   PACIFIC_30_breakB_1  node_1128               214.19087509               6             100               0                 Open   ;
+ TAYLOR_3_Break_1     TAYLOR_3_breakB_1    node_714                 660.5098595              12             100               0                 Open   ;
  KINGS_1_Break_1      KINGS_1_breakB_1     node_1168               192.35568889               6             100               0                 Open   ;
  HAIGHT_1_Break_1     HAIGHT_1_breakB_1    node_650                936.40164273              12             100               0                 Open   ;
- CROWN_Break_1        CROWN_breakB_1       node_998                427.25249869               6             100               0                 Open   ;
  CENTRAL_36_Break_1   CENTRAL_36_breakB_1  node_85                 351.30296279              16             100               0                 Open   ;
- SANTA_CLARA_39_breakA_1-rlk SANTA_CLARA_39_breakA_1 SANTA_CLARA_39_breakA_1_nn     3.280839895              12         1000000               1                   CV   ;
- SANTA_CLARA_39_breakB_1-rlk SANTA_CLARA_39_breakB_1 SANTA_CLARA_39_breakB_1_nn     3.280839895              12         1000000               1                   CV   ;
- PACIFIC_30_breakA_1-rlk PACIFIC_30_breakA_1  PACIFIC_30_breakA_1_nn     3.280839895               6         1000000               1                   CV   ;
- PACIFIC_30_breakB_1-rlk PACIFIC_30_breakB_1  PACIFIC_30_breakB_1_nn     3.280839895               6         1000000               1                   CV   ;
+ TAYLOR_3_breakA_1-rlk TAYLOR_3_breakA_1    TAYLOR_3_breakA_1_nn     3.280839895              12         1000000               1                   CV   ;
+ TAYLOR_3_breakB_1-rlk TAYLOR_3_breakB_1    TAYLOR_3_breakB_1_nn     3.280839895              12         1000000               1                   CV   ;
  KINGS_1_breakA_1-rlk KINGS_1_breakA_1     KINGS_1_breakA_1_nn      3.280839895               6         1000000               1                   CV   ;
  KINGS_1_breakB_1-rlk KINGS_1_breakB_1     KINGS_1_breakB_1_nn      3.280839895               6         1000000               1                   CV   ;
  HAIGHT_1_breakA_1-rlk HAIGHT_1_breakA_1    HAIGHT_1_breakA_1_nn     3.280839895              12         1000000               1                   CV   ;
  HAIGHT_1_breakB_1-rlk HAIGHT_1_breakB_1    HAIGHT_1_breakB_1_nn     3.280839895              12         1000000               1                   CV   ;
- CROWN_breakA_1-rlk   CROWN_breakA_1       CROWN_breakA_1_nn        3.280839895               6         1000000               1                   CV   ;
- CROWN_breakB_1-rlk   CROWN_breakB_1       CROWN_breakB_1_nn        3.280839895               6         1000000               1                   CV   ;
  CENTRAL_36_breakA_1-rlk CENTRAL_36_breakA_1  CENTRAL_36_breakA_1_nn     3.280839895              16         1000000               1                   CV   ;
  CENTRAL_36_breakB_1-rlk CENTRAL_36_breakB_1  CENTRAL_36_breakB_1_nn     3.280839895              16         1000000               1                   CV   ;
 
@@ -5031,28 +5017,20 @@ node_1430        -122.244000000         37.775000000
 res_1            -122.273000000         37.788000000
 res_2            -122.234000000         37.771000000
 res_3            -122.231000000         37.769000000
-SANTA_CLARA_39_breakA_1       -122.289666667         37.774833333
-SANTA_CLARA_39_breakB_1       -122.289666667         37.774833333
-PACIFIC_30_breakA_1       -122.289750000         37.776000000
-PACIFIC_30_breakB_1       -122.289750000         37.776000000
+TAYLOR_3_breakA_1       -122.278750000         37.772000000
+TAYLOR_3_breakB_1       -122.278750000         37.772000000
 KINGS_1_breakA_1       -122.280750000         37.769000000
 KINGS_1_breakB_1       -122.280750000         37.769000000
 HAIGHT_1_breakA_1       -122.285600000         37.774000000
 HAIGHT_1_breakB_1       -122.285600000         37.774000000
-CROWN_breakA_1       -122.281000000         37.770333333
-CROWN_breakB_1       -122.281000000         37.770333333
 CENTRAL_36_breakA_1       -122.280500000         37.772000000
 CENTRAL_36_breakB_1       -122.280500000         37.772000000
-SANTA_CLARA_39_breakA_1_nn       -121.289666667         38.774833333
-SANTA_CLARA_39_breakB_1_nn       -121.289666667         38.774833333
-PACIFIC_30_breakA_1_nn       -121.289750000         38.776000000
-PACIFIC_30_breakB_1_nn       -121.289750000         38.776000000
+TAYLOR_3_breakA_1_nn       -121.278750000         38.772000000
+TAYLOR_3_breakB_1_nn       -121.278750000         38.772000000
 KINGS_1_breakA_1_nn       -121.280750000         38.769000000
 KINGS_1_breakB_1_nn       -121.280750000         38.769000000
 HAIGHT_1_breakA_1_nn       -121.285600000         38.774000000
 HAIGHT_1_breakB_1_nn       -121.285600000         38.774000000
-CROWN_breakA_1_nn       -121.281000000         38.770333333
-CROWN_breakB_1_nn       -121.281000000         38.770333333
 CENTRAL_36_breakA_1_nn       -121.280500000         38.772000000
 CENTRAL_36_breakB_1_nn       -121.280500000         38.772000000
 

@@ -22,6 +22,7 @@ class ConcreteRecoveryActivity(RecoveryActivity):
         self.demand_met = {}
         self.demand = {}
         self.preceding_activities_finished = False
+        self.preceding_activities_finished_time_step = None
 
     def set_name(self, name: str) -> None:
         """
@@ -84,14 +85,17 @@ class ConcreteRecoveryActivity(RecoveryActivity):
         """
         self.preceding_activities = preceding_activities
 
-    def set_preceding_activities_finished(self, finished: bool) -> None:
+    def set_preceding_activities_finished(self, finished: bool, time_step: int) -> None:
         """
         Set the status of preceding activities.
 
         Args:
             finished (bool): True if all preceding activities are finished.
+            time_step (int): Current time step
         """
         self.preceding_activities_finished = finished
+        if finished and self.preceding_activities_finished_time_step is None:
+            self.preceding_activities_finished_time_step = time_step
 
     def set_demand(self, resources: list) -> None:
         """

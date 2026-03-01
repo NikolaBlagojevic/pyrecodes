@@ -15,7 +15,7 @@ class ComponentLevelRecoveryActivitiesModel(AbstractRecoveryModel):
         recovery_activities (dict): A dictionary of recovery activities parameters.
         REPAIR_ACTIVITY_NAME (str): The name of the repair activity - one that actually reduces the damage level.
     """
-
+  
     damage_level: float
     damage_to_functionality_relation: relation.Relation
     recovery_activities: dict
@@ -31,7 +31,7 @@ class ComponentLevelRecoveryActivitiesModel(AbstractRecoveryModel):
         self.recovery_activities = {}
         self.REPAIR_ACTIVITY_NAME = REPAIR_ACTIVITY_NAME
         self.set_parameters(recovery_model_parameters['Parameters'])
-        self.set_damage_functionality(recovery_model_parameters['DamageFunctionalityRelation'])        
+        self.set_damage_functionality(recovery_model_parameters['DamageFunctionalityRelation'])      
 
     def set_parameters(self, parameters: dict) -> None:
         """
@@ -86,21 +86,21 @@ class ComponentLevelRecoveryActivitiesModel(AbstractRecoveryModel):
         """
         if time_step in self.recovery_time_steps:
             start_time_step, end_time_step = self.get_time_step_length(time_step)
-            for time_step in range(start_time_step, end_time_step):
-                self.check_preceding_activities()
+            for time_step_to_recover in range(start_time_step, end_time_step):
+                self.check_preceding_activities(time_step_to_recover)
                 for recovery_activity_object in self.recovery_activities.values():
                     if recovery_activity_object.preceding_activities_finished and self.get_damage_level() > 0:
-                        recovery_activity_object.recover(time_step)
-
-    def check_preceding_activities(self) -> None:
+                        recovery_activity_object.recover(time_step_to_recover)
+                        
+    def check_preceding_activities(self, time_step) -> None:
         """
         Check if preceding activities are finished for all recovery activities and set the preceding_activities_finished attribute accordingly.
         """
         for recovery_activity_object in self.recovery_activities.values():
             if self.preceding_activities_finished(recovery_activity_object):
-                recovery_activity_object.set_preceding_activities_finished(True)
+                recovery_activity_object.set_preceding_activities_finished(True, time_step)
             else:
-                recovery_activity_object.set_preceding_activities_finished(False)
+                recovery_activity_object.set_preceding_activities_finished(False, time_step)
 
     def preceding_activities_finished(self, recovery_activity_object: RecoveryActivity) -> bool:
         """
@@ -125,6 +125,14 @@ class ComponentLevelRecoveryActivitiesModel(AbstractRecoveryModel):
             float: The damage level (between 0 and 1).
         """
         return 1 - self.recovery_activities[self.REPAIR_ACTIVITY_NAME].level
+    
+    def demand_is_active(self, recovery_activity: RecoveryActivity) -> bool:
+        """
+        Check if the demand for a recovery activity is active at the current time step. Demand is active if the preceding activities are finished, the damage level is greater than 0, and the activity is not finished.
+
+       """
+        return self.preceding_activities_finished(recovery_activity) and self.get_damage_level() > 0 and not (
+            recovery_activity.activity_finished())     
 
     def get_demand(self) -> dict:
         """
@@ -135,8 +143,7 @@ class ComponentLevelRecoveryActivitiesModel(AbstractRecoveryModel):
         """
         resource_dict = {}
         for recovery_activity in self.recovery_activities.values():
-            if self.preceding_activities_finished(recovery_activity) and self.get_damage_level() > 0 and not (
-                    recovery_activity.activity_finished()):
+            if self.demand_is_active(recovery_activity):
                 recovery_activity_demand = recovery_activity.get_demand()
                 if len(recovery_activity_demand) > 0:
                     resource_dict = {**resource_dict, **recovery_activity_demand}
@@ -159,14 +166,14 @@ class ComponentLevelRecoveryActivitiesModel(AbstractRecoveryModel):
             percent_of_met_demand (float): The percent of met demand (between 0 and 1).:
         
         TODO:
-            Add recovery activity name as input parameter. This will allow the same resource to be demanded by multiple recovery activities. Not possible at the moment.
+            Add recovery activity name as input parameter. This will allow the same resource to be demanded by multiple recovery activities at the same time. Not possible at the moment. With the demand active implemented, two activities can demand the same resource but only one will be active at a time.
         """
         recovery_activity_to_update = self.find_recovery_activity_that_demands_the_resource(resource_name)
         recovery_activity_to_update.set_demand_met(resource_name, percent_of_met_demand)
 
     def find_recovery_activity_that_demands_the_resource(self, resource_name: str) -> RecoveryActivity:
         """
-        Find the recovery activity that demands the resource resource_name.
+        Find the recovery activity that demands the resource resource_name at the current time step.
 
         Args:
             resource_name (str): The name of the resource.
@@ -178,6 +185,11 @@ class ComponentLevelRecoveryActivitiesModel(AbstractRecoveryModel):
             ValueError: If no recovery activity demands the resource.
         """
         for recovery_activity in self.recovery_activities.values():
-            if resource_name in recovery_activity.demand:
+            if self.demand_is_active(recovery_activity):
+                recovery_activity_demand = recovery_activity.get_demand()
+            else:
+                recovery_activity_demand = {}
+                
+            if resource_name in recovery_activity_demand and recovery_activity_demand[resource_name].current_amount > 0:
                 return recovery_activity
         raise ValueError('No recovery activity demands the resource: ' + resource_name)

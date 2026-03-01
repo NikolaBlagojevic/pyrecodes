@@ -5,13 +5,13 @@ from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComp
 
 class TestBridgeServiceDistributionModel:
 
-    MAIN_FILE = './tests/test_inputs/test_inputs_VirtualCommunity_Main.json'
+    FOLDER_NAME = './tests/test_inputs'
+    MAIN_FILE = 'test_inputs_VirtualCommunity_Main.json'
 
     @pytest.fixture
     def system(self):
-        input_dict = read_json_file(self.MAIN_FILE)
-        system = main.create_system(input_dict)
-        return system
+        input_dict = read_json_file(f'{self.FOLDER_NAME}/{self.MAIN_FILE}')
+        return main.create_system(self.FOLDER_NAME, input_dict)
     
     @pytest.fixture
     def distribution_models(self, system):

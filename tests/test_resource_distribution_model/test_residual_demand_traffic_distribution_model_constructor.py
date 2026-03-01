@@ -3,15 +3,15 @@ from pyrecodes import main
 from pyrecodes.utilities import read_json_file
 from pyrecodes.resource_distribution_model.residual_demand_traffic_distribution_model_constructor import ResidualDemandTrafficDistributionModelConstructor
 from pyrecodes.resource_distribution_model.residual_demand_traffic_distribution_model import ResidualDemandTrafficDistributionModel
-from tests.test_resource_distribution_model.test_resource_distribution_model_inputs import MAIN_FILE_RESIDUAL_DEMAND, RESOURCE_NAME_RESIDUAL_DEMAND, RESOURCE_PARAMETERS_RESIDUAL_DEMAND, INITIAL_R2D_DICT_RESIDUAL_DEMAND
+from tests.test_resource_distribution_model.test_resource_distribution_model_inputs import FOLDER_NAME, MAIN_FILE_RESIDUAL_DEMAND, RESOURCE_NAME_RESIDUAL_DEMAND, RESOURCE_PARAMETERS_RESIDUAL_DEMAND, INITIAL_R2D_DICT_RESIDUAL_DEMAND
 from residual_demand_API.transportation import pyrecodes_residual_demand
 
 class TestResidualDemandTrafficDistributionModelConstructor:
 
     @pytest.fixture
     def system(self):
-        input_dict = read_json_file(MAIN_FILE_RESIDUAL_DEMAND)
-        return main.create_system(input_dict)
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE_RESIDUAL_DEMAND}')
+        return main.create_system(FOLDER_NAME, input_dict)
 
     @pytest.fixture
     def residual_demand_traffic_distribution_model_constructor(self):

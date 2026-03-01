@@ -5,8 +5,6 @@ from pyrecodes.component_configurator.tier1_interface_configurator import Tier1I
 from test_component_configurator_inputs import SYSTEM_LEVEL_DATA_DICT, RECOVERY_TIME_STEPPING_RULE, INTERFACE_PARAMETERS_IN_COMPONENT_LIBRARY, INTERFACE_PARAMETERS_IN_SYSTEM_CONFIGURATION
 from pyrecodes.component.infrastructure_interface import InfrastructureInterface
 
-
-
 class TestTier1InterfaceConfigurator:
 
     @pytest.fixture()

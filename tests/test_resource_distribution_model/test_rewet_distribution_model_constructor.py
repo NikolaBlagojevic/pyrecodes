@@ -4,14 +4,14 @@ from pyrecodes.utilities import read_json_file
 from pyrecodes.resource_distribution_model.rewet_distribution_model_constructor import REWETDistributionModelConstructor
 from pyrecodes.resource_distribution_model.rewet_distribution_model import REWETDistributionModel
 from rewet_API.rewet_pyrecodes_api import REWETPyReCoDes
-from test_resource_distribution_model_inputs import MAIN_FILE_REWET, RESOURCE_NAME_REWET, RESOURCE_PARAMETERS_REWET, INITIAL_R2D_DICT_REWET
+from test_resource_distribution_model_inputs import FOLDER_NAME, MAIN_FILE_REWET, RESOURCE_NAME_REWET, RESOURCE_PARAMETERS_REWET, INITIAL_R2D_DICT_REWET
 
 class TestREWETDistributionModelConstructor:
 
     @pytest.fixture
     def system(self):
-        input_dict = read_json_file(MAIN_FILE_REWET)
-        return main.create_system(input_dict)
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE_REWET}')
+        return main.create_system(FOLDER_NAME, input_dict)
 
     @pytest.fixture
     def rewet_distribution_model_constructor(self):

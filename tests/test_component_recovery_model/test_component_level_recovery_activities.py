@@ -181,7 +181,8 @@ class TestComponentLevelRecoveryActivitiesModel_SingleActivity:
                             abs_tol=1e-10) and recovery_model.recovery_activities['Repair'].time_steps == list(range(10))
 
     def test_check_preceding_activities(self, recovery_model: AbstractRecoveryModel):
-        recovery_model.check_preceding_activities()
+        time_step = 0
+        recovery_model.check_preceding_activities(time_step)
         assert recovery_model.recovery_activities['Repair'].preceding_activities_finished == True
 
     def test_preceding_activities_finished(self, recovery_model: AbstractRecoveryModel):
@@ -211,6 +212,9 @@ class TestComponentLevelRecoveryActivitiesModel_SingleActivity:
         assert recovery_model.recovery_activities['Repair'].demand_met['RepairCrew'] == 1.0
     
     def test_set_met_demand_for_recovery_activities(self, recovery_model: AbstractRecoveryModel):
+        # activate the demand first
+        recovery_model.recovery_activities['Repair'].preceding_activities_finished = True
+        recovery_model.recovery_activities[recovery_model.REPAIR_ACTIVITY_NAME].level = 0.5
         recovery_model.set_met_demand_for_recovery_activities('RepairCrew', 0.5)
         assert recovery_model.recovery_activities['Repair'].demand_met['RepairCrew'] == 0.5
 
@@ -219,10 +223,18 @@ class TestComponentLevelRecoveryActivitiesModel_SingleActivity:
             recovery_model.set_met_demand_for_recovery_activities('Inspectors', 0.5)
     
     def test_find_recovery_activity_that_demands_the_resource(self, recovery_model: AbstractRecoveryModel):
+        recovery_model.recovery_activities['Repair'].preceding_activities_finished = True
+        recovery_model.recovery_activities[recovery_model.REPAIR_ACTIVITY_NAME].level = 0.5
         recovery_activity = recovery_model.find_recovery_activity_that_demands_the_resource('RepairCrew')
         assert recovery_activity.name == 'Repair'
         with pytest.raises(ValueError):
             recovery_model.find_recovery_activity_that_demands_the_resource('SomeResource')
+
+    def test_set_recovery_time_steps(self, recovery_model: AbstractRecoveryModel):
+        recovery_model.set_recovery_time_steps([0, 1, 2, 3])
+        assert recovery_model.recovery_time_steps == [0, 1, 2, 3]
+        recovery_model.set_recovery_time_steps(RECOVERY_TIME_STEPS_DENSE)
+        assert recovery_model.recovery_time_steps == RECOVERY_TIME_STEPS_DENSE
 
 class TestComponentLevelRecoveryActivitiesModel_MultipleActivities:
     
@@ -294,19 +306,20 @@ class TestComponentLevelRecoveryActivitiesModel_MultipleActivities:
         assert math.isclose(recovery_model.recovery_activities['Repair'].rate, 0.5/10)
 
     def test_check_preceding_activities(self, recovery_model: AbstractRecoveryModel):
-        recovery_model.check_preceding_activities()
+        time_step = 0
+        recovery_model.check_preceding_activities(time_step)
         target_bools = [True, True, True]
         for target_bool, recovery_activity in zip(target_bools, recovery_model.recovery_activities.values()):
             assert recovery_activity.preceding_activities_finished == target_bool
 
         recovery_model.set_initial_damage_level(0.5)
-        recovery_model.check_preceding_activities()
+        recovery_model.check_preceding_activities(time_step)
         target_bools = [True, False, False]
         for target_bool, recovery_activity in zip(target_bools, recovery_model.recovery_activities.values()):
             assert recovery_activity.preceding_activities_finished == target_bool
 
         recovery_model.recovery_activities['RapidInspection'].level = 1.0
-        recovery_model.check_preceding_activities()
+        recovery_model.check_preceding_activities(time_step)
         target_bools = [True, True, False]
         for target_bool, recovery_activity in zip(target_bools, recovery_model.recovery_activities.values()):
             assert recovery_activity.preceding_activities_finished == target_bool
@@ -370,25 +383,65 @@ class TestComponentLevelRecoveryActivitiesModel_MultipleActivities:
         recovery_model.set_activities_demand_to_met()
         assert all([list(recovery_activity.demand_met.values())[0] == 1.0 for recovery_activity in
                               recovery_model.recovery_activities.values()])
+        
+    def test_demand_is_active(self, recovery_model: AbstractRecoveryModel):
+        assert recovery_model.demand_is_active(recovery_model.recovery_activities['RapidInspection']) == False
+        assert recovery_model.demand_is_active(recovery_model.recovery_activities['ContractorMobilization']) == False
+        assert recovery_model.demand_is_active(recovery_model.recovery_activities['Repair']) == False
+
+        recovery_model.set_initial_damage_level(0.5)
+        assert recovery_model.demand_is_active(recovery_model.recovery_activities['RapidInspection']) == True
+        assert recovery_model.demand_is_active(recovery_model.recovery_activities['ContractorMobilization']) == False
+        assert recovery_model.demand_is_active(recovery_model.recovery_activities['Repair']) == False
+
+        recovery_model.recovery_activities['RapidInspection'].level = 1.0
+        assert recovery_model.demand_is_active(recovery_model.recovery_activities['RapidInspection']) == False
+        assert recovery_model.demand_is_active(recovery_model.recovery_activities['ContractorMobilization']) == True
+        assert recovery_model.demand_is_active(recovery_model.recovery_activities['Repair']) == False
+
+        recovery_model.recovery_activities['ContractorMobilization'].level = 1.0
+        assert recovery_model.demand_is_active(recovery_model.recovery_activities['RapidInspection']) == False
+        assert recovery_model.demand_is_active(recovery_model.recovery_activities['ContractorMobilization']) == False
+        assert recovery_model.demand_is_active(recovery_model.recovery_activities['Repair']) == True
+
+        recovery_model.recovery_activities['Repair'].level = 1.0
+        assert recovery_model.demand_is_active(recovery_model.recovery_activities['RapidInspection']) == False
+        assert recovery_model.demand_is_active(recovery_model.recovery_activities['ContractorMobilization']) == False
+        assert recovery_model.demand_is_active(recovery_model.recovery_activities['Repair']) == False
 
     def test_set_met_demand_for_recovery_activities(self, recovery_model: AbstractRecoveryModel):
         assert all([list(recovery_activity.demand_met.values())[0] == 1.0 for recovery_activity in
                               recovery_model.recovery_activities.values()])
+        # activate the demand first
+        recovery_model.set_initial_damage_level(0.5)
         recovery_model.set_met_demand_for_recovery_activities('FirstResponderEngineer', 0.5)
         assert recovery_model.recovery_activities['RapidInspection'].demand_met['FirstResponderEngineer'] == 0.5
         assert recovery_model.recovery_activities['ContractorMobilization'].demand_met['Contractor'] == 1.0
         assert recovery_model.recovery_activities['Repair'].demand_met['RepairCrew'] == 1.0
+        recovery_model.recovery_activities['RapidInspection'].level = 1
         recovery_model.set_met_demand_for_recovery_activities('Contractor', 0.6)
         assert recovery_model.recovery_activities['ContractorMobilization'].demand_met['Contractor'] == 0.6
+
+        recovery_model.recovery_activities['ContractorMobilization'].level = 1.0
         recovery_model.set_met_demand_for_recovery_activities('RepairCrew', 0.4)
         assert recovery_model.recovery_activities['Repair'].demand_met['RepairCrew'] == 0.4
 
     def test_find_recovery_activity_that_demands_the_resource(self,
                                                               recovery_model: AbstractRecoveryModel):
+        # activate the demand first
+        recovery_model.set_initial_damage_level(0.5)
+        recovery_model.recovery_activities['RapidInspection'].level = 1.0
         recovery_activity = recovery_model.find_recovery_activity_that_demands_the_resource('Contractor')
         assert recovery_activity.name == 'ContractorMobilization'
+
+        recovery_model.recovery_activities['ContractorMobilization'].level = 1.0
         recovery_activity = recovery_model.find_recovery_activity_that_demands_the_resource('RepairCrew')
         assert recovery_activity.name == 'Repair'
+
+    def test_set_wrong_unmet_demand_for_recovery_activities(self, recovery_model: AbstractRecoveryModel):
+        recovery_model.set_initial_damage_level(0.5)
+        with pytest.raises(ValueError):
+            recovery_model.set_met_demand_for_recovery_activities('NonExistentResource', 0.5)
 
     def test_recover_no_damage(self, recovery_model: AbstractRecoveryModel):
         for time_step in range(10):

@@ -3,14 +3,15 @@ from pyrecodes import main
 from pyrecodes.utilities import read_json_file
 from pyrecodes.system.recovery_target_checker import NoDamageRecoveryTargetChecker
 
-MAIN_FILE = './tests/test_inputs/test_inputs_VirtualCommunity_Main.json'
+FOLDER_NAME = './tests/test_inputs'
+MAIN_FILE = 'test_inputs_VirtualCommunity_Main.json'
 
 class TestNoDamageRecoveryTargetChecker:
 
     @pytest.fixture
     def system(self):
-        input_dict = read_json_file(MAIN_FILE)
-        return main.create_system(input_dict)
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
+        return main.create_system(FOLDER_NAME, input_dict)
     
     def test_recovery_target_met(self, system):
         system.time_step = system.START_TIME_STEP

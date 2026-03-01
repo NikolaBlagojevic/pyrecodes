@@ -4,14 +4,15 @@ from pyrecodes import main
 from pyrecodes.distribution_priority.component_type_priority import ComponentTypePriority
 from pyrecodes.distribution_priority.distribution_priority import DistributionPriority
 
-MAIN_FILE = './tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_Main.json'
+FOLDER_NAME = './tests/test_inputs'
+MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunity_Main.json'
 
 class TestComponentTypePriority:
 
     @pytest.fixture
     def system(self):
-        input_dict = read_json_file(MAIN_FILE)
-        return main.create_system(input_dict)
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
+        return main.create_system(FOLDER_NAME, input_dict)
     
     @pytest.fixture
     def distribution_priority(self, system):
@@ -32,3 +33,15 @@ class TestComponentTypePriority:
     
     def test_set_distribution_priority(self, distribution_priority: DistributionPriority):
         assert distribution_priority.get_component_priorities() == ([0, 4, 8], ['OperationDemand', 'OperationDemand', 'OperationDemand'])
+
+    def test_set_distribution_priority_empty_parameters(self, system):
+        dp = ComponentTypePriority('Resource 1', [], system.components)
+        assert dp.get_component_priorities() == ([], [])
+
+    def test_set_distribution_priority_recovery_demand(self, distribution_priority: DistributionPriority):
+        distribution_priority.set_distribution_priority(
+            [['ElectricPowerPlant', 'RecoveryDemand']]
+        )
+        ids, demand_types = distribution_priority.get_component_priorities()
+        assert ids == [0]
+        assert demand_types == ['RecoveryDemand']

@@ -2,14 +2,14 @@ import pytest
 from pyrecodes.utilities import read_json_file
 from pyrecodes import main
 from pyrecodes.subsystem_creator.json_subsystem_creator import JSONSubsystemCreator
-from tests.test_subsystem_creator.test_subsystem_creator_inputs import MAIN_FILE, LOCALITY_CENTROID, PARAMETERS_BTS, PARAMETERS_LINKS, PARAMETERS_DIFFERENT_COMPONENTS, CONSTANTS
+from tests.test_subsystem_creator.test_subsystem_creator_inputs import FOLDER_NAME, MAIN_FILE, LOCALITY_CENTROID, PARAMETERS_BTS, PARAMETERS_LINKS, PARAMETERS_DIFFERENT_COMPONENTS, CONSTANTS
 
 class TestJSONSubsystemCreator:
 
     @pytest.fixture
     def component_library(self):
-        input_dict = read_json_file(MAIN_FILE)
-        return main.form_component_library(input_dict)
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
+        return main.form_component_library(FOLDER_NAME, input_dict)
     
     def test_create_components_in_localities(self, component_library):
         json_subsystem_creator = JSONSubsystemCreator(component_library, LOCALITY_CENTROID, PARAMETERS_BTS, constants=CONSTANTS, damage_input={})

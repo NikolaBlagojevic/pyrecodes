@@ -3,7 +3,8 @@ from pyrecodes import main
 from pyrecodes.utilities import read_json_file
 from pyrecodes.resilience_calculator.full_recovery_time_calculator import FullRecoveryTimeCalculator
 
-MAIN_FILE = './tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_Main.json'
+FOLDER_NAME = './tests/test_inputs'
+MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunity_Main.json'
 
 PARAMETERS = {} 
 
@@ -11,8 +12,8 @@ class TestReCoDeSCalculator():
 
     @pytest.fixture
     def system(self):
-        input_dict = read_json_file(MAIN_FILE)
-        return main.create_system(input_dict)
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
+        return main.create_system(FOLDER_NAME, input_dict)
 
     @pytest.fixture()
     def resilience_calculator(self) -> FullRecoveryTimeCalculator:

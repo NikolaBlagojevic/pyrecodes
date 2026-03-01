@@ -1,6 +1,7 @@
-MAIN_FILE = './tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_Main.json'
-MAIN_FILE_REWET = './tests/test_inputs/test_inputs_ThreeLocalitiesCommunityREWET_Main.json'
-MAIN_FILE_ALAMEDA = './tests/test_inputs/test_inputs_Alameda_Main.json'
+FOLDER_NAME = './tests/test_inputs'
+MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunity_Main.json'
+MAIN_FILE_REWET = 'test_inputs_ThreeLocalitiesCommunityREWET_Main.json'
+MAIN_FILE_ALAMEDA = 'test_inputs_Alameda_Main.json'
 
 LOCALITY_CENTROID = {'LocalityName': 'Locality 1', 'Coordinates': [0, 0]}
 LOCALITY_1_BOUNDING_BOX = {'LocalityName': 'Locality 1', "Coordinates": {

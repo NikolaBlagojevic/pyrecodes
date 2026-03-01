@@ -8,19 +8,20 @@ from pyrecodes.component_recovery_model.no_recovery_activity_model import NoReco
 from pyrecodes.component_recovery_model.component_level_recovery_activities_model import ComponentLevelRecoveryActivitiesModel
 from pyrecodes import main
 
-class TestR2DDamageInput:
+FOLDER_NAME = './tests/test_inputs'
+MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunityREWET_Main.json'
+DAMAGE_INPUT_PARAMETERS = {"DamageFile": "test_inputs_ThreeLocalitiesCommunity_0.json",
+                        "DistributionModelDamage": [
+                            "PotableWater"
+                        ],
+                        }
 
-    MAIN_FILE = './tests/test_inputs/test_inputs_ThreeLocalitiesCommunityREWET_Main.json'
-    DAMAGE_INPUT_PARAMETERS = {"DamageFile": "./tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_0.json",
-                            "DistributionModelDamage": [
-                                "PotableWater"
-                            ],
-                            }
+class TestR2DDamageInput:
 
     @pytest.fixture
     def system(self):
-        input_dict = read_json_file(self.MAIN_FILE)
-        return main.create_system(input_dict)
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
+        return main.create_system(FOLDER_NAME, input_dict)
 
     @pytest.fixture
     def damage_input(self, system):
@@ -44,7 +45,11 @@ class TestR2DDamageInput:
                 i += 1
 
     def test_configure_damage_file(self, damage_input):
-        pass
+        r2d_dict = damage_input.system.resources['PotableWater']['DistributionModel'].r2d_dict
+        configured = damage_input.configure_damage_file(r2d_dict)
+        for asset_type, asset_subtypes in r2d_dict.items():
+            for asset_subtype, assets in asset_subtypes.items():
+                assert set(configured[asset_type][asset_subtype].keys()) == set(assets.keys())
 
     def test_component_is_damaged(self, damage_input):
         component = StandardiReCoDeSComponent()
@@ -61,3 +66,21 @@ class TestR2DDamageInput:
         assert damage_input.component_is_interface(component) == False
         component = InfrastructureInterface()
         assert damage_input.component_is_interface(component) == True
+
+    def test_component_is_damaged_r2d_component_no_recovery(self, damage_input):
+        component = R2DPipe()
+        component.recovery_model = NoRecoveryActivityModel(
+            {'Parameters': {}, 'DamageFunctionalityRelation': {}}
+        )
+        assert damage_input.component_is_damaged(component) == False
+
+    def test_set_initial_damage(self, system, damage_input):
+        damage_input.set_initial_damage()
+        system.time_step = 1
+        system.update()
+        target_damage_levels = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0]
+        for i, component in enumerate(system.components):
+            assert component.get_damage_level() == target_damage_levels[i]
+        for component in system.components:
+            if isinstance(component, R2DPipe):
+                assert hasattr(component, 'damage_information')

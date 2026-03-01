@@ -5,7 +5,7 @@ from pyrecodes import main
 from pyrecodes.utilities import read_json_file
 from pyrecodes.resource_distribution_model.residual_demand_traffic_distribution_model_constructor import ResidualDemandTrafficDistributionModelConstructor
 from pyrecodes.resource_distribution_model.residual_demand_traffic_distribution_model import ResidualDemandTrafficDistributionModel
-from tests.test_resource_distribution_model.test_resource_distribution_model_inputs import MAIN_FILE_RESIDUAL_DEMAND, RESOURCE_NAME_RESIDUAL_DEMAND, RESOURCE_PARAMETERS_RESIDUAL_DEMAND, INITIAL_R2D_DICT_RESIDUAL_DEMAND
+from tests.test_resource_distribution_model.test_resource_distribution_model_inputs import FOLDER_NAME, MAIN_FILE_RESIDUAL_DEMAND, RESOURCE_NAME_RESIDUAL_DEMAND, RESOURCE_PARAMETERS_RESIDUAL_DEMAND, INITIAL_R2D_DICT_RESIDUAL_DEMAND
 
 UNDAMAGED_TRAVEL_TIMES = [2660.83, 2660.83, 1874.03, 1874.03]
 
@@ -13,20 +13,20 @@ class TestResidualDemandTrafficDistributionModel:
 
     @pytest.fixture
     def system(self):
-        input_dict = read_json_file(MAIN_FILE_RESIDUAL_DEMAND)
-        return main.create_system(input_dict)
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE_RESIDUAL_DEMAND}')
+        return main.create_system(FOLDER_NAME, input_dict)
 
     @pytest.fixture
     def residual_demand_traffic_distribution_model_constructor(self):
         return ResidualDemandTrafficDistributionModelConstructor()
-    
+
     @pytest.fixture
     def residual_demand_traffic_distribution_model(self, system):
         return ResidualDemandTrafficDistributionModel(RESOURCE_NAME_RESIDUAL_DEMAND, RESOURCE_PARAMETERS_RESIDUAL_DEMAND, system.components)
-    
+
     def create_damaged_system(self, main_file: str):
         input_dict = read_json_file(main_file)
-        return main.create_system(input_dict)
+        return main.create_system(FOLDER_NAME, input_dict)
     
     def test_init(self, residual_demand_traffic_distribution_model):
         assert isinstance(residual_demand_traffic_distribution_model.constructor, ResidualDemandTrafficDistributionModelConstructor)

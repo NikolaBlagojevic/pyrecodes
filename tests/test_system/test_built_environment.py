@@ -12,6 +12,7 @@ from pyrecodes.system.system import System
 
 class TestBuiltEnvironmentSystem():
 
+    FOLDER_NAME = './tests/test_inputs'
     MAIN_FILE = ''
 
     @pytest.fixture()
@@ -20,14 +21,14 @@ class TestBuiltEnvironmentSystem():
 
     @pytest.fixture()
     def system(self):
-        input_dict = read_json_file(self.MAIN_FILE)
-        system = main.create_system(input_dict)
+        input_dict = read_json_file(f'{self.FOLDER_NAME}/{self.MAIN_FILE}')
+        system = main.create_system(self.FOLDER_NAME, input_dict)
         system.time_step = 0
         return system
 
 class TestThreeLocalitiesSystem(TestBuiltEnvironmentSystem):
 
-    MAIN_FILE = './tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_Main.json'
+    MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunity_Main.json'
 
     def test_init(self, system):
         assert isinstance(system.system_configuration, dict)
@@ -123,7 +124,7 @@ class TestThreeLocalitiesSystem(TestBuiltEnvironmentSystem):
         
 class TestVirtualCommunity(TestBuiltEnvironmentSystem):
 
-    MAIN_FILE = './tests/test_inputs/test_inputs_VirtualCommunity_Main.json'
+    MAIN_FILE = 'test_inputs_VirtualCommunity_Main.json'
 
     def test_distribute_interdependent_resources(self, system):
         target_supplies = [80.0, 600.0, 495.0, 0.8, 0.24, 3600.0]

@@ -2,14 +2,14 @@ import pytest
 from pyrecodes.utilities import read_json_file
 from pyrecodes import main
 from pyrecodes.subsystem_creator.recovery_resource_suppliers_creator import RecoveryResourceSuppliersCreator
-from tests.test_subsystem_creator.test_subsystem_creator_inputs import MAIN_FILE_ALAMEDA, LOCALITY_CENTROID, PARAMETERS_ERC, PARAMETERS_ERC_2, CONSTANTS
+from tests.test_subsystem_creator.test_subsystem_creator_inputs import FOLDER_NAME, MAIN_FILE_ALAMEDA, LOCALITY_CENTROID, PARAMETERS_ERC, PARAMETERS_ERC_2, CONSTANTS
 
 class TestRecoveryResourceSuppliersCreator:
 
     @pytest.fixture
     def component_library(self):
-        input_dict = read_json_file(MAIN_FILE_ALAMEDA)
-        return main.form_component_library(input_dict)
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE_ALAMEDA}')
+        return main.form_component_library(FOLDER_NAME, input_dict)
 
     @pytest.fixture
     def recovery_resource_suppliers_creator(self, component_library):

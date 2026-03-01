@@ -78,7 +78,7 @@ class TestConcreteRecoveryActivity:
 
     def test_set_preceding_activities_finished(self,
                                                recovery_activity: ConcreteRecoveryActivity):
-        recovery_activity.set_preceding_activities_finished(True)
+        recovery_activity.set_preceding_activities_finished(True, 1)
         assert recovery_activity.preceding_activities_finished == True
 
     def test_set_demand(self, recovery_activity: ConcreteRecoveryActivity):
@@ -182,3 +182,30 @@ class TestConcreteRecoveryActivity:
         for time_step in range(5):
             recovery_activity.recover(time_step)
         assert recovery_activity.activity_finished() == True
+
+    def test_activity_finished_level_zero(self, recovery_activity: ConcreteRecoveryActivity):
+        assert recovery_activity.activity_finished() == False
+
+    def test_recover_already_finished(self, recovery_activity: ConcreteRecoveryActivity):
+        recovery_activity.set_duration({'Deterministic': {'Value': 5}})
+        recovery_activity.set_level(1.0)
+        for time_step in range(5):
+            recovery_activity.recover(time_step)
+        assert recovery_activity.level == 1.0
+        assert recovery_activity.time_steps == []
+
+    def test_set_duration_zero(self, recovery_activity: ConcreteRecoveryActivity):
+        recovery_activity.set_duration({'Deterministic': {'Value': 0}})
+        assert recovery_activity.duration == 0
+        assert recovery_activity.rate == math.inf
+
+    def test_preceding_activities_finished_time_step_recorded(self, recovery_activity: ConcreteRecoveryActivity):
+        assert recovery_activity.preceding_activities_finished_time_step is None
+        recovery_activity.set_preceding_activities_finished(True, 5)
+        assert recovery_activity.preceding_activities_finished_time_step == 5
+
+    def test_preceding_activities_finished_time_step_only_set_once(self, recovery_activity: ConcreteRecoveryActivity):
+        recovery_activity.set_preceding_activities_finished(True, 5)
+        recovery_activity.set_preceding_activities_finished(False, 6)
+        recovery_activity.set_preceding_activities_finished(True, 10)
+        assert recovery_activity.preceding_activities_finished_time_step == 5

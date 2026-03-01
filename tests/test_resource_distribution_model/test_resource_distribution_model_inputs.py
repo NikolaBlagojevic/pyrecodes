@@ -1,6 +1,7 @@
 
-MAIN_FILE_REWET = './tests/test_inputs/test_inputs_ThreeLocalitiesCommunityREWET_Main.json'
-MAIN_FILE_RESIDUAL_DEMAND = './tests/test_inputs/test_inputs_ThreeLocalitiesCommunityResidualDemand_Main.json'
+FOLDER_NAME = './tests/test_inputs'
+MAIN_FILE_REWET = 'test_inputs_ThreeLocalitiesCommunityREWET_Main.json'
+MAIN_FILE_RESIDUAL_DEMAND = 'test_inputs_ThreeLocalitiesCommunityResidualDemand_Main.json'
 RESOURCE_NAME_REWET = 'PotableWater'
 RESOURCE_NAME_RESIDUAL_DEMAND = 'TransportationService'
 RESOURCE_PARAMETERS_REWET = {

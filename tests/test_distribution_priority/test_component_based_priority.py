@@ -4,14 +4,15 @@ from pyrecodes import main
 from pyrecodes.system.system import System
 from pyrecodes.distribution_priority.component_based_priority import ComponentBasedPriority
 
-MAIN_FILE = './tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_Main.json'
+FOLDER_NAME = './tests/test_inputs'
+MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunity_Main.json'
 
 class TestComponentBasedDistributionPriority():
 
     @pytest.fixture
     def system(self):
-        input_dict = read_json_file(MAIN_FILE)
-        return main.create_system(input_dict)
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
+        return main.create_system(FOLDER_NAME, input_dict)
     
     @pytest.fixture
     def distribution_priority(self, system: System):
@@ -53,3 +54,12 @@ class TestComponentBasedDistributionPriority():
                 'DistributionModel'].priority.get_component_priorities()
             assert target_priority == component_positions
             assert all([demand_type == 'OperationDemand' for demand_type in demand_types])
+
+    def test_get_locality_id_from_string(self, distribution_priority: ComponentBasedPriority):
+        assert distribution_priority.get_locality_id_from_string(['Locality 1']) == [1]
+        assert distribution_priority.get_locality_id_from_string(['Locality 1', 'Locality 2']) == [1, 2]
+        assert distribution_priority.get_locality_id_from_string(['Locality -5']) == [-5]
+
+    def test_set_distribution_priority_empty(self, system: System):
+        dp = ComponentBasedPriority('ElectricPower', [], system.components)
+        assert dp.get_component_priorities() == ([], [])

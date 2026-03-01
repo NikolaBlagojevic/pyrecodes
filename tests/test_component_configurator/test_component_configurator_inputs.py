@@ -1,4 +1,5 @@
-MAIN_FILE = './tests/test_inputs/test_inputs_Alameda_Main.json'
+MAIN_FILE = 'test_inputs_Alameda_Main.json'
+FOLDER_NAME = './tests/test_inputs'
 SYSTEM_LEVEL_DATA_DICT = {'START_TIME_STEP': 0,
                             'MAX_TIME_STEP': 100,
                             'REPAIR_CREW_DEMAND_PER_SQFT': {"DS1": 2000, "DS2": 2000, "DS3": 1000, "DS4": 1000}, 

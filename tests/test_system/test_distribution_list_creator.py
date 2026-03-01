@@ -3,14 +3,15 @@ from pyrecodes import main
 from pyrecodes.utilities import read_json_file
 from pyrecodes.system.distribution_list_creator import DistributionListCreator
 
-MAIN_FILE = './tests/test_inputs/test_inputs_VirtualCommunity_Main.json'
+FOLDER_NAME = './tests/test_inputs'
+MAIN_FILE = 'test_inputs_VirtualCommunity_Main.json'
 
 class TestDistributionListCreator:
 
     @pytest.fixture
     def distribution_list_creator(self):
-        input_dict = read_json_file(MAIN_FILE)
-        system = main.create_system(input_dict)
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
+        system = main.create_system(FOLDER_NAME, input_dict)
         return DistributionListCreator(system.components, system.resources)
     
     def test_get_resource_distribution_dict(self, distribution_list_creator):

@@ -6,13 +6,13 @@ from pyrecodes.component_configurator.component_configurator import ComponentCon
 from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComponent
 from pyrecodes.utilities import read_json_file
 from pyrecodes import main
-from test_component_configurator_inputs import MAIN_FILE, SYSTEM_LEVEL_DATA_DICT, R2D_COMPONENT_DAMAGE_DATA, R2D_COMPONENT_DATA
+from test_component_configurator_inputs import MAIN_FILE, FOLDER_NAME, SYSTEM_LEVEL_DATA_DICT, R2D_COMPONENT_DAMAGE_DATA, R2D_COMPONENT_DATA
 from pyrecodes.constants import METER_TO_MILE, FEET_TO_MILE, INCH_TO_MILE
 
 @pytest.fixture()
 def component_library():
-        input_dict = read_json_file(MAIN_FILE)
-        return main.form_component_library(input_dict)
+        input_dict = read_json_file(f"{FOLDER_NAME}/{MAIN_FILE}")
+        return main.form_component_library(FOLDER_NAME, input_dict)
 
 @pytest.fixture()
 def building_component(component_library: dict) -> StandardiReCoDeSComponent:

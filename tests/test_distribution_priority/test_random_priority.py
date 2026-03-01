@@ -6,14 +6,15 @@ from pyrecodes.system.system import System
 from pyrecodes.distribution_priority.random_priority import RandomPriority
 from pyrecodes.distribution_priority.distribution_priority import DistributionPriority
 
-MAIN_FILE = './tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_Main.json'
+FOLDER_NAME = './tests/test_inputs'
+MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunity_Main.json'
 
 class TestRandomDistributionPriority():
 
     @pytest.fixture
     def system(self):
-        input_dict = read_json_file(MAIN_FILE)
-        return main.create_system(input_dict)
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
+        return main.create_system(FOLDER_NAME, input_dict)
     
     @pytest.fixture
     def distribution_priority(self, system):
@@ -62,3 +63,19 @@ class TestRandomDistributionPriority():
         assert [randomized_ids.count(id) for id in component_ids] == [2, 2, 2]
         assert randomized_demand_types.count('RecoveryDemand') == 3
         assert randomized_demand_types.count('OperationDemand') == 3
+
+    def test_randomize_ids_empty_components(self, distribution_priority: DistributionPriority):
+        ids, demand_types = distribution_priority.randomize_ids([], ['OperationDemand'])
+        assert ids == []
+        assert demand_types == []
+
+    def test_set_distribution_priority_multiple_demand_types(self, system):
+        dp = RandomPriority('ElectricPower',
+                            {'Seed': 0, 'DemandType': ['OperationDemand', 'RecoveryDemand']},
+                            system.components)
+        ids, demand_types = dp.get_component_priorities()
+        n = len(system.components)
+        # 1 supplier × 1 OperationDemand + (n-1) non-suppliers × 2 demand types
+        assert len(ids) == 1 + (n - 1) * 2
+        assert demand_types.count('OperationDemand') == n
+        assert demand_types.count('RecoveryDemand') == n - 1

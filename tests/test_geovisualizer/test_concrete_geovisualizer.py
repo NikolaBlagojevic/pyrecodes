@@ -7,14 +7,15 @@ from pyrecodes.component_recovery_model.concrete_recovery_activity import Concre
 from pyrecodes.plotter.concrete_plotter import ConcretePlotter
 from pyrecodes import main
 
-MAIN_FILE = './tests/test_inputs/test_inputs_ThreeLocalitiesCommunityREWET_Main.json'
+FOLDER_NAME = './tests/test_inputs'
+MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunityREWET_Main.json'
 
 class TestConcreteGeoVisualizer:
 
     @pytest.fixture
     def system(self):
-        input_dict = read_json_file(MAIN_FILE)
-        system = main.create_system(input_dict)
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
+        system = main.create_system(FOLDER_NAME, input_dict)
         system.components[1].recovery_model.recovery_activities['RapidInspection'] = ConcreteRecoveryActivity('RapidInspection', initial_level=1.0)
         system.components[1].recovery_model.recovery_activities['CleanUp'] = ConcreteRecoveryActivity('CleanUp', initial_level=1.0)
         system.components[1].recovery_model.recovery_activities['Permitting'] = ConcreteRecoveryActivity('Permitting', initial_level=1.0)
@@ -32,9 +33,9 @@ class TestConcreteGeoVisualizer:
         assert isinstance(geo_visualizer.plotter, ConcretePlotter)        
 
     def test_set_component_state_dict(self, geo_visualizer: ConcreteGeoVisualizer):
-        assert geo_visualizer.state_dict['Waiting'] == {'Color': 'black', 'ID': 0}
-        assert geo_visualizer.state_dict['CleanUp'] == {'Color': 'yellow', 'ID': 5}
-        assert geo_visualizer.state_dict['Functional'] == {'Color': 'green', 'ID': 11}
+        assert geo_visualizer.state_dict['Waiting'] == {'Color': 'lightgray', 'ID': 19}
+        assert geo_visualizer.state_dict['CleanUp'] == {'Color': 'yellow', 'ID': 6}
+        assert geo_visualizer.state_dict['Functional'] == {'Color': 'green', 'ID': 12}
 
     def test_get_component_current_state(self, geo_visualizer, system):
         system.components[1].functional = [0, 20, 21, 22, 23, 24, 25]

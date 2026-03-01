@@ -11,7 +11,8 @@ from pyrecodes.resilience_calculator.nist_goals_calculator import NISTGoalsCalcu
 
 class TestThreeLocalitiesConcreteSystemCreator():
 
-    MAIN_FILE = './tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_Main.json'
+    FOLDER_NAME = './tests/test_inputs'
+    MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunity_Main.json'
 
     @pytest.fixture()
     def system_creator(self):
@@ -19,13 +20,13 @@ class TestThreeLocalitiesConcreteSystemCreator():
 
     @pytest.fixture()
     def component_library(self):
-        input_dict = read_json_file(self.MAIN_FILE)
-        return main.form_component_library(input_dict)
-    
+        input_dict = read_json_file(f'{self.FOLDER_NAME}/{self.MAIN_FILE}')
+        return main.form_component_library(self.FOLDER_NAME, input_dict)
+
     @pytest.fixture()
     def system_configuration(self) -> dict:
-        input_dict = read_json_file(self.MAIN_FILE)
-        system_configuration = read_json_file(input_dict['System']['SystemConfigurationFile'])
+        input_dict = read_json_file(f'{self.FOLDER_NAME}/{self.MAIN_FILE}')
+        system_configuration = read_json_file(f'{self.FOLDER_NAME}/{input_dict["System"]["SystemConfigurationFile"]}')
         return system_configuration
     
     def test_init(self, system_creator):

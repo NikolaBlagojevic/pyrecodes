@@ -10,17 +10,17 @@ from pyrecodes.component_configurator.r2d_component_configurator import R2DCompo
 from pyrecodes.component_configurator.r2d_repair_configurator import R2DBuildingRepairConfigurator, R2DRoadwayRepairConfigurator, R2DPipeRepairConfigurator
 from pyrecodes.component_configurator.component_configurator import ComponentConfigurator
 from pyrecodes.component_configurator.r2d_dict_getter import R2DDictGetter, R2DPipeDictGetter
-from test_component_configurator_inputs import MAIN_FILE, SYSTEM_LEVEL_DATA_DICT, RECOVERY_TIME_STEPPING_RULE, R2D_COMPONENT_DATA, LOCALITY_STRING, DAMAGE_STATE, R2D_COMPONENT_DAMAGE_DATA, R2D_ROADWAY_DATA, R2D_PIPE_DATA
+from test_component_configurator_inputs import MAIN_FILE, FOLDER_NAME, SYSTEM_LEVEL_DATA_DICT, RECOVERY_TIME_STEPPING_RULE, R2D_COMPONENT_DATA, LOCALITY_STRING, DAMAGE_STATE, R2D_COMPONENT_DAMAGE_DATA, R2D_ROADWAY_DATA, R2D_PIPE_DATA
 
 @pytest.fixture()
 def component_library():
-        input_dict = read_json_file(MAIN_FILE)
-        return main.form_component_library(input_dict)
+        input_dict = read_json_file(f"{FOLDER_NAME}/{MAIN_FILE}")
+        return main.form_component_library(FOLDER_NAME, input_dict)
 
 @pytest.fixture()
 def system_configuration() -> dict:
-    input_dict = read_json_file(MAIN_FILE)
-    system_configuration = read_json_file(input_dict['System']['SystemConfigurationFile'])
+    input_dict = read_json_file(f"{FOLDER_NAME}/{MAIN_FILE}")
+    system_configuration = read_json_file(f"{FOLDER_NAME}/{input_dict['System']['SystemConfigurationFile']}")
     return system_configuration
 
 @pytest.fixture()

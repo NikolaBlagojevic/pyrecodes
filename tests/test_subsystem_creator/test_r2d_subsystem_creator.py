@@ -3,20 +3,20 @@ from pyrecodes.utilities import read_json_file, get_locality_coordinates_from_ge
 from pyrecodes import main
 import shapely
 from pyrecodes.subsystem_creator.r2d_subsystem_creator import R2DSubsystemCreator
-from tests.test_subsystem_creator.test_subsystem_creator_inputs import MAIN_FILE_REWET, MAIN_FILE_ALAMEDA, LOCALITY_1_BOUNDING_BOX, LOCALITY_2_BOUNDING_BOX, LOCALITY_ALAMEDA_GEOJSON, CONSTANTS, PARAMETERS_R2D_WATER_SYSTEM, PARAMETERS_R2D_BUILDINGS, DAMAGE_INPUT_R2D, PARAMETERS_R2D_ALAMEDA, DAMAGE_INPUT_ALAMEDA
+from tests.test_subsystem_creator.test_subsystem_creator_inputs import FOLDER_NAME, MAIN_FILE_REWET, MAIN_FILE_ALAMEDA, LOCALITY_1_BOUNDING_BOX, LOCALITY_2_BOUNDING_BOX, LOCALITY_ALAMEDA_GEOJSON, CONSTANTS, PARAMETERS_R2D_WATER_SYSTEM, PARAMETERS_R2D_BUILDINGS, DAMAGE_INPUT_R2D, PARAMETERS_R2D_ALAMEDA, DAMAGE_INPUT_ALAMEDA
 from pyrecodes.component_configurator.r2d_component_configurator import R2DPipeConfigurator, R2DBuildingConfigurator
 
 class TestR2DSubsystemCreator:
 
     @pytest.fixture
     def component_library(self):
-        input_dict = read_json_file(MAIN_FILE_REWET)
-        return main.form_component_library(input_dict)
-    
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE_REWET}')
+        return main.form_component_library(FOLDER_NAME, input_dict)
+
     @pytest.fixture
     def component_library_alameda(self):
-        input_dict = read_json_file(MAIN_FILE_ALAMEDA)
-        return main.form_component_library(input_dict)
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE_ALAMEDA}')
+        return main.form_component_library(FOLDER_NAME, input_dict)
     
     @pytest.fixture
     def r2d_subsystem_creator_alameda(self, component_library_alameda):

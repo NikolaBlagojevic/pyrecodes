@@ -3,7 +3,8 @@ from pyrecodes import main
 from pyrecodes.utilities import read_json_file
 from pyrecodes.resource_distribution_model.housing_distribution_model import HousingDistributionModel
 
-MAIN_FILE = './tests/test_inputs/test_inputs_Alameda_Main.json'
+FOLDER_NAME = './tests/test_inputs'
+MAIN_FILE = 'test_inputs_Alameda_Main.json'
 RESOURCE_NAME = 'Shelter'
 RESOURCE_PARAMETERS = {}
 
@@ -11,8 +12,8 @@ class TestHousingDistributionModel:
 
     @pytest.fixture
     def system(self):
-        input_dict = read_json_file(MAIN_FILE)
-        return main.create_system(input_dict)
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
+        return main.create_system(FOLDER_NAME, input_dict)
 
     @pytest.fixture
     def housing_distribution_model(self, system):

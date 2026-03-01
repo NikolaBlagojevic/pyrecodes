@@ -1,4 +1,4 @@
-from test_component_configurator_inputs import MAIN_FILE, SYSTEM_LEVEL_DATA_DICT, RECOVERY_TIME_STEPPING_RULE, LOCALITY_STRING, COMPONENT_DICT_REPAIR_COST_TESTS
+from test_component_configurator_inputs import MAIN_FILE, FOLDER_NAME, SYSTEM_LEVEL_DATA_DICT, RECOVERY_TIME_STEPPING_RULE, LOCALITY_STRING, COMPONENT_DICT_REPAIR_COST_TESTS
 import math
 import pytest
 import copy
@@ -20,8 +20,8 @@ class TestComponentConfigurator:
 
     @pytest.fixture()
     def component_library(self) -> JSONComponentLibraryCreator:
-        input_dict = read_json_file(MAIN_FILE)
-        return main.form_component_library(input_dict)
+        input_dict = read_json_file(f"{FOLDER_NAME}/{MAIN_FILE}")
+        return main.form_component_library(FOLDER_NAME, input_dict)
     
     @pytest.fixture()
     def component_configurator(self) -> ComponentConfigurator:

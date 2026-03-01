@@ -4,7 +4,8 @@ from pyrecodes.utilities import read_json_file
 from pyrecodes.system.system import System
 from pyrecodes import main
 
-MAIN_FILE = "./tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_Main.json"
+FOLDER_NAME = "./tests/test_inputs"
+MAIN_FILE = "test_inputs_ThreeLocalitiesCommunity_Main.json"
 
 class TestMain():
 
@@ -13,21 +14,21 @@ class TestMain():
             "ComponentLibrary": {
                 "ComponentLibraryCreatorClassName": "JSONComponentLibraryCreator",
                 "ComponentLibraryCreatorFileName": "json_component_library_creator",
-                "ComponentLibraryFile": "./tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_ComponentLibrary.json"
+                "ComponentLibraryFile": "test_inputs_ThreeLocalitiesCommunity_ComponentLibrary.json"
             }
         }
-        component_library = main.form_component_library(input_dict)
+        component_library = main.form_component_library(FOLDER_NAME, input_dict)
         assert isinstance(component_library, dict)
 
     def test_create_system(self):
         # Test creating a system object and check if it is an instance of System.System
-        input_dict = read_json_file(MAIN_FILE)
-        system = main.create_system(input_dict)
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
+        system = main.create_system(FOLDER_NAME, input_dict)
         assert isinstance(system, System)
 
     def test_run(self):
         # Test running the resilience assessment for the system and check if the returned value is a System.System object
-        system = main.run(MAIN_FILE)
+        system = main.run(FOLDER_NAME, MAIN_FILE)
         assert isinstance(system, System)
 
     def test_load_system(self):

@@ -2,7 +2,7 @@ import pytest
 import copy
 from pyrecodes.component_configurator.r2d_dict_getter import R2DDictGetter, R2DPipeDictGetter
 from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComponent
-from test_component_configurator_inputs import MAIN_FILE
+from test_component_configurator_inputs import MAIN_FILE, FOLDER_NAME
 from pyrecodes.utilities import read_json_file
 from pyrecodes import main
 
@@ -15,13 +15,13 @@ DAMAGE_INFORMATION = {
 
 @pytest.fixture()
 def component_library():
-    input_dict = read_json_file(MAIN_FILE)
-    return main.form_component_library(input_dict)
+    input_dict = read_json_file(f"{FOLDER_NAME}/{MAIN_FILE}")
+    return main.form_component_library(FOLDER_NAME, input_dict)
 
 @pytest.fixture()
 def system_configuration() -> dict:
-    input_dict = read_json_file(MAIN_FILE)
-    system_configuration = read_json_file(input_dict['System']['SystemConfigurationFile'])
+    input_dict = read_json_file(f"{FOLDER_NAME}/{MAIN_FILE}")
+    system_configuration = read_json_file(f"{FOLDER_NAME}/{input_dict['System']['SystemConfigurationFile']}")
     return system_configuration
 
 @pytest.fixture()

@@ -7,14 +7,15 @@ from pyrecodes.distribution_priority.random_priority_with_prioritized_interfaces
 from pyrecodes.distribution_priority.distribution_priority import DistributionPriority
 from pyrecodes.component.infrastructure_interface import InfrastructureInterface
 
-MAIN_FILE = './tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_Main.json'
+FOLDER_NAME = './tests/test_inputs'
+MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunity_Main.json'
 
 class TestRandomPriorityWithPrioritizedInterfaces():
 
     @pytest.fixture
     def system(self):
-        input_dict = read_json_file(MAIN_FILE)
-        system = main.create_system(input_dict)
+        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
+        system = main.create_system(FOLDER_NAME, input_dict)
         interface_component = InfrastructureInterface()
         system.components.append(interface_component)
         return system
@@ -45,3 +46,21 @@ class TestRandomPriorityWithPrioritizedInterfaces():
         assert interface_ids == [11]
         assert len(remaining_component_ids) == len(distribution_priority.components) - 1
         assert 11 not in remaining_component_ids
+
+    def test_get_infrastructure_interface_id_no_interfaces(self, distribution_priority):
+        # pass only the non-interface component ids (exclude the appended interface at index 11)
+        component_ids = list(range(len(distribution_priority.components) - 1))
+        interface_ids, remaining = distribution_priority.get_infrastructure_interface_id(component_ids)
+        assert interface_ids == []
+        assert remaining == component_ids
+
+    def test_get_infrastructure_interface_id_multiple_interfaces(self, system):
+        system.components.append(InfrastructureInterface())
+        dp = RandomPriorityWithPrioritizedInterfaces('ElectricPower',
+                                                     {'Seed': 0, 'DemandType': ['OperationDemand']},
+                                                     system.components)
+        all_ids = list(range(len(system.components)))
+        interface_ids, remaining = dp.get_infrastructure_interface_id(all_ids)
+        assert len(interface_ids) == 2
+        assert all(isinstance(system.components[i], InfrastructureInterface) for i in interface_ids)
+        assert len(remaining) == len(all_ids) - 2

@@ -17,10 +17,12 @@ class SpatialResourceAggregator():
                                supply_or_demand_type=StandardiReCoDeSComponent.DemandTypes.OPERATION_DEMAND.value) -> float:
         """
         Aggregate the supply or demand for a resource per locality.
+
+        If locality_ids is None, it will aggregate for all localities. Otherwise, it will only aggregate for the specified localities.
         """
         resource_per_locality = {}
         for component in components:
-            if component.locality[0] in locality_ids or locality_ids==None:
+            if locality_ids is None or component.locality[0] in locality_ids:
                 if component.locality[0] in resource_per_locality.keys():
                     resource_per_locality[component.locality[0]] += component.get_current_resource_amount(supply_or_demand, supply_or_demand_type, resource_name)
                 else:

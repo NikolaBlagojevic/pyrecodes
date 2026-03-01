@@ -1,5 +1,6 @@
+import os
 from pyrecodes.component.component import Component
-from pyrecodes.geovisualizer.component_state_colors import COMPONENT_STATE_COLORS
+from pyrecodes.constants import ALL_RECOVERY_ACTIVITIES_COLORS
 import time
 import contextily as ctx
 import matplotlib.pyplot as plt
@@ -33,7 +34,7 @@ class ConcreteGeoVisualizer():
     
     def set_component_state_dict(self) -> None:
         self.state_dict = {}
-        states, colors = COMPONENT_STATE_COLORS.keys(), COMPONENT_STATE_COLORS.values()        
+        states, colors = ALL_RECOVERY_ACTIVITIES_COLORS.keys(), ALL_RECOVERY_ACTIVITIES_COLORS.values()        
         for id, (state, color) in enumerate(zip(states, colors)):
             self.state_dict[state] = {'Color': color, 'ID': id} 
     
@@ -79,11 +80,11 @@ class ConcreteGeoVisualizer():
         cmap = mcm.get_cmap('OrRd')
         return [cmap(norm(recovery_time)) for recovery_time in components_recovery_time], cmap, norm
     
-    def create_recovery_gif(self, time_steps: list[int], file_name='./2D_buildings_with_supply_demand_TIME_STEP.png', savename='./system_recovery.gif', fps=1) -> None:        
+    def create_recovery_gif(self, time_steps: list[int], load_folder_name='./', save_folder_name ='./', load_file_name='2D_buildings_with_supply_demand_TIME_STEP.png', save_file_name='./system_recovery.gif', fps=1) -> None:        
         frames = []
         target_shape = None
         for time_step in time_steps:
-            img_path = file_name.replace('TIME_STEP', str(time_step))
+            img_path = os.path.join(load_folder_name, load_file_name.replace('TIME_STEP', str(time_step)))
             pil_img = Image.open(img_path)
 
             if target_shape is None:
@@ -95,7 +96,9 @@ class ConcreteGeoVisualizer():
             frame = np.array(pil_img)  # Convert PIL image to array for imageio
             frames.append(frame)
       
-        iio.imwrite(savename, 
+        if not os.path.exists(save_folder_name):
+            os.makedirs(save_folder_name)
+        iio.imwrite(os.path.join(save_folder_name, save_file_name), 
                 frames,       
                 fps = fps,
                 subrectangles=True,
@@ -105,6 +108,7 @@ class ConcreteGeoVisualizer():
                                                                 dpi=300, resources_to_plot=['Shelter', 'RepairCrew'],
                                                                 units=['[beds/day]', '[crews/day]'],
                                                                 show=False, supply_demand_resilience_calculator_id=0,
+                                                                folder_name='./',
                                                                 savename=f'2D_buildings_with_supply_demand_TIME_STEP.png') -> None:
         fig, ax_dict = plt.subplot_mosaic([['left', 'upper right'],
                                ['left', 'lower right']],
@@ -125,18 +129,18 @@ class ConcreteGeoVisualizer():
             plt.show()
 
         if save:
-            plt.rcParams.update({'font.size': 18})   
-            plt.savefig(savename.replace('TIME_STEP', str(time_step)), dpi=dpi, bbox_inches='tight', pad_inches=0)  
+            if not os.path.exists(folder_name):
+                os.makedirs(folder_name)   
+            plt.rcParams.update({'font.size': 18}) 
+            plt.savefig(f'{folder_name}/{savename.replace("TIME_STEP", str(time_step))}', dpi=dpi, bbox_inches='tight', pad_inches=0)  
             plt.close()       
-        
     
-    def create_current_state_figure(self, time_step: int, ax=None, save=False, dpi=300):
+    def create_current_state_figure(self, time_step: int, ax=None, save=False, dpi=300, folder_name='./', savename=f'2D_buildings_TIME_STEP.png') -> None:
         state_colors = self.update_buildings_dataframe_with_component_current_state(time_step)     
         if ax == None:   
             fig, ax = plt.subplots(figsize=(8, 6))
-        self.buildings_geodataframe.plot(color=state_colors, ax=ax)
-        self.create_component_state_legend(ax)
-        ax.set_title(f'Time Step: {time_step}')
+        self.buildings_geodataframe.plot(color=state_colors, ax=ax, edgecolor='white', linewidth=0.3, alpha=0.85)
+        ax.set_title(f'Time Step: {time_step}', fontsize=14, fontweight='bold')
         minx, miny, maxx, maxy = self.buildings_geodataframe.total_bounds
         ax.set_xlim(minx*0.95, maxx*1.05)
         ax.set_ylim(miny*0.95, maxy*1.05)
@@ -165,12 +169,16 @@ class ConcreteGeoVisualizer():
         ctx.add_basemap(ax, zoom="auto", crs=self.buildings_geodataframe.crs, source=ctx.providers.OpenStreetMap.Mapnik)
         ax.axis('tight')   
         ax.axis('off')
-        if save:      
-            plt.savefig(f'2D_buildings_{time_step}.png', dpi=dpi, bbox_inches='tight', transparent=True, pad_inches=0)  
+        if save:   
+            if not os.path.exists(folder_name):
+                os.makedirs(folder_name)   
+            plt.savefig(f'{folder_name}/{savename.replace("TIME_STEP", str(time_step))}', dpi=dpi, bbox_inches='tight', transparent=True, pad_inches=0)  
     
-    def create_current_state_shapefile(self, time_step: int, file_name='./Example 3/shapefiles/NorthEast_SF'):
+    def create_current_state_shapefile(self, time_step: int, folder_name='./Example 3/shapefiles', file_name='NorthEast_SF'):
+        if not os.path.exists(folder_name):
+            os.makedirs(folder_name)
         self.update_buildings_dataframe_with_component_current_state(time_step)
-        self.buildings_geodataframe.to_file(f'{file_name}_Time_Step_{time_step}.shp', driver='ESRI Shapefile')
+        self.buildings_geodataframe.to_file(f'{folder_name}/{file_name}_Time_Step_{time_step}.shp', driver='ESRI Shapefile')
 
     def update_buildings_dataframe_with_component_current_state(self, time_step: int) -> list:
         state_colors = []
@@ -187,26 +195,28 @@ class ConcreteGeoVisualizer():
         """
         self.buildings_geodataframe = self.create_empty_dataframe()
 
-    def get_component_current_state(self, component: Component, time_step: int) -> int:        
+    def get_component_current_state(self, component: Component, time_step: int) -> list:
         component_state = []
-        for state in list(self.state_dict.keys())[1:]:
-            if self.component_is_in_state(component, state, time_step):                
-                component_state.append(state)   
-        if self.component_is_waiting(component_state):            
-            component_state.append('Waiting')  
-        return component_state 
+        for state in self.state_dict:
+            if state == 'Waiting':
+                continue
+            if self.component_is_in_state(component, state, time_step):
+                component_state.append(state)
+        if self.component_is_waiting(component_state):
+            component_state.append('Waiting')
+        return component_state
 
     def component_is_in_state(self, component: Component, state: str, time_step: int) -> bool:
-        if state in component.recovery_model.recovery_activities and time_step in \
-            component.recovery_model.recovery_activities[state].time_steps:
-            return True
-        elif state == 'Functional' and self.component_is_functional(component, time_step): 
-            return True   
-        else:
-            return False 
-    
-    def component_is_functional(self, component: Component, time_step: int) -> bool:        
-        return time_step in component.functional
+        if state == 'Functional':
+            return self.component_is_functional(component, time_step)
+        recovery_activities = getattr(getattr(component, 'recovery_model', None), 'recovery_activities', {})
+        activity = recovery_activities.get(state)
+        if activity is None:
+            return False
+        return time_step in getattr(activity, 'time_steps', [])
+
+    def component_is_functional(self, component: Component, time_step: int) -> bool:
+        return time_step in getattr(component, 'functional', [])
     
     def component_is_waiting(self, component_state: list[int]):
         return len(component_state) == 0
@@ -227,23 +237,28 @@ class ConcreteGeoVisualizer():
         norm = mcolors.Normalize(vmin=min(state_ids), vmax=max(state_ids))
         return cmap, norm
     
-    def create_localities_figure(self, components_to_plot: list, number_of_localities: int, save=False, dpi=300):
-        localities_colors = self.get_component_localities_color(components_to_plot, number_of_localities)     
-        fig, ax = plt.subplots(figsize=(8, 6))        
-        self.buildings_geodataframe.plot(color=localities_colors, ax=ax, legend=True)      
-        ax.set_title('Component Localities')
+    def create_localities_figure(self, components_to_plot: list, number_of_localities: int, save=False, dpi=300, save_filename='2D_buildings_Localities.png'):
+        localities_colors, locality_color_map = self.get_component_localities_color(components_to_plot, number_of_localities)
+        fig, ax = plt.subplots(figsize=(10, 8))
+        self.buildings_geodataframe.plot(color=localities_colors, ax=ax, edgecolor='white', linewidth=0.3, alpha=0.85)
+        ax.set_title('Component Localities', fontsize=14, fontweight='bold')
         ctx.add_basemap(ax, zoom="auto", crs=self.buildings_geodataframe.crs, source=ctx.providers.OpenStreetMap.Mapnik)
-        ax.axis('tight')   
-        ax.axis('off')    
-        if save:      
-            plt.savefig(f'2D_buildings_Localities.png', dpi=dpi, bbox_inches='tight', transparent=True, pad_inches=0)  
-    
-    def get_component_localities_color(self, components_to_plot: list, number_of_localities: int) -> list[str]:
-        component_localities_color = []
-        cmap = mcm.get_cmap('seismic')
-        for component in components_to_plot:
-                component_localities_color.append(cmap(component.locality[0]/number_of_localities))
-        return component_localities_color
+        ax.axis('tight')
+        ax.axis('off')
+
+        plotted_localities = {component.locality[0] for component in components_to_plot}
+        patches = [mpatches.Patch(color=locality_color_map[i], label=f'Locality {i}') for i in sorted(plotted_localities)]
+        ax.legend(handles=patches, loc='upper right', frameon=True, facecolor='white', framealpha=0.9, fontsize=9)
+
+        if save:
+            plt.savefig(save_filename, dpi=dpi, bbox_inches='tight', transparent=True, pad_inches=0)
+        plt.show()
+
+    def get_component_localities_color(self, components_to_plot: list, number_of_localities: int) -> tuple:
+        cmap = mcm.get_cmap('tab10' if number_of_localities <= 10 else 'tab20', number_of_localities)
+        locality_color_map = {i: cmap(i) for i in range(number_of_localities)}
+        component_localities_color = [locality_color_map[component.locality[0]] for component in components_to_plot]
+        return component_localities_color, locality_color_map
     
     def plot_locality_polygons(self, ax, system_file: dict):
         for locality, locality_content in system_file["Content"].items():

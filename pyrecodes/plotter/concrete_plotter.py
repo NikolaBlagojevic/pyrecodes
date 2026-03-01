@@ -1,10 +1,11 @@
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 import json
 from pyrecodes.component.component import Component
 from pyrecodes.component.r2d_component import R2DComponent
 from pyrecodes.system.system import System
 from pyrecodes.resilience_calculator.recodes_calculator import ReCoDeSCalculator
-from pyrecodes.constants import LOR_ALPHA, GANTT_BAR_DISTANCE, GANTT_BAR_WIDTH, ALL_RECOVERY_ACTIVITIES_COLORS
+from pyrecodes.constants import ALL_RECOVERY_ACTIVITIES_LABELS, LOR_ALPHA, GANTT_BAR_DISTANCE, GANTT_BAR_WIDTH, ALL_RECOVERY_ACTIVITIES_COLORS
 
 class ConcretePlotter():
     """
@@ -14,6 +15,22 @@ class ConcretePlotter():
     """
 
     def setup_lor_plot_fig(self, x_axis_label: str, y_axis_label: str) -> plt.axis:
+        plt.style.use('seaborn-v0_8-whitegrid')
+        mpl.rcParams.update({
+            'font.size': 12,
+            'axes.labelsize': 14,
+            'axes.titlesize': 16,
+            'figure.figsize': (10, 6),
+            'lines.linewidth': 2,
+            'axes.edgecolor': 'black',
+            'axes.linewidth': 1,
+            'axes.spines.top': False,
+            'axes.spines.right': False,
+            'legend.frameon': True,
+            'legend.facecolor': 'white',
+            'legend.framealpha': 0.9
+        })
+
         plt.figure()
         plt.xlabel(x_axis_label)
         plt.ylabel(y_axis_label)
@@ -77,26 +94,27 @@ class ConcretePlotter():
             extended_lists.append([list_to_extend[0]] * warmup + list_to_extend)
         return extended_lists       
 
-    def setup_gantt_chart_fig(self, x_axis_label) -> plt.axis:
-        plt.figure()
+    def setup_gantt_chart_fig(self, x_axis_label, num_components: int, mode: str) -> plt.axis:
+        height_per_component = {'stack': 0.3, 'parallel': 0.5, 'separate': 1.0}
+        plt.figure(figsize=(10, max(3, num_components * height_per_component[mode])))
         plt.xlabel(x_axis_label)
         axis_object = plt.gca()
         plt.grid(True)
         return axis_object
 
-    def plot_gantt_chart(self, components: list[Component], x_axis_label='Time Step [day]') -> None:
-        axis_object = self.setup_gantt_chart_fig(x_axis_label)
+    def plot_gantt_chart(self, components: list[Component], x_axis_label='Time Step [day]', mode='stack') -> None:
+        axis_object = self.setup_gantt_chart_fig(x_axis_label, len(components), mode)
         recovery_activities_legend = []
         plotted_components = []
         component_row = 0
         for component in components:
-            active_recovery_activities = self.plot_component_gantt_bar(component_row, component, axis_object)
+            active_recovery_activities = self.plot_component_gantt_bar(component_row, component, axis_object, mode)
             if len(active_recovery_activities) > 0:
                 component_row += 1
                 recovery_activities_legend += active_recovery_activities
-                plotted_components.append(component)        
+                plotted_components.append(component)
         self.set_gantt_chart_legend(recovery_activities_legend, axis_object)
-        axis_object.set_yticks([(i) * GANTT_BAR_DISTANCE for i in range(len(plotted_components))])   
+        axis_object.set_yticks([(i) * GANTT_BAR_DISTANCE for i in range(len(plotted_components))])
         axis_object.set_yticklabels([component.__str__() for component in plotted_components])
         plt.show()
     
@@ -104,7 +122,7 @@ class ConcretePlotter():
         legend_labels = []
         legend_handles = []
         for recovery_activity_name in set(recovery_activities_legend):
-            legend_labels.append(recovery_activity_name)
+            legend_labels.append(ALL_RECOVERY_ACTIVITIES_LABELS[recovery_activity_name])
             legend_handles.append(plt.Rectangle((0, 0), 1, 1, fc=ALL_RECOVERY_ACTIVITIES_COLORS[recovery_activity_name]))
         axis_object.legend(legend_handles, legend_labels, loc='upper left', bbox_to_anchor=(1.02, 1.0))
 
@@ -119,13 +137,46 @@ class ConcretePlotter():
                 component_recovery_progress[recovery_activity_name] = {'Start': start, 'Duration': duration}
         return component_recovery_progress, active_recovery_activities
 
-    def plot_component_gantt_bar(self, component_row: int, component: Component, axis_object: plt.axis) -> list:        
+    def assign_activity_lanes(self, component_recovery_progress: dict, mode: str) -> tuple[dict, int]:
+        """Assign each activity to a vertical lane for rendering.
+
+        'stack'    – all activities share one lane (original behaviour, overlapping activities overwrite each other)
+        'separate' – each activity gets its own lane regardless of overlap
+        'parallel' – greedy assignment: a new lane is only opened when activities actually overlap
+        """
+        if mode == 'stack':
+            return {name: 0 for name in component_recovery_progress}, 1
+        if mode == 'separate':
+            return {name: idx for idx, name in enumerate(component_recovery_progress)}, len(component_recovery_progress)
+        # mode == 'parallel': greedy interval-graph colouring
+        lanes = []  # each entry is the end time of the last activity assigned to that lane
+        activity_lanes = {}
+        for activity_name, activity_progress in component_recovery_progress.items():
+            start = activity_progress['Start']
+            end = start + activity_progress['Duration']
+            assigned = False
+            for lane_idx, lane_end in enumerate(lanes):
+                if start >= lane_end:
+                    lanes[lane_idx] = end
+                    activity_lanes[activity_name] = lane_idx
+                    assigned = True
+                    break
+            if not assigned:
+                activity_lanes[activity_name] = len(lanes)
+                lanes.append(end)
+        return activity_lanes, max(len(lanes), 1)
+
+    def plot_component_gantt_bar(self, component_row: int, component: Component, axis_object: plt.axis, mode: str = 'stack') -> list:
         component_recovery_progress, active_recovery_activities = self.get_component_recovery_progress(component)
+        if not active_recovery_activities:
+            return active_recovery_activities
+        activity_lanes, num_lanes = self.assign_activity_lanes(component_recovery_progress, mode)
+        sub_bar_height = GANTT_BAR_WIDTH / num_lanes
         for recovery_activity_name, recovery_activity_progress in component_recovery_progress.items():
-            Y_position = component_row * GANTT_BAR_DISTANCE - GANTT_BAR_WIDTH/2
-            axis_object.broken_barh([(recovery_activity_progress['Start'], recovery_activity_progress['Duration'])], (Y_position, GANTT_BAR_WIDTH),
+            Y_position = component_row * GANTT_BAR_DISTANCE - GANTT_BAR_WIDTH/2 + activity_lanes[recovery_activity_name] * sub_bar_height
+            axis_object.broken_barh([(recovery_activity_progress['Start'], recovery_activity_progress['Duration'])], (Y_position, sub_bar_height),
                                         facecolors=ALL_RECOVERY_ACTIVITIES_COLORS[recovery_activity_name],
-                                        edgecolor="none")        
+                                        edgecolor="none")
         return active_recovery_activities        
     
     def save_supply_demand_consumption(self, system, resource_names: list, resilience_calculator_id=0):

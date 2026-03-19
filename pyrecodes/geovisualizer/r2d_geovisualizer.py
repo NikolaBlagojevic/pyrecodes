@@ -1,7 +1,7 @@
 import geopandas
 from pyrecodes.geovisualizer.concrete_geovisualizer import ConcreteGeoVisualizer
 
-class R2D_GeoVisualizer(ConcreteGeoVisualizer):
+class R2DGeoVisualizer(ConcreteGeoVisualizer):
     """
     Class that visualizes components created using R2D output files as geospatial plots.
     """

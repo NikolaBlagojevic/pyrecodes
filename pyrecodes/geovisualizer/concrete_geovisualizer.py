@@ -1,6 +1,6 @@
 import os
 from pyrecodes.component.component import Component
-from pyrecodes.constants import ALL_RECOVERY_ACTIVITIES_COLORS
+from pyrecodes.constants import ALL_RECOVERY_ACTIVITIES_COLORS, ALL_RECOVERY_ACTIVITIES_LABELS, DAMAGE_STATE_COLORS, DAMAGE_STATE_NUMBER_TO_NAME, MET_DEMAND_STATE_COLORS
 import time
 import contextily as ctx
 import matplotlib.pyplot as plt
@@ -9,7 +9,6 @@ import matplotlib.colors as mcolors
 import matplotlib.cm as mcm
 import pandas as pd
 import shapely
-from pyrecodes.component.component import Component
 from pyrecodes.plotter.concrete_plotter import ConcretePlotter
 from pyrecodes.system.system import System
 from pyrecodes.resilience_calculator.resilience_calculator import ResilienceCalculator
@@ -44,7 +43,7 @@ class ConcreteGeoVisualizer():
     
     def show_recovery_animation(self, max_time_step: int, pause=1):
         for time_step in range(max_time_step):
-            self.create_current_state_figure(time_step)
+            self.create_current_recovery_state_figure(time_step)
             time.sleep(pause)
             plt.clf()
     
@@ -114,7 +113,7 @@ class ConcreteGeoVisualizer():
                                ['left', 'lower right']],
                               figsize=(24, 12), layout="constrained") 
            
-        self.create_current_state_figure(time_step, ax=ax_dict['left'])
+        self.create_current_recovery_state_figure(time_step, ax=ax_dict['left'])
         x_axis_label = 'Time step [day]'
         for axis_name, resource_to_plot, unit in zip(['upper right', 'lower right'], resources_to_plot, units):
             y_axis_label = f'{resource_to_plot} {unit}'
@@ -135,12 +134,48 @@ class ConcreteGeoVisualizer():
             plt.savefig(f'{folder_name}/{savename.replace("TIME_STEP", str(time_step))}', dpi=dpi, bbox_inches='tight', pad_inches=0)  
             plt.close()       
     
-    def create_current_state_figure(self, time_step: int, ax=None, save=False, dpi=300, folder_name='./', savename=f'2D_buildings_TIME_STEP.png') -> None:
-        state_colors = self.update_buildings_dataframe_with_component_current_state(time_step)     
-        if ax == None:   
+    def create_current_recovery_state_figure(self, time_step: int, ax=None, save=False, dpi=300) -> None:
+        state_names, state_colors = self.update_buildings_dataframe_with_component_current_state(time_step)
+        legend_items = {state: self.state_dict[state]['Color'] for state in set(state_names)}
+        self.create_current_state_figure(f'Time Step: {time_step}', state_colors, legend_items, ax=ax, save=save, dpi=dpi)
+
+    def create_initial_damage_state_figure(self, save=False, dpi=300) -> None:
+        state_colors = self.get_initial_damage_state_colors()
+        self.create_current_state_figure('Damage states', state_colors, DAMAGE_STATE_COLORS, save=save, dpi=dpi)
+
+    def create_met_demand_state_figure(self, resource_name: str, time_step: int, save=False, dpi=300) -> None:
+        state_colors = self.get_met_demand_state_colors(resource_name, time_step)
+        self.create_current_state_figure(f'Met demand | {resource_name}', state_colors, MET_DEMAND_STATE_COLORS, save=save, dpi=dpi)
+
+    def get_initial_damage_state_colors(self) -> list:
+        state_colors = []
+        for row_id, component_row in self.buildings_geodataframe.iterrows():
+            component = self.components[component_row['ID']]
+            if component.name.startswith('DS'):
+                damage_state_id = int(component.name[2])
+                damage_state_name = DAMAGE_STATE_NUMBER_TO_NAME[damage_state_id]
+                state_colors.append(DAMAGE_STATE_COLORS[damage_state_name])
+            else:
+                state_colors.append('white')
+        return state_colors
+
+    def get_met_demand_state_colors(self, resource_name: str, time_step: int) -> list:
+        state_colors = []
+        for row_id, component_row in self.buildings_geodataframe.iterrows():
+            component = self.components[component_row['ID']]
+            if resource_name in component.met_demand_tracker[time_step]:
+                met_demand = component.met_demand_tracker[time_step][resource_name]['PercentOfMetDemand']
+                met_demand_state = 'Met' if met_demand > 0 else 'NotMet'
+                state_colors.append(MET_DEMAND_STATE_COLORS[met_demand_state])
+            else:
+                state_colors.append('white')
+        return state_colors
+
+    def create_current_state_figure(self, title: str, state_colors: list, legend_items: dict, ax=None, save=False, dpi=300) -> None:
+        if ax == None:
             fig, ax = plt.subplots(figsize=(8, 6))
         self.buildings_geodataframe.plot(color=state_colors, ax=ax, edgecolor='white', linewidth=0.3, alpha=0.85)
-        ax.set_title(f'Time Step: {time_step}', fontsize=14, fontweight='bold')
+        ax.set_title(title, fontsize=14, fontweight='bold')
         minx, miny, maxx, maxy = self.buildings_geodataframe.total_bounds
         ax.set_xlim(minx*0.95, maxx*1.05)
         ax.set_ylim(miny*0.95, maxy*1.05)
@@ -167,12 +202,11 @@ class ConcreteGeoVisualizer():
         ax.set_xlim(minx, maxx)
         ax.set_ylim(miny, maxy)
         ctx.add_basemap(ax, zoom="auto", crs=self.buildings_geodataframe.crs, source=ctx.providers.OpenStreetMap.Mapnik)
-        ax.axis('tight')   
+        self.create_component_state_legend(ax, legend_items)
+        ax.axis('tight')
         ax.axis('off')
-        if save:   
-            if not os.path.exists(folder_name):
-                os.makedirs(folder_name)   
-            plt.savefig(f'{folder_name}/{savename.replace("TIME_STEP", str(time_step))}', dpi=dpi, bbox_inches='tight', transparent=True, pad_inches=0)  
+        if save:
+            plt.savefig(f'2D_buildings_{title.replace(" ", "")}.png', dpi=dpi, bbox_inches='tight', transparent=True, pad_inches=0)
     
     def create_current_state_shapefile(self, time_step: int, folder_name='./Example 3/shapefiles', file_name='NorthEast_SF'):
         if not os.path.exists(folder_name):
@@ -181,13 +215,15 @@ class ConcreteGeoVisualizer():
         self.buildings_geodataframe.to_file(f'{folder_name}/{file_name}_Time_Step_{time_step}.shp', driver='ESRI Shapefile')
 
     def update_buildings_dataframe_with_component_current_state(self, time_step: int) -> list:
+        state_names = []
         state_colors = []
         for row_id, component_row in self.buildings_geodataframe.iterrows():
             component = self.components[component_row['ID']]
             component_current_state = self.get_component_current_state(component, time_step)
             state_colors.append(self.state_dict[component_current_state[0]]['Color'])
+            state_names.append(component_current_state[0])
             self.buildings_geodataframe.at[row_id, 'State'] = component_current_state[0]
-        return state_colors
+        return state_names, state_colors
 
     def create_geodataframe(self) -> None:
         """
@@ -221,12 +257,12 @@ class ConcreteGeoVisualizer():
     def component_is_waiting(self, component_state: list[int]):
         return len(component_state) == 0
     
-    def create_component_state_legend(self, axis: plt.axis):
+    def create_component_state_legend(self, axis: plt.axis, legend_items: dict):
         rectangles = []
         legend_names = []
-        for state_name, state_info in self.state_dict.items():
-            rectangles.append(mpatches.Rectangle((0, 0), 1, 1, fc=state_info['Color']))
-            legend_names.append(state_name)
+        for state_name, color in legend_items.items():
+            rectangles.append(mpatches.Rectangle((0, 0), 1, 1, fc=color))
+            legend_names.append(ALL_RECOVERY_ACTIVITIES_LABELS.get(state_name, state_name))
         axis.legend(rectangles, legend_names, loc='upper right', bbox_to_anchor=(1, 1), frameon=1, facecolor='white')
     
     def get_building_state_color_map(self) -> tuple:

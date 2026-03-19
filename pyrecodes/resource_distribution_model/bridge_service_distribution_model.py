@@ -1,8 +1,7 @@
 from pyrecodes.resource_distribution_model.abstract_resource_distribution_model import AbstractResourceDistributionModel
 from pyrecodes.resource_distribution_model.concrete_resource_distribution_model_constructor import ConcreteResourceDistributionModelConstructor
-from pyrecodes.component.component import Component
+from pyrecodes.component.component import Component, SupplyOrDemand, Bridge
 from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComponent
-from pyrecodes.component.component import SupplyOrDemand
 
 
 class BridgeServiceDistributionModel(AbstractResourceDistributionModel):   
@@ -23,12 +22,8 @@ class BridgeServiceDistributionModel(AbstractResourceDistributionModel):
             if self.component_is_a_bridge(component):
                 self.bridges.append(component)
     
-    def component_is_a_bridge(self, component):
-        """
-        | Method to identify components that are bridges.
-        | This method is a workaround until a Bridge class is created. Then check the class name instead of the component name.
-        """
-        return 'Bridge' in component.name
+    def component_is_a_bridge(self, component) -> bool:
+        return isinstance(component, Bridge)
     
     def map_links_to_bridges(self):
         """
@@ -60,17 +55,6 @@ class BridgeServiceDistributionModel(AbstractResourceDistributionModel):
                                                         StandardiReCoDeSComponent.DemandTypes.OPERATION_DEMAND.value, 
                                                         self.resource_name)
                     percent_of_met_demand = min(1.0, bridge_supply/bridge_demand)
-                    link.update_supply_based_on_unmet_demand(percent_of_met_demand)
+                    link.update_supply_based_on_unmet_demand(percent_of_met_demand, self.resource_name, time_step)
     
-    def get_total_supply(self) -> float:
-        print(f'System supply for bridge service {self.resource_name} not defined yet.')
-        return None
-    
-    def get_total_demand(self) -> float:
-        print(f'System demand for bridge service {self.resource_name} not defined yet.')
-        return None
-    
-    def get_total_consumption(self) -> float:
-        print(f'System consumption for bridge service {self.resource_name} not defined yet.')
-        return None
 

@@ -2,8 +2,6 @@ from pyrecodes.resource_distribution_model.abstract_resource_distribution_model 
 from pyrecodes.resource_distribution_model.residual_demand_traffic_distribution_model_constructor import ResidualDemandTrafficDistributionModelConstructor
 from pyrecodes.resource_distribution_model.spatial_resource_aggregator import SpatialResourceAggregator
 from pyrecodes.component.component import Component
-
-import subprocess
 import os
 
 class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
@@ -23,6 +21,7 @@ class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
         if self.distribute_at_this_time_step(time_step):
             self.update_r2d_dict()
             self.distribute_traffic()
+            self.update_buildings_traffic_situation()
         else:
             self.travel_times.append([])
 
@@ -44,9 +43,24 @@ class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
                 os.dup2(devnull.fileno(), 1) 
                 self.travel_times.append(self.flow_simulator.simulate(self.r2d_dict))
             finally:
-                os.dup2(original_stdout_fd, 1)  
-                os.close(original_stdout_fd) 
-          
+                os.dup2(original_stdout_fd, 1)
+                os.close(original_stdout_fd)
+        self.get_travel_time_change()
+
+    def get_travel_time_change(self) -> None:
+        self.travel_time_change = []
+        for agent_pre_disaster, agent_now in zip(self.travel_times[0].iterrows(), self.travel_times[-1].iterrows()):
+            travel_time_change_factor = agent_now[1]['travel_time_used'] / agent_pre_disaster[1]['travel_time_used']
+            self.travel_time_change.append({'agent_id': agent_pre_disaster[1]['agent_id'], 'origin_nid': agent_pre_disaster[1]['origin_nid'],
+                                            'stop_nid': agent_pre_disaster[1]['stop_nid'], 'travel_time_change': travel_time_change_factor})
+
+    def update_buildings_traffic_situation(self) -> None:
+        """
+        | Update supply of buildings based on their travel times.
+        | TODO: Not implemented yet - requires building_df from the flow simulator.
+        """
+        pass
+
     def get_total_supply(self, scope: str) -> float:
         """
         Supply is calculated the same as consumption.
@@ -74,8 +88,8 @@ class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
         if scope == 'All':
             if len(self.travel_times[-1]) > 0:
                 completed_trips = 0
-                for agent_pre_disaster, agent_now in zip(self.travel_times[0]['travel_time_used'], self.travel_times[-1]['travel_time_used']):
-                    if agent_pre_disaster * self.TRIP_CUTOFF_THRESHOLD >= agent_now:
+                for travel_time_change in self.travel_time_change:
+                    if travel_time_change['travel_time_change'] <= self.TRIP_CUTOFF_THRESHOLD:
                         completed_trips += 1
                 return completed_trips
             else:

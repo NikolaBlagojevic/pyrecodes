@@ -1,6 +1,7 @@
 from pyrecodes.resource_distribution_model.resource_distribution_model_constructor import ResourceDistributionModelConstructor
 from pyrecodes.resource_distribution_model.resource_distribution_model import ResourceDistributionModel
 from pyrecodes.component.component import Component
+from pyrecodes.utilities import unpack_time_stepping_rules
 
 class ConcreteResourceDistributionModelConstructor(ResourceDistributionModelConstructor):
     """
@@ -19,7 +20,5 @@ class ConcreteResourceDistributionModelConstructor(ResourceDistributionModelCons
         distribution_model.components = components    
 
     def set_time_stepping_rules(self, time_stepping_rules: list, distribution_model: ResourceDistributionModel) -> None:
-        distribution_time_steps = []
-        for time_stepping in time_stepping_rules:
-            distribution_time_steps += list(range(time_stepping['start'], time_stepping['end'], time_stepping['step']))
+        distribution_time_steps = unpack_time_stepping_rules(time_stepping_rules)
         distribution_model.set_distribution_time_steps(distribution_time_steps) 

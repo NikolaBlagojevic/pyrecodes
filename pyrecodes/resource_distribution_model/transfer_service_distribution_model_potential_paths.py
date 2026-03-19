@@ -112,15 +112,4 @@ class TransferServiceDistributionModelPotentialPaths(AbstractResourceDistributio
                                                     StandardiReCoDeSComponent.SupplyTypes.SUPPLY.value, 
                                                     self.resource_name) for link in path])       
 
-    def get_total_supply(self, scope: str) -> float:
-        print(f'System supply for transfer service {self.resource_name} not defined yet.')
-        return None
-
-    def get_total_demand(self, scope: str) -> float:
-        print(f'System demand for transfer service {self.resource_name} not defined yet.')
-        return None
-
-    def get_total_consumption(self, scope: str) -> float:
-        print(f'System consumption for transfer service {self.resource_name} not defined yet.')   
-        return None
 

@@ -40,14 +40,11 @@ class AbstractResourceDistributionModel(ResourceDistributionModel):
         else:
             raise ValueError('Scope of the Resilience Calculator not well defined: All or Locality X.')
 
-    @abstractmethod
-    def get_total_supply(self, scope: str) -> float:
-        pass
+    def get_total_supply(self, scope='All') -> float:
+        raise NotImplementedError(f'get_total_supply not implemented for {self.__class__.__name__}.')
 
-    @abstractmethod
-    def get_total_demand(self, scope: str) -> float:
-        pass
+    def get_total_demand(self, scope='All') -> float:
+        raise NotImplementedError(f'get_total_demand not implemented for {self.__class__.__name__}.')
 
-    @abstractmethod
-    def get_total_consumption(self, scope: str) -> float:
-        pass
+    def get_total_consumption(self, scope='All') -> float:
+        raise NotImplementedError(f'get_total_consumption not implemented for {self.__class__.__name__}.')

@@ -11,9 +11,10 @@ class ResidualDemandTrafficDistributionModelConstructor(SimCenterResourceDistrib
         distribution_model.TRIP_CUTOFF_THRESHOLD = resource_parameters['TripCutoffThreshold']
         distribution_model.flow_simulator = transportation.pyrecodes_residual_demand(
             resource_parameters['EdgeFile'], resource_parameters['NodeFile'],
-            resource_parameters['ODFilePre'], resource_parameters['HourList'], 
+            resource_parameters['ODFilePre'], resource_parameters['HourList'],
             resource_parameters['ResultsFolder'],
             resource_parameters['CapacityRuleset'], resource_parameters['DemandRuleset'],
-            resource_parameters['TwoWayEdges']
+            self.r2d_dict,
+            resource_parameters['TwoWayEdges'],
         )
         distribution_model.r2d_dict = self.r2d_dict

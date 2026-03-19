@@ -20,9 +20,9 @@ class HousingDistributionModel(AbstractResourceDistributionModel):
     def distribute(self, time_step: int) -> None:
         if self.distribute_at_this_time_step(time_step):
             for component in self.components:
-                self.distribute_housing_within_component(component)
-    
-    def distribute_housing_within_component(self, component: Component) -> None:
+                self.distribute_housing_within_component(component, time_step)
+
+    def distribute_housing_within_component(self, component: Component, time_step: int) -> None:
         housing_supply = component.get_current_resource_amount(SupplyOrDemand.SUPPLY.value, 
                                                                 StandardiReCoDeSComponent.SupplyTypes.SUPPLY.value, 
                                                                 self.resource_name)
@@ -31,7 +31,7 @@ class HousingDistributionModel(AbstractResourceDistributionModel):
                                                                 self.resource_name)   
         if housing_demand > 0.0:
             percent_of_met_demand = min(1.0, housing_supply/housing_demand)
-            component.update_supply_based_on_unmet_demand(percent_of_met_demand)
+            component.update_supply_based_on_unmet_demand(percent_of_met_demand, self.resource_name, time_step)
 
     def get_total_supply(self, scope: str) -> float:
         components_to_include = self.get_scope(scope)

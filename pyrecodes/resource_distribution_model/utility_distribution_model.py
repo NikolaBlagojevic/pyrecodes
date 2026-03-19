@@ -9,7 +9,7 @@ import json
 import math
 import numpy as np
 import itertools
-from pyrecodes.utilities import format_locality_id
+from pyrecodes.utilities import format_locality_id, json_deepcopy
 
 class UtilityDistributionModel(AbstractResourceDistributionModel):
     """
@@ -37,7 +37,7 @@ class UtilityDistributionModel(AbstractResourceDistributionModel):
             suppliers = []
             for component_row_id, component_demand_type in zip(component_priorities_by_row, component_demand_types):
                 suppliers, component_is_supplier = self.add_supplier(component_row_id, suppliers)
-                suppliers = self.meet_component_demand(suppliers, component_row_id, component_demand_type)
+                suppliers = self.meet_component_demand(suppliers, component_row_id, component_demand_type, time_step)
 
                 if component_is_supplier:                
                     self.reset_supplier_order(suppliers)
@@ -81,13 +81,13 @@ class UtilityDistributionModel(AbstractResourceDistributionModel):
         suppliers[0], suppliers[1:] = suppliers[-1], suppliers[0:-1]
         return suppliers
 
-    def meet_component_demand(self, suppliers: dict, component_row_id: int, component_demand_type: str):
+    def meet_component_demand(self, suppliers: dict, component_row_id: int, component_demand_type: str, time_step: int):
         component_demand = self.get_demand(component_row_id)  
         component_localities = [self.system_matrix.matrix[component_row_id, self.system_matrix.START_LOCALITY_COL_ID],
                                 self.system_matrix.matrix[component_row_id, self.system_matrix.END_LOCALITY_COL_ID]]
         
         if component_demand > 0.0:
-            initial_suppliers = self.deepcopy(suppliers)
+            initial_suppliers = json_deepcopy(suppliers)
             transfer_service_demand = self.get_transfer_service_demand(component_row_id, component_demand_type)
             component_demand_after_distribution, suppliers = self.suppliers_meet_component_demand(suppliers,
                                                                                                   component_demand,  
@@ -99,12 +99,10 @@ class UtilityDistributionModel(AbstractResourceDistributionModel):
                 percent_of_met_demand = 1 - (component_demand_after_distribution / component_demand)
                 self.set_demand_met_indicator(component_row_id, percent_of_met_demand)
                 if component_demand_type == StandardiReCoDeSComponent.DemandTypes.OPERATION_DEMAND.value:
-                    self.reduce_component_supply(component_row_id, percent_of_met_demand)
+                    self.reduce_component_supply(component_row_id, percent_of_met_demand, time_step)
                 elif component_demand_type == StandardiReCoDeSComponent.DemandTypes.RECOVERY_DEMAND.value:
-                    self.set_met_demand_for_recovery_activities(component_row_id, percent_of_met_demand)
+                    self.set_met_demand_for_recovery_activities(component_row_id, percent_of_met_demand, time_step)
                 
-                # suppliers = self.reset_suppliers(initial_suppliers)
-
         return suppliers
 
     def suppliers_meet_component_demand(self, suppliers, component_demand, component_localities, transfer_service_demand):
@@ -143,29 +141,18 @@ class UtilityDistributionModel(AbstractResourceDistributionModel):
     def set_demand_met_indicator(self, component_row_id: int, percent_of_met_demand: float):
         self.system_matrix.set_demand_met_indicator(component_row_id, percent_of_met_demand)
 
-    def reduce_component_supply(self, component_row_id: int, percent_of_met_demand: float):
-        self.components[component_row_id].update_supply_based_on_unmet_demand(percent_of_met_demand)
+    def reduce_component_supply(self, component_row_id: int, percent_of_met_demand: float, time_step: int):
+        self.components[component_row_id].update_supply_based_on_unmet_demand(percent_of_met_demand, self.resource_name, time_step)
 
-    def set_met_demand_for_recovery_activities(self, component_row_id: int, percent_of_met_demand: float):
+    def set_met_demand_for_recovery_activities(self, component_row_id: int, percent_of_met_demand: float, time_step: int):
         self.components[
             component_row_id - self.system_matrix.RECOVERY_DEMAND_ROW_OFFSET].set_met_demand_for_recovery_activities(
-            self.resource_name, percent_of_met_demand)
+            self.resource_name, percent_of_met_demand, time_step)
 
     def reset_supplier_order(self, suppliers: list) -> list:
         suppliers[-1], suppliers[:-1] = suppliers[0], suppliers[1:]
         return suppliers
     
-    def deepcopy(self, input: list):
-        """
-        Method to deepcopy a dict or a list. Alternative to copy.deepcopy as it is too expensive.
-
-        Copied from System class! Consider moving to a separate module.
-        """
-        return json.loads(json.dumps(input))
-
-    def reset_suppliers(self, initial_suppliers: list) -> list:
-        return self.deepcopy(initial_suppliers)
-
     def get_demand(self, component_row_id: int) -> float:
         return self.system_matrix.get_demand(component_row_id)
 

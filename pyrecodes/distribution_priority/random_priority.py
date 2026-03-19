@@ -26,13 +26,13 @@ class RandomPriority(DistributionPriority):
 
     def get_suppliers_id(self):
         suppliers_id = []
-        component_ids = list(range(len(self.components)))
-        remaining_components_id = component_ids
-        for component_id, component in enumerate(self.components):       
+        nonsuppliers_id = []
+        for component_id, component in enumerate(self.components):
             if component.has_resource_supply(self.resource_name):
                 suppliers_id.append(component_id)
-                remaining_components_id.remove(component_id)
-        return suppliers_id, remaining_components_id
+            else:
+                nonsuppliers_id.append(component_id)
+        return suppliers_id, nonsuppliers_id
     
     def randomize_ids(self, component_ids: list, demand_types: list) -> tuple:
         """

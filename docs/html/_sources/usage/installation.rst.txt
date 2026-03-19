@@ -1,68 +1,78 @@
 Installing pyrecodes
 ====================
 
-The prerequisite for installing pyrecodes is having Python version 3.9.6 installed on your machine.
+pyrecodes requires Python 3.9 or later.
 
-pip install
-------------
+Installation options
+--------------------
 
-The simplest way to install pyrecodes is to use `pip`:
+**Option 1 — Core only (default)**
 
-.. code-block:: Python
+Installs pyrecodes with all dependencies needed for the core simulation framework, visualization, and examples 1–4.
 
-    pip install --pre pyrecodes
+.. code-block:: bash
 
-Basic version of pyrecodes does not include dependencies required to run third-party infrastructure simulators to avoid potential dependency issues in case users do not use third-party model APIs. However, to install the version of pyrecodes with third-party infrastructure simulators, run the following command:
+    pip install pyrecodes
 
-.. code-block:: Python
+**Option 2 — With household / LLM agents**
 
-    pip install --pre "pyrecodes[third_party_models]"
+Adds dependencies for the GPT-driven household generative agents (examples 6–7). Requires an OpenAI API key.
 
-Cloning the repository
-----------------------
+.. code-block:: bash
 
-pyrecodes can also be installed by `cloning <https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository>`_ the source code available on `Github <https://github.com/NikolaBlagojevic/pyrecodes/tree/main>`_.
+    pip install "pyrecodes[household]"
 
-It's good practice to use a virtual environment when installing pyrecodes to keep its dependencies isolated from other Python projects on your machine. The repository includes two requirements files in the root directory, allowing you to install all dependencies at once in case you are having trouble with pip installing pyrecodes.
+**Option 3 — With third-party infrastructure simulators**
 
-Baisc pyrecodes requires dependencies listed in `requirements.txt` file. To install all dependencies, run the following command:
+Adds dependencies for REWET (water network simulation) and the residual demand traffic simulator (example 5). Requires Python x86_64 — see the note below.
 
-.. code-block:: Python
+.. code-block:: bash
 
-    pip install -r requirements.txt
+    pip install "pyrecodes[third_party_models]"
 
-Full version of pyrecodes requires dependencies listed in `requirements_third_party_models.txt` file.
+**Option 4 — Full installation**
 
-.. code-block:: Python
+Installs all optional dependencies.
 
-    pip install -r requirements_third_party_models.txt
+.. code-block:: bash
+
+    pip install "pyrecodes[household,third_party_models]"
 
 .. note::
 
-    Please note that python version x86_64 is required to run the third-party infrastructure simulators presented in Example 5. Further instructions are available `here. <https://nheri-simcenter.github.io/R2D-Documentation/common/user_manual/installation/desktop/install_macOS.html>`_
+    Python x86_64 is required for the third-party infrastructure simulators used in Example 5. Further instructions are available `here <https://nheri-simcenter.github.io/R2D-Documentation/common/user_manual/installation/desktop/install_macOS.html>`_.
 
+Installing from source
+----------------------
+
+Clone the repository and install in editable mode:
+
+.. code-block:: bash
+
+    git clone https://github.com/NikolaBlagojevic/pyrecodes.git
+    cd pyrecodes
+    pip install -e .
+
+To include optional dependencies:
+
+.. code-block:: bash
+
+    pip install -e ".[household]"
+    pip install -e ".[third_party_models]"
+    pip install -e ".[household,third_party_models]"
+
+It is good practice to use a virtual environment to keep pyrecodes dependencies isolated from other projects:
+
+.. code-block:: bash
+
+    python -m venv env_pyrecodes
+    source env_pyrecodes/bin/activate      # macOS / Linux
+    env_pyrecodes\\Scripts\\activate         # Windows
+    pip install -e ".[household,third_party_models]"
 
 Running Examples
 ----------------
 
-To ensure that the installation is successful, please run Example 1 as specified in the Examples page.
+All examples are Jupyter notebooks and can be run locally.
 
-All examples are written as Jupyter notebooks and can be run locally or online using Google Colab. More information on installing Jupyter notebooks can be found `here <https://jupyter.org/install>`_.  
-
-
-.. Dependencies
-.. ------------
-
-.. Apart from the Python's standard library, pyrecodes relies on several external packages:
-..  - numpy
-..  - pandas
-..  - geopandas
-..  - shapely
-..  - contextily (for visualization only)
-..  - matplotlib (for visualization only)
-..  - imageio (for visualization only)
-
-.. These packages, along with their dependencies, define the requirements of the pyrecodes library.
-
-
-
+To verify your installation, run Example 1 as described on the Examples page.

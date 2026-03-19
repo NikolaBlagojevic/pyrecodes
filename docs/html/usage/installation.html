@@ -396,39 +396,60 @@
         <article role="main" id="furo-main-content">
           <section id="installing-pyrecodes">
 <h1>Installing pyrecodes<a class="headerlink" href="#installing-pyrecodes" title="Link to this heading">¶</a></h1>
-<p>The prerequisite for installing pyrecodes is having Python version 3.9.6 installed on your machine.</p>
-<section id="pip-install">
-<h2>pip install<a class="headerlink" href="#pip-install" title="Link to this heading">¶</a></h2>
-<p>The simplest way to install pyrecodes is to use <cite>pip</cite>:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">pre</span> <span class="n">pyrecodes</span>
+<p>pyrecodes requires Python 3.9 or later.</p>
+<section id="installation-options">
+<h2>Installation options<a class="headerlink" href="#installation-options" title="Link to this heading">¶</a></h2>
+<p><strong>Option 1 — Core only (default)</strong></p>
+<p>Installs pyrecodes with all dependencies needed for the core simulation framework, visualization, and examples 1–4.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pyrecodes
 </pre></div>
 </div>
-<p>Basic version of pyrecodes does not include dependencies required to run third-party infrastructure simulators to avoid potential dependency issues in case users do not use third-party model APIs. However, to install the version of pyrecodes with third-party infrastructure simulators, run the following command:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">pre</span> <span class="s2">&quot;pyrecodes[third_party_models]&quot;</span>
+<p><strong>Option 2 — With household / LLM agents</strong></p>
+<p>Adds dependencies for the GPT-driven household generative agents (examples 6–7). Requires an OpenAI API key.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pyrecodes[household]&quot;</span>
 </pre></div>
 </div>
-</section>
-<section id="cloning-the-repository">
-<h2>Cloning the repository<a class="headerlink" href="#cloning-the-repository" title="Link to this heading">¶</a></h2>
-<p>pyrecodes can also be installed by <a class="reference external" href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository">cloning</a> the source code available on <a class="reference external" href="https://github.com/NikolaBlagojevic/pyrecodes/tree/main">Github</a>.</p>
-<p>It’s good practice to use a virtual environment when installing pyrecodes to keep its dependencies isolated from other Python projects on your machine. The repository includes two requirements files in the root directory, allowing you to install all dependencies at once in case you are having trouble with pip installing pyrecodes.</p>
-<p>Baisc pyrecodes requires dependencies listed in <cite>requirements.txt</cite> file. To install all dependencies, run the following command:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+<p><strong>Option 3 — With third-party infrastructure simulators</strong></p>
+<p>Adds dependencies for REWET (water network simulation) and the residual demand traffic simulator (example 5). Requires Python x86_64 — see the note below.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pyrecodes[third_party_models]&quot;</span>
 </pre></div>
 </div>
-<p>Full version of pyrecodes requires dependencies listed in <cite>requirements_third_party_models.txt</cite> file.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements_third_party_models</span><span class="o">.</span><span class="n">txt</span>
+<p><strong>Option 4 — Full installation</strong></p>
+<p>Installs all optional dependencies.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pyrecodes[household,third_party_models]&quot;</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Please note that python version x86_64 is required to run the third-party infrastructure simulators presented in Example 5. Further instructions are available <a class="reference external" href="https://nheri-simcenter.github.io/R2D-Documentation/common/user_manual/installation/desktop/install_macOS.html">here.</a></p>
+<p>Python x86_64 is required for the third-party infrastructure simulators used in Example 5. Further instructions are available <a class="reference external" href="https://nheri-simcenter.github.io/R2D-Documentation/common/user_manual/installation/desktop/install_macOS.html">here</a>.</p>
+</div>
+</section>
+<section id="installing-from-source">
+<h2>Installing from source<a class="headerlink" href="#installing-from-source" title="Link to this heading">¶</a></h2>
+<p>Clone the repository and install in editable mode:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/NikolaBlagojevic/pyrecodes.git
+<span class="nb">cd</span><span class="w"> </span>pyrecodes
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+<p>To include optional dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[household]&quot;</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[third_party_models]&quot;</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[household,third_party_models]&quot;</span>
+</pre></div>
+</div>
+<p>It is good practice to use a virtual environment to keep pyrecodes dependencies isolated from other projects:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>env_pyrecodes
+<span class="nb">source</span><span class="w"> </span>env_pyrecodes/bin/activate<span class="w">      </span><span class="c1"># macOS / Linux</span>
+env_pyrecodes<span class="se">\\</span>Scripts<span class="se">\\</span>activate<span class="w">         </span><span class="c1"># Windows</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[household,third_party_models]&quot;</span>
+</pre></div>
 </div>
 </section>
 <section id="running-examples">
 <h2>Running Examples<a class="headerlink" href="#running-examples" title="Link to this heading">¶</a></h2>
-<p>To ensure that the installation is successful, please run Example 1 as specified in the Examples page.</p>
-<p>All examples are written as Jupyter notebooks and can be run locally or online using Google Colab. More information on installing Jupyter notebooks can be found <a class="reference external" href="https://jupyter.org/install">here</a>.</p>
+<p>All examples are Jupyter notebooks and can be run locally.</p>
+<p>To verify your installation, run Example 1 as described on the Examples page.</p>
 </section>
 </section>
 
@@ -488,8 +509,8 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Installing pyrecodes</a><ul>
-<li><a class="reference internal" href="#pip-install">pip install</a></li>
-<li><a class="reference internal" href="#cloning-the-repository">Cloning the repository</a></li>
+<li><a class="reference internal" href="#installation-options">Installation options</a></li>
+<li><a class="reference internal" href="#installing-from-source">Installing from source</a></li>
 <li><a class="reference internal" href="#running-examples">Running Examples</a></li>
 </ul>
 </li>

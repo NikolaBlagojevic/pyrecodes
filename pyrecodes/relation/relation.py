@@ -96,6 +96,8 @@ class MultipleStep(ConcreteRelation):
             return self.step_values[input_step]
             
     def get_step_id(self, input: float) -> int:
+        if not self.step_limits:
+            raise ValueError('Step limits are empty. Call set_steps() before using MultipleStep.')
         for i in range(len(self.step_limits) - 1):
             if self.step_limits[i] <= input < self.step_limits[i + 1]:
                 return i
@@ -103,10 +105,11 @@ class MultipleStep(ConcreteRelation):
             return 0
         elif input >= self.step_limits[-1]:
             return len(self.step_limits) - 1
-        
-    def set_steps(self, step_limits: list[float], step_values: list[float]):   
+        else:
+            raise ValueError(f'Input {input} does not match any step in {self.step_limits}.')
+
+    def set_steps(self, step_limits: list[float], step_values: list[float]):
         if len(step_limits) != len(step_values):
             raise ValueError('Number of step limits and step values should be the same.')
-        else:
-            self.step_limits = step_limits
-            self.step_values = step_values
+        self.step_limits = step_limits
+        self.step_values = step_values

@@ -32,7 +32,7 @@ class ConcreteResource(Resource):
         try:
             target_relation = getattr(relation, relation_class_name)
             setattr(self, attribute_name, target_relation())
-        except:
+        except (AttributeError, TypeError):
             raise ValueError(f'Relation {relation_class_name} not defined.')
 
     def set_functionality_to_amount_relation(self, relation_class_name: str) -> None:

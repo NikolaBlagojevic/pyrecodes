@@ -52,3 +52,34 @@ ALL_RECOVERY_ACTIVITIES_LABELS = {'RapidInspection': 'Rapid Inspection',
 
 RECOVERY_FINANCING_ACTIVITY_NAME = 'Financing'
 MONEY_RESOURCE_NAME = 'Money'
+
+HOUSEHOLD_GANTT_CHART_COLORS = {'Home': 'green',
+                                'OutOfTown': 'red',
+                                'Friend': 'blue'}
+
+DAMAGE_STATE_COLORS = {
+    'None': 'green',
+    'Minor': 'yellow',
+    'Moderate': 'orange',
+    'Severe': 'red',
+    'Complete': 'black'
+}
+
+DAMAGE_STATE_NUMBER_TO_NAME = {
+    0: 'None',
+    1: 'Minor',
+    2: 'Moderate',
+    3: 'Severe',
+    4: 'Complete'
+}
+
+MET_DEMAND_STATE_COLORS = {
+    'Met': 'green',
+    'NotMet': 'red'
+}
+
+HOUSEHOLD_OCCUPANCY_COLORS = {
+    'Occupied': 'green',
+    'Vacant': 'red',
+    'Unknown': 'gray'
+}

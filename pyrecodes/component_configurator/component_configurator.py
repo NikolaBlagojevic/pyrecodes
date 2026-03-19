@@ -1,7 +1,7 @@
 from pyrecodes.component.component import Component
 from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComponent
 from pyrecodes.component.component import SupplyOrDemand
-from pyrecodes.utilities import format_locality_id
+from pyrecodes.utilities import format_locality_id, unpack_time_stepping_rules
 from pyrecodes.component_configurator.repair_configurator import RepairConfigurator
 
 class ComponentConfigurator():    
@@ -49,9 +49,7 @@ class ComponentConfigurator():
         if recovery_time_stepping is None:
             self.recovery_time_steps = list(range(self.system_level_data['START_TIME_STEP'], self.system_level_data['MAX_TIME_STEP']))
         else: 
-            self.recovery_time_steps = []
-            for time_stepping in recovery_time_stepping:
-                self.recovery_time_steps += list(range(time_stepping['start'], time_stepping['end'], time_stepping['step']))    
+            self.recovery_time_steps = unpack_time_stepping_rules(recovery_time_stepping)
 
     def set_repair_configurator(self, component: Component) -> None:
         self.repair_configurator = RepairConfigurator(component, self.system_level_data)        

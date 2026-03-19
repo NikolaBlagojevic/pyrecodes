@@ -112,23 +112,25 @@ class R2DBuildingConfigurator(R2DComponentConfigurator):
     def get_building_housing_capacity(self, building_data: dict) -> int:  
         return building_data['Information']['GeneralInformation']['Population'] 
     
-    def set_supply_parameters(self, component: Component, building_data: dict):
+    def set_housing_resource_parameters(self, component: Component, building_data: dict, supply_or_demand: str) -> None:
         if self.system_level_data['HOUSING_RESOURCES'] is not None:
             building_housing_capacity = self.get_building_housing_capacity(building_data)
             # TODO: Figure out a better way to define the housing resources - defining them in the system configuration file is not optimal.
             for housing_resource_name in self.system_level_data.get('HOUSING_RESOURCES', []):
-                self.set_component_supply(component, housing_resource_name, building_housing_capacity)
-    
+                if supply_or_demand == 'supply':
+                    self.set_component_supply(component, housing_resource_name, building_housing_capacity)
+                elif supply_or_demand == 'demand':
+                    self.set_component_operation_demand(component, housing_resource_name, building_housing_capacity)
+
+    def set_supply_parameters(self, component: Component, building_data: dict):
+        self.set_housing_resource_parameters(component, building_data, 'supply')
+
     def set_operation_demand_parameters(self, component: Component, building_data: dict) -> None:
         self.set_housing_demand_parameters(component, building_data)
         self.set_infrastructure_demand_parameters(component, building_data)
 
     def set_housing_demand_parameters(self, component: Component, building_data: dict) -> None:
-        # TODO: Not dry, similar to set_supply_parameters. Fix this.
-        if self.system_level_data['HOUSING_RESOURCES'] is not None:
-            building_housing_capacity = self.get_building_housing_capacity(building_data)
-            for housing_resource_name in self.system_level_data.get('HOUSING_RESOURCES', []):
-                self.set_component_operation_demand(component, housing_resource_name, building_housing_capacity)
+        self.set_housing_resource_parameters(component, building_data, 'demand')
 
     def set_infrastructure_demand_parameters(self, component: Component, building_data: dict) -> None:
         """
@@ -184,9 +186,9 @@ class R2DRoadwayConfigurator(R2DTransportationComponentConfigurator):
         self.repair_configurator = R2DRoadwayRepairConfigurator(component, self.system_level_data)  
     
     def set_supply_parameters(self, component: Component, component_data: dict) -> None:
-        # TODO: Not sure what is really needed here.
+        # TODO: Not sure what is really needed here. Might be similar to a pipe, no resource supply, but functionality level defines how well the roadway can transfer traffic.
         pass
-    
+
     def get_road_length(self, component) -> float:
         shapely_line = shapely.from_wkt(component.geometry)
         # Transformer for reprojecting from WGS84 (EPSG:4326) to UTM Zone 10N (EPSG:32610) to get the length in meters.
@@ -269,5 +271,28 @@ class R2DTunnelConfigurator(R2DTransportationComponentConfigurator):
         self.repair_configurator = R2DTunnelRepairConfigurator(component, self.system_level_data)  
     
     def set_supply_parameters(self, component: Component, component_data: dict) -> None:
-        pass       
-    
+        pass
+
+
+class R2DTownConfigurator(R2DBuildingConfigurator):
+
+    pass
+
+class R2DBuildingWithHouseholdsConfigurator(R2DBuildingConfigurator):
+    """
+    Class that sets parameters of a Building with Households as provided in the R2D output files.
+    """
+
+    def set_parameters(self, component: Component, locality: list, component_data: dict, component_DS: int):
+        super().set_parameters(component, locality, component_data, component_DS)
+        if "Households" in component_data['Information']['GeneralInformation']:
+            component.create_households(component_data['Information']['GeneralInformation']['Households'])
+        return component
+
+    def set_infrastructure_demand_parameters_based_on_number_of_people(self, component: Component, building_data: dict) -> None:
+        """
+        | Method sets the infrastructure demand for a building component based on the number of people living in the building (i.e., housing capacity).
+        | For building with households, the initial demand is set to 0. Households give their own demand later in the system update.
+        """
+        pass
+

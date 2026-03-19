@@ -34,6 +34,7 @@ class StandardiReCoDeSComponent(Component):
         self.locality = None
         self.supply = {supply_type.value: dict() for supply_type in self.SupplyTypes}
         self.demand = {demand_type.value: dict() for demand_type in self.DemandTypes}
+        self.met_demand_tracker = []
 
     def __str__(self) -> str:
         """
@@ -173,7 +174,7 @@ class StandardiReCoDeSComponent(Component):
         else:
             return 0.0
 
-    def update(self, time_step: int) -> None:
+    def update(self, time_step: int, *args) -> None:
         """
         | Update component's state based on its current damage level and damage-to-functionality relation.
         | This includes updating component's functionality_level, checking if the component is functional at time_step and updating its supply, operation and recovery demand.
@@ -183,6 +184,7 @@ class StandardiReCoDeSComponent(Component):
         self.update_supply_based_on_component_functionality()
         self.update_operation_demand()
         self.update_recovery_demand()
+        self.met_demand_tracker.append({})
 
     def update_functionality(self) -> None:
         """
@@ -235,7 +237,7 @@ class StandardiReCoDeSComponent(Component):
         """
         self.recovery_model.set_activities_demand_to_met()
 
-    def update_supply_based_on_unmet_demand(self, percent_of_met_demand: float) -> None:
+    def update_supply_based_on_unmet_demand(self, percent_of_met_demand: float, resource_name: str, time_step: int) -> None:
         """
         | Update component's supply based on how much of its operation demand is met.
         | This is how component interdependencies are captured.
@@ -244,6 +246,11 @@ class StandardiReCoDeSComponent(Component):
         resources_to_update = getattr(self, SupplyOrDemand.SUPPLY.value)[self.SupplyTypes.SUPPLY.value]
         for resource_object in resources_to_update.values():
             resource_object.update_based_on_unmet_demand(percent_of_met_demand)
+            self.update_met_demand_tracker(resource_name, percent_of_met_demand, time_step, self.DemandTypes.OPERATION_DEMAND.value)
+    
+    def update_met_demand_tracker(self, resource_name: str, percent_of_met_demand: float, time_step: int, demand_type: str) -> None:
+        if resource_name not in self.met_demand_tracker[time_step] or (self.met_demand_tracker[time_step][resource_name]['PercentOfMetDemand'] < percent_of_met_demand and self.met_demand_tracker[time_step][resource_name]['DemandType'] == demand_type):
+            self.met_demand_tracker[time_step][resource_name] = {'PercentOfMetDemand': percent_of_met_demand, 'DemandType': demand_type}
     
     def update_supply_based_on_consumption(self, resource_name: str, consumed_amount: float) -> None:
         """
@@ -254,7 +261,7 @@ class StandardiReCoDeSComponent(Component):
         resources_to_update = getattr(self, SupplyOrDemand.SUPPLY.value)[self.SupplyTypes.SUPPLY.value] 
         resources_to_update[resource_name].update_based_on_consumption(consumed_amount)
     
-    def set_met_demand_for_recovery_activities(self, resource_name: str, percent_of_met_demand: float) -> None:
+    def set_met_demand_for_recovery_activities(self, resource_name: str, percent_of_met_demand: float, time_step: int) -> None:
         """
         | Set the demand_met for the component's recovery activity that require the resource resource_name.
         | This is how recovery resource constraints are captured.
@@ -264,6 +271,7 @@ class StandardiReCoDeSComponent(Component):
         """
         self.recovery_model.set_met_demand_for_recovery_activities(resource_name,
                                                                      percent_of_met_demand)  
+        self.update_met_demand_tracker(resource_name, percent_of_met_demand, time_step, self.DemandTypes.RECOVERY_DEMAND.value)
 
     def recover(self, time_step: int):
         """

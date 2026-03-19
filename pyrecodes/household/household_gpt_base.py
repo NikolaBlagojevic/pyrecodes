@@ -19,7 +19,6 @@ class HouseholdGPTBase:
     """
 
     PROMPTS_FILE = None  # each subclass must define this
-    MAX_PAST_EXPERIENCE_FOR_SUMMARY = 5
     
     def __init__(self) -> None:
         self.decisions = []
@@ -103,6 +102,7 @@ class HouseholdGPTBase:
 
 class LLM:
     """Wraps OpenAI GPT or Ollama Llama, maintaining chat history and prompt management."""
+    MAX_PAST_EXPERIENCE_FOR_SUMMARY = 5
 
     def __init__(self, api_key_filename: str, temperature: float = 1.0, llm_model: str = 'GPT') -> None:
         self.chat_history = []

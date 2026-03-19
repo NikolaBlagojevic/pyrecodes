@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="component_configurator" href="component_configurator_docs.html" /><link rel="prev" title="main" href="main_docs.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>utilities - pyrecodes v0.2.0 documentation</title>
+        <title>utilities - pyrecodes v0.3.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">pyrecodes v0.2.0 documentation</div></a>
+      <a href="../../index.html"><div class="brand">pyrecodes v0.3.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -194,7 +194,7 @@
     <img class="sidebar-logo" src="../../_static/pyrecodes_logo.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">pyrecodes v0.2.0 documentation</span>
+  <span class="sidebar-brand-text">pyrecodes v0.3.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -214,6 +214,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../examples/example_3.html">Example 3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/example_4.html">Example 4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../examples/example_5.html">Example 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/example_6.html">Example 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/example_7.html">Example 7</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../documentation.html">Documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
@@ -234,6 +236,7 @@
 <li class="toctree-l3"><a class="reference internal" href="component_docs/component_building_with_emergency_calls_docs.html">building_with_emergency_calls</a></li>
 <li class="toctree-l3"><a class="reference internal" href="component_docs/component_infrastructure_interface_docs.html">infrastructure_interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="component_docs/component_r2d_component_docs.html">r2d_component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component_docs/component_r2d_building_with_households_docs.html">r2d_building_with_households</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="component_library_creator_docs.html">component_library_creator</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of component_library_creator</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -336,6 +339,14 @@
 <li class="toctree-l3"><a class="reference internal" href="system_docs/built_environment_docs.html">built_environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="system_docs/distribution_list_creator_docs.html">distribution_list_creator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="system_docs/recovery_target_checker_docs.html">recovery_target_checker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_docs/built_environment_with_households_docs.html">built_environment_with_households</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="household_docs.html">household</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of household</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="household_docs/household_docs.html">household</a></li>
+<li class="toctree-l3"><a class="reference internal" href="household_docs/household_gpt_base_docs.html">household_gpt_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="household_docs/household_gpt_docs.html">household_gpt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="household_docs/household_survey_gpt_docs.html">household_survey_gpt</a></li>
 </ul>
 </li>
 </ul>
@@ -422,6 +433,12 @@
 <dd></dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="pyrecodes.utilities.json_deepcopy">
+<span class="sig-prename descclassname"><span class="pre">pyrecodes.utilities.</span></span><span class="sig-name descname"><span class="pre">json_deepcopy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span></span></span><a class="headerlink" href="#pyrecodes.utilities.json_deepcopy" title="Link to this definition">¶</a></dt>
+<dd><p>Fast deep copy for nested dicts/lists of JSON-serializable primitives.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="pyrecodes.utilities.read_json_file">
 <span class="sig-prename descclassname"><span class="pre">pyrecodes.utilities.</span></span><span class="sig-name descname"><span class="pre">read_json_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pyrecodes.utilities.read_json_file" title="Link to this definition">¶</a></dt>
 <dd><p>Reads a JSON file and returns its contents as a dictionary.</p>
@@ -431,6 +448,27 @@
 <dt>Returns:</dt><dd><p>dict: The dictionary representation of the JSON data.</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyrecodes.utilities.resolve_folder_paths">
+<span class="sig-prename descclassname"><span class="pre">pyrecodes.utilities.</span></span><span class="sig-name descname"><span class="pre">resolve_folder_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></span><a class="headerlink" href="#pyrecodes.utilities.resolve_folder_paths" title="Link to this definition">¶</a></dt>
+<dd><p>Recursively replaces the <code class="docutils literal notranslate"><span class="pre">{folder}</span></code> placeholder in all string values with <code class="docutils literal notranslate"><span class="pre">folder_name</span></code>.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">{folder}</span></code> in system configuration JSON to reference files relative to the
+input folder without hardcoding its name.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>obj: A dict, list, or string parsed from JSON.
+folder_name: The folder name passed to <code class="docutils literal notranslate"><span class="pre">main.run()</span></code>.</p>
+</dd>
+<dt>Returns:</dt><dd><p>The same structure with every <code class="docutils literal notranslate"><span class="pre">{folder}</span></code> occurrence replaced.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyrecodes.utilities.unpack_time_stepping_rules">
+<span class="sig-prename descclassname"><span class="pre">pyrecodes.utilities.</span></span><span class="sig-name descname"><span class="pre">unpack_time_stepping_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_stepping_rules</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#pyrecodes.utilities.unpack_time_stepping_rules" title="Link to this definition">¶</a></dt>
+<dd><p>Unpacks time stepping rules into a list of time steps.</p>
 </dd></dl>
 
 </section>
@@ -498,7 +536,10 @@
 <li><a class="reference internal" href="#pyrecodes.utilities.format_locality_id"><code class="docutils literal notranslate"><span class="pre">format_locality_id()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.utilities.get_class"><code class="docutils literal notranslate"><span class="pre">get_class()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.utilities.get_locality_coordinates_from_geojson"><code class="docutils literal notranslate"><span class="pre">get_locality_coordinates_from_geojson()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.utilities.json_deepcopy"><code class="docutils literal notranslate"><span class="pre">json_deepcopy()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.utilities.read_json_file"><code class="docutils literal notranslate"><span class="pre">read_json_file()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.utilities.resolve_folder_paths"><code class="docutils literal notranslate"><span class="pre">resolve_folder_paths()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.utilities.unpack_time_stepping_rules"><code class="docutils literal notranslate"><span class="pre">unpack_time_stepping_rules()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -510,7 +551,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=683873e3"></script>
+</div><script src="../../_static/documentation_options.js?v=19ed39ba"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>

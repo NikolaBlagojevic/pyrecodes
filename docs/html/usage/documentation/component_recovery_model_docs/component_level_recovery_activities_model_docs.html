@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="no_recovery_activity_model" href="no_recovery_activity_model_docs.html" /><link rel="prev" title="abstract_recovery_model" href="abstract_recovery_model_docs.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>component_level_recovery_activities_model - pyrecodes v0.2.0 documentation</title>
+        <title>component_level_recovery_activities_model - pyrecodes v0.3.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">pyrecodes v0.2.0 documentation</div></a>
+      <a href="../../../index.html"><div class="brand">pyrecodes v0.3.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -194,7 +194,7 @@
     <img class="sidebar-logo" src="../../../_static/pyrecodes_logo.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">pyrecodes v0.2.0 documentation</span>
+  <span class="sidebar-brand-text">pyrecodes v0.3.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -214,6 +214,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_3.html">Example 3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_4.html">Example 4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_5.html">Example 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_6.html">Example 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_7.html">Example 7</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../../documentation.html">Documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
@@ -234,6 +236,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_building_with_emergency_calls_docs.html">building_with_emergency_calls</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_infrastructure_interface_docs.html">infrastructure_interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_r2d_component_docs.html">r2d_component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../component_docs/component_r2d_building_with_households_docs.html">r2d_building_with_households</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../component_library_creator_docs.html">component_library_creator</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of component_library_creator</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -336,6 +339,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../system_docs/built_environment_docs.html">built_environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../system_docs/distribution_list_creator_docs.html">distribution_list_creator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../system_docs/recovery_target_checker_docs.html">recovery_target_checker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system_docs/built_environment_with_households_docs.html">built_environment_with_households</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../household_docs.html">household</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of household</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_docs.html">household</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_gpt_base_docs.html">household_gpt_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_gpt_docs.html">household_gpt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_survey_gpt_docs.html">household_survey_gpt</a></li>
 </ul>
 </li>
 </ul>
@@ -400,7 +411,7 @@ REPAIR_ACTIVITY_NAME (str): The name of the repair activity - one that actually 
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.component_recovery_model.component_level_recovery_activities_model.ComponentLevelRecoveryActivitiesModel.check_preceding_activities">
-<span class="sig-name descname"><span class="pre">check_preceding_activities</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.component_recovery_model.component_level_recovery_activities_model.ComponentLevelRecoveryActivitiesModel.check_preceding_activities" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">check_preceding_activities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_step</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.component_recovery_model.component_level_recovery_activities_model.ComponentLevelRecoveryActivitiesModel.check_preceding_activities" title="Link to this definition">¶</a></dt>
 <dd><p>Check if preceding activities are finished for all recovery activities and set the preceding_activities_finished attribute accordingly.</p>
 </dd></dl>
 
@@ -415,9 +426,15 @@ REPAIR_ACTIVITY_NAME (str): The name of the repair activity - one that actually 
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.component_recovery_model.component_level_recovery_activities_model.ComponentLevelRecoveryActivitiesModel.demand_is_active">
+<span class="sig-name descname"><span class="pre">demand_is_active</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recovery_activity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="recovery_activity_docs.html#pyrecodes.component_recovery_model.recovery_activity.RecoveryActivity" title="pyrecodes.component_recovery_model.recovery_activity.RecoveryActivity"><span class="pre">RecoveryActivity</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pyrecodes.component_recovery_model.component_level_recovery_activities_model.ComponentLevelRecoveryActivitiesModel.demand_is_active" title="Link to this definition">¶</a></dt>
+<dd><p>Check if the demand for a recovery activity is active at the current time step. Demand is active if the preceding activities are finished, the damage level is greater than 0, and the activity is not finished.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.component_recovery_model.component_level_recovery_activities_model.ComponentLevelRecoveryActivitiesModel.find_recovery_activity_that_demands_the_resource">
 <span class="sig-name descname"><span class="pre">find_recovery_activity_that_demands_the_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="recovery_activity_docs.html#pyrecodes.component_recovery_model.recovery_activity.RecoveryActivity" title="pyrecodes.component_recovery_model.recovery_activity.RecoveryActivity"><span class="pre">RecoveryActivity</span></a></span></span><a class="headerlink" href="#pyrecodes.component_recovery_model.component_level_recovery_activities_model.ComponentLevelRecoveryActivitiesModel.find_recovery_activity_that_demands_the_resource" title="Link to this definition">¶</a></dt>
-<dd><p>Find the recovery activity that demands the resource resource_name.</p>
+<dd><p>Find the recovery activity that demands the resource resource_name at the current time step.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><p>resource_name (str): The name of the resource.</p>
 </dd>
@@ -511,7 +528,7 @@ REPAIR_ACTIVITY_NAME (str): The name of the repair activity - one that actually 
 <dt>Args:</dt><dd><p>resource_name (str): The name of the resource.
 percent_of_met_demand (float): The percent of met demand (between 0 and 1).:</p>
 </dd>
-<dt>TODO:</dt><dd><p>Add recovery activity name as input parameter. This will allow the same resource to be demanded by multiple recovery activities. Not possible at the moment.</p>
+<dt>TODO:</dt><dd><p>Add recovery activity name as input parameter. This will allow the same resource to be demanded by multiple recovery activities at the same time. Not possible at the moment. With the demand active implemented, two activities can demand the same resource but only one will be active at a time.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -590,6 +607,7 @@ percent_of_met_demand (float): The percent of met demand (between 0 and 1).:</p>
 <li><a class="reference internal" href="#pyrecodes.component_recovery_model.component_level_recovery_activities_model.ComponentLevelRecoveryActivitiesModel.check_preceding_activities"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.check_preceding_activities()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.component_recovery_model.component_level_recovery_activities_model.ComponentLevelRecoveryActivitiesModel.damage_level"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.damage_level</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.component_recovery_model.component_level_recovery_activities_model.ComponentLevelRecoveryActivitiesModel.damage_to_functionality_relation"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.damage_to_functionality_relation</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.component_recovery_model.component_level_recovery_activities_model.ComponentLevelRecoveryActivitiesModel.demand_is_active"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.demand_is_active()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.component_recovery_model.component_level_recovery_activities_model.ComponentLevelRecoveryActivitiesModel.find_recovery_activity_that_demands_the_resource"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.find_recovery_activity_that_demands_the_resource()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.component_recovery_model.component_level_recovery_activities_model.ComponentLevelRecoveryActivitiesModel.get_damage_level"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.get_damage_level()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.component_recovery_model.component_level_recovery_activities_model.ComponentLevelRecoveryActivitiesModel.get_demand"><code class="docutils literal notranslate"><span class="pre">ComponentLevelRecoveryActivitiesModel.get_demand()</span></code></a></li>
@@ -614,7 +632,7 @@ percent_of_met_demand (float): The percent of met demand (between 0 and 1).:</p>
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=683873e3"></script>
+</div><script src="../../../_static/documentation_options.js?v=19ed39ba"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=5fa4622c"></script>

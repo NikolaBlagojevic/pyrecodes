@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="utility_distribution_model_constructor" href="utility_distribution_model_constructor_docs.html" /><link rel="prev" title="transfer_service_distribution_model_potential_paths" href="transfer_service_distribution_model_potential_paths_docs.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>utility_distribution_model - pyrecodes v0.2.0 documentation</title>
+        <title>utility_distribution_model - pyrecodes v0.3.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">pyrecodes v0.2.0 documentation</div></a>
+      <a href="../../../index.html"><div class="brand">pyrecodes v0.3.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -194,7 +194,7 @@
     <img class="sidebar-logo" src="../../../_static/pyrecodes_logo.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">pyrecodes v0.2.0 documentation</span>
+  <span class="sidebar-brand-text">pyrecodes v0.3.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -214,6 +214,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_3.html">Example 3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_4.html">Example 4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_5.html">Example 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_6.html">Example 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_7.html">Example 7</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../../documentation.html">Documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
@@ -234,6 +236,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_building_with_emergency_calls_docs.html">building_with_emergency_calls</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_infrastructure_interface_docs.html">infrastructure_interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_r2d_component_docs.html">r2d_component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../component_docs/component_r2d_building_with_households_docs.html">r2d_building_with_households</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../component_library_creator_docs.html">component_library_creator</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of component_library_creator</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -336,6 +339,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../system_docs/built_environment_docs.html">built_environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../system_docs/distribution_list_creator_docs.html">distribution_list_creator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../system_docs/recovery_target_checker_docs.html">recovery_target_checker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system_docs/built_environment_with_households_docs.html">built_environment_with_households</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../household_docs.html">household</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of household</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_docs.html">household</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_gpt_base_docs.html">household_gpt_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_gpt_docs.html">household_gpt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_survey_gpt_docs.html">household_survey_gpt</a></li>
 </ul>
 </li>
 </ul>
@@ -403,13 +414,6 @@
 <dt class="sig sig-object py" id="pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.components">
 <span class="sig-name descname"><span class="pre">components</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../component_docs/component_component_docs.html#pyrecodes.component.component.Component" title="pyrecodes.component.component.Component"><span class="pre">Component</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.components" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.deepcopy">
-<span class="sig-name descname"><span class="pre">deepcopy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.deepcopy" title="Link to this definition">¶</a></dt>
-<dd><p>Method to deepcopy a dict or a list. Alternative to copy.deepcopy as it is too expensive.</p>
-<p>Copied from System class! Consider moving to a separate module.</p>
-</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.distribute">
@@ -490,7 +494,7 @@ Works only when start and end locality are different. If they are the same, meth
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.meet_component_demand">
-<span class="sig-name descname"><span class="pre">meet_component_demand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">suppliers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_row_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_demand_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.meet_component_demand" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">meet_component_demand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">suppliers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_row_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_demand_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.meet_component_demand" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -505,17 +509,12 @@ Works only when start and end locality are different. If they are the same, meth
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.reduce_component_supply">
-<span class="sig-name descname"><span class="pre">reduce_component_supply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_row_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percent_of_met_demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.reduce_component_supply" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">reduce_component_supply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_row_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percent_of_met_demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.reduce_component_supply" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.reset_supplier_order">
 <span class="sig-name descname"><span class="pre">reset_supplier_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">suppliers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.reset_supplier_order" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.reset_suppliers">
-<span class="sig-name descname"><span class="pre">reset_suppliers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_suppliers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.reset_suppliers" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -535,7 +534,7 @@ Works only when start and end locality are different. If they are the same, meth
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.set_met_demand_for_recovery_activities">
-<span class="sig-name descname"><span class="pre">set_met_demand_for_recovery_activities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_row_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percent_of_met_demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.set_met_demand_for_recovery_activities" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_met_demand_for_recovery_activities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_row_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percent_of_met_demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.set_met_demand_for_recovery_activities" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -631,7 +630,6 @@ Works only when start and end locality are different. If they are the same, meth
 <li><a class="reference internal" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel</span></code></a><ul>
 <li><a class="reference internal" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.add_supplier"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.add_supplier()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.components"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.components</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.deepcopy"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.deepcopy()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.distribute"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.distribute()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.fill_system_matrix"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.fill_system_matrix()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.get_best_path_functionality"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.get_best_path_functionality()</span></code></a></li>
@@ -650,7 +648,6 @@ Works only when start and end locality are different. If they are the same, meth
 <li><a class="reference internal" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.put_current_supplier_on_top"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.put_current_supplier_on_top()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.reduce_component_supply"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.reduce_component_supply()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.reset_supplier_order"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.reset_supplier_order()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.reset_suppliers"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.reset_suppliers()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.resource_name"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.resource_name</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.set_component_row_based_on_demand_type"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.set_component_row_based_on_demand_type()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.resource_distribution_model.utility_distribution_model.UtilityDistributionModel.set_demand_met_indicator"><code class="docutils literal notranslate"><span class="pre">UtilityDistributionModel.set_demand_met_indicator()</span></code></a></li>
@@ -674,7 +671,7 @@ Works only when start and end locality are different. If they are the same, meth
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=683873e3"></script>
+</div><script src="../../../_static/documentation_options.js?v=19ed39ba"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=5fa4622c"></script>

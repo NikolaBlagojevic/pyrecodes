@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="How to cite" href="../../how_to_cite.html" /><link rel="prev" title="distribution_list_creator" href="distribution_list_creator_docs.html" />
+<link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="built_environment_with_households" href="built_environment_with_households_docs.html" /><link rel="prev" title="distribution_list_creator" href="distribution_list_creator_docs.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>recovery_target_checker - pyrecodes v0.2.0 documentation</title>
+        <title>recovery_target_checker - pyrecodes v0.3.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">pyrecodes v0.2.0 documentation</div></a>
+      <a href="../../../index.html"><div class="brand">pyrecodes v0.3.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -194,7 +194,7 @@
     <img class="sidebar-logo" src="../../../_static/pyrecodes_logo.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">pyrecodes v0.2.0 documentation</span>
+  <span class="sidebar-brand-text">pyrecodes v0.3.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -214,6 +214,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_3.html">Example 3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_4.html">Example 4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_5.html">Example 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_6.html">Example 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_7.html">Example 7</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../../documentation.html">Documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
@@ -234,6 +236,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_building_with_emergency_calls_docs.html">building_with_emergency_calls</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_infrastructure_interface_docs.html">infrastructure_interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_r2d_component_docs.html">r2d_component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../component_docs/component_r2d_building_with_households_docs.html">r2d_building_with_households</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../component_library_creator_docs.html">component_library_creator</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of component_library_creator</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -336,6 +339,14 @@
 <li class="toctree-l3"><a class="reference internal" href="built_environment_docs.html">built_environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="distribution_list_creator_docs.html">distribution_list_creator</a></li>
 <li class="toctree-l3 current current-page"><a class="current reference internal" href="#">recovery_target_checker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="built_environment_with_households_docs.html">built_environment_with_households</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../household_docs.html">household</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of household</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_docs.html">household</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_gpt_base_docs.html">household_gpt_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_gpt_docs.html">household_gpt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_survey_gpt_docs.html">household_survey_gpt</a></li>
 </ul>
 </li>
 </ul>
@@ -407,6 +418,27 @@
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="pyrecodes.system.recovery_target_checker.NoDamageRecoveryTargetWithExtraTimeChecker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.system.recovery_target_checker.</span></span><span class="sig-name descname"><span class="pre">NoDamageRecoveryTargetWithExtraTimeChecker</span></span><a class="headerlink" href="#pyrecodes.system.recovery_target_checker.NoDamageRecoveryTargetWithExtraTimeChecker" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyrecodes.system.recovery_target_checker.RecoveryTargetChecker" title="pyrecodes.system.recovery_target_checker.RecoveryTargetChecker"><code class="xref py py-class docutils literal notranslate"><span class="pre">RecoveryTargetChecker</span></code></a></p>
+<p>Subclass of RecoveryTargetChecker.</p>
+<p>This class implements the recovery target checker where the system has recovered once all components are damage-free and then simulates an extra time step to ensure the system is stable.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.system.recovery_target_checker.NoDamageRecoveryTargetWithExtraTimeChecker.recovery_target_met">
+<span class="sig-name descname"><span class="pre">recovery_target_met</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="system_docs.html#pyrecodes.system.system.System" title="pyrecodes.system.system.System"><span class="pre">System</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_time_steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pyrecodes.system.recovery_target_checker.NoDamageRecoveryTargetWithExtraTimeChecker.recovery_target_met" title="Link to this definition">¶</a></dt>
+<dd><p>Check whether the recovery target has been met for the given system.</p>
+<p>The system is considered to have recovered once all components are damage-free (damage level close to 0) and then simulates an extra time step.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>system (System): The system object to check for recovery.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True if the recovery target is met, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="pyrecodes.system.recovery_target_checker.RecoveryTargetChecker">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.system.recovery_target_checker.</span></span><span class="sig-name descname"><span class="pre">RecoveryTargetChecker</span></span><a class="headerlink" href="#pyrecodes.system.recovery_target_checker.RecoveryTargetChecker" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
@@ -434,12 +466,12 @@ is finished.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../../how_to_cite.html">
+          <a class="next-page" href="built_environment_with_households_docs.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">How to cite</div>
+                <div class="title">built_environment_with_households</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -489,6 +521,10 @@ is finished.</p>
 <li><a class="reference internal" href="#pyrecodes.system.recovery_target_checker.NoDamageRecoveryTargetChecker.recovery_target_met"><code class="docutils literal notranslate"><span class="pre">NoDamageRecoveryTargetChecker.recovery_target_met()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#pyrecodes.system.recovery_target_checker.NoDamageRecoveryTargetWithExtraTimeChecker"><code class="docutils literal notranslate"><span class="pre">NoDamageRecoveryTargetWithExtraTimeChecker</span></code></a><ul>
+<li><a class="reference internal" href="#pyrecodes.system.recovery_target_checker.NoDamageRecoveryTargetWithExtraTimeChecker.recovery_target_met"><code class="docutils literal notranslate"><span class="pre">NoDamageRecoveryTargetWithExtraTimeChecker.recovery_target_met()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#pyrecodes.system.recovery_target_checker.RecoveryTargetChecker"><code class="docutils literal notranslate"><span class="pre">RecoveryTargetChecker</span></code></a><ul>
 <li><a class="reference internal" href="#pyrecodes.system.recovery_target_checker.RecoveryTargetChecker.recovery_target_met"><code class="docutils literal notranslate"><span class="pre">RecoveryTargetChecker.recovery_target_met()</span></code></a></li>
 </ul>
@@ -504,7 +540,7 @@ is finished.</p>
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=683873e3"></script>
+</div><script src="../../../_static/documentation_options.js?v=19ed39ba"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=5fa4622c"></script>

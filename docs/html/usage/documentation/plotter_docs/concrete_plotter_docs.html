@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="probability_distribution" href="../probability_distribution_docs.html" /><link rel="prev" title="plotter" href="../plotter_docs.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>concrete_plotter - pyrecodes v0.2.0 documentation</title>
+        <title>concrete_plotter - pyrecodes v0.3.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">pyrecodes v0.2.0 documentation</div></a>
+      <a href="../../../index.html"><div class="brand">pyrecodes v0.3.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -194,7 +194,7 @@
     <img class="sidebar-logo" src="../../../_static/pyrecodes_logo.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">pyrecodes v0.2.0 documentation</span>
+  <span class="sidebar-brand-text">pyrecodes v0.3.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -214,6 +214,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_3.html">Example 3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_4.html">Example 4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_5.html">Example 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_6.html">Example 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_7.html">Example 7</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../../documentation.html">Documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
@@ -234,6 +236,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_building_with_emergency_calls_docs.html">building_with_emergency_calls</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_infrastructure_interface_docs.html">infrastructure_interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_r2d_component_docs.html">r2d_component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../component_docs/component_r2d_building_with_households_docs.html">r2d_building_with_households</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../component_library_creator_docs.html">component_library_creator</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of component_library_creator</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -336,6 +339,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../system_docs/built_environment_docs.html">built_environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../system_docs/distribution_list_creator_docs.html">distribution_list_creator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../system_docs/recovery_target_checker_docs.html">recovery_target_checker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system_docs/built_environment_with_households_docs.html">built_environment_with_households</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../household_docs.html">household</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of household</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_docs.html">household</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_gpt_base_docs.html">household_gpt_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_gpt_docs.html">household_gpt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_survey_gpt_docs.html">household_survey_gpt</a></li>
 </ul>
 </li>
 </ul>
@@ -400,8 +411,32 @@
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.plotter.concrete_plotter.ConcretePlotter.assign_activity_lanes">
+<span class="sig-name descname"><span class="pre">assign_activity_lanes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_recovery_progress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.assign_activity_lanes" title="Link to this definition">¶</a></dt>
+<dd><p>Assign each activity to a vertical lane for rendering.</p>
+<p>‘stack’    – all activities share one lane (original behaviour, overlapping activities overwrite each other)
+‘separate’ – each activity gets its own lane regardless of overlap
+‘parallel’ – greedy assignment: a new lane is only opened when activities actually overlap</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.plotter.concrete_plotter.ConcretePlotter.collect_all_households">
+<span class="sig-name descname"><span class="pre">collect_all_households</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.collect_all_households" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.plotter.concrete_plotter.ConcretePlotter.get_component_recovery_progress">
 <span class="sig-name descname"><span class="pre">get_component_recovery_progress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../component_docs/component_component_docs.html#pyrecodes.component.component.Component" title="pyrecodes.component.component.Component"><span class="pre">Component</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.get_component_recovery_progress" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.plotter.concrete_plotter.ConcretePlotter.get_household_location_counts">
+<span class="sig-name descname"><span class="pre">get_household_location_counts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.get_household_location_counts" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.plotter.concrete_plotter.ConcretePlotter.get_met_demand_over_time">
+<span class="sig-name descname"><span class="pre">get_met_demand_over_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.get_met_demand_over_time" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -417,17 +452,37 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_component_gantt_bar">
-<span class="sig-name descname"><span class="pre">plot_component_gantt_bar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../component_docs/component_component_docs.html#pyrecodes.component.component.Component" title="pyrecodes.component.component.Component"><span class="pre">Component</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">axis</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_component_gantt_bar" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">plot_component_gantt_bar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../component_docs/component_component_docs.html#pyrecodes.component.component.Component" title="pyrecodes.component.component.Component"><span class="pre">Component</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'stack'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_component_gantt_bar" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_gantt_chart">
-<span class="sig-name descname"><span class="pre">plot_gantt_chart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../component_docs/component_component_docs.html#pyrecodes.component.component.Component" title="pyrecodes.component.component.Component"><span class="pre">Component</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_axis_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Time</span> <span class="pre">Step</span> <span class="pre">[day]'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_gantt_chart" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">plot_gantt_chart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../component_docs/component_component_docs.html#pyrecodes.component.component.Component" title="pyrecodes.component.component.Component"><span class="pre">Component</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_axis_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Time</span> <span class="pre">Step</span> <span class="pre">[day]'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'stack'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_gantt_chart" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_household_location_over_time">
+<span class="sig-name descname"><span class="pre">plot_household_location_over_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_axis_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Time</span> <span class="pre">step</span> <span class="pre">[day]'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_household_location_over_time" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_household_movement">
+<span class="sig-name descname"><span class="pre">plot_household_movement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">axis</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_household_movement" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_met_demand_over_time">
+<span class="sig-name descname"><span class="pre">plot_met_demand_over_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_axis_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Time</span> <span class="pre">step</span> <span class="pre">[day]'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_met_demand_over_time" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_single_household_movement">
+<span class="sig-name descname"><span class="pre">plot_single_household_movement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">household</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">household_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bar_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_single_household_movement" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_single_resource">
-<span class="sig-name descname"><span class="pre">plot_single_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supply</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consumption</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warmup</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supply_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Supply'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">demand_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Demand'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consumption_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Consumption'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_single_resource" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">plot_single_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supply</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consumption</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warmup</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supply_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Supply'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">demand_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Demand'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consumption_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Consumption'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unmet_demand_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Unmet</span> <span class="pre">Demand'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_single_resource" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -442,6 +497,11 @@
 <div class="line">- the x-axis label. It is assumed that the x-axis label is ‘Time step [day]’.</div>
 </div>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.plotter.concrete_plotter.ConcretePlotter.reorder_legend">
+<span class="sig-name descname"><span class="pre">reorder_legend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">legend_kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.reorder_legend" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.plotter.concrete_plotter.ConcretePlotter.save_component_recovery_progress">
@@ -460,12 +520,12 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.plotter.concrete_plotter.ConcretePlotter.set_gantt_chart_legend">
-<span class="sig-name descname"><span class="pre">set_gantt_chart_legend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recovery_activities_legend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">axis</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.set_gantt_chart_legend" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_gantt_chart_legend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recovery_activities_legend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_colors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.set_gantt_chart_legend" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.plotter.concrete_plotter.ConcretePlotter.setup_gantt_chart_fig">
-<span class="sig-name descname"><span class="pre">setup_gantt_chart_fig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_axis_label</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">axis</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.setup_gantt_chart_fig" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">setup_gantt_chart_fig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_axis_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">axis</span></span></span><a class="headerlink" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.setup_gantt_chart_fig" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -535,12 +595,21 @@
 <li><a class="reference internal" href="#">concrete_plotter</a><ul>
 <li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter</span></code></a><ul>
 <li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.add_warmup"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.add_warmup()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.assign_activity_lanes"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.assign_activity_lanes()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.collect_all_households"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.collect_all_households()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.get_component_recovery_progress"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.get_component_recovery_progress()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.get_household_location_counts"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.get_household_location_counts()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.get_met_demand_over_time"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.get_met_demand_over_time()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.get_supply_demand_consumption"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.get_supply_demand_consumption()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_component_gantt_bar"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.plot_component_gantt_bar()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_gantt_chart"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.plot_gantt_chart()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_household_location_over_time"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.plot_household_location_over_time()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_household_movement"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.plot_household_movement()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_met_demand_over_time"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.plot_met_demand_over_time()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_single_household_movement"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.plot_single_household_movement()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_single_resource"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.plot_single_resource()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.plot_supply_demand_dynamics"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.plot_supply_demand_dynamics()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.reorder_legend"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.reorder_legend()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.save_component_recovery_progress"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.save_component_recovery_progress()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.save_current_figure"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.save_current_figure()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.plotter.concrete_plotter.ConcretePlotter.save_supply_demand_consumption"><code class="docutils literal notranslate"><span class="pre">ConcretePlotter.save_supply_demand_consumption()</span></code></a></li>
@@ -560,7 +629,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=683873e3"></script>
+</div><script src="../../../_static/documentation_options.js?v=19ed39ba"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=5fa4622c"></script>

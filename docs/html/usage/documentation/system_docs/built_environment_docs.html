@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="distribution_list_creator" href="distribution_list_creator_docs.html" /><link rel="prev" title="system" href="system_docs.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>built_environment - pyrecodes v0.2.0 documentation</title>
+        <title>built_environment - pyrecodes v0.3.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">pyrecodes v0.2.0 documentation</div></a>
+      <a href="../../../index.html"><div class="brand">pyrecodes v0.3.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -194,7 +194,7 @@
     <img class="sidebar-logo" src="../../../_static/pyrecodes_logo.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">pyrecodes v0.2.0 documentation</span>
+  <span class="sidebar-brand-text">pyrecodes v0.3.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -214,6 +214,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_3.html">Example 3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_4.html">Example 4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_5.html">Example 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_6.html">Example 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_7.html">Example 7</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../../documentation.html">Documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
@@ -234,6 +236,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_building_with_emergency_calls_docs.html">building_with_emergency_calls</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_infrastructure_interface_docs.html">infrastructure_interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_r2d_component_docs.html">r2d_component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../component_docs/component_r2d_building_with_households_docs.html">r2d_building_with_households</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../component_library_creator_docs.html">component_library_creator</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of component_library_creator</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -336,6 +339,14 @@
 <li class="toctree-l3 current current-page"><a class="current reference internal" href="#">built_environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="distribution_list_creator_docs.html">distribution_list_creator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="recovery_target_checker_docs.html">recovery_target_checker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="built_environment_with_households_docs.html">built_environment_with_households</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../household_docs.html">household</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of household</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_docs.html">household</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_gpt_base_docs.html">household_gpt_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_gpt_docs.html">household_gpt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_survey_gpt_docs.html">household_survey_gpt</a></li>
 </ul>
 </li>
 </ul>
@@ -400,11 +411,6 @@ and implements the necessary methods to run the resilience assessment for the bu
 </div>
 </dd>
 </dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="pyrecodes.system.built_environment.BuiltEnvironment.FINISH">
-<span class="sig-name descname"><span class="pre">FINISH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#pyrecodes.system.built_environment.BuiltEnvironment.FINISH" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.system.built_environment.BuiltEnvironment.calculate_resilience">
 <span class="sig-name descname"><span class="pre">calculate_resilience</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">print_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#pyrecodes.system.built_environment.BuiltEnvironment.calculate_resilience" title="Link to this definition">¶</a></dt>
@@ -435,12 +441,6 @@ and implements the necessary methods to run the resilience assessment for the bu
 <dt class="sig sig-object py" id="pyrecodes.system.built_environment.BuiltEnvironment.create_system">
 <span class="sig-name descname"><span class="pre">create_system</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.system.built_environment.BuiltEnvironment.create_system" title="Link to this definition">¶</a></dt>
 <dd><p>Creates the system based on the provided SystemCreator object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="pyrecodes.system.built_environment.BuiltEnvironment.deepcopy">
-<span class="sig-name descname"><span class="pre">deepcopy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.system.built_environment.BuiltEnvironment.deepcopy" title="Link to this definition">¶</a></dt>
-<dd><p>Method to deepcopy a dict or a list. Alternative to copy.deepcopy as it is too expensive.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -512,6 +512,12 @@ and implements the necessary methods to run the resilience assessment for the bu
 <dt>Returns:</dt><dd><p>bool: True if the recovery target is met, False otherwise.</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.system.built_environment.BuiltEnvironment.register_hook">
+<span class="sig-name descname"><span class="pre">register_hook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.system.built_environment.BuiltEnvironment.register_hook" title="Link to this definition">¶</a></dt>
+<dd><p>Register a callback for a simulation event. Idempotent — won’t register the same callback twice.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -664,12 +670,10 @@ and implements the necessary methods to run the resilience assessment for the bu
             <ul>
 <li><a class="reference internal" href="#">built_environment</a><ul>
 <li><a class="reference internal" href="#pyrecodes.system.built_environment.BuiltEnvironment"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironment</span></code></a><ul>
-<li><a class="reference internal" href="#pyrecodes.system.built_environment.BuiltEnvironment.FINISH"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironment.FINISH</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.system.built_environment.BuiltEnvironment.calculate_resilience"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironment.calculate_resilience()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.system.built_environment.BuiltEnvironment.check_system_convergence"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironment.check_system_convergence()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.system.built_environment.BuiltEnvironment.components"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironment.components</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.system.built_environment.BuiltEnvironment.create_system"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironment.create_system()</span></code></a></li>
-<li><a class="reference internal" href="#pyrecodes.system.built_environment.BuiltEnvironment.deepcopy"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironment.deepcopy()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.system.built_environment.BuiltEnvironment.distribute_independent_resources"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironment.distribute_independent_resources()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.system.built_environment.BuiltEnvironment.distribute_interdependent_resources"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironment.distribute_interdependent_resources()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.system.built_environment.BuiltEnvironment.distribute_resources"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironment.distribute_resources()</span></code></a></li>
@@ -679,6 +683,7 @@ and implements the necessary methods to run the resilience assessment for the bu
 <li><a class="reference internal" href="#pyrecodes.system.built_environment.BuiltEnvironment.load_as_pickle"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironment.load_as_pickle()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.system.built_environment.BuiltEnvironment.recover"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironment.recover()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.system.built_environment.BuiltEnvironment.recovery_target_met"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironment.recovery_target_met()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.system.built_environment.BuiltEnvironment.register_hook"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironment.register_hook()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.system.built_environment.BuiltEnvironment.resources"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironment.resources</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.system.built_environment.BuiltEnvironment.save_as_pickle"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironment.save_as_pickle()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.system.built_environment.BuiltEnvironment.set_component_library"><code class="docutils literal notranslate"><span class="pre">BuiltEnvironment.set_component_library()</span></code></a></li>
@@ -704,7 +709,7 @@ and implements the necessary methods to run the resilience assessment for the bu
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=683873e3"></script>
+</div><script src="../../../_static/documentation_options.js?v=19ed39ba"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=5fa4622c"></script>

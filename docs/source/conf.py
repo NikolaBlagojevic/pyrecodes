@@ -13,7 +13,7 @@ sys.path.insert(0, '../pyrecodes/')
 project = 'pyrecodes'
 copyright = '2024, Nikola Blagojević, Božidar Stojadinović'
 author = 'Nikola Blagojević, Božidar Stojadinović'
-release = 'v0.2.0'
+release = 'v0.3.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

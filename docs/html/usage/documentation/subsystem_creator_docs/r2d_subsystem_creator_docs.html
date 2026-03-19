@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="recovery_resource_suppliers_creator" href="recovery_resource_suppliers_creator_docs.html" /><link rel="prev" title="json_subsystem_creator" href="json_subsystem_creator_docs.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>r2d_subsystem_creator - pyrecodes v0.2.0 documentation</title>
+        <title>r2d_subsystem_creator - pyrecodes v0.3.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">pyrecodes v0.2.0 documentation</div></a>
+      <a href="../../../index.html"><div class="brand">pyrecodes v0.3.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -194,7 +194,7 @@
     <img class="sidebar-logo" src="../../../_static/pyrecodes_logo.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">pyrecodes v0.2.0 documentation</span>
+  <span class="sidebar-brand-text">pyrecodes v0.3.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -214,6 +214,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_3.html">Example 3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_4.html">Example 4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../examples/example_5.html">Example 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_6.html">Example 6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/example_7.html">Example 7</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../../documentation.html">Documentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Documentation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
@@ -234,6 +236,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_building_with_emergency_calls_docs.html">building_with_emergency_calls</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_infrastructure_interface_docs.html">infrastructure_interface</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../component_docs/component_r2d_component_docs.html">r2d_component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../component_docs/component_r2d_building_with_households_docs.html">r2d_building_with_households</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../component_library_creator_docs.html">component_library_creator</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of component_library_creator</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -336,6 +339,14 @@
 <li class="toctree-l3"><a class="reference internal" href="../system_docs/built_environment_docs.html">built_environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../system_docs/distribution_list_creator_docs.html">distribution_list_creator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../system_docs/recovery_target_checker_docs.html">recovery_target_checker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../system_docs/built_environment_with_households_docs.html">built_environment_with_households</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../household_docs.html">household</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of household</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_docs.html">household</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_gpt_base_docs.html">household_gpt_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_gpt_docs.html">household_gpt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../household_docs/household_survey_gpt_docs.html">household_survey_gpt</a></li>
 </ul>
 </li>
 </ul>
@@ -395,7 +406,7 @@
 <span class="sig-name descname"><span class="pre">create_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damage_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">asset_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">asset_subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../component_docs/component_component_docs.html#pyrecodes.component.component.Component" title="pyrecodes.component.component.Component"><span class="pre">Component</span></a></span></span><a class="headerlink" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator.create_component" title="Link to this definition">¶</a></dt>
 <dd><div class="line-block">
 <div class="line">Method to create a component.</div>
-<div class="line">It is assumed that the names of the components in the component library are in the format ‘DS{damage_state}_{component_type}’ </div>
+<div class="line">It is assumed that the names of the components in the component library are in the format ‘DS{damage_state}_{component_type}’</div>
 <div class="line">Component type is the same string as the asset subtype of the component in the R2D JSON file, e.g., ‘Building’, ‘Bridge’, etc.</div>
 </div>
 </dd></dl>
@@ -412,6 +423,11 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator.get_component_configurator">
+<span class="sig-name descname"><span class="pre">get_component_configurator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator.get_component_configurator" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator.get_component_damage_state">
 <span class="sig-name descname"><span class="pre">get_component_damage_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">damage_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator.get_component_damage_state" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -423,14 +439,44 @@
 <div class="line">Method creates a shapely point representing component’s geometry based on the information provided in the R2D location data.</div>
 </div>
 <div class="line-block">
-<div class="line">TODO: Needs improvement for components whose geometry are lines (roads, pipes) and polygons. Future work.        </div>
+<div class="line">TODO: Needs improvement for components whose geometry are lines (roads, pipes) and polygons. Future work.</div>
 </div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator.get_component_name">
+<span class="sig-name descname"><span class="pre">get_component_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_damage_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator.get_component_name" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the component library name for the given component. Override to handle special component types.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator.set_component_configurator">
 <span class="sig-name descname"><span class="pre">set_component_configurator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator.set_component_configurator" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreatorWithHouseholds">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.subsystem_creator.r2d_subsystem_creator.</span></span><span class="sig-name descname"><span class="pre">R2DSubsystemCreatorWithHouseholds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_library</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">locality</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constants</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damage_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreatorWithHouseholds" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator" title="pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator"><code class="xref py py-class docutils literal notranslate"><span class="pre">R2DSubsystemCreator</span></code></a></p>
+<p>Extends R2DSubsystemCreator to support buildings with households.
+Tracks household counts and handles OutOfTown components.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreatorWithHouseholds.create_components">
+<span class="sig-name descname"><span class="pre">create_components</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../component_docs/component_component_docs.html#pyrecodes.component.component.Component" title="pyrecodes.component.component.Component"><span class="pre">Component</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreatorWithHouseholds.create_components" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreatorWithHouseholds.get_component_configurator">
+<span class="sig-name descname"><span class="pre">get_component_configurator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreatorWithHouseholds.get_component_configurator" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreatorWithHouseholds.get_component_name">
+<span class="sig-name descname"><span class="pre">get_component_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_damage_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreatorWithHouseholds.get_component_name" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the component library name for the given component. Override to handle special component types.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -496,9 +542,17 @@
 <li><a class="reference internal" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator.create_component"><code class="docutils literal notranslate"><span class="pre">R2DSubsystemCreator.create_component()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator.create_components"><code class="docutils literal notranslate"><span class="pre">R2DSubsystemCreator.create_components()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator.create_components_in_localities"><code class="docutils literal notranslate"><span class="pre">R2DSubsystemCreator.create_components_in_localities()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator.get_component_configurator"><code class="docutils literal notranslate"><span class="pre">R2DSubsystemCreator.get_component_configurator()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator.get_component_damage_state"><code class="docutils literal notranslate"><span class="pre">R2DSubsystemCreator.get_component_damage_state()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator.get_component_geometry"><code class="docutils literal notranslate"><span class="pre">R2DSubsystemCreator.get_component_geometry()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator.get_component_name"><code class="docutils literal notranslate"><span class="pre">R2DSubsystemCreator.get_component_name()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreator.set_component_configurator"><code class="docutils literal notranslate"><span class="pre">R2DSubsystemCreator.set_component_configurator()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreatorWithHouseholds"><code class="docutils literal notranslate"><span class="pre">R2DSubsystemCreatorWithHouseholds</span></code></a><ul>
+<li><a class="reference internal" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreatorWithHouseholds.create_components"><code class="docutils literal notranslate"><span class="pre">R2DSubsystemCreatorWithHouseholds.create_components()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreatorWithHouseholds.get_component_configurator"><code class="docutils literal notranslate"><span class="pre">R2DSubsystemCreatorWithHouseholds.get_component_configurator()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.subsystem_creator.r2d_subsystem_creator.R2DSubsystemCreatorWithHouseholds.get_component_name"><code class="docutils literal notranslate"><span class="pre">R2DSubsystemCreatorWithHouseholds.get_component_name()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -512,7 +566,7 @@
       
     </aside>
   </div>
-</div><script src="../../../_static/documentation_options.js?v=683873e3"></script>
+</div><script src="../../../_static/documentation_options.js?v=19ed39ba"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/furo.js?v=5fa4622c"></script>

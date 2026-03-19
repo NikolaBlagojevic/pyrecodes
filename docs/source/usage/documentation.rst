@@ -22,6 +22,7 @@ Documentation
    ./documentation/system_creator_docs
    ./documentation/subsystem_creator_docs
    ./documentation/system_docs
+   ./documentation/household_docs
    
    
 

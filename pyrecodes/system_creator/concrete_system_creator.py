@@ -114,7 +114,10 @@ class ConcreteSystemCreator(SystemCreator):
 
     def get_locality_coordinates(self, content) -> dict:
         locality_info = content.get('Coordinates', {})
-        if list(locality_info.keys())[0] == 'BoundingBox' or list(locality_info.keys())[0] == 'Centroid':
+        coordinate_type = next(iter(locality_info))
+        if coordinate_type in ('BoundingBox', 'Centroid'):
             return locality_info
-        elif list(locality_info.keys())[0] == 'GeoJSON':
+        elif coordinate_type == 'GeoJSON':
             return get_locality_coordinates_from_geojson(locality_info)
+        else:
+            raise ValueError(f'Unknown coordinate type: {coordinate_type}.')

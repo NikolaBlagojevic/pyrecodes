@@ -3,11 +3,10 @@ from pyrecodes.system_creator.system_creator import SystemCreator
 from pyrecodes.component.component import Component
 from pyrecodes.component.component import SupplyOrDemand
 from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComponent
-from pyrecodes.utilities import get_class
+from pyrecodes.utilities import get_class, json_deepcopy
 from pyrecodes.system.distribution_list_creator import DistributionListCreator
 from pyrecodes.system.recovery_target_checker import NoDamageRecoveryTargetChecker
 import pickle
-import json
 import math
 
 class BuiltEnvironment(System):
@@ -26,7 +25,6 @@ class BuiltEnvironment(System):
     components: list[Component]
     resources: dict
     system_creator: SystemCreator
-    FINISH = False
 
     def __init__(self, system_configuration: dict, component_library: dict, system_creator: SystemCreator):
         """
@@ -37,6 +35,8 @@ class BuiltEnvironment(System):
             | component_library (dict): The component library containing system components' configurations.
             | system_creator (SystemCreator): The system creator object responsible for system initialization.
         """
+        self.FINISH = False
+        self._hooks = {}
         self.set_configuration_file(system_configuration)
         self.set_component_library(component_library)
         self.set_system_creator(system_creator)
@@ -76,6 +76,17 @@ class BuiltEnvironment(System):
             system_creator (SystemCreator): The SystemCreator object to set for the system.
         """
         self.system_creator = system_creator
+
+    def register_hook(self, event: str, callback) -> None:
+        """Register a callback for a simulation event. Idempotent — won't register the same callback twice."""
+        callbacks = self._hooks.setdefault(event, [])
+        if callback not in callbacks:
+            callbacks.append(callback)
+
+    def _notify(self, event: str, *args) -> None:
+        """Fire all callbacks registered for the given event. Unknown events are silently ignored."""
+        for callback in self._hooks.get(event, []):
+            callback(*args)
 
     def create_system(self):
         """
@@ -136,6 +147,8 @@ class BuiltEnvironment(System):
             if self.time_step > self.DISASTER_TIME_STEP:
                 self.recover()
 
+            self._notify('post_time_step', self.time_step)
+
             if self.FINISH:
                 print('Resilience assessment finished.')
                 break
@@ -195,7 +208,7 @@ class BuiltEnvironment(System):
                 self.resources[resource_name]['DistributionModel'].distribute(self.time_step)
             updated_system_supply = self.get_supply_of_interdependent_resources()
             system_converged = self.check_system_convergence(system_supply, updated_system_supply)
-            system_supply = self.deepcopy(updated_system_supply)
+            system_supply = json_deepcopy(updated_system_supply)
         
     def get_supply_of_interdependent_resources(self) -> dict:
         """
@@ -268,12 +281,6 @@ class BuiltEnvironment(System):
         if return_output:
             return resilience_metrics
     
-    def deepcopy(self, input):
-        """
-        Method to deepcopy a dict or a list. Alternative to copy.deepcopy as it is too expensive.
-        """
-        return json.loads(json.dumps(input))
-
     def save_as_pickle(self, savename='./system_object.pickle') -> None:
         """
         Saves the system object as a pickle file.

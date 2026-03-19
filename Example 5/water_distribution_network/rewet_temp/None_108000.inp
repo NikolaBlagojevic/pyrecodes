@@ -1,6 +1,6 @@
 ; Filename: /Users/nikola/pyrecodes/Example 5/water_distribution_network/waterNetwork.inp
 ; WNTR: 1.1.0.1.2
-; Created: 2026-03-01 20:41:25
+; Created: 2026-03-05 08:02:32
 [TITLE]
 
 [JUNCTIONS]
@@ -1433,12 +1433,16 @@
  node_1428                          0               0                            ;
  node_1429                          0    3.2465677873                            ;
  node_1430                          0    3.2465677873                            ;
+ HAIGHT_1_breakA_1                  0               0                            ;
+ HAIGHT_1_breakB_1                  0               0                            ;
 
 [RESERVOIRS]
 ;ID                                   Head                  Pattern
  res_1                            164                            ;
  res_2                   164.04199475                            ;
  res_3                   164.04199475                            ;
+ HAIGHT_1_breakA_1_nn               0                            ;
+ HAIGHT_1_breakB_1_nn               0                            ;
 
 [TANKS]
 ;ID                              Elevation           Init Level            Min Level            Max Level             Diameter           Min Volume Volume Curve         Overflow            
@@ -2290,7 +2294,7 @@
  GROVE_3              node_408             node_135                317.10441136               6             100               0                 Open   ;
  G_ALLEY              node_1408            node_1424               154.97676146               6             100               0                 Open   ;
  HAIGHT               node_649             node_540                628.42268509              12             100               0                 Open   ;
- HAIGHT_1             node_540             node_650                1040.4462697              12             100               0                 Open   ;
+ HAIGHT_1             node_540             HAIGHT_1_breakA_1       104.04462697              12             100               0                 Open   ;
  HAIGHT_2             node_650             node_651                428.44517431              12             100               0                 Open   ;
  HAIGHT_3             node_659             node_1074               652.22200643              12             100               0                 Open   ;
  HAIGHT_4             node_651             node_1102               428.06164369              12             100               0                 Open   ;
@@ -3467,6 +3471,9 @@
  from_res_1           res_1                node_1                   32.80839895    944.88188976             100               0                   CV   ;
  from_res_2           res_2                node_685                 32.80839895    472.44094488             100               0                   CV   ;
  from_res_3           res_3                node_8                   32.80839895    629.92125984             100               0                   CV   ;
+ HAIGHT_1_Break_1     HAIGHT_1_breakB_1    node_650                936.40164273              12             100               0                 Open   ;
+ HAIGHT_1_breakA_1-rlk HAIGHT_1_breakA_1    HAIGHT_1_breakA_1_nn     3.280839895              12         1000000               1                   CV   ;
+ HAIGHT_1_breakB_1-rlk HAIGHT_1_breakB_1    HAIGHT_1_breakB_1_nn     3.280839895              12         1000000               1                   CV   ;
 
 [PUMPS]
 ;ID                   Node1                Node2                Properties          
@@ -4989,6 +4996,10 @@ node_1430        -122.244000000         37.775000000
 res_1            -122.273000000         37.788000000
 res_2            -122.234000000         37.771000000
 res_3            -122.231000000         37.769000000
+HAIGHT_1_breakA_1       -122.285600000         37.774000000
+HAIGHT_1_breakB_1       -122.285600000         37.774000000
+HAIGHT_1_breakA_1_nn       -121.285600000         38.774000000
+HAIGHT_1_breakB_1_nn       -121.285600000         38.774000000
 
 [VERTICES]
 ;Link      X-Coord    Y-Coord   

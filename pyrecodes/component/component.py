@@ -36,7 +36,7 @@ class Component(ABC):
         pass
 
     @abstractmethod
-    def update(self, time_step: int) -> None:
+    def update(self, time_step: int, *args) -> None:
         pass
 
     @abstractmethod
@@ -44,11 +44,11 @@ class Component(ABC):
         pass
 
     @abstractmethod
-    def recover(self) -> None:
+    def recover(self, time_step: int) -> None:
         pass
 
     @abstractmethod
-    def update_supply_based_on_unmet_demand(self, percent_of_met_demand: float) -> None:
+    def update_supply_based_on_unmet_demand(self, percent_of_met_demand: float, resource_name: str, time_step: int) -> None:
         pass
 
     @abstractmethod
@@ -70,4 +70,19 @@ class Component(ABC):
     @abstractmethod
     def has_resource_supply(self, resource_name: str) -> bool:
         pass
-    
+
+
+class Bridge(ABC):
+    """Marker interface for bridge components. Use isinstance(component, Bridge) to identify bridges."""
+    pass
+
+
+class Roadway(ABC):
+    """Marker interface for roadway components. Use isinstance(component, Roadway) to identify roadways."""
+    pass
+
+
+class Tunnel(ABC):
+    """Marker interface for tunnel components. Use isinstance(component, Tunnel) to identify tunnels."""
+    pass
+

@@ -86,11 +86,11 @@ class ComponentLevelRecoveryActivitiesModel(AbstractRecoveryModel):
         """
         if time_step in self.recovery_time_steps:
             start_time_step, end_time_step = self.get_time_step_length(time_step)
-            for time_step_to_recover in range(start_time_step, end_time_step):
-                self.check_preceding_activities(time_step_to_recover)
+            for current_step in range(start_time_step, end_time_step):
+                self.check_preceding_activities(current_step)
                 for recovery_activity_object in self.recovery_activities.values():
                     if recovery_activity_object.preceding_activities_finished and self.get_damage_level() > 0:
-                        recovery_activity_object.recover(time_step_to_recover)
+                        recovery_activity_object.recover(current_step)
                         
     def check_preceding_activities(self, time_step) -> None:
         """

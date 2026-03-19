@@ -69,28 +69,18 @@ class AbstractRecoveryModel(RecoveryModel):
     def set_recovery_time_steps(self, time_steps: list) -> None:
         self.recovery_time_steps = time_steps
     
-    def get_time_step_length(self, time_step: int, option_to_use=3) -> int:
+    def get_time_step_length(self, time_step: int) -> tuple[int, int]:
         """
-        | Get the time step length based on the recovery time stepping interval.
-        | Three options for calculating the time step length are provided.
-        | At the moment Option 3 is used, as it seems to work the best. It is not clear which one is most appropriate in general.
+        Get the start and end of the recovery interval for the given time step.
+
+        Returns the interval (time_step, time_step+1) for the first recovery time step,
+        or (previous_time_step+1, time_step+1) for all subsequent ones.
         """
-        if option_to_use == 1:  
-            return max(time_step - self.recovery_time_steps[max(self.recovery_time_steps.index(time_step)-1, 0)], 1)
-        elif option_to_use == 2:
-            if self.recovery_time_steps.index(time_step) == 0:
-                return 0, 0
-            else:
-                start_time_step = self.recovery_time_steps[self.recovery_time_steps.index(time_step)-1] + 1
-                end_time_step = time_step + 1
-            return start_time_step, end_time_step
-        elif option_to_use == 3:
-            if self.recovery_time_steps.index(time_step) == 0:
-                return time_step, time_step+1
-            else:
-                start_time_step = self.recovery_time_steps[self.recovery_time_steps.index(time_step)-1] + 1
-                end_time_step = time_step + 1
-            return start_time_step, end_time_step
+        index = self.recovery_time_steps.index(time_step)
+        if index == 0:
+            return time_step, time_step + 1
+        start_time_step = self.recovery_time_steps[index - 1] + 1
+        return start_time_step, time_step + 1
     
     def set_met_demand_for_recovery_activities(self, resource_name: str, percent_of_met_demand: float) -> None:
         """

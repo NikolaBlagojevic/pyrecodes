@@ -1,0 +1,344 @@
+{
+    "NeighboringTown": {
+        "ComponentClass": {"FileName": "r2d_building_with_households", "ClassName": "R2DTown"},
+        "HouseholdClass": {"FileName": "household_gpt", "ClassName": "HouseholdGPT"},
+        "RecoveryModel": {
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
+            "Parameters": {},
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            }
+        },
+       "OperationDemand": {
+            "Shelter": {
+                    "Amount": 0,
+                    "FunctionalityToAmountRelation": "Constant"
+                },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+       }
+    },
+    "DS0_Building": {
+        "ComponentClass": {"FileName": "r2d_building_with_households", "ClassName": "R2DBuildingWithHouseholds"},
+        "HouseholdClass": {"FileName": "household_gpt", "ClassName": "HouseholdGPT"},
+        "RecoveryModel": {
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
+            "Parameters": {},
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS1_Building": {
+        "ComponentClass": {"FileName": "r2d_building_with_households", "ClassName": "R2DBuildingWithHouseholds"},
+        "HouseholdClass": {"FileName": "household_gpt", "ClassName": "HouseholdGPT"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Delay": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [],
+                    "PrecedingActivities": []
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [],
+                    "PrecedingActivities": [
+                        "Delay"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS2_Building": {
+        "ComponentClass": {"FileName": "r2d_building_with_households", "ClassName": "R2DBuildingWithHouseholds"},
+        "HouseholdClass": {"FileName": "household_gpt", "ClassName": "HouseholdGPT"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Delay": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 6,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [],
+                    "PrecedingActivities": []
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 4,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [],
+                    "PrecedingActivities": [
+                        "Delay"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS3_Building": {
+        "ComponentClass": {"FileName": "r2d_building_with_households", "ClassName": "R2DBuildingWithHouseholds"},
+        "HouseholdClass": {"FileName": "household_gpt", "ClassName": "HouseholdGPT"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                 "Delay": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 12,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [],
+                    "PrecedingActivities": []
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 17,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [],
+                    "PrecedingActivities": [
+                        "Delay"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS4_Building": {
+        "ComponentClass": {"FileName": "r2d_building_with_households", "ClassName": "R2DBuildingWithHouseholds"},
+        "HouseholdClass": {"FileName": "household_gpt", "ClassName": "HouseholdGPT"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                 "Delay": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 12,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [],
+                    "PrecedingActivities": []
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 35,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [],
+                    "PrecedingActivities": [
+                        "Delay"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    },
+    "DS0_Pipe": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DPipe"},
+        "RecoveryModel": {
+            "FileName": "no_recovery_activity_model",
+            "ClassName": "NoRecoveryActivityModel",
+            "Parameters": {
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "Constant"
+            }
+        },
+        "Supply": {
+            "WaterTransferService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS1_Pipe": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DPipe"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [],
+                    "PrecedingActivities": []
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "WaterTransferService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    },
+    "DS2_Pipe": {
+        "ComponentClass": {"FileName": "r2d_component", "ClassName": "R2DPipe"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 3,
+                            "Dispersion": 0.2
+                        }
+                    },
+                    "Demand": [],
+                    "PrecedingActivities": []
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "WaterTransferService": {
+                "Amount": 1,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            }
+        }
+    }
+}

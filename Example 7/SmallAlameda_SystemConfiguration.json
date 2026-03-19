@@ -1,0 +1,121 @@
+{
+    "Constants": {
+        "START_TIME_STEP": 0,
+        "MAX_TIME_STEP": 7,
+        "DISASTER_TIME_STEP": 1,
+        "HOUSING_RESOURCES": [
+            "Shelter"
+        ],
+        "DEMAND_PER_PERSON": {
+            "PotableWater": 150
+        },
+        "HOUSEHOLD_DECISION_MAKING_TIME_STEPS": [
+                {
+                    "start": 1,
+                    "end": 1000,
+                    "step": 1
+                }
+            ]
+    },
+    "Content": {
+        "Locality 2": {
+            "Coordinates": {
+                "GeoJSON": {
+                    "Filename": "{folder}/Alameda TAZ/Alameda_TravelAnalysisZone_951.geojson"
+                }
+            },
+            "Components": {
+                "Infrastructure": [
+                    {
+                        "WaterSupplySystem": {
+                            "CreatorClassName": "R2DSubsystemCreator",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "Water"
+                                ],
+                                "R2DJSONFile_Info": "{folder}/Alameda_Exposure_With_Households_FriendsInSmallAlameda_Clustered100Households.json",
+                                "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
+                                "AssetTypes": [
+                                    "Pipe"
+                                ],
+                                "MaxNumComponents": 10000
+                            }
+                        }
+                    }
+                ],
+                "BuildingStock": [
+                    {
+                        "Buildings": {
+                            "CreatorClassName": "R2DSubsystemCreatorWithHouseholds",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "Shelter"
+                                ],
+                                "R2DJSONFile_Info": "{folder}/Alameda_Exposure_With_Households_FriendsInSmallAlameda_Clustered100Households.json",
+                                "SubsystemNameInR2DJSON": "Buildings",
+                                "AssetTypes": [
+                                    "Building"
+                                ],
+                                "MaxNumComponents": 100000,
+                                "MaxNumHouseholds": 101
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "DamageInput": {
+        "FileName": "r2d_damage_input",
+        "ClassName": "R2DDamageInput",
+        "Parameters": {
+            "DamageFile": "{folder}/Alameda_Damage_0.json",
+            "DistributionModelDamage": [
+                "PotableWater"
+            ]
+        }
+    },
+    "Resources": {
+        "Shelter": {
+            "Group": "Utilities",
+            "DistributionModel": {
+                "ClassName": "HousingDistributionModel",
+                "FileName": "housing_distribution_model",
+                "Parameters": {
+                }
+            }
+        },
+        "PotableWater": {
+            "Group": "Utilities",
+            "DistributionModel": {
+                "ClassName": "REWETDistributionModel",
+                "FileName": "rewet_distribution_model",
+                "Parameters": {
+                    "INPFile": "{folder}/water_distribution_network/waterNetwork.inp",
+                    "Results_folder": "{folder}/water_distribution_network/rewet_results",
+                    "Temp_folder": "{folder}/water_distribution_network/rewet_temp"
+                }
+            }
+        }
+    },
+    "ResilienceCalculator": [
+        {
+            "FileName": "recodes_calculator",
+            "ClassName": "ReCoDeSCalculator",
+            "Parameters": {
+                "Scope": "All",
+                "Resources": [
+                    "Shelter",
+                    "PotableWater"
+                ]
+            }
+        },
+        {
+            "ClassName": "R2DComponentRecoveryTimeCalculator",
+            "FileName": "r2d_component_recovery_time_calculator",
+            "Parameters": {}
+        }
+    ]
+}

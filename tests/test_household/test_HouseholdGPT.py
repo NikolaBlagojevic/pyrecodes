@@ -109,7 +109,7 @@ class TestHouseholdGPT:
         household_gpt.set_resource_demand_parameters(HOUSEHOLD_PARAMETERS)
         assert household_gpt.llm.chat_history[0] == {
             "role": "developer",
-            "content": " # Resource needs of the household \n - These are the average per person resource needs for your household: {'PotableWater': 150}. Take them into account when assessing the needs of the entire household. You might require more or less of each resource at different times after a disaster due to different needs. \n Important: \n - Do not respond to this prompt."
+            "content": " # Resource needs of the household \n - These are the average per person resource needs for your household: {'PotableWater': 150}. Take them into account when assessing the needs of the entire household. You might require more or less of each resource at different times after a disaster due to different needs.  \n Important: \n - Do not respond to this prompt."
         }
 
     def test_map_buildings_to_households(self, household_gpt, built_environment):
@@ -368,11 +368,11 @@ class TestHouseholdGPT:
                 household.staying_at = ['Home']
         household_gpt.update(10, household_gpt.buildings_map['Home'][0], [10, 10])
         time_step_narrative = household_gpt.time_step_narrative_creator.get_narrative()
-        assert time_step_narrative.replace(' ','') == "\n Your current situation: \n - It's now 10 days after the disaster. \n - You are currently staying at home.  \n - Your friend with ID 1 is in their home.  \n - Your friend with ID 2 is not in their home.  \n - All other households are in town. ".replace(' ','')
+        assert time_step_narrative.replace(' ','') == "\n Your current situation: \n - It's now 10 weeks after the disaster. \n - You are currently staying at home.  \n - Your friend with ID 1 is in their home.  \n - Your friend with ID 2 is not in their home.  \n - All other households are in town. ".replace(' ','')
 
         household_gpt.update(15, household_gpt.buildings_map['Friend'][0], [10, 3])
         time_step_narrative = household_gpt.time_step_narrative_creator.get_narrative()
-        assert time_step_narrative.replace(' ','') == "\n Your current situation: \n - It's now 15 days after the disaster. \n - You are currently staying with friend 1.  \n - Your friend with ID 1 is in their home.  \n - Your friend with ID 2 is not in their home.  \n - The building where you lived before the disaster has no damage. \n - Less than half of other households are in town. ".replace(' ','')
+        assert time_step_narrative.replace(' ','') == "\n Your current situation: \n - It's now 15 weeks after the disaster. \n - You are currently staying with friend 1.  \n - Your friend with ID 1 is in their home.  \n - Your friend with ID 2 is not in their home.  \n - The building where you lived before the disaster has no damage. \n - Less than half of other households are in town. ".replace(' ','')
 
     def test_update_where_household_is_staying(self, household_gpt, built_environment):
         household_gpt.set_parameters(HOUSEHOLD_PARAMETERS)
@@ -405,11 +405,11 @@ class TestHouseholdGPT:
 
         household_gpt.create_time_step_narrative(5, 'at home. ', [10, 10])
         time_step_narrative = household_gpt.time_step_narrative_creator.get_narrative()
-        assert time_step_narrative == "\n Your current situation: \n - It's now 5 days after the disaster. \n - You are currently staying at home.  \n - Your friend with ID 1 is in their home.  \n - Your friend with ID 2 is not in their home.  \n - All other households are in town. "
+        assert time_step_narrative == "\n Your current situation: \n - It's now 5 weeks after the disaster. \n - You are currently staying at home.  \n - Your friend with ID 1 is in their home.  \n - Your friend with ID 2 is not in their home.  \n - All other households are in town. "
 
         household_gpt.create_time_step_narrative(50, 'with a friend. ', [10, 0])
         time_step_narrative = household_gpt.time_step_narrative_creator.get_narrative()
-        assert time_step_narrative == "\n Your current situation: \n - It's now 50 days after the disaster. \n - You are currently staying with a friend.  \n - Your friend with ID 1 is in their home.  \n - Your friend with ID 2 is not in their home.  \n - The building where you lived before the disaster has no damage. \n - There are no other households in town. "
+        assert time_step_narrative == "\n Your current situation: \n - It's now 50 weeks after the disaster. \n - You are currently staying with a friend.  \n - Your friend with ID 1 is in their home.  \n - Your friend with ID 2 is not in their home.  \n - The building where you lived before the disaster has no damage. \n - There are no other households in town. "
 
     def test_get_decision(self, household_gpt):
         decision_string = "StayAtHome"

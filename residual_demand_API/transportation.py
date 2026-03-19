@@ -214,6 +214,47 @@ class TransportationPerformance(ABC):  # noqa: B024
         self.hour_list = hour_list
         self.tmp_dir = tmp_dir
 
+    def closest_neighbour(self, building_df, nodes_df):
+        # Find the nearest road network node to each building
+        nodes_xy = np.array(
+            [nodes_df['lat'].to_numpy(), nodes_df['lon'].to_numpy()]
+        ).transpose()
+        building_df['closest_node'] = building_df.apply(
+            lambda x: cdist(
+                [(x['Latitude'], x['Longitude'])], nodes_xy
+            ).argmin(),
+            axis=1,
+        )
+        return building_df
+    
+    # Extract the building information from the det file and convert it to
+    # a pandas dataframe
+    def extract_building_from_det(self, det):
+        # Open the det file
+        if type(det) == str:
+            with Path.open(det, encoding='utf-8') as file:
+                # Return the JSON object as a dictionary
+                json_data = json.load(file)
+        elif type(det) == dict:
+            json_data = det
+
+        # Extract the required information and convert it to a pandas
+        # dataframe
+        extracted_data = []
+
+        for aim_id, info in json_data['Buildings']['Building'].items():
+            general_info = info.get('GeneralInformation', {})
+            extracted_data.append(
+                {
+                    'AIM_id': aim_id,
+                    'Latitude': general_info.get('Latitude'),
+                    'Longitude': general_info.get('Longitude'),
+                    'Population': general_info.get('Population'),
+                }
+            )
+
+        return pd.DataFrame(extracted_data)
+
     # @abstractmethod
     def system_state(
         self, initial_state: str, csv_file_dir: str
@@ -1263,44 +1304,10 @@ class TransportationPerformance(ABC):  # noqa: B024
                 `destin_nid`, `hour`, and `quarter`.
         """
 
-        # Extract the building information from the det file and convert it to
-        # a pandas dataframe
-        def extract_building_from_det(det):
-            # Open the det file
-            with Path.open(det, encoding='utf-8') as file:
-                # Return the JSON object as a dictionary
-                json_data = json.load(file)
-
-            # Extract the required information and convert it to a pandas
-            # dataframe
-            extracted_data = []
-
-            for aim_id, info in json_data['Buildings']['Building'].items():
-                general_info = info.get('GeneralInformation', {})
-                extracted_data.append(
-                    {
-                        'AIM_id': aim_id,
-                        'Latitude': general_info.get('Latitude'),
-                        'Longitude': general_info.get('Longitude'),
-                        'Population': general_info.get('Population'),
-                    }
-                )
-
-            return pd.DataFrame(extracted_data)
-
         # Aggregate the population in buildings to the closest road network
         # node
-        def closest_neighbour(building_df, nodes_df):
-            # Find the nearest road network node to each building
-            nodes_xy = np.array(
-                [nodes_df['lat'].to_numpy(), nodes_df['lon'].to_numpy()]
-            ).transpose()
-            building_df['closest_node'] = building_df.apply(
-                lambda x: cdist(
-                    [(x['Latitude'], x['Longitude'])], nodes_xy
-                ).argmin(),
-                axis=1,
-            )
+        
+        def merge_road_network_and_building_dfs(nodes_df, building_df):
 
             # Merge the road network and building dataframes
             merged_df = nodes_df.merge(
@@ -1334,12 +1341,17 @@ class TransportationPerformance(ABC):  # noqa: B024
             nodes_df = pd.read_csv(nodes)
             # Extract the building information from the det file and convert it
             # to a pandas dataframe
-            building_df = extract_building_from_det(det)
+            building_df = self.extract_building_from_det(det)
             # Aggregate the population in buildings to the closest road network
             # node
-            updated_nodes_df = closest_neighbour(building_df, nodes_df)
+            building_df = self.closest_neighbour(building_df, nodes_df)
 
-            return updated_nodes_df  # noqa: RET504
+            # Merge the road network and building dataframes
+            updated_nodes_df = merge_road_network_and_building_dfs(
+                nodes_df, building_df
+            )
+
+            return updated_nodes_df, building_df  # noqa: RET504
 
         # Read the od file
         od_df = pd.read_csv(od)
@@ -1404,6 +1416,7 @@ class pyrecodes_residual_demand(TransportationPerformance):
         results_dir,
         capacity_ruleset_script,
         demand_ruleset_script,
+        r2d_dict,
         two_way_edges=False,  # noqa: FBT002
     ):
         # Default not save pandana output
@@ -1458,6 +1471,9 @@ class pyrecodes_residual_demand(TransportationPerformance):
         self.edges_df = edges_gdf
         self.nodes_df = nodes_gdf
 
+        # Nikola: connect buildings to nodes
+        self.connect_buildings_to_nodes(nodes_gdf, r2d_dict)
+
         self.od_pre_file = od_pre_file
         self.initial_r2d_dict = None
         self.hour_list = hour_list
@@ -1488,7 +1504,12 @@ class pyrecodes_residual_demand(TransportationPerformance):
 
         self.simulate_time = 0
 
-
+    def connect_buildings_to_nodes(self, nodes_df, r2d_dict):
+        building_df = self.extract_building_from_det(r2d_dict)
+        nodes_df['lon'] = nodes_df['x'] 
+        nodes_df['lat'] = nodes_df['y']
+        nodes_df = nodes_df.set_index('node_id')
+        self.building_df = self.closest_neighbour(building_df, nodes_df)
 
     def simulate(
         self,
@@ -1546,872 +1567,7 @@ class pyrecodes_residual_demand(TransportationPerformance):
             quarter_list=[0, 1, 2, 3, 4, 5],
             closure_hours=self.hour_list,
             closed_links=closed_links,
-            two_way_edges=False, # The edges has been duplicated to consider two way edges, so no need to have two way edges when constructing pandana net
+            two_way_edges=self.two_way_edges,
             save_edge_vol = False
         )
         return trip_info_df  # noqa: RET504
-
-
-    # def get_graph_network(self,
-    #                       det_file_path: str,
-    #                       output_files: Optional[List[str]] = None,
-    #                       save_additional_attributes:
-    #                           Literal['', 'residual_demand'] = ''
-    #                       ) -> Tuple[Dict, Dict]:
-    #     """
-    #     Create a graph network from inventory data .
-
-    #     This function processes inventory files containing road and structural
-    #     data, constructs a graph network with nodes and edges, and optionally
-    #     saves additional attributes such as residual demand. The node and edge
-    #     features are saved to specified output files.
-
-    #     Args__
-    #         det_file_path (str): The path to the deterministic result JSON
-    #         output_files (Optional[List[str]]): A list of file paths where the
-    #             node and edge features will be saved. The first file in the
-    #             list is used for edges and the second for nodes.
-    #         save_additional_attributes (Literal['', 'residual_demand']):
-    #             A flag indicating whether to save additional attributes.
-    #             The only supported additional attribute is 'residual_demand'.
-
-    #     Returns__
-    #         Tuple[Dict, Dict]: A tuple containing two dictionaries:
-    #             - The first dictionary contains the edge features.
-    #             - The second dictionary contains the node features.
-
-    #     Example__
-    #         >>> det_file_path = 'path/to/Results_det.json'
-    #         >>> output_files = ['edges.csv', 'nodes.csv']
-    #         >>> save_additional_attributes = 'residual_demand'
-    #         >>> edges, nodes = get_graph_network(det_file_path,
-    #                                              output_files,
-    #                                              save_additional_attributes)
-    #         >>> print(edges)
-    #         >>> print(nodes)
-    #     """
-    #     # if output_files is None:
-    #     #     self.graph_network['output_files'] = ['edges.csv', 'nodes.csv']
-
-    #     def create_circle_from_lat_lon(lat, lon, radius_ft, num_points=100):
-    #         """
-    #         Create a circle polygon from latitude and longitude.
-
-    #         Args__
-    #             lat (float): Latitude of the center.
-    #             lon (float): Longitude of the center.
-    #             radius_ft (float): Radius of the circle in feet.
-    #             num_points (int): Number of points to approximate the circle.
-
-    #         Returns__
-    #             Polygon: A Shapely polygon representing the circle.
-    #         """
-    #         # Earth's radius in kilometers
-    #         R_EARTH_FT = 20925721.784777
-
-    #         # Convert radius from kilometers to radians
-    #         radius_rad = radius_ft / R_EARTH_FT
-
-    #         # Convert latitude and longitude to radians
-    #         lat_rad = np.radians(lat)
-    #         lon_rad = np.radians(lon)
-
-    #         # Generate points around the circle
-    #         angle = np.linspace(0, 2 * np.pi, num_points)
-    #         lat_points = lat_rad + radius_rad * np.cos(angle)
-    #         lon_points = lon_rad + radius_rad * np.sin(angle)
-
-    #         # Convert radians back to degrees
-    #         lat_points_deg = np.degrees(lat_points)
-    #         lon_points_deg = np.degrees(lon_points)
-
-    #         # Create a polygon from the points
-    #         points = list(zip(lon_points_deg, lat_points_deg))
-    #         return Polygon(points)
-
-    #     def parse_element_geometries_from_geojson(
-    #             det_file: str,
-    #             save_additional_attributes: str
-    #     ) -> Tuple[List[Dict], Tuple[List[LineString], List[Dict]]]:
-    #         """
-    #         Parse geometries from R2D deterministic result json.
-
-    #         This function reads json files specified in `output_files`. It
-    #         extracts and parses `LineString` geometries from files that contain
-    #         "road" in their name. For other files, it accumulates point
-    #         features.
-
-    #         Args__
-    #             det_file (str): Path to the R2D deterministic result Json.
-
-    #         Returns__
-    #             tuple: A tuple containing two elements:
-    #                 - ptdata (list of dict): List of point features parsed from
-    #                     GeoJSON files for bridges and tunnels
-    #                 - road_data (tuple): A tuple containing:
-    #                     - road_polys (list of LineString): List of `LineString`
-    #                         objects created from the road geometries in GeoJSON
-    #                         files that contain "road" in their name.
-    #                     - road_features (list of dict): List of road features
-    #                         as dictionaries from GeoJSON files that contain
-    #                         "roads" in their name.
-
-    #         Raises__
-    #             FileNotFoundError: If any of the specified files in
-    #                 `output_files` do not exist.
-    #             json.JSONDecodeError: If a file cannot be parsed as valid JSON.
-    #         """
-    #         ptdata = {}
-    #         with open(det_file, "r", encoding="utf-8") as file:
-    #             # Read the JSON file:
-    #             temp = json.load(file)
-    #             if 'TransportationNetwork' not in temp:
-    #                 raise KeyError(
-    #                     'The deterministic result JSON file does not contain TransportationNetwork')
-    #             temp = temp['TransportationNetwork']
-    #             # If the file contains road information:
-    #             if 'Roadway' in temp:
-    #                 # Extract road features:
-    #                 road_features = temp['Roadway']
-    #                 # Read road polygons, add asset type information to
-    #                 # road features and, if required, parse existing road
-    #                 # attributes to infer information required for network
-    #                 # analysis:
-    #                 road_polys = {}
-    #                 for AIM_ID, item in road_features.items():
-    #                     road_polys.update({AIM_ID: loads(item["GeneralInformation"]["geometry"])})
-    #                     # road_features[ind]['properties']['asset_type'] = \
-    #                     #     'road'
-    #                     if save_additional_attributes:
-    #                         # Access properties for element at index ind:
-    #                         properties = item['GeneralInformation']
-    #                         # Get MTFCC value:
-    #                         mtfcc = properties['MTFCC']
-    #                         # Update road features for the indexed element
-    #                         # with number of lanes, maximum speed, and
-    #                         # road capacity:
-    #                         properties.update({
-    #                             'lanes':
-    #                                 self.attribute_maps['lanes'][mtfcc],
-    #                             'maxspeed':
-    #                                 self.attribute_maps['speed'][mtfcc],
-    #                             'capacity':
-    #                                 self.attribute_maps['capacity'][
-    #                                     properties['lanes']]
-    #                         })
-    #             if 'Bridge' in temp:
-    #                 ptdata['Bridge'] = temp['Bridge']
-    #                 # for feature in temp["features"]:
-    #                 #     feature['properties']['asset_type'] = asset_type
-    #                 # ptdata += temp["features"]
-    #             if 'Tunnel' in temp:
-    #                 ptdata['Tunnel'] = temp['Tunnel']
-
-    #         return ptdata, (road_polys, road_features)
-
-    #     def find_intersections(lines: List[LineString]) -> Set[Point]:
-    #         """
-    #         Find intersection points between pairs of LineString geometries.
-
-    #         This function takes a list of `LineString` objects and identifies
-    #         points where any two lines intersect. The intersections are
-    #         returned as a set of `Point` objects.
-
-    #         Args__
-    #             lines (List[LineString]): A list of `LineString` objects. The
-    #             function computes intersections between each pair of
-    #             `LineString` objects in this list.
-
-    #         Returns__
-    #             Set[Point]: A set of `Point` objects representing the
-    #             intersection points between the `LineString` objects. If
-    #             multiple intersections occur at the same location, it will
-    #             only be included once in the set.
-
-    #         Example__
-    #             >>> from shapely.geometry import LineString
-    #             >>> line1 = LineString([(0, 0), (1, 1)])
-    #             >>> line2 = LineString([(0, 1), (1, 0)])
-    #             >>> find_intersections([line1, line2])
-    #             {<shapely.geometry.point.Point object at 0x...>}
-
-    #         Notes__
-    #             - The function assumes that all input geometries are valid
-    #             `LineString`
-    #                 objects.
-    #             - The resulting set may be empty if no intersections are found.
-
-    #         Raises__
-    #             TypeError: If any element in `lines` is not a `LineString`
-    #             object.
-    #         """
-    #         intersections = set()
-    #         for i, line1 in enumerate(lines):
-    #             for line2 in lines[i + 1:]:
-    #                 if line1.intersects(line2):
-    #                     inter_points = line1.intersection(line2)
-    #                     if inter_points.geom_type == "Point":
-    #                         intersections.add(inter_points)
-    #                     elif inter_points.geom_type == "MultiPoint":
-    #                         intersections.update(inter_points.geoms)
-    #         return intersections
-
-    #     def cut_lines_at_intersections(lines: List[LineString],
-    #                                    line_features: List[Dict],
-    #                                    intersections: List[Point]
-    #                                    ) -> List[LineString]:
-    #         """
-    #         Cut LineStrings at intersection points & return resulting segments.
-
-    #         This function takes a list of `LineString` objects and a list of
-    #         `Point` objects representing intersection points. For each
-    #         `LineString`, it splits the line at each intersection point. The
-    #         resulting segments are collected and returned.
-
-    #         Args__
-    #             lines (List[LineString]): A list of `LineString` objects to be
-    #                 cut at the intersection points.
-    #             line_features (List[Dict]): List of features for the
-    #                 `LineString` objects in lines.
-    #             intersections (List[Point]): A list of `Point` objects where
-    #                 the lines are intersected and split.
-
-    #         Returns__
-    #             List[LineString]: A list of `LineString` objects resulting from
-    #                               cutting the original lines at the
-    #                               intersection points.
-
-    #         Notes__
-    #             - The `split` function from `shapely.ops` is used to perform
-    #                 the cutting of lines at intersection points.
-    #             - The function handles cases where splitting results in a
-    #                 `GeometryCollection` by extracting only `LineString`
-    #                 geometries.
-
-    #         Example__
-    #             >>> from shapely.geometry import LineString, Point
-    #             >>> from shapely.ops import split
-    #             >>> lines = [
-    #             ...     LineString([(0, 0), (2, 2)]),
-    #             ...     LineString([(2, 0), (0, 2)])
-    #             ... ]
-    #             >>> intersections = [
-    #             ...     Point(1, 1)
-    #             ... ]
-    #             >>> cut_lines_at_intersections(lines, intersections)
-    #             [<shapely.geometry.linestring.LineString object at 0x...>,
-    #              <shapely.geometry.linestring.LineString object at 0x...>]
-    #         """
-    #         new_lines = []
-    #         new_line_features = []
-
-    #         for ind_line, line in enumerate(lines):
-    #             segments = [line]  # Start with the original line
-    #             for point in intersections:
-    #                 new_segments = []
-    #                 features = []
-    #                 for segment in segments:
-    #                     if segment.intersects(point):
-    #                         split_result = split(segment, point)
-    #                         if split_result.geom_type == "GeometryCollection":
-    #                             new_segments.extend(
-    #                                 geom
-    #                                 for geom in split_result.geoms
-    #                                 if geom.geom_type == "LineString"
-    #                             )
-    #                             features.extend([copy.deepcopy(
-    #                                 line_features[ind_line])
-    #                                 for _ in range(
-    #                                 len(
-    #                                     split_result.geoms
-    #                                 ))])
-    #                         elif split_result.geom_type == "LineString":
-    #                             segments.append(split_result)
-    #                             features.append(line_features[ind_line])
-    #                     else:
-    #                         new_segments.append(segment)
-    #                         features.append(line_features[ind_line])
-    #                 segments = new_segments
-
-    #             # Add remaining segments that were not intersected by any
-    #             # points:
-    #             new_lines.extend(segments)
-    #             new_line_features.extend(features)
-
-    #         return (new_lines, new_line_features)
-
-    #     def save_cut_lines_and_intersections(lines: List[LineString],
-    #                                          points: List[Point]) -> None:
-    #         """
-    #         Save LineString and Point objects to separate GeoJSON files.
-
-    #         This function converts lists of `LineString` and `Point` objects to
-    #         GeoJSON format and saves them to separate files. The `LineString`
-    #         objects are saved to "lines.geojson", and the `Point` objects are
-    #         saved to "points.geojson".
-
-    #         Args__
-    #             lines (List[LineString]): A list of `LineString` objects to be
-    #                                             saved in GeoJSON format.
-    #             intersections (List[Point]): A list of `Point` objects to be
-    #                                             saved in GeoJSON format.
-
-    #         Returns__
-    #             None: This function does not return any value. It writes
-    #                     GeoJSON data to files.
-
-    #         Notes__
-    #             - The function uses the `mapping` function from
-    #                 `shapely.geometry` to convert geometries to GeoJSON format.
-    #             - Two separate GeoJSON files are created: one for lines and one
-    #                 for points.
-    #             - The output files are named "lines.geojson" and
-    #                 "points.geojson" respectively.
-
-    #         Example__
-    #             >>> from shapely.geometry import LineString, Point
-    #             >>> lines = [
-    #             ...     LineString([(0, 0), (1, 1)]),
-    #             ...     LineString([(1, 1), (2, 2)])
-    #             ... ]
-    #             >>> points = [
-    #             ...     Point(0.5, 0.5),
-    #             ...     Point(1.5, 1.5)
-    #             ... ]
-    #             >>> save_cut_lines_and_intersections(lines, points)
-    #             # This will create "lines.geojson" and "points.geojson" files
-    #                 with the corresponding GeoJSON data.
-    #         """
-    #         # Convert LineString objects to GeoJSON format
-    #         features = []
-    #         for line in lines:
-    #             features.append(
-    #                 {"type": "Feature", "geometry": mapping(
-    #                     line), "properties": {}}
-    #             )
-
-    #         # Create a GeoJSON FeatureCollection
-    #         geojson = {"type": "FeatureCollection", "features": features}
-
-    #         # Save the GeoJSON to a file
-    #         with open("lines.geojson", "w", encoding="utf-8") as file:
-    #             json.dump(geojson, file, indent=2)
-
-    #         # Convert Point objects to GeoJSON format
-    #         features = []
-    #         for point in points:
-    #             features.append(
-    #                 {"type": "Feature", "geometry": mapping(
-    #                     point), "properties": {}}
-    #             )
-
-    #         # Create a GeoJSON FeatureCollection
-    #         geojson = {"type": "FeatureCollection", "features": features}
-
-    #         # Save the GeoJSON to a file
-    #         with open("points.geojson", "w", encoding="utf-8") as file:
-    #             json.dump(geojson, file, indent=2)
-
-    #     def find_repeated_line_pairs(lines: List[LineString]) -> Set[Tuple]:
-    #         """
-    #         Find and groups indices of repeated LineString objects from a list.
-
-    #         This function processes a list of `LineString` objects to identify
-    #         and group all unique index pairs where LineString objects are
-    #         repeated. The function converts each `LineString` to its
-    #         Well-Known Text (WKT) representation to identify duplicates.
-
-    #         Args__
-    #             lines (List[LineString]): A list of `LineString` objects to be
-    #                 analyzed for duplicates.
-
-    #         Returns__
-    #             Set[Tuple]: A set of tuples, where each tuple contains indices
-    #                 for LineString objects that are repeated.
-
-    #         Raises__
-    #             TypeError: If any element in the `lines` list is not an
-    #                 instance of `LineString`.
-
-    #         Example__
-    #             >>> from shapely.geometry import LineString
-    #             >>> lines = [
-    #             ...     LineString([(0, 0), (1, 1)]),
-    #             ...     LineString([(0, 0), (1, 1)]),
-    #             ...     LineString([(1, 1), (2, 2)]),
-    #             ...     LineString([(0, 0), (1, 1)]),
-    #             ...     LineString([(1, 1), (2, 2)])
-    #             ... ]
-    #             >>> find_repeated_line_pairs(lines)
-    #             [{0, 1, 3}, {2, 4}]
-    #         """
-    #         line_indices = defaultdict(list)
-
-    #         for id, line in lines.items():
-    #             if not isinstance(line, LineString):
-    #                 raise TypeError(
-    #                     'All elements in the input list must be LineString'
-    #                     ' objects.')
-
-    #             # Convert LineString to its WKT representation to use as a
-    #             # unique identifier:
-    #             line_wkt = line.wkt
-    #             line_indices[line_wkt].append(id)
-
-    #         repeated_pairs = set()
-    #         for indices in line_indices.values():
-    #             if len(indices) > 1:
-    #                 # Create pairs of all indices for the repeated LineString
-    #                 for i, _ in enumerate(indices):
-    #                     for j in range(i + 1, len(indices)):
-    #                         repeated_pairs.add((indices[i], indices[j]))
-
-    #         repeated_pairs = list(repeated_pairs)
-    #         ind_matched = []
-    #         repeated_polys = []
-    #         for index_p1, pair1 in enumerate(repeated_pairs):
-    #             pt1 = set(pair1)
-    #             for index_p2, pair2 in enumerate(repeated_pairs[index_p1+1:]):
-    #                 if (index_p1 + index_p2 + 1) not in ind_matched:
-    #                     pt2 = set(pair2)
-    #                     if bool(pt1 & pt2):
-    #                         pt1 |= pt2
-    #                         ind_matched.append(index_p1 + index_p2 + 1)
-    #             if pt1 not in repeated_polys and index_p1 not in ind_matched:
-    #                 repeated_polys.append(pt1)
-
-    #         return repeated_polys
-
-    #     def match_edges_to_points(ptdata: List[Dict],
-    #                               road_polys: List[LineString],
-    #                               road_features: List[Dict]
-    #                               ) -> List[List[int]]:
-    #         """
-    #         Match points to closest road polylines based on name similarity.
-
-    #         This function takes a list of points and a list of road polylines.
-    #         For each point, it searches for intersecting road polylines within
-    #         a specified radius and calculates the similarity between the
-    #         point's associated facility name and the road's name. It returns a
-    #         list of lists where each sublist contains indices of the road
-    #         polylines that best match the point based on the similarity score.
-
-    #         Args__
-    #             ptdata (List[Dict[str, Any]]): A list of dictionaries where
-    #                 each dictionary represents a point with its geometry and
-    #                 properties. The 'geometry' key should contain 'coordinates'
-    #                 , and the 'properties' key should contain 'tunnel_name' or
-    #                 'facility_carried'.
-    #             road_polys (List[LineString]): A list of `LineString` objects
-    #                 representing road polylines.
-
-    #         Returns__
-    #             List[List[int]]: A list of lists where each sublist contains
-    #                 the indices of road polylines that have the highest textual
-    #                 similarity to the point's facility name. If no similarity
-    #                 is found, the sublist is empty.
-
-    #         Notes__
-    #             - The function uses a search radius of 100 feet to find
-    #                 intersecting road polylines.
-    #             - TF-IDF vectors are used to compute the textual similarity
-    #                 between the facility names and road names.
-    #             - Cosine similarity is used to determine the best matches.
-
-    #         Example__
-    #             >>> from shapely.geometry import Point, LineString
-    #             >>> ptdata = [
-    #             ...     {"geometry": {"coordinates": [1.0, 1.0]},
-    #                      "properties": {"tunnel_name": "Tunnel A"}},
-    #             ...     {"geometry": {"coordinates": [2.0, 2.0]},
-    #                      "properties": {"facility_carried": "Road B"}}
-    #             ... ]
-    #             >>> road_polys = [
-    #             ...     LineString([(0, 0), (2, 2)]),
-    #             ...     LineString([(1, 1), (3, 3)])
-    #             ... ]
-    #             >>> match_edges_to_points(ptdata, road_polys)
-    #             [[0], [1]]
-    #         """
-    #         edge_matches = []
-    #         for ptdata_type, type_data in ptdata.items():
-    #             for AIM_ID, point in type_data.items():
-    #                 lon = point["GeneralInformation"]["location"]["longitude"]
-    #                 lat = point["GeneralInformation"]["location"]["latitude"]
-    #                 search_radius = create_circle_from_lat_lon(lat, lon, 100)
-    #                 # Check for intersections:
-    #                 intersecting_polylines = [
-    #                     AIM_ID
-    #                     for (AIM_ID, poly) in road_polys.items()
-    #                     if poly.intersects(search_radius)
-    #                 ]
-    #                 properties = point["GeneralInformation"]
-    #                 if ptdata_type == "Tunnel":
-    #                     facility = properties.get("tunnel_name", "")
-    #                 elif ptdata_type == "Bridge":
-    #                     # facility = properties["facility_carried"]
-    #                     facility = properties.get("facility_carried", "")
-    #                 max_similarity = 0
-    #                 similarities = {}
-    #                 for AIM_ID in intersecting_polylines:
-    #                     roadway = road_features[AIM_ID]["GeneralInformation"].get("NAME", None)
-    #                     if roadway:
-    #                         # Create TF-IDF vectors:
-    #                         vectorizer = TfidfVectorizer()
-    #                         tfidf_matrix = vectorizer.fit_transform(
-    #                             [facility, roadway.lower()]
-    #                         )
-
-    #                         # Calculate cosine similarity:
-    #                         similarity = cosine_similarity(
-    #                             tfidf_matrix[0:1], tfidf_matrix[1:2]
-    #                         )
-    #                     else:
-    #                         similarity = -1
-    #                     similarities.update({AIM_ID:similarity})
-    #                     if similarity > max_similarity:
-    #                         max_similarity = similarity
-    #                 if max_similarity == 0:
-    #                     max_similarity = -1
-    #                 indices_of_max = [
-    #                     intersecting_polylines[index]
-    #                     for index, value in (similarities).items()
-    #                     if value == max_similarity
-    #                 ]
-    #                 edge_matches.append(indices_of_max)
-
-    #         return edge_matches
-
-    #     def merge_brtn_features(ptdata: List[Dict],
-    #                             road_features_brtn: List[Dict],
-    #                             edge_matches: List[List],
-    #                             save_additional_attributes: str) -> List[Dict]:
-    #         """
-    #         Merge bridge/tunnel features to road features using edge matches.
-
-    #         This function updates road features with additional attributes
-    #         derived from bridge or tunnel point data. It uses edge matches to
-    #         determine how to distribute lane and capacity information among
-    #         road features.
-
-    #         Args__
-    #             ptdata (List[Dict]): A list of dictionaries where each
-    #                 dictionary contains properties of bridge or tunnel
-    #                 features. Each dictionary should have 'asset_type',
-    #                 'traffic_lanes_on', 'structure_number',
-    #                 'total_number_of_lanes', and 'tunnel_number' as keys.
-    #             road_features_brtn (List[Dict]): A list of dictionaries
-    #                 representing road features that will be updated. Each
-    #                 dictionary should have a 'properties' key where attributes
-    #                 are stored.
-    #             edge_matches (List[List[int]]): A list of lists, where each
-    #                 sublist contains indices that correspond to
-    #                 `road_features_brtn` and represent which features should be
-    #                 updated together.
-    #             save_additional_attributes (str): A flag indicating whether to
-    #                 save additional attributes like 'lanes' and 'capacity'. If
-    #                 non-empty, additional attributes will be saved.
-
-    #         Returns__
-    #             List[Dict]: The updated list of road features with merged
-    #             attributes.
-
-    #         Example__
-    #             >>> ptdata = [
-    #             ...     {'properties': {'asset_type': 'bridge',
-    #                                     'traffic_lanes_on': 4,
-    #                                     'structure_number': '12345'}},
-    #             ...     {'properties': {'asset_type': 'tunnel',
-    #                                     'total_number_of_lanes': 6,
-    #                                     'tunnel_number': '67890'}}
-    #             ... ]
-    #             # List of empty
-    #             >>> road_features_brtn = [{} for _ in range(4)]
-    #                 dictionaries for demonstration
-    #             >>> edge_matches = [[0, 1], [2, 3]]
-    #             >>> save_additional_attributes = 'yes'
-    #             >>> updated_features = merge_brtn_features(
-    #                 ptdata,
-    #                 road_features_brtn,
-    #                 edge_matches,
-    #                 save_additional_attributes)
-    #             >>> print(updated_features)
-    #         """
-    #         poly_index = 0
-    #         for item_index, edge_indices in enumerate(edge_matches):
-    #             nitems = len(edge_indices)
-    #             features = ptdata[item_index]['properties']
-    #             asset_type = features['asset_type']
-    #             if asset_type == 'bridge':
-    #                 total_nlanes = features['traffic_lanes_on']
-    #                 struct_no = features['structure_number']
-    #             else:
-    #                 total_nlanes = features['total_number_of_lanes']
-    #                 struct_no = features['tunnel_number']
-
-    #             lanes_per_item = round(int(total_nlanes)/nitems)
-
-    #             for index in range(poly_index, poly_index + nitems):
-    #                 properties = road_features_brtn[index]['properties']
-    #                 properties['asset_type'] = asset_type
-    #                 properties['OID'] = struct_no
-    #                 if save_additional_attributes:
-    #                     properties['lanes'] = lanes_per_item
-    #                     properties['capacity'] = calculate_road_capacity(
-    #                         lanes_per_item)
-
-    #             poly_index += nitems
-    #         return road_features_brtn
-
-    #     def get_nodes_edges(lines: List[LineString],
-    #                         length_unit: Literal['ft', 'm'] = 'ft'
-    #                         ) -> Tuple[Dict, Dict]:
-    #         """
-    #         Extract nodes and edges from a list of LineString objects.
-
-    #         This function processes a list of `LineString` geometries to
-    #         generate nodes and edges. Nodes are defined by their unique
-    #         coordinates, and edges are represented by their start and end
-    #         nodes, length, and geometry.
-
-    #         Args__
-    #             lines (List[LineString]): A list of `LineString` objects
-    #                 representing road segments.
-    #             length_unit (Literal['ft', 'm']): The unit of length for the
-    #                 edge distances. Defaults to 'ft'. Acceptable values are
-    #                 'ft' for feet and 'm' for meters.
-
-    #         Returns__
-    #             Tuple[Dict[int, Dict[str, float]], Dict[int, Dict[str, Any]]]:
-    #                 - A dictionary where keys are node IDs and values are
-    #                     dictionaries with node attributes:
-    #                     - 'lon': Longitude of the node.
-    #                     - 'lat': Latitude of the node.
-    #                     - 'geometry': WKT representation of the node.
-    #                 - A dictionary where keys are edge IDs and values are
-    #                     dictionaries with edge attributes:
-    #                     - 'start_nid': ID of the start node.
-    #                     - 'end_nid': ID of the end node.
-    #                     - 'length': Length of the edge in the specified unit.
-    #                     - 'geometry': WKT representation of the edge.
-
-    #         Raises__
-    #             TypeError: If any element in the `lines` list is not an
-    #                 instance of `LineString`.
-
-    #         Example__
-    #             >>> from shapely.geometry import LineString
-    #             >>> lines = [
-    #             ...     LineString([(0, 0), (1, 1)]),
-    #             ...     LineString([(1, 1), (2, 2)])
-    #             ... ]
-    #             >>> nodes, edges = get_nodes_edges(lines, length_unit='m')
-    #             >>> print(nodes)
-    #             >>> print(edges)
-    #         """
-    #         node_list = []
-    #         edges = {}
-    #         node_counter = 0
-    #         for line_counter, line in enumerate(lines):
-    #             # Ensure the object is a LineString
-    #             if not isinstance(line, LineString):
-    #                 raise TypeError(
-    #                     "All elements in the list must be LineString objects.")
-
-    #             # Extract coordinates
-    #             coords = list(line.coords)
-    #             ncoord_pairs = len(coords)
-    #             if ncoord_pairs > 0:
-    #                 start_node_coord = coords[0]
-    #                 end_node_coord = coords[-1]
-
-    #                 if start_node_coord not in node_list:
-    #                     node_list.append(start_node_coord)
-    #                     start_nid = node_counter
-    #                     node_counter += 1
-    #                 else:
-    #                     start_nid = node_list.index(start_node_coord)
-
-    #                 if end_node_coord not in node_list:
-    #                     node_list.append(end_node_coord)
-    #                     end_nid = node_counter
-    #                     node_counter += 1
-    #                 else:
-    #                     end_nid = node_list.index(end_node_coord)
-
-    #                 length = 0
-    #                 (lon, lat) = line.coords.xy
-    #                 for pair_no in range(ncoord_pairs - 1):
-    #                     length += haversine_dist([lat[pair_no], lon[pair_no]],
-    #                                              [lat[pair_no+1],
-    #                                               lon[pair_no+1]])
-    #                 if length_unit == 'm':
-    #                     length = 0.3048*length
-
-    #                 edges[line_counter] = {'start_nid': start_nid,
-    #                                        'end_nid': end_nid,
-    #                                        'length': length,
-    #                                        'geometry': line.wkt}
-
-    #             nodes = {}
-    #             for node_id, node_coords in enumerate(node_list):
-    #                 nodes[node_id] = {'lon': node_coords[0],
-    #                                   'lat': node_coords[1],
-    #                                   'geometry': 'POINT ('
-    #                                               f'{node_coords[0]:.7f} '
-    #                                               f'{node_coords[1]:.7f})'}
-
-    #         return (nodes, edges)
-
-    #     def get_node_edge_features(updated_road_polys: List[LineString],
-    #                                updated_road_features: List[Dict],
-    #                                output_files: List[str]
-    #                                ) -> Tuple[Dict, Dict]:
-    #         """
-    #         Extract/write node and edge features from updated road polygons.
-
-    #         This function processes road polygon data to generate nodes and
-    #         edges, then writes the extracted features to specified output
-    #         files.
-
-    #         Args__
-    #             updated_road_polys (List[LineString]): A list of LineString
-    #                 objects representing updated road polygons.
-    #             updated_road_features (List[Dict]): A list of dictionaries
-    #                 containing feature properties for each road segment.
-    #             output_files (List[str]): A list of two file paths where the
-    #                 first path is for edge data and the second for node data.
-
-    #         Returns__
-    #             Tuple[Dict, Dict]: A tuple containing two dictionaries:
-    #                 - The first dictionary contains edge data.
-    #                 - The second dictionary contains node data.
-
-    #         Raises__
-    #             TypeError: If any input is not of the expected type.
-
-    #         Example__
-    #             >>> from shapely.geometry import LineString
-    #             >>> road_polys = [LineString([(0, 0), (1, 1)]),
-    #                               LineString([(1, 1), (2, 2)])]
-    #             >>> road_features = [{'properties': {'OID': 1,
-    #                                                  'asset_type': 'road',
-    #                                                  'lanes': 2,
-    #                                                  'capacity': 2000,
-    #                                                  'maxspeed': 30}}]
-    #             >>> output_files = ['edges.csv', 'nodes.csv']
-    #             >>> get_node_edge_features(road_polys,
-    #                                        road_features,
-    #                                        output_files)
-    #         """
-    #         (nodes, edges) = get_nodes_edges(
-    #             updated_road_polys, length_unit='m')
-
-    #         with open(output_files[1], 'w', encoding="utf-8") as nodes_file:
-    #             nodes_file.write('node_id, lon, lat, geometry\n')
-    #             for key in nodes:
-    #                 nodes_file.write(f'{key}, {nodes[key]["lon"]}, '
-    #                                  f'{nodes[key]["lat"]}, '
-    #                                  f'{nodes[key]["geometry"]}\n')
-
-    #         with open(output_files[0], 'w', encoding="utf-8") as edge_file:
-    #             edge_file.write('uniqueid, start_nid, end_nid, osmid, length, '
-    #                             'type, lanes, maxspeed, capacity, fft, '
-    #                             'geometry\n')
-
-    #             for key in edges:
-    #                 features = updated_road_features[key]['properties']
-    #                 edges[key]['osmid'] = features['OID']
-    #                 edges[key]['type'] = features['asset_type']
-    #                 edges[key]['lanes'] = features['lanes']
-    #                 edges[key]['capacity'] = features['capacity']
-    #                 maxspeed = features['maxspeed']
-    #                 edges[key]['maxspeed'] = maxspeed
-    #                 free_flow_time = edges[key]['length'] / \
-    #                     (maxspeed*1609.34/3600)
-    #                 edges[key]['fft'] = free_flow_time
-    #                 edge_file.write(f'{key}, {edges[key]["start_nid"]}, '
-    #                                 f'{edges[key]["end_nid"]}, '
-    #                                 f'{edges[key]["osmid"]}, '
-    #                                 f'{edges[key]["length"]}, '
-    #                                 f'{edges[key]["type"]}, '
-    #                                 f'{edges[key]["lanes"]}, {maxspeed}, '
-    #                                 f'{edges[key]["capacity"]}, '
-    #                                 f'{free_flow_time}, '
-    #                                 f'{edges[key]["geometry"]}\n')
-
-    #         return (edges, nodes)
-
-    #     print('Getting graph network for elements in '
-    #           f'{det_file_path}...')
-
-    #     # Read inventory data:
-    #     ptdata, (road_polys, road_features) = \
-    #         parse_element_geometries_from_geojson(det_file_path,
-    #                                               save_additional_attributes=save_additional_attributes)
-
-    #     # Find edges that match bridges and tunnels:
-    #     edge_matches = match_edges_to_points(ptdata, road_polys, road_features)
-
-    #     # Get the indices for bridges and tunnels:
-    #     brtn_poly_idx = [item for sublist in edge_matches for item in sublist]
-
-    #     # Detect repeated edges and save their indices:
-    #     repeated_edges = find_repeated_line_pairs(road_polys)
-
-    #     edges_remove = []
-    #     for edge_set in repeated_edges:
-    #         bridge_poly = set(brtn_poly_idx)
-    #         if edge_set & bridge_poly:
-    #             remove = list(edge_set - bridge_poly)
-    #         else:
-    #             temp = list(edge_set)
-    #             remove = temp[1:].copy()
-    #         edges_remove.extend(remove)
-
-    #     # Save polygons that are not bridge or tunnel edges or marked for
-    #     # removal in road polygons:
-    #     road_polys_local = [poly for (ind, poly) in road_polys.items() if
-    #                         ind not in brtn_poly_idx + edges_remove]
-    #     road_features_local = [feature for (ind, feature) in
-    #                            road_features.items()
-    #                            if ind not in brtn_poly_idx + edges_remove]
-
-    #     # Save polygons that are not bridge or tunnel edges:
-    #     road_polys_brtn = [poly for (ind, poly) in enumerate(road_polys)
-    #                        if ind in brtn_poly_idx]
-    #     road_features_brtn = [feature for (ind, feature)
-    #                           in enumerate(road_features)
-    #                           if ind in brtn_poly_idx]
-    #     road_features_brtn = merge_brtn_features(ptdata,
-    #                                              road_features_brtn,
-    #                                              edge_matches,
-    #                                              save_additional_attributes)
-
-    #     # Compute the intersections of road polygons:
-    #     intersections = find_intersections(road_polys_local)
-
-    #     # Cut road polygons at intersection points:
-    #     cut_lines, cut_features = cut_lines_at_intersections(
-    #         road_polys_local,
-    #         road_features_local,
-    #         intersections)
-    #     # Come back and update cut_lines_at_intersections to not intersect
-    #     # lines within a certain diameter of a bridge point
-
-    #     # Combine all polygons and their features:
-    #     updated_road_polys = cut_lines + road_polys_brtn
-    #     updated_road_features = cut_features + road_features_brtn
-
-    #     # Save created polygons (for debugging only)
-    #     # save_cut_lines_and_intersections(updated_road_polys, intersections)
-
-    #     # Get nodes and edges of the final set of road polygons:
-    #     (edges, nodes) = get_node_edge_features(updated_road_polys,
-    #                                             updated_road_features,
-    #                                             output_files)
-    #     self.graph_network['edges'] = edges
-    #     self.graph_network['nodes'] = nodes
-
-    #     print('Edges and nodes of the graph network are saved in '
-    #           f'{", ".join(output_files)}')

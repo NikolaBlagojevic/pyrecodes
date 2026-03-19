@@ -35,7 +35,7 @@
                         "CreatorFileName": "r2d_subsystem_creator",
                         "Parameters": {
                             "Resource": ["PotableWater"],
-                            "R2DJSONFile_Info": "./tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_det.json",
+                            "R2DJSONFile_Info": "{folder}/test_inputs_ThreeLocalitiesCommunity_det.json",
                             "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                             "AssetTypes": ["Pipe"]
                             }
@@ -94,7 +94,7 @@
                         "CreatorFileName": "r2d_subsystem_creator",
                         "Parameters": {
                             "Resource": ["PotableWater"],
-                            "R2DJSONFile_Info": "./tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_det.json",
+                            "R2DJSONFile_Info": "{folder}/test_inputs_ThreeLocalitiesCommunity_det.json",
                             "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                             "AssetTypes": ["Pipe"]
                             }
@@ -142,7 +142,7 @@
                         "CreatorFileName": "r2d_subsystem_creator",
                         "Parameters": {
                             "Resource": ["PotableWater"],
-                            "R2DJSONFile_Info": "./tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_det.json",
+                            "R2DJSONFile_Info": "{folder}/test_inputs_ThreeLocalitiesCommunity_det.json",
                             "SubsystemNameInR2DJSON": "WaterDistributionNetwork",
                             "AssetTypes": ["Pipe"]
                             }
@@ -172,7 +172,7 @@
                         "CreatorFileName": "r2d_subsystem_creator",
                         "Parameters": {
                             "Resource": ["Housing"],
-                            "R2DJSONFile_Info": "./tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_det.json",
+                            "R2DJSONFile_Info": "{folder}/test_inputs_ThreeLocalitiesCommunity_det.json",
                             "SubsystemNameInR2DJSON": "Buildings",
                             "AssetTypes": ["Building"]
                             }
@@ -185,7 +185,7 @@
     "DamageInput": {
         "ClassName": "R2DDamageInput",
         "FileName": "r2d_damage_input",
-        "Parameters": {"DamageFile": "./tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_AllPipesDamaged.json",
+        "Parameters": {"DamageFile": "{folder}/test_inputs_ThreeLocalitiesCommunity_AllPipesDamaged.json",
         "DistributionModelDamage": [
             "PotableWater"
         ]
@@ -312,9 +312,9 @@
                                 "step": 50
                             }
                         ],
-                        "INPFile": "./tests/test_inputs/test_ThreeLocalities_water_distribution_network/ThreeLocalitiesWaterNetwork.inp",
-                        "Results_folder": "./tests/test_inputs/test_ThreeLocalities_water_distribution_network/rewet_results",
-                        "Temp_folder": "./tests/test_inputs/test_ThreeLocalities_water_distribution_network/rewet_temp"
+                        "INPFile": "{folder}/test_ThreeLocalities_water_distribution_network/ThreeLocalitiesWaterNetwork.inp",
+                        "Results_folder": "{folder}/test_ThreeLocalities_water_distribution_network/rewet_results",
+                        "Temp_folder": "{folder}/test_ThreeLocalities_water_distribution_network/rewet_temp"
                     }
             }
         },
@@ -374,7 +374,7 @@
                 "ClassName": "TransferServiceDistributionModelPotentialPaths",
                 "FileName": "transfer_service_distribution_model_potential_paths",
                 "Parameters": {
-                    "PathSetsFile": "./tests/test_inputs/test_inputs_ThreeLocalitiesCommunity_potential_path_sets.json"
+                    "PathSetsFile": "{folder}/test_inputs_ThreeLocalitiesCommunity_potential_path_sets.json"
                 }
             }
         },

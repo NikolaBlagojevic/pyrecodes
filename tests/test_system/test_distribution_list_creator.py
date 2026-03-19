@@ -1,17 +1,12 @@
 import pytest
-from pyrecodes import main
-from pyrecodes.utilities import read_json_file
 from pyrecodes.system.distribution_list_creator import DistributionListCreator
-
-FOLDER_NAME = './tests/test_inputs'
-MAIN_FILE = 'test_inputs_VirtualCommunity_Main.json'
+from tests.conftest import make_system
 
 class TestDistributionListCreator:
 
     @pytest.fixture
-    def distribution_list_creator(self):
-        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
-        system = main.create_system(FOLDER_NAME, input_dict)
+    def distribution_list_creator(self, virtual_community_system_template):
+        system = make_system(virtual_community_system_template)
         return DistributionListCreator(system.components, system.resources)
     
     def test_get_resource_distribution_dict(self, distribution_list_creator):

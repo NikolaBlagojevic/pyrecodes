@@ -175,3 +175,57 @@ DAMAGE_INPUT_ALAMEDA = {
             ]
         }
     }
+
+MAIN_FILE_HOUSEHOLDS = 'test_inputs_SmallAlamedaWithHouseholds_Main.json'
+
+LOCALITY_ALAMEDA_963_GEOJSON = {
+    "LocalityName": "Alameda 963",
+    "GeoJSON": {
+        "Filename": "./tests/test_inputs/Alameda_TravelAnalysisZone_963.geojson"
+    }
+}
+
+CONSTANTS_WITH_HOUSEHOLDS = {
+    'START_TIME_STEP': 0,
+    'MAX_TIME_STEP': 10,
+    'DISASTER_TIME_STEP': 1,
+    "MAX_REPAIR_CREW_DEMAND_PER_BUILDING": 50,
+    "REPAIR_CREW_DEMAND_PER_SQFT": {
+        "DS1": 5400,
+        "DS2": 5400,
+        "DS3": 2700,
+        "DS4": 2700
+    },
+    "DEFAULT_REPAIR_DURATION_DICT": {
+        "Lognormal": {
+            "Median": 0,
+            "Dispersion": 0.3
+        }
+    },
+    "DEMAND_PER_PERSON": None,
+    "HOUSING_RESOURCES": ["Shelter"]
+}
+
+PARAMETERS_R2D_ALAMEDA_WITH_HOUSEHOLDS = {
+    "Resource": ["Shelter", "FunctionalHousing"],
+    "R2DJSONFile_Info": "./tests/test_inputs/test_inputs_Alameda_Exposure_With_Households.json",
+    "SubsystemNameInR2DJSON": "Buildings",
+    "AssetTypes": ["Building"],
+    "MaxNumComponents": 100,
+    "RecoveryTimeStepping": [
+        {
+            "start": 0,
+            "end": 10,
+            "step": 1
+        }
+    ]
+}
+
+DAMAGE_INPUT_ALAMEDA_SHORT_RECOVERY = {
+    "FileName": "r2d_damage_input",
+    "ClassName": "R2DDamageInput",
+    "Parameters": {
+        "DamageFile": "./tests/test_inputs/Alameda_Damage_ShortRecovery.json",
+        "DistributionModelDamage": ["PotableWater"]
+    }
+}

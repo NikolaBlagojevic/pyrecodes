@@ -1,15 +1,12 @@
 import pytest
-from pyrecodes.utilities import read_json_file
 from pyrecodes.damage_input.r2d_damage_input import R2DDamageInput
 from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComponent
 from pyrecodes.component.infrastructure_interface import InfrastructureInterface
 from pyrecodes.component.r2d_component import R2DPipe
 from pyrecodes.component_recovery_model.no_recovery_activity_model import NoRecoveryActivityModel
 from pyrecodes.component_recovery_model.component_level_recovery_activities_model import ComponentLevelRecoveryActivitiesModel
-from pyrecodes import main
+from tests.conftest import make_system
 
-FOLDER_NAME = './tests/test_inputs'
-MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunityREWET_Main.json'
 DAMAGE_INPUT_PARAMETERS = {"DamageFile": "test_inputs_ThreeLocalitiesCommunity_0.json",
                         "DistributionModelDamage": [
                             "PotableWater"
@@ -19,9 +16,8 @@ DAMAGE_INPUT_PARAMETERS = {"DamageFile": "test_inputs_ThreeLocalitiesCommunity_0
 class TestR2DDamageInput:
 
     @pytest.fixture
-    def system(self):
-        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
-        return main.create_system(FOLDER_NAME, input_dict)
+    def system(self, three_localities_rewet_system_template):
+        return make_system(three_localities_rewet_system_template)
 
     @pytest.fixture
     def damage_input(self, system):

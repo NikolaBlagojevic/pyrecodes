@@ -8,7 +8,8 @@ from pyrecodes.system_creator.system_creator import SystemCreator
 from pyrecodes.damage_input.list_damage_input import ListDamageInput
 from pyrecodes.system.recovery_target_checker import NoDamageRecoveryTargetChecker
 from pyrecodes.system.system import System
-   
+from tests.conftest import make_system
+
 
 class TestBuiltEnvironmentSystem():
 
@@ -29,6 +30,12 @@ class TestBuiltEnvironmentSystem():
 class TestThreeLocalitiesSystem(TestBuiltEnvironmentSystem):
 
     MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunity_Main.json'
+
+    @pytest.fixture()
+    def system(self, three_localities_system_template):
+        system = make_system(three_localities_system_template)
+        system.time_step = 0
+        return system
 
     def test_init(self, system):
         assert isinstance(system.system_configuration, dict)
@@ -70,6 +77,8 @@ class TestThreeLocalitiesSystem(TestBuiltEnvironmentSystem):
             assert component.functionality_level == target_functionality_level
 
     def test_distribute_resources(self, system):
+        system.time_step = 0
+        system.update()
         system.distribute_resources()
         target_consumptions = [4, 1, 3]
         demand_col = system.resources['ElectricPower']['DistributionModel'].system_matrix.DEMAND_COL_ID
@@ -98,6 +107,8 @@ class TestThreeLocalitiesSystem(TestBuiltEnvironmentSystem):
         assert supply == target_supply
     
     def test_check_system_convergence(self, system):
+        system.time_step = 0
+        system.update()
         system.distribute_resources()
         supply = system.get_supply_of_interdependent_resources()
         assert system.check_system_convergence(supply, supply) == True
@@ -122,11 +133,71 @@ class TestThreeLocalitiesSystem(TestBuiltEnvironmentSystem):
         system_loaded = system.load_as_pickle('./tests/test_inputs/test_inputs_ThreeLocalitiesCommunitySystem.pickle')
         assert isinstance(system_loaded, System)
         
+class TestHooks(TestBuiltEnvironmentSystem):
+
+    MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunity_Main.json'
+
+    @pytest.fixture()
+    def system(self, three_localities_system_template):
+        system = make_system(three_localities_system_template)
+        system.time_step = 0
+        return system
+
+    def test_register_hook_adds_callback(self, system):
+        called = []
+        system.register_hook('post_time_step', lambda ts: called.append(ts))
+        assert len(system._hooks['post_time_step']) == 1
+
+    def test_register_hook_is_idempotent(self, system):
+        callback = lambda ts: None
+        system.register_hook('post_time_step', callback)
+        system.register_hook('post_time_step', callback)
+        assert len(system._hooks['post_time_step']) == 1
+
+    def test_notify_fires_callback_with_args(self, system):
+        called = []
+        system.register_hook('post_time_step', lambda ts: called.append(ts))
+        system._notify('post_time_step', 42)
+        assert called == [42]
+
+    def test_notify_unknown_event_does_nothing(self, system):
+        system._notify('nonexistent_event', 0)  # should not raise
+
+    def test_notify_fires_multiple_callbacks(self, system):
+        log = []
+        system.register_hook('post_time_step', lambda ts: log.append('a'))
+        system.register_hook('post_time_step', lambda ts: log.append('b'))
+        system._notify('post_time_step', 0)
+        assert log == ['a', 'b']
+
+    def test_hook_called_during_simulation(self, system):
+        called_steps = []
+        system.register_hook('post_time_step', lambda ts: called_steps.append(ts))
+        system.start_resilience_assessment()
+        assert len(called_steps) > 0
+        assert called_steps[0] == system.START_TIME_STEP
+
+    def test_hooks_persist_across_simulation_run(self, system):
+        called = []
+        system.register_hook('post_time_step', lambda ts: called.append(ts))
+        system.start_resilience_assessment()
+        first_run_count = len(called)
+        assert first_run_count > 0
+
+
 class TestVirtualCommunity(TestBuiltEnvironmentSystem):
 
     MAIN_FILE = 'test_inputs_VirtualCommunity_Main.json'
 
+    @pytest.fixture()
+    def system(self, virtual_community_system_template):
+        system = make_system(virtual_community_system_template)
+        system.time_step = 0
+        return system
+
     def test_distribute_interdependent_resources(self, system):
+        system.time_step = 0
+        system.update()
         target_supplies = [80.0, 600.0, 495.0, 0.8, 0.24, 3600.0]
         system.distribute_interdependent_resources()
         for target_supply, resource_name in zip(target_supplies, system.resource_distribution_dict['InterdependentResources']):

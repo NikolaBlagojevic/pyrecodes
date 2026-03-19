@@ -1,19 +1,16 @@
 import pytest
 import math
-from pyrecodes.utilities import read_json_file
-from pyrecodes import main
 from pyrecodes.damage_input.file_damage_input import FileDamageInput
+from tests.conftest import make_system
 
 FOLDER_NAME = './tests/test_inputs'
-MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunity_Main.json'
 DAMAGE_FILE = 'test_damage_input_file.txt'
 
 class TestFileDamageInput:
 
     @pytest.fixture
-    def system(self):
-        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
-        system = main.create_system(FOLDER_NAME, input_dict)
+    def system(self, three_localities_system_template):
+        system = make_system(three_localities_system_template)
         damage_input = FileDamageInput(f'{FOLDER_NAME}/{DAMAGE_FILE}', system)
         system.damage_input = damage_input
         return system

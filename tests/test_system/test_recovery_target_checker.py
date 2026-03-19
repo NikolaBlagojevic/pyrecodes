@@ -1,17 +1,12 @@
 import pytest
-from pyrecodes import main
-from pyrecodes.utilities import read_json_file
 from pyrecodes.system.recovery_target_checker import NoDamageRecoveryTargetChecker
-
-FOLDER_NAME = './tests/test_inputs'
-MAIN_FILE = 'test_inputs_VirtualCommunity_Main.json'
+from tests.conftest import make_system
 
 class TestNoDamageRecoveryTargetChecker:
 
     @pytest.fixture
-    def system(self):
-        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
-        return main.create_system(FOLDER_NAME, input_dict)
+    def system(self, virtual_community_system_template):
+        return make_system(virtual_community_system_template)
     
     def test_recovery_target_met(self, system):
         system.time_step = system.START_TIME_STEP

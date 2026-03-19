@@ -6,6 +6,7 @@ from pyrecodes.utilities import read_json_file
 from pyrecodes.distribution_priority.component_based_priority import ComponentBasedPriority
 from pyrecodes.component.component import SupplyOrDemand
 from pyrecodes.resource_distribution_model.transfer_service_distribution_model_potential_paths import TransferServiceDistributionModelPotentialPaths
+from tests.conftest import make_system
 
 class TestUtilityDistributionModel_ThreeLocalitiesCommunity():
 
@@ -13,9 +14,11 @@ class TestUtilityDistributionModel_ThreeLocalitiesCommunity():
     MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunity_Main.json'
 
     @pytest.fixture
-    def system(self):
-        input_dict = read_json_file(f'{self.FOLDER_NAME}/{self.MAIN_FILE}')
-        return main.create_system(self.FOLDER_NAME, input_dict)
+    def system(self, three_localities_system_template):
+        system = make_system(three_localities_system_template)
+        system.time_step = 0
+        system.update()
+        return system
 
     @pytest.fixture
     def distribution_models(self, system):
@@ -111,12 +114,12 @@ class TestUtilityDistributionModel_ThreeLocalitiesCommunity():
                       'ComponentRowID': 0}]
         componet_row_id = 7
         component_demand_type = 'OperationDemand'
-        suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, componet_row_id, component_demand_type)
+        suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, componet_row_id, component_demand_type, time_step=0)
         assert math.isclose(suppliers[0]['CurrentSupply'], 4.0)
         assert math.isclose(suppliers[0]['ConsumedAmount'], 1.0)
 
         component_row_id = 4
-        suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, component_row_id, component_demand_type)
+        suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, component_row_id, component_demand_type, time_step=0)
         assert math.isclose(suppliers[0]['CurrentSupply'], 3.0)
         assert math.isclose(suppliers[0]['ConsumedAmount'], 2.0)
 
@@ -125,7 +128,7 @@ class TestUtilityDistributionModel_ThreeLocalitiesCommunity():
                       'ComponentRowID': 0}]
         
         component_row_id = 4
-        suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, componet_row_id, component_demand_type)
+        suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, componet_row_id, component_demand_type, time_step=0)
         assert math.isclose(suppliers[0]['CurrentSupply'], 0.0)
         assert math.isclose(suppliers[0]['ConsumedAmount'], 0.0)
     
@@ -137,12 +140,12 @@ class TestUtilityDistributionModel_ThreeLocalitiesCommunity():
         component_demand_type = 'OperationDemand'
         distribution_models['ElectricPower'].fill_system_matrix()
 
-        suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, componet_row_id, component_demand_type)
+        suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, componet_row_id, component_demand_type, time_step=0)
         assert math.isclose(suppliers[0]['CurrentSupply'], 4.0)
         assert math.isclose(suppliers[0]['ConsumedAmount'], 1.0)
 
         component_row_id = 4
-        suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, component_row_id, component_demand_type)
+        suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, component_row_id, component_demand_type, time_step=0)
         assert math.isclose(suppliers[0]['CurrentSupply'], 3.0)
         assert math.isclose(suppliers[0]['ConsumedAmount'], 2.0)
 
@@ -151,7 +154,7 @@ class TestUtilityDistributionModel_ThreeLocalitiesCommunity():
                       'ComponentRowID': 0}]
         
         component_row_id = 4
-        suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, componet_row_id, component_demand_type)
+        suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, componet_row_id, component_demand_type, time_step=0)
         assert math.isclose(suppliers[0]['CurrentSupply'], 0.0)
         assert math.isclose(suppliers[0]['ConsumedAmount'], 0.0)
     
@@ -166,7 +169,7 @@ class TestUtilityDistributionModel_ThreeLocalitiesCommunity():
         component_demand_type = 'OperationDemand'
         distribution_models['ElectricPower'].fill_system_matrix()
 
-        suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, component_row_id, component_demand_type)
+        suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, component_row_id, component_demand_type, time_step=0)
         assert math.isclose(suppliers[0]['CurrentSupply'], 0.0)
         assert math.isclose(suppliers[0]['ConsumedAmount'], 0.5)
         assert math.isclose(suppliers[1]['CurrentSupply'], 0.5)
@@ -179,7 +182,7 @@ class TestUtilityDistributionModel_ThreeLocalitiesCommunity():
                        'CurrentSupply': 1.0, 'ConsumedAmount': 0,
                        'ComponentRowID': 8}]
 
-        suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, component_row_id, component_demand_type)
+        suppliers = distribution_models['ElectricPower'].meet_component_demand(suppliers, component_row_id, component_demand_type, time_step=0)
         assert math.isclose(suppliers[0]['CurrentSupply'], 0.0)
         assert math.isclose(suppliers[0]['ConsumedAmount'], 0.0)
         assert math.isclose(suppliers[1]['CurrentSupply'], 0.0)
@@ -255,8 +258,8 @@ class TestUtilityDistributionModel_ThreeLocalitiesCommunity():
         for power_plant_supply, base_station_supply, distribution_model in zip(reduced_supply_of_the_power_plant,
                                                                                reduced_supply_of_the_base_station,
                                                                                distribution_models.values()):
-            distribution_model.reduce_component_supply(power_plant_row_id, percent_of_met_demand)
-            distribution_model.reduce_component_supply(base_station_row_id, percent_of_met_demand)
+            distribution_model.reduce_component_supply(power_plant_row_id, percent_of_met_demand, time_step=0)
+            distribution_model.reduce_component_supply(base_station_row_id, percent_of_met_demand, time_step=0)
             assert math.isclose(distribution_model.system_matrix.get_current_resource_amount(
                 distribution_model.components[power_plant_row_id], SupplyOrDemand.SUPPLY.value, 'Supply'),
                 power_plant_supply)

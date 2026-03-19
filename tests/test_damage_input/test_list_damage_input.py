@@ -1,18 +1,13 @@
 import pytest
 import math
-from pyrecodes.utilities import read_json_file
 from pyrecodes.damage_input import ListDamageInput
-from pyrecodes import main
-
-MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunity_Main.json'    
-FOLDER_NAME = './tests/test_inputs'
+from tests.conftest import make_system
 
 class TestListDamageInput():
 
     @pytest.fixture
-    def system(self):
-        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
-        return main.create_system(FOLDER_NAME, input_dict)
+    def system(self, three_localities_system_template):
+        return make_system(three_localities_system_template)
 
     @pytest.fixture
     def damage_input(self, system):

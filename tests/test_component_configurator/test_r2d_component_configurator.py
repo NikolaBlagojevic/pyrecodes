@@ -2,7 +2,7 @@ import pytest
 import math
 import copy
 from pyrecodes import main
-from pyrecodes.utilities import read_json_file
+from pyrecodes.utilities import read_json_file, resolve_folder_paths
 from pyrecodes.utilities import format_locality_id
 from pyrecodes.component_library_creator.json_component_library_creator import JSONComponentLibraryCreator
 from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComponent
@@ -20,7 +20,7 @@ def component_library():
 @pytest.fixture()
 def system_configuration() -> dict:
     input_dict = read_json_file(f"{FOLDER_NAME}/{MAIN_FILE}")
-    system_configuration = read_json_file(f"{FOLDER_NAME}/{input_dict['System']['SystemConfigurationFile']}")
+    system_configuration = resolve_folder_paths(read_json_file(f"{FOLDER_NAME}/{input_dict['System']['SystemConfigurationFile']}"), FOLDER_NAME)
     return system_configuration
 
 @pytest.fixture()

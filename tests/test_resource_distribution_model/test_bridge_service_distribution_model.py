@@ -1,17 +1,12 @@
 import pytest
-from pyrecodes import main
-from pyrecodes.utilities import read_json_file
 from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComponent
+from tests.conftest import make_system
 
 class TestBridgeServiceDistributionModel:
 
-    FOLDER_NAME = './tests/test_inputs'
-    MAIN_FILE = 'test_inputs_VirtualCommunity_Main.json'
-
     @pytest.fixture
-    def system(self):
-        input_dict = read_json_file(f'{self.FOLDER_NAME}/{self.MAIN_FILE}')
-        return main.create_system(self.FOLDER_NAME, input_dict)
+    def system(self, virtual_community_system_template):
+        return make_system(virtual_community_system_template)
     
     @pytest.fixture
     def distribution_models(self, system):
@@ -46,6 +41,9 @@ class TestBridgeServiceDistributionModel:
         assert distribution_models['BridgeService'].component_is_on_the_bridge(bridge, component_not_on_bridge) == False
     
     def test_distribute(self, distribution_models):
+        for component in distribution_models['BridgeService'].components:
+            component.update(0)
+            
         distribution_models['BridgeService'].distribute(0)
         target_EPTS = distribution_models['BridgeService'].components[70]
         target_PWP = distribution_models['BridgeService'].components[73]

@@ -1,18 +1,13 @@
 import pytest
-from pyrecodes.utilities import read_json_file
-from pyrecodes import main
 from pyrecodes.system.system import System
 from pyrecodes.distribution_priority.component_based_priority import ComponentBasedPriority
-
-FOLDER_NAME = './tests/test_inputs'
-MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunity_Main.json'
+from tests.conftest import make_system
 
 class TestComponentBasedDistributionPriority():
 
     @pytest.fixture
-    def system(self):
-        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
-        return main.create_system(FOLDER_NAME, input_dict)
+    def system(self, three_localities_system_template):
+        return make_system(three_localities_system_template)
     
     @pytest.fixture
     def distribution_priority(self, system: System):

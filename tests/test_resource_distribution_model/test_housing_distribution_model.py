@@ -13,7 +13,10 @@ class TestHousingDistributionModel:
     @pytest.fixture
     def system(self):
         input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
-        return main.create_system(FOLDER_NAME, input_dict)
+        system = main.create_system(FOLDER_NAME, input_dict)
+        system.time_step = 0
+        system.update()
+        return system
 
     @pytest.fixture
     def housing_distribution_model(self, system):
@@ -25,6 +28,8 @@ class TestHousingDistributionModel:
         assert len(housing_distribution_model.components) == len(system.components)
 
     def test_distribute(self, housing_distribution_model, system):
+        system.time_step = 1
+        system.update()
         housing_distribution_model.distribute(time_step=1)
         assert housing_distribution_model.get_total_supply(scope='All') == 28.0
         assert housing_distribution_model.get_total_demand(scope='All') == 28.0
@@ -38,13 +43,15 @@ class TestHousingDistributionModel:
         assert housing_distribution_model.get_total_consumption(scope='All') == 25.0
 
     def test_distribute_housing_within_component(self, housing_distribution_model, system):
+        system.time_step = 1
+        system.update()
         component = system.components[1]
-        housing_distribution_model.distribute_housing_within_component(component)
+        housing_distribution_model.distribute_housing_within_component(component, time_step=1)
         assert component.get_current_resource_amount('supply', 'Supply', RESOURCE_NAME) == 10.0
 
         component.set_initial_damage_level(0.5)
         component.update(time_step=1)
-        housing_distribution_model.distribute_housing_within_component(component)
+        housing_distribution_model.distribute_housing_within_component(component, time_step=1)
         assert component.get_current_resource_amount('supply', 'Supply', RESOURCE_NAME) == 0.0
 
     def test_get_total_supply(self, housing_distribution_model, system):

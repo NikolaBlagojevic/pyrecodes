@@ -1,19 +1,14 @@
 import pytest
-from pyrecodes import main
-from pyrecodes.utilities import read_json_file
 from pyrecodes.resilience_calculator.r2d_component_recovery_time_calculator import R2DComponentRecoveryTimeCalculator
+from tests.conftest import make_system
 
-FOLDER_NAME = './tests/test_inputs'
-MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunityREWET_Main.json'
+PARAMETERS = {}
 
-PARAMETERS = {} 
-
-class TestR2DComponentRecoveryTimeCalculator():    
+class TestR2DComponentRecoveryTimeCalculator():
 
     @pytest.fixture
-    def system(self):
-        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
-        return main.create_system(FOLDER_NAME, input_dict)
+    def system(self, three_localities_rewet_system_template):
+        return make_system(three_localities_rewet_system_template)
 
     @pytest.fixture()
     def resilience_calculator(self) -> R2DComponentRecoveryTimeCalculator:

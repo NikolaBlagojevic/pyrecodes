@@ -5,6 +5,7 @@ from pyrecodes.utilities import read_json_file
 from pyrecodes.resilience_calculator.resilience_calculator import ResilienceCalculator
 from pyrecodes.resilience_calculator.recodes_calculator import ReCoDeSCalculator
 from pyrecodes.system.system import System
+from tests.conftest import make_system
 
 FOLDER_NAME = './tests/test_inputs'
 MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunity_Main.json'
@@ -15,9 +16,8 @@ PARAMETERS = {"Scope": "All",
 class TestReCoDeSCalculator():    
 
     @pytest.fixture
-    def system(self):
-        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
-        return main.create_system(FOLDER_NAME, input_dict)
+    def system(self, three_localities_system_template):
+        return make_system(three_localities_system_template)
 
     @pytest.fixture()
     def resilience_calculator(self) -> ResilienceCalculator:
@@ -33,6 +33,7 @@ class TestReCoDeSCalculator():
     def test_update_no_damage(self, system: System,
                               resilience_calculator: ResilienceCalculator):
         system.time_step = 0
+        system.update()
         system.distribute_resources()
         resilience_calculator.update(system)
         target_values = [[5.0, 4.0, 4.0], [3.0, 1.0, 1.0], [3.0, 3.0, 3.0]]
@@ -43,6 +44,8 @@ class TestReCoDeSCalculator():
 
     def test_update_with_damage(self, system: System,
                                 resilience_calculator: ResilienceCalculator):
+        system.time_step = 0
+        system.update() # call update here to start the met_demand_tracker list
         system.time_step = 1
         system.set_initial_damage() 
         system.update()
@@ -59,7 +62,9 @@ class TestReCoDeSCalculator():
 
     def test_update_with_damage_and_interdependency(self, system: System,
                                                     resilience_calculator: ResilienceCalculator):
-        system.set_initial_damage()
+        system.time_step = 0
+        system.update() # call update here to start the met_demand_tracker list
+        system.set_initial_damage()        
         system.time_step = 1
         system.update()
         system.distribute_resources()
@@ -73,6 +78,8 @@ class TestReCoDeSCalculator():
     def test_update_with_damaged_links(self, system: System,
                                                     resilience_calculator: ResilienceCalculator):
         # Assign damage to links going from Locality 1 to Localities 2 and 3.
+        system.time_step = 0
+        system.update() # call update here to start the met_demand_tracker list
         system.damage_input.damage_levels[2] = 1.0
         system.damage_input.damage_levels[3] = 1.0
         system.set_initial_damage()
@@ -90,6 +97,8 @@ class TestReCoDeSCalculator():
 
     def test_calculate_resilience_single_time_step(self, system: System,
                                   resilience_calculator: ResilienceCalculator):
+        system.time_step = 0
+        system.update() # call update here to start the met_demand_tracker list
         system.set_initial_damage()
         system.time_step = 1
         system.update()
@@ -102,6 +111,8 @@ class TestReCoDeSCalculator():
 
     def test_calculate_resilience_multiple_time_steps(self, system: System,
                                   resilience_calculator: ResilienceCalculator):
+        system.time_step = 0
+        system.update() # call update here to start the met_demand_tracker list
         system.set_initial_damage()
         for time_step in range(1, 4):
             system.time_step = time_step

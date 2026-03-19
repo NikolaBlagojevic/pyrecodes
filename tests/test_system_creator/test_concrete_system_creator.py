@@ -1,6 +1,6 @@
 import pytest
 from pyrecodes import main
-from pyrecodes.utilities import read_json_file
+from pyrecodes.utilities import read_json_file, resolve_folder_paths
 from pyrecodes.system_creator.concrete_system_creator import ConcreteSystemCreator
 from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComponent
 from pyrecodes.component.building_with_emergency_calls import BuildingWithEmergencyCalls
@@ -26,7 +26,7 @@ class TestThreeLocalitiesConcreteSystemCreator():
     @pytest.fixture()
     def system_configuration(self) -> dict:
         input_dict = read_json_file(f'{self.FOLDER_NAME}/{self.MAIN_FILE}')
-        system_configuration = read_json_file(f'{self.FOLDER_NAME}/{input_dict["System"]["SystemConfigurationFile"]}')
+        system_configuration = resolve_folder_paths(read_json_file(f'{self.FOLDER_NAME}/{input_dict["System"]["SystemConfigurationFile"]}'), self.FOLDER_NAME)
         return system_configuration
     
     def test_init(self, system_creator):

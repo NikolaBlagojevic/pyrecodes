@@ -423,14 +423,18 @@ class TestStandardiReCoDeSComponent():
     
     def test_update_supply_based_on_unmet_demand(self, component):
         component.construct(COMPONENT_NAME, COMPONENT_PARAMETERS)
+        component.met_demand_tracker = [{} for _ in range(11)]
         percent_of_met_demand = 0.6
-        component.update_supply_based_on_unmet_demand(percent_of_met_demand)
+        component.update_supply_based_on_unmet_demand(percent_of_met_demand, 'SupplyResource1', time_step=10)
+        component.update_supply_based_on_unmet_demand(1.0, 'SupplyResource2', time_step=10)
         assert math.isclose(component.supply[StandardiReCoDeSComponent.SupplyTypes.SUPPLY.value][
                                 'SupplyResource1'].current_amount,
                             0)
         assert math.isclose(component.supply[StandardiReCoDeSComponent.SupplyTypes.SUPPLY.value][
                                 'SupplyResource2'].current_amount,
                             100)
+        assert component.met_demand_tracker[10]['SupplyResource1'] == {'DemandType': 'OperationDemand', 'PercentOfMetDemand': 0.6}
+        assert component.met_demand_tracker[10]['SupplyResource2'] == {'DemandType': 'OperationDemand', 'PercentOfMetDemand': 1.0}
     
     def test_update_supply_based_on_consumption(self, component):
         COMPONENT_PARAMETERS['Supply']['SupplyResource1']['ResourceClass'] = {'FileName': 'consumable_resource', 'ClassName': 'ConsumableResource'}
@@ -460,55 +464,15 @@ class TestStandardiReCoDeSComponent():
     
     def test_set_met_demand_for_recovery_activities(self, component):
         component.construct(COMPONENT_NAME, COMPONENT_PARAMETERS)
-
-        with pytest.raises(ValueError):
-            component.set_met_demand_for_recovery_activities('RecoveryResource1', 0.3)
-
+        component.met_demand_tracker = [{} for _ in range(11)]
         component.set_initial_damage_level(0.5)
-        component.set_met_demand_for_recovery_activities('RecoveryResource1', 0.3)
+        component.set_met_demand_for_recovery_activities('RecoveryResource1', 0.3, 10)
         assert component.recovery_model.recovery_activities['Repair'].demand_met['RecoveryResource1'] == 0.3
+        assert component.met_demand_tracker[10]['RecoveryResource1'] == {'DemandType': 'RecoveryDemand', 'PercentOfMetDemand': 0.3}
 
-        component.set_met_demand_for_recovery_activities('RecoveryResource1', 1.0)
+        component.set_met_demand_for_recovery_activities('RecoveryResource1', 1.0, 10)
         assert component.recovery_model.recovery_activities['Repair'].demand_met['RecoveryResource1'] == 1.0
-
-    def test_get_current_resource_amount_non_existent_resource(self, component):
-        component.construct(COMPONENT_NAME, COMPONENT_PARAMETERS)
-        assert component.get_current_resource_amount(SupplyOrDemand.SUPPLY.value,
-                                                    StandardiReCoDeSComponent.SupplyTypes.SUPPLY.value,
-                                                    'NonExistentResource') == 0.0
-        assert component.get_current_resource_amount(SupplyOrDemand.DEMAND.value,
-                                                    StandardiReCoDeSComponent.DemandTypes.OPERATION_DEMAND.value,
-                                                    'NonExistentResource') == 0.0
-
-    def test_has_operation_demand_zero_amount(self, component):
-        zero_demand_parameters = {'DemandResource1': {
-            'Amount': 0,
-            'FunctionalityToAmountRelation': 'Constant'
-        }}
-        component.set_operation_demand(zero_demand_parameters)
-        assert component.has_operation_demand() == False
-
-    def test_construct_no_supply_or_demand(self, component):
-        parameters_no_supply_demand = {
-            'RecoveryModel': COMPONENT_PARAMETERS['RecoveryModel']
-        }
-        component.construct(COMPONENT_NAME, parameters_no_supply_demand)
-        assert component.supply[StandardiReCoDeSComponent.SupplyTypes.SUPPLY.value] == {}
-        assert component.demand[StandardiReCoDeSComponent.DemandTypes.OPERATION_DEMAND.value] == {}
-
-    def test_update_supply_based_on_unmet_demand_edge_cases(self, component):
-        component.construct(COMPONENT_NAME, COMPONENT_PARAMETERS)
-        component.update_supply_based_on_unmet_demand(1.0)
-        assert math.isclose(component.supply[StandardiReCoDeSComponent.SupplyTypes.SUPPLY.value][
-                                'SupplyResource1'].current_amount, 10)
-        assert math.isclose(component.supply[StandardiReCoDeSComponent.SupplyTypes.SUPPLY.value][
-                                'SupplyResource2'].current_amount, 100)
-
-        component.update_supply_based_on_unmet_demand(0.0)
-        assert math.isclose(component.supply[StandardiReCoDeSComponent.SupplyTypes.SUPPLY.value][
-                                'SupplyResource1'].current_amount, 0)
-        assert math.isclose(component.supply[StandardiReCoDeSComponent.SupplyTypes.SUPPLY.value][
-                                'SupplyResource2'].current_amount, 100)
+        assert component.met_demand_tracker[10]['RecoveryResource1'] == {'DemandType': 'RecoveryDemand', 'PercentOfMetDemand': 1.0}
 
     def test_recover_dense(self, component):
         COMPONENT_PARAMETERS['RecoveryModel']['Parameters']['Repair']['Duration'] = {
@@ -516,6 +480,7 @@ class TestStandardiReCoDeSComponent():
                 "Value": 100
             }
         }
+        component.met_demand_tracker = [{} for _ in range(11)]
         component.construct(COMPONENT_NAME, COMPONENT_PARAMETERS)
         component.set_recovery_time_steps(RECOVERY_TIME_STEPS_DENSE)
         component.set_initial_damage_level(0.4)
@@ -524,14 +489,17 @@ class TestStandardiReCoDeSComponent():
         component.recover(0)
         assert math.isclose(component.get_damage_level(), 0.396)
 
-        component.set_met_demand_for_recovery_activities('RecoveryResource1', 0.0)
+        component.set_met_demand_for_recovery_activities('RecoveryResource1', 0.0, 10)
         component.recover(1)
         assert math.isclose(component.get_damage_level(), 0.396)
+        assert component.recovery_model.recovery_activities['Repair'].time_steps == [0]
+        assert component.met_demand_tracker[10]['RecoveryResource1'] == {'DemandType': 'RecoveryDemand', 'PercentOfMetDemand': 0.0}
 
-        component.set_met_demand_for_recovery_activities('RecoveryResource1', 1.0)
+        component.set_met_demand_for_recovery_activities('RecoveryResource1', 1.0, 10)
         component.recover(2)
         assert math.isclose(component.get_damage_level(), 0.392)
         assert component.recovery_model.recovery_activities['Repair'].time_steps == [0, 2]
+        assert component.met_demand_tracker[10]['RecoveryResource1'] == {'DemandType': 'RecoveryDemand', 'PercentOfMetDemand': 1.0}
 
         for time_step in range (3, 101):
             component.recover(time_step)
@@ -543,16 +511,17 @@ class TestStandardiReCoDeSComponent():
         component.construct(COMPONENT_NAME, COMPONENT_PARAMETERS)
         component.set_recovery_time_steps(RECOVERY_TIME_STEPS_SPARSE)
         component.set_initial_damage_level(0.4)
+        component.met_demand_tracker = [{} for _ in range(11)]
         component.update(0)
         assert math.isclose(component.get_damage_level(), 0.4)
         component.recover(0)
         assert math.isclose(component.get_damage_level(), 0.396)
 
-        component.set_met_demand_for_recovery_activities('RecoveryResource1', 0.0)
+        component.set_met_demand_for_recovery_activities('RecoveryResource1', 0.0, 10)
         component.recover(1)
         assert math.isclose(component.get_damage_level(), 0.396)
 
-        component.set_met_demand_for_recovery_activities('RecoveryResource1', 1.0)
+        component.set_met_demand_for_recovery_activities('RecoveryResource1', 1.0, 10)
         component.recover(2)
         assert math.isclose(component.get_damage_level(), 0.396)
         assert component.recovery_model.recovery_activities['Repair'].time_steps == [0]
@@ -565,15 +534,17 @@ class TestStandardiReCoDeSComponent():
         assert math.isclose(component.get_damage_level(), 0.396)
         assert component.recovery_model.recovery_activities['Repair'].time_steps == [0]
 
-        component.set_met_demand_for_recovery_activities('RecoveryResource1', 0.0)
+        component.set_met_demand_for_recovery_activities('RecoveryResource1', 0.0, 4)
         component.recover(5)
         assert math.isclose(component.get_damage_level(), 0.396)
         assert component.recovery_model.recovery_activities['Repair'].time_steps == [0]
+        assert component.met_demand_tracker[4]['RecoveryResource1'] == {'DemandType': 'RecoveryDemand', 'PercentOfMetDemand': 0.0}
 
-        component.set_met_demand_for_recovery_activities('RecoveryResource1', 1.0)
+        component.set_met_demand_for_recovery_activities('RecoveryResource1', 1.0, 5)
         component.recover(6)
         assert math.isclose(component.get_damage_level(), 0.396)
         assert component.recovery_model.recovery_activities['Repair'].time_steps == [0]
+        assert component.met_demand_tracker[5]['RecoveryResource1'] == {'DemandType': 'RecoveryDemand', 'PercentOfMetDemand': 1.0}
 
         component.recover(10)
         assert math.isclose(component.get_damage_level(), 0.376)

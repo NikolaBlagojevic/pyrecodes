@@ -3,7 +3,7 @@ import copy
 from pyrecodes.component_configurator.r2d_dict_getter import R2DDictGetter, R2DPipeDictGetter
 from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComponent
 from test_component_configurator_inputs import MAIN_FILE, FOLDER_NAME
-from pyrecodes.utilities import read_json_file
+from pyrecodes.utilities import read_json_file, resolve_folder_paths
 from pyrecodes import main
 
 GENERAL_INFORMATION = {
@@ -21,7 +21,7 @@ def component_library():
 @pytest.fixture()
 def system_configuration() -> dict:
     input_dict = read_json_file(f"{FOLDER_NAME}/{MAIN_FILE}")
-    system_configuration = read_json_file(f"{FOLDER_NAME}/{input_dict['System']['SystemConfigurationFile']}")
+    system_configuration = resolve_folder_paths(read_json_file(f"{FOLDER_NAME}/{input_dict['System']['SystemConfigurationFile']}"), FOLDER_NAME)
     return system_configuration
 
 @pytest.fixture()

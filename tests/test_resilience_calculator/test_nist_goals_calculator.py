@@ -4,6 +4,7 @@ from pyrecodes.utilities import read_json_file
 from pyrecodes.resilience_calculator.resilience_calculator import ResilienceCalculator
 from pyrecodes.resilience_calculator.nist_goals_calculator import NISTGoalsCalculator
 from pyrecodes.system.system import System
+from tests.conftest import make_system
 
 FOLDER_NAME = './tests/test_inputs'
 MAIN_FILE = 'test_inputs_ThreeLocalitiesCommunity_Main.json'
@@ -15,9 +16,8 @@ PARAMETERS = [{"Resource": "ElectricPower", "DesiredFunctionalityLevel": 0.95, "
 class TestNISTGoalsResilienceCalculator:    
 
     @pytest.fixture
-    def system(self):
-        input_dict = read_json_file(f'{FOLDER_NAME}/{MAIN_FILE}')
-        return main.create_system(FOLDER_NAME, input_dict)
+    def system(self, three_localities_system_template):
+        return make_system(three_localities_system_template)
 
     @pytest.fixture()
     def resilience_calculator(self) -> ResilienceCalculator:
@@ -28,6 +28,7 @@ class TestNISTGoalsResilienceCalculator:
 
     def test_update(self, system, resilience_calculator):
         system.time_step = 0
+        system.update()
         system.distribute_resources()
         resilience_calculator.update(system)
         assert resilience_calculator.resilience_goals[0]['GoalMet'][0] == True

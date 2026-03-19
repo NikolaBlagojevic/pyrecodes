@@ -160,3 +160,280 @@ INTERFACE_PARAMETERS_IN_SYSTEM_CONFIGURATION = {
             "Amount": 5
         }
     }
+
+BUILDING_WITH_HOUSEHOLDS_COMPONENT_LIBRARY_PARAMETERS = {
+        "ComponentClass": {"FileName": "r2d_building_with_households", "ClassName": "R2DBuildingWithHouseholds"},
+        "HouseholdClass": {"FileName": "household_gpt", "ClassName": "HouseholdGPT"},
+        "RecoveryModel": {
+            "FileName": "component_level_recovery_activities_model",
+            "ClassName": "ComponentLevelRecoveryActivitiesModel",
+            "Parameters": {
+                "RapidInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "FirstResponderEngineer",
+                            "Amount": 0.1
+                        }
+                    ],
+                    "PrecedingActivities": []
+                },
+                "DetailedInspection": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "SeniorEngineer",
+                            "Amount": 2
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "CleanUp": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "CleanUpCrew",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "SitePreparation": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "SitePreparationCrew",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection"
+                    ]
+                },
+                "Financing": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Money",
+                            "Amount": 0.4
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection"
+                    ]
+                },
+                "ArchAndEngDesign": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "EngineeringDesignTeam",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection"
+                    ]
+                },
+                "ContractorMobilization": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "Contractor",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection",
+                        "ArchAndEngDesign"
+                    ]
+                },
+                "Permitting": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "PlanCheckEngineeringTeam",
+                            "Amount": 1
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection",
+                        "ArchAndEngDesign"
+                    ]
+                },
+                "Repair": {
+                    "Duration": {
+                        "Lognormal": {
+                            "Median": 1,
+                            "Dispersion": 0.0
+                        }
+                    },
+                    "Demand": [
+                        {
+                            "Resource": "RepairCrew_Buildings",
+                            "Amount": 0
+                        }
+                    ],
+                    "PrecedingActivities": [
+                        "RapidInspection",
+                        "DetailedInspection",
+                        "CleanUp",
+                        "SitePreparation",
+                        "Financing",
+                        "ArchAndEngDesign",
+                        "ContractorMobilization",
+                        "Permitting"
+                    ]
+                }
+            },
+            "DamageFunctionalityRelation": {
+                "Type": "ReverseBinary"
+            }
+        },
+        "Supply": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear",
+                "UnmetDemandToAmountRelation": "Linear"
+            }
+        },
+        "OperationDemand": {
+            "Shelter": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "FunctionalHousing": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Constant"
+            },
+            "ElectricPower": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "PotableWater": {
+                "Amount": 0,
+                "FunctionalityToAmountRelation": "Linear"
+            },
+            "CellularCommunication": {
+                "Amount": 0,
+                "PostDisasterIncreaseDueToEmergencyCalls": "True",
+                "FunctionalityToAmountRelation": "Linear"
+            }
+        }
+    }
+
+BUILDING_WITH_HOUSEHOLDS_PARAMETERS = {
+          "AIM_id": "30",
+          "location": {
+            "latitude": 37.781398,
+            "longitude": -122.2944375
+          },
+          "Latitude": 37.781398,
+          "Longitude": -122.2944375,
+          "NumberOfStories": 1,
+          "YearBuilt": 1994,
+          "OccupancyClass": "RES1",
+          "StructureType": "W1",
+          "PlanArea": 123736.9925,
+          "ReplacementCost": 343713.868,
+          "Population": 16,
+          "SoilType": "B",
+          "type": "Building",
+          "Footprint": "{\"type\":\"Feature\",\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[-122.294322,37.781220],[-122.294299,37.781565],[-122.294553,37.781576],[-122.294576,37.781231],[-122.294322,37.781220]]]},\"properties\":{}}",
+          "Households": [
+            {
+              "HouseholdID": "4271_32",
+              "CensusBlock": "Block 1003",
+              "CensusTract": "Census Tract 4271",
+              "SocioEconomicParameters": {
+                "Tenure": "Owner",
+                "Income": "High",
+                "Occupants": 4,
+                "Elderly": 4,
+                "Children": 0,
+                "EmploymentStatus": 1,
+                "ImmigrationStatus": "foreign born",
+                "Home": "30",
+                "Friends": [
+                  13605
+                ]
+              },
+              "ResourceDemand": {
+                "PotableWater": 150
+              }, "InformGPTMethod": "None"
+            },
+            {
+              "HouseholdID": "4271_33",
+              "CensusBlock": "Block 1003",
+              "CensusTract": "Census Tract 4271",
+              "SocioEconomicParameters": {
+                "Tenure": "Renter",
+                "Income": "Low",
+                "Occupants": 3,
+                "Elderly": 0,
+                "Children": 1,
+                "EmploymentStatus": 2,
+                "ImmigrationStatus": "foreign born",
+                "Home": "30",
+                "Friends": [
+                  10209
+                ]
+              },
+              "ResourceDemand": {
+                "PotableWater": 150
+              }, "InformGPTMethod": "None"
+            }
+          ]
+        }

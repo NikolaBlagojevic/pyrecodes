@@ -1,7 +1,7 @@
 """
 Module used to run the **pyrecodes** resilience assessment as defined in the component library and system configuration files.
 """
-from pyrecodes.utilities import read_json_file, get_class
+from pyrecodes.utilities import read_json_file, get_class, resolve_folder_paths
 from pyrecodes.system.system import System
 
 def form_component_library(folder_name: str, input_dict: dict) -> dict:
@@ -21,12 +21,13 @@ def form_component_library(folder_name: str, input_dict: dict) -> dict:
     
     return component_library_object.form_library()
 
-def create_system(folder_name: str, input_dict: dict) -> System:
+def create_system(folder_name: str, input_dict: dict, max_time_step: int = None) -> System:
     """Creates a system object using the input dictionary.
 
     Args:
         folder_name (str): The name of the folder containing the system configuration files.
         input_dict (dict): The input dictionary containing System configuration.
+        max_time_step (int, optional): Override the maximum time step from the system configuration.
 
     Returns:
         System: The created system object.
@@ -34,33 +35,39 @@ def create_system(folder_name: str, input_dict: dict) -> System:
     # Form the component library dict using the input dictionary.
     component_library = form_component_library(folder_name, input_dict)
 
-    # Read the system configuration file.
-    system_configuration = read_json_file(f"{folder_name}/{input_dict['System']['SystemConfigurationFile']}")
-    
+    # Read the system configuration file and resolve any {folder} placeholders.
+    system_configuration = resolve_folder_paths(
+        read_json_file(f"{folder_name}/{input_dict['System']['SystemConfigurationFile']}"),
+        folder_name
+    )
+
     # Extract the target SystemCreator class from the input dictionary and instantiate it.
-    system_creator_target_class = get_class(input_dict['System']['SystemCreatorFileName'], input_dict['System']['SystemCreatorClassName'], 'system_creator')  
+    system_creator_target_class = get_class(input_dict['System']['SystemCreatorFileName'], input_dict['System']['SystemCreatorClassName'], 'system_creator')
     system_creator = system_creator_target_class()
-    
+
     # Extract the target System class from the input dictionary and instantiate it with the necessary arguments.
     system_target_class = get_class(input_dict['System']['SystemFileName'], input_dict['System']['SystemClassName'], 'system')
     system = system_target_class(system_configuration, component_library, system_creator)
     system.create_system()
+    if max_time_step is not None:
+        system.MAX_TIME_STEP = max_time_step
     return system
 
-def run(folder_name: str, main_file_name: str) -> System:
+def run(folder_name: str, main_file_name: str, max_time_step: int = None) -> System:
     """Runs the resilience assessment for the system.
 
     Args:
         folder_name (str): The name of the folder containing the main JSON configuration file.
         main_file_name (str): The name of the main JSON configuration file.
+        max_time_step (int, optional): Override the maximum time step from the system configuration.
 
     Returns:
         System: The system object after running the resilience assessment.
     """
     # Read the main JSON configuration file and obtain the input dictionary.
-    input_dict = read_json_file(f"{folder_name}/{main_file_name}")    
+    input_dict = read_json_file(f"{folder_name}/{main_file_name}")
     # Create the system object using the input dictionary.
-    system = create_system(folder_name, input_dict)
+    system = create_system(folder_name, input_dict, max_time_step)
     # Start the resilience assessment for the system.
     system.start_resilience_assessment()
     # Return the system object.

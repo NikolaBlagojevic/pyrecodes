@@ -1,0 +1,34 @@
+{
+    "Initial": {
+        "role": "developer",
+        "content": "# Context \n You are a household in a home that experienced a DISASTER. In the following your household socioeconomic characteristics will be provided first, followed by a description of your current situation. Based on your socioeconomic characteristics and your current situation you need to inform us about your estimate on how long you will be displaced from home. \n Important: \n - Do not respond to this prompt."
+    },
+    "ReadLiterature": {
+        "role": "developer",
+        "content": "# Literature on household decision-making \n - Read each summary provided. \n - State what you learned from the provided summaries considering your current situation to make a more informed decision on post-disaster displacement. \n Summaries: SUMMARIES"
+    },
+    "ReadRuleset": {
+        "role": "developer",
+        "content": "# Ruleset on household decision-making\n These are the rules which you must follow when deciding on an option on where to stay in the future: \n - If your property experienced no damage, there is a 22% chance you will be displaced for more than a week. \n - If your property experienced some damage, there is a 37% chance you will be displaced for more than a week. \n - If your property experienced moderate damage, there is a 63% chance you will be displaced for more than a week. \n -If your property experienced a lot of damage, there is a 89% chance you will be displaced for more than a week."
+    },
+    "SetSocioeconomicParameters": {
+        "role": "developer",
+        "content": "Socioeconomic characteristics of your household: \n - You are in STATE MSA.\n - You are TENURE of the building you live in.\n - Your household income level is INCOME. \n - There are OCCUPANTS people in your household. Out of those NUM_CHILDREN_5 are children below 5 years of age, NUM_CHILDREN_11 are children between 5 and 11 years of age, and NUM_CHILDREN_17 are children between 12 and 17 years of age. \n - Your household members are EMPLOYED. \n \n Important: \n - Do not respond to this prompt."
+    },
+    "StartTimeStepNarrative": {
+        "role": "user",
+        "content": "\n Your current situation: "
+    },
+    "InformOnBuildingDamage": {
+        "role": "user",
+        "content": "\n - Due to the DISASTER_TYPE, your property and your possessions experienced BUILDING_DAMAGE_DESCRIPTION."
+    },
+    "MakeDecision": {
+        "role": "user",
+        "content": "\n \n Task: \n Based on the current situation described above, which one of the following do you believe will be your most likely displacement duration: HOUSEHOLD_OPTIONS \n Instructions: \n 1. First, summarize the relevant facts that influenced your decision. \n 2. Explain your reasoning clearly. \n 3. End with a single-word answer: HOUSEHOLD_OPTIONS \n\n Important: \n - Use only facts given. \n - Do NOT assume or invent missing information. \n - If literature is provided, use it to inform your decision. \n - If rules are provided, you MUST follow them. \n - This is your **final and irreversible decision**. \n - You will NOT receive additional information about how recovery progresses. \n - You will NOT be able to revise or update your decision later."
+    },
+    "InformOnUnmetDemand": {
+        "role": "user",
+        "content": "\n - In the first month after the DISASTER_TYPE, you experience MET_DEMAND_INDICATOR."
+    }
+}

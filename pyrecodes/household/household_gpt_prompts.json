@@ -1,0 +1,70 @@
+{
+    "Initial": {
+        "role": "developer",
+        "content": "# Context \n You are a household in a city hit by an earthquake. In the following your household socioeconomic characteristics will be provided first, followed by a description of your situation at different times during city's recovery. Based on your socioeconomic characteristics and your current situation you need to inform us about your needs and decisions on where to stay in the future as the recovery progresses.  \n Important: \n - Do not respond to this prompt."
+    },
+    "ReadLiterature": {
+        "role": "developer",
+        "content": "# Literature on household decision-making \n - Read each summary provided. \n - State what you learned from the provided summaries considering your current situation to make a more informed decision on post-disaster displacement. \n Summaries: SUMMARIES"
+    },
+    "ReadRuleset": {
+        "role": "developer",
+        "content": "# Ruleset on household decision-making\n These are the rules which you must follow when deciding on an option on where to stay in the future: \n - If shelter needs are unmet, the household is not allowed to stay in town. Staying with a friend is not permitted. The only valid action is ‘LeaveTown’"
+    },
+    "SetSocioeconomicParameters": {
+        "role": "developer",
+        "content": "Socioeconomic characteristics of your household: \n - You are TENURE of the building you live in.\n - Your household income level is INCOME. \n - There are OCCUPANTS people in your household. Out of those NUM_CHILDREN are children and NUM_ELDERLY are elderly. \n - NUM_EMPLOYED of household members are employed. \n - Your immigration status is IMMIGRATION_STATUS. \n - You have NUM_FRIENDS friends in this town.  \n Important: \n - Do not respond to this prompt."
+    },
+    "SetResourceDemandParameters": {
+        "role": "developer",
+        "content": " # Resource needs of the household \n - These are the average per person resource needs for your household: PARAMETERS. Take them into account when assessing the needs of the entire household. You might require more or less of each resource at different times after a disaster due to different needs.  \n Important: \n - Do not respond to this prompt."
+    },
+    "StartTimeStepNarrative": {
+        "role": "user",
+        "content": "\n Your current situation: "
+    },
+    "TimeStepUpdate": {
+        "role": "user",
+        "content": "\n - It's now TIME_STEP days after the disaster."
+    },
+    "HouseholdLocationUpdate": {
+        "role": "user",
+        "content": "\n - You are currently staying HOUSEHOLD_LOCATION_STRING"
+    },
+    "InformOnBuildingDamage": {
+        "role": "user",
+        "content": "\n - Following the disaster, your building is in the following state: BUILDING_DAMAGE_DESCRIPTION"
+    },
+    "InformOnBuildingRecovery": {
+        "role": "user",
+        "content": "BUILDING_RECOVERY_DESCRIPTION"
+    },
+    "MakeDecision": {
+        "role": "user",
+        "content": "\n \n Task: \n Based on the current situation described above, choose where to stay tomorrow: HOUSEHOLD_OPTIONS \n Instructions: \n 1. First, summarize the relevant facts that influenced your decision. \n 2. Explain your reasoning clearly. \n 3. End with a single-word answer: HOUSEHOLD_OPTIONS \n\n Important: \n - Use only facts given. \n - Do not assume or invent missing information. \n - If literature is provided, use it to inform your decision. \n - If rules are provided, you MUST follow them. "
+    },
+    "UpdateUnmetDemand": {
+        "role": "user",
+        "content": "\n - At your current location, your needs for RESOURCE_NAME are MET_DEMAND_INDICATOR."
+    },
+    "UpdateTrafficSituation": {
+        "role": "user",
+        "content": "\n - At your current location, travel times are MET_DEMAND_INDICATOR compared to travel times before the disaster."
+    },
+    "GetDemand": {
+        "role": "user",
+        "content": "# Request \n - Please provide how much resources your household needs. \n# Format \n - Please provide the information in the following format: {'ResourceName': HouseholdResourceDemandAmount}. \n - Replace the ResourceName with the name of the resource specified in the 'Resource needs of the household' prompt. \n - Replace the HouseholdResourceDemandAmount with the calculated household resource demand amount.  \n# How to calculate household resource demand \n - Calculate the household resource demand by multiplying the average per person consumption that was provided in the 'Resource needs of the household' prompt with the number of people in this household. \n - Provide this information for each resource that was provided in the resource needs prompt as a separate dictionary. \n - Provide just the format required, nothing else."
+    },
+    "BuildingHasNoDamage": {
+        "role": "user",
+        "content": "\n - The HOUSEHOLD_LOCATION_STRING has no damage."
+    },
+    "BuildingHasDamage": {
+        "role": "user",
+        "content": "\n - The HOUSEHOLD_LOCATION_STRING is DAMAGE_INDICATOR damaged."
+    },
+    "SummarizePastExperience": {
+        "role": "user",
+        "content": "\n # Context \n - In the following your past decisions will be provided. \n# Task \n - Please summarize your past decisions by stating WHERE, WHEN, and WHY you have moved. \n# How \n - Summarize them in exactly one sentence per decision. \n - Start the summary with 'Your past experience: '."
+    }
+}

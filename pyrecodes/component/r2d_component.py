@@ -1,4 +1,5 @@
 from pyrecodes.component.standard_irecodes_component import StandardiReCoDeSComponent
+from pyrecodes.component.component import Bridge, Roadway, Tunnel
 
 class R2DComponent(StandardiReCoDeSComponent):
     """
@@ -6,7 +7,7 @@ class R2DComponent(StandardiReCoDeSComponent):
 
     Note that SimCenter's infrastructure simulators (REWET, residual demand) only work with R2DComponent objects.
     """
-    def update(self, time_step: int) -> None:
+    def update(self, time_step: int, *args) -> None:
         """
         Extend the parent method to update the R2D dictionary used to interface pyrecodes with SimCenter's infrastructure simulators.
         """
@@ -33,29 +34,23 @@ class R2DTransportationComponent(R2DComponent):
         """
         self.general_information['FunctionalityLevel'] = self.functionality_level
 
-class R2DBridge(R2DTransportationComponent):
-    """
-    Subclass used to identify R2D Bridges in a system. For now that's the only purpose.
+class R2DBridge(Bridge, R2DTransportationComponent):
+    """R2D implementation of a bridge component."""
+    def __init__(self) -> None:
+        super().__init__()
+        self.general_information = {'FunctionalityLevel': 1.0}
 
-    **TODO**: Add specific bridge methods and attributes. Future work.
-    """
-    pass
+class R2DRoadway(Roadway, R2DTransportationComponent):
+    """R2D implementation of a roadway component."""
+    def __init__(self) -> None:
+        super().__init__()
+        self.general_information = {'FunctionalityLevel': 1.0}
 
-class R2DRoadway(R2DTransportationComponent):
-    """
-    Subclass used to identify R2D Roadways in a system. For now that's the only purpose.
-
-    **TODO**: Add specific roadway methods and attributes. Future work.
-    """
-    pass
-
-class R2DTunnel(R2DTransportationComponent):
-    """
-    Subclass used to identify R2D Tunnels in a system. For now that's the only purpose.
-
-    **TODO**: Add specific tunnel methods and attributes. Future work.
-    """
-    pass
+class R2DTunnel(Tunnel, R2DTransportationComponent):
+    """R2D implementation of a tunnel component."""
+    def __init__(self) -> None:
+        super().__init__()
+        self.general_information = {'FunctionalityLevel': 1.0}
 
 class R2DPipe(R2DComponent):
     """

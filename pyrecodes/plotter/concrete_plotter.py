@@ -246,12 +246,11 @@ class ConcretePlotter():
             return
         time_steps = list(range(len(counts['Home'])))
         axis_object = self.setup_lor_plot_fig(x_axis_label, 'Number of households in different locations')
-        layers = [('Home', 'At Home'), ('Friend', 'With Friend'), ('OutOfTown', 'Out of Town')]
-        cividis = mpl.colormaps['cividis']
-        colors = [cividis(i / (len(layers) - 1)) for i in range(len(layers))]
+        layers = [('Home', 'At Home'), ('Friend', 'With Friend'), ('OutOfTown', 'Out of Town')]        
         bottoms = [0] * len(time_steps)
-        for (key, label), color in zip(layers, colors):
+        for key, label in layers:
             tops = [b + v for b, v in zip(bottoms, counts[key])]
+            color = HOUSEHOLD_GANTT_CHART_COLORS[key]
             axis_object.fill_between(time_steps, bottoms, tops, label=label, alpha=0.5, color=color)
             bottoms = tops
         self.reorder_legend(['Out of Town', 'With Friend', 'At Home'], loc='lower right')

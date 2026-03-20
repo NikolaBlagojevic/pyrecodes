@@ -268,15 +268,16 @@ class TimeStepNarrativeCreator:
     def update_household_on_other_households_in_town(self, households_in_town: list, location_string: str) -> None:
         ratio = households_in_town[-1] / households_in_town[0]
         if ratio == 0:
-            prompt = '\n - There are no other households in town.'
+            prompt = '\n - There are no other households in your neighborhood.'
         elif ratio < 0.5:
-            prompt = '\n - Less than half of other households are in town.'
+            prompt = '\n - Less than half of other households are in your neighborhood.'
         elif ratio < 1:
-            prompt = '\n - More than half of other households are in town.'
+            prompt = '\n - More than half of other households are in your neighborhood.'
         else:
-            prompt = '\n - All other households are in town.'
-        if location_string != LOCATION_STRING_MAPPING['OutOfTown']:
-            self.add_to_narrative(prompt)
+            prompt = '\n - All other households are in your neighborhood.'
+        # always provide information on other households in town, as it might be relevant for the decision even if the household is in town
+        # if location_string != LOCATION_STRING_MAPPING['OutOfTown']:
+        self.add_to_narrative(prompt)
 
     def update_resource_demand_fulfilment_status(self, percent_of_met_demand: float, resource_name: str) -> None:
         if resource_name == 'TransportationService':

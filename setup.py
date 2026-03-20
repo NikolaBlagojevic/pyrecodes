@@ -28,6 +28,7 @@ setup(
             'aiohttp>=3.8',
         ],
         'third_party_models': [
+            'numpy>=1.24,<2',
             'networkx>=3.0',
             'scipy>=1.10',
             'openpyxl>=3.1',

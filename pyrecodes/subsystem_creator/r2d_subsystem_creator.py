@@ -105,7 +105,7 @@ class R2DSubsystemCreatorWithHouseholds(R2DSubsystemCreator):
         return super().create_components()
 
     def _prepare_component_info(self, component_info: dict) -> None:
-        if len(self.households) > self.parameters.get('MaxNumHouseholds', float('inf')):
+        if len(self.households) >= self.parameters.get('MaxNumHouseholds', float('inf')):
             component_info['GeneralInformation']['Households'] = []
 
     def _after_component_created(self, component: Component) -> None:

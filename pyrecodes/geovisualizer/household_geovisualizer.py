@@ -19,4 +19,4 @@ class HouseholdGeoVisualizer(R2DGeoVisualizer):
 
     def create_household_state_figure(self, time_step: int, save=False, dpi=300):
         state_colors = self.get_household_populated_colors(time_step)
-        self.create_current_state_figure('Households at home', state_colors, HOUSEHOLD_OCCUPANCY_COLORS, save=save, dpi=dpi)
+        self.create_current_state_figure(f'Households at home | Time step: {time_step}', state_colors, HOUSEHOLD_OCCUPANCY_COLORS, save=save, dpi=dpi)

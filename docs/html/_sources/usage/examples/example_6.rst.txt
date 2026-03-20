@@ -13,6 +13,16 @@ Running the example
 
 Example 6 Jupyter notebook illustrates how to construct a household generative agent, prompt it with data from the Household Pulse Survey, and evaluate its displacement decisions against actual reported outcomes using confusion matrices.
 
+.. note::
+
+    Example 6 is a standalone notebook — it does not use ``main.run()``. Install pyrecodes with the ``household`` extra before running it:
+
+    .. code-block:: bash
+
+        pip install "pyrecodes[household]"
+
+    An OpenAI API key is also required, provided in an ``openai_api_key.json`` file in the root of the repository in the format ``{"API_KEY": "your-key-here"}``.
+
 .. hint::
 
     By default, the notebook processes 10 randomly sampled households. The prompting strategy can be changed by setting ``PROMPTING_STRATEGY`` to ``None`` (baseline GPT), ``'ReadLiterature'``, or ``'ReadRuleset'``.

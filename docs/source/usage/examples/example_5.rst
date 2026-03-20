@@ -22,6 +22,22 @@ Running the example
 
 Example 5 Jupyter notebook illustrates how to run the pyrecodes simulation, plot the post-disaster supply/demand/consumption dynamics, components' recovery gantt chart, and animate the building recovery process.
 
+.. note::
+
+    Example 5 requires the ``third_party_models`` extra and **x86_64 Python**. Install with:
+
+    .. code-block:: bash
+
+        pip install "pyrecodes[third_party_models]"
+
+    ``wntrfr`` and ``pandana`` provide pre-built wheels only for x86_64. On macOS with Apple Silicon, use the x86_64 Python installer from `python.org <https://www.python.org/downloads/>`_ (runs under Rosetta 2), or a conda x86_64 environment::
+
+        CONDA_SUBDIR=osx-64 conda create -n pyrecodes_env python=3.9
+        conda activate pyrecodes_env
+        pip install "pyrecodes[third_party_models]"
+
+    The notebook must be run from the **repository root folder**.
+
 .. hint::
 
     To reduce the computational time, one neighbourhood in Alameda is run by default in this example. The user can run the simulation for the entire Alameda Island by setting the main file to `Alameda_Main.json` instead of `SmallAlameda_Main.json`.
@@ -2466,14 +2482,14 @@ Main file for the small Alameda case study uses the SmallAlameda_SystemConfigura
             "ComponentLibrary": {
                 "ComponentLibraryCreatorFileName": "json_component_library_creator",
                 "ComponentLibraryCreatorClassName": "JSONComponentLibraryCreator",
-                "ComponentLibraryFile": "./Example 5/Alameda_ComponentLibrary.json"
+                "ComponentLibraryFile": "Alameda_ComponentLibrary.json"
             },
             "System": {
                 "SystemCreatorClassName": "ConcreteSystemCreator",
                 "SystemCreatorFileName": "concrete_system_creator",
                 "SystemClassName": "BuiltEnvironment",
                 "SystemFileName": "built_environment",
-                "SystemConfigurationFile": "./Example 5/SmallAlameda_SystemConfiguration.json"
+                "SystemConfigurationFile": "SmallAlameda_SystemConfiguration.json"
             }
         }
 

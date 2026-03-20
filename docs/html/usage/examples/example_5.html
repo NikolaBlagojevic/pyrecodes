@@ -414,6 +414,20 @@
 <section id="running-the-example">
 <h2>Running the example<a class="headerlink" href="#running-the-example" title="Link to this heading">¶</a></h2>
 <p>Example 5 Jupyter notebook illustrates how to run the pyrecodes simulation, plot the post-disaster supply/demand/consumption dynamics, components’ recovery gantt chart, and animate the building recovery process.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Example 5 requires the <code class="docutils literal notranslate"><span class="pre">third_party_models</span></code> extra and <strong>x86_64 Python</strong>. Install with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pyrecodes[third_party_models]&quot;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">wntrfr</span></code> and <code class="docutils literal notranslate"><span class="pre">pandana</span></code> provide pre-built wheels only for x86_64. On macOS with Apple Silicon, use the x86_64 Python installer from <a class="reference external" href="https://www.python.org/downloads/">python.org</a> (runs under Rosetta 2), or a conda x86_64 environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONDA_SUBDIR</span><span class="o">=</span><span class="n">osx</span><span class="o">-</span><span class="mi">64</span> <span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">pyrecodes_env</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.9</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">pyrecodes_env</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="s2">&quot;pyrecodes[third_party_models]&quot;</span>
+</pre></div>
+</div>
+<p>The notebook must be run from the <strong>repository root folder</strong>.</p>
+</div>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>To reduce the computational time, one neighbourhood in Alameda is run by default in this example. The user can run the simulation for the entire Alameda Island by setting the main file to <cite>Alameda_Main.json</cite> instead of <cite>SmallAlameda_Main.json</cite>.</p>
@@ -2828,14 +2842,14 @@
 <span class="w">    </span><span class="nt">&quot;ComponentLibrary&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;ComponentLibraryCreatorFileName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;json_component_library_creator&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;ComponentLibraryCreatorClassName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JSONComponentLibraryCreator&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;ComponentLibraryFile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./Example 5/Alameda_ComponentLibrary.json&quot;</span>
+<span class="w">        </span><span class="nt">&quot;ComponentLibraryFile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alameda_ComponentLibrary.json&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;System&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">&quot;SystemCreatorClassName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ConcreteSystemCreator&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;SystemCreatorFileName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;concrete_system_creator&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;SystemClassName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BuiltEnvironment&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;SystemFileName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;built_environment&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;SystemConfigurationFile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./Example 5/SmallAlameda_SystemConfiguration.json&quot;</span>
+<span class="w">        </span><span class="nt">&quot;SystemConfigurationFile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SmallAlameda_SystemConfiguration.json&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>

@@ -410,18 +410,31 @@
 </pre></div>
 </div>
 <p><strong>Option 3 — With third-party infrastructure simulators</strong></p>
-<p>Adds dependencies for REWET (water network simulation) and the residual demand traffic simulator (example 5). Requires Python x86_64 — see the note below.</p>
+<p>Adds dependencies for REWET (water network simulation) and the residual demand traffic simulator (example 5).</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pyrecodes[third_party_models]&quot;</span>
 </pre></div>
 </div>
-<p><strong>Option 4 — Full installation</strong></p>
-<p>Installs all optional dependencies.</p>
+<p><strong>Option 4 — Full installation (example 7)</strong></p>
+<p>Example 7 couples LLM household agents with REWET water simulation and requires both extras:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pyrecodes[household,third_party_models]&quot;</span>
 </pre></div>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>x86_64 Python required for</strong> <code class="docutils literal notranslate"><span class="pre">third_party_models</span></code> <strong>.</strong>
+<code class="docutils literal notranslate"><span class="pre">wntrfr</span></code> and <code class="docutils literal notranslate"><span class="pre">pandana</span></code> provide pre-built wheels only for x86_64 and cannot be compiled from source on Apple Silicon (arm64) or macOS 15+ due to missing C++ standard library headers in CommandLineTools.</p>
+<p>On macOS, use the x86_64 Python installer from <a class="reference external" href="https://www.python.org/downloads/">python.org</a> (the <em>macOS 64-bit universal2 and Intel installer</em>), which runs under Rosetta 2.
+Alternatively, use <a class="reference external" href="https://docs.conda.io/en/latest/">conda</a> with an x86_64 environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONDA_SUBDIR</span><span class="o">=</span><span class="n">osx</span><span class="o">-</span><span class="mi">64</span> <span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">pyrecodes_env</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.9</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">pyrecodes_env</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="s2">&quot;pyrecodes[household,third_party_models]&quot;</span>
+</pre></div>
+</div>
+<p>Further setup instructions are available <a class="reference external" href="https://nheri-simcenter.github.io/R2D-Documentation/common/user_manual/installation/desktop/install_macOS.html">here</a>.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Python x86_64 is required for the third-party infrastructure simulators used in Example 5. Further instructions are available <a class="reference external" href="https://nheri-simcenter.github.io/R2D-Documentation/common/user_manual/installation/desktop/install_macOS.html">here</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">third_party_models</span></code> requires <code class="docutils literal notranslate"><span class="pre">numpy&lt;2</span></code> due to a <code class="docutils literal notranslate"><span class="pre">pandana</span></code> binary compatibility constraint. This is handled automatically by pip.</p>
 </div>
 </section>
 <section id="installing-from-source">
@@ -448,7 +461,12 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </section>
 <section id="running-examples">
 <h2>Running Examples<a class="headerlink" href="#running-examples" title="Link to this heading">¶</a></h2>
-<p>All examples are Jupyter notebooks and can be run locally.</p>
+<p>All examples are Jupyter notebooks. Download or clone the repository, then run notebooks from the <strong>repository root folder</strong>. Both <code class="docutils literal notranslate"><span class="pre">main.run()</span></code> and the example notebooks resolve input files using paths relative to the repository root, so running from a different directory will cause file-not-found errors.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/NikolaBlagojevic/pyrecodes.git
+<span class="nb">cd</span><span class="w"> </span>pyrecodes
+jupyter<span class="w"> </span>notebook
+</pre></div>
+</div>
 <p>To verify your installation, run Example 1 as described on the Examples page.</p>
 </section>
 </section>

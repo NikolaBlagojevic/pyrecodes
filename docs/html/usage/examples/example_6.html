@@ -406,6 +406,14 @@
 <section id="running-the-example">
 <h2>Running the example<a class="headerlink" href="#running-the-example" title="Link to this heading">¶</a></h2>
 <p>Example 6 Jupyter notebook illustrates how to construct a household generative agent, prompt it with data from the Household Pulse Survey, and evaluate its displacement decisions against actual reported outcomes using confusion matrices.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Example 6 is a standalone notebook — it does not use <code class="docutils literal notranslate"><span class="pre">main.run()</span></code>. Install pyrecodes with the <code class="docutils literal notranslate"><span class="pre">household</span></code> extra before running it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pyrecodes[household]&quot;</span>
+</pre></div>
+</div>
+<p>An OpenAI API key is also required, provided in an <code class="docutils literal notranslate"><span class="pre">openai_api_key.json</span></code> file in the root of the repository in the format <code class="docutils literal notranslate"><span class="pre">{&quot;API_KEY&quot;:</span> <span class="pre">&quot;your-key-here&quot;}</span></code>.</p>
+</div>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>By default, the notebook processes 10 randomly sampled households. The prompting strategy can be changed by setting <code class="docutils literal notranslate"><span class="pre">PROMPTING_STRATEGY</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code> (baseline GPT), <code class="docutils literal notranslate"><span class="pre">'ReadLiterature'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'ReadRuleset'</span></code>.</p>

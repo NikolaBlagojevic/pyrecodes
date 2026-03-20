@@ -406,7 +406,18 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Running this example requires an OpenAI API key provided in an <code class="docutils literal notranslate"><span class="pre">openai_api_key.json</span></code> file in the root of the repository in the format <code class="docutils literal notranslate"><span class="pre">{&quot;API_KEY&quot;:</span> <span class="pre">&quot;your-key-here&quot;}</span></code>.</p>
+<p>Example 7 requires both the <code class="docutils literal notranslate"><span class="pre">household</span></code> and <code class="docutils literal notranslate"><span class="pre">third_party_models</span></code> extras, <strong>x86_64 Python</strong> (for REWET), and an OpenAI API key:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;pyrecodes[household,third_party_models]&quot;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">wntrfr</span></code> and <code class="docutils literal notranslate"><span class="pre">pandana</span></code> provide pre-built wheels only for x86_64. On macOS with Apple Silicon, use the x86_64 Python installer from <a class="reference external" href="https://www.python.org/downloads/">python.org</a> (runs under Rosetta 2), or a conda x86_64 environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONDA_SUBDIR</span><span class="o">=</span><span class="n">osx</span><span class="o">-</span><span class="mi">64</span> <span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">pyrecodes_env</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.9</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">pyrecodes_env</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="s2">&quot;pyrecodes[household,third_party_models]&quot;</span>
+</pre></div>
+</div>
+<p>Provide your OpenAI API key in an <code class="docutils literal notranslate"><span class="pre">openai_api_key.json</span></code> file in the repository root: <code class="docutils literal notranslate"><span class="pre">{&quot;API_KEY&quot;:</span> <span class="pre">&quot;your-key-here&quot;}</span></code>.</p>
+<p>The notebook must be run from the <strong>repository root folder</strong>.</p>
 </div>
 <p>The example can be run locally by downloading the <a class="reference external" href="https://github.com/NikolaBlagojevic/pyrecodes/blob/main/Example7_SocioTechnicalRecoveryWithGenerativeAgents.ipynb">Example 7 Jupyter notebook</a> and the required files from the <a class="reference external" href="https://github.com/NikolaBlagojevic/pyrecodes/tree/main/Example%207">Example 7 folder</a>.</p>
 </section>
@@ -442,6 +453,59 @@
 <section id="results">
 <h2>Results<a class="headerlink" href="#results" title="Link to this heading">¶</a></h2>
 <p>The notebook plots the number of households in town over time, the met demand for shelter and potable water at each building, and geo-visualizations of household locations at selected time steps.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The example notebook runs the simulation with <strong>6 households</strong> (out of ~100 in the TAZ 964 dataset) to reduce computational cost. To run the full simulation, increase <code class="docutils literal notranslate"><span class="pre">MaxNumHouseholds</span></code> in the system configuration files (e.g. <code class="docutils literal notranslate"><span class="pre">SmallAlameda_SystemConfiguration.json</span></code>). To speed up the simulation, set <code class="docutils literal notranslate"><span class="pre">ASYNC_MODE</span> <span class="pre">=</span> <span class="pre">True</span></code> in <code class="docutils literal notranslate"><span class="pre">pyrecodes/household/household_gpt_base.py</span></code> — this enables concurrent LLM calls for all households at each time step.</p>
+</div>
+<p>The figure below shows the number of households at each location (at home, with a friend, or out of town) over the 50-week simulation. After the earthquake, most households leave their damaged homes. As buildings are repaired and potable water is restored, households gradually return.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../../_images/example_7_household_location_over_time.png"><img alt="Household location over time" src="../../_images/example_7_household_location_over_time.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Number of households at each location over time.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The notebook also prints the full LLM chat history for a selected household. The excerpt below shows how an agent reasons about its situation and makes a relocation decision:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>--- DEVELOPER ---
+Socioeconomic characteristics of your household:
+ - You are Renter of the building you live in.
+ - Your household income level is Medium.
+ - There are 6 people in your household. Out of those 0 are children and 0 are elderly.
+ - 6 of household members are employed.
+ - Your immigration status is US born.
+ - You have 1 friends in this town.
+
+--- USER ---
+ Your current situation:
+ - It&#39;s now 4 weeks after the disaster.
+ - You are currently staying out of town.
+ - Your friend with ID 1 is not in their home.
+ - The building where you lived before the disaster is completely damaged.
+ - At your current location, your needs for Shelter are completely satisfied.
+ - At your current location, your needs for PotableWater are completely satisfied.
+ Your past experience: You moved to your friend&#39;s house one week after the earthquake
+ because your previous home could not provide shelter and potable water. After staying
+ with your friend for another week, you decided to leave town as neither location met
+ your basic needs. Finally, at three weeks post-earthquake, you chose to stay out of
+ town since your needs were satisfied, making it the safest option until conditions improved.
+
+ Task:
+ Based on the current situation described above, choose where to stay tomorrow:
+ ReturnHome, StayOutOfTown, MoveToFriend_1.
+
+--- ASSISTANT ---
+1. The relevant facts: It has been 4 weeks since the earthquake, and I am currently
+staying out of town with my needs for shelter and potable water completely satisfied.
+My previous building is completely damaged. My friend is not in their home.
+
+2. Returning home is not an option because my previous building is completely damaged.
+Moving to my friend&#39;s house is not feasible, as they are not in their home. Staying
+out of town remains the best option, as my needs are currently met, and it offers
+stability while I wait for conditions to improve in the city.
+
+3. StayOutOfTown.
+</pre></div>
+</div>
 </section>
 </section>
 

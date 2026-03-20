@@ -512,14 +512,14 @@ The main file to run Example 1 is defined as follows:
             "ComponentLibrary": {
                 "ComponentLibraryCreatorFileName": "json_component_library_creator",
                 "ComponentLibraryCreatorClassName": "JSONComponentLibraryCreator",
-                "ComponentLibraryFile": "./Example 1/ThreeLocalitiesCommunity_ComponentLibrary.json"
+                "ComponentLibraryFile": "ThreeLocalitiesCommunity_ComponentLibrary.json"
             },
             "System": {
                 "SystemCreatorClassName": "ConcreteSystemCreator",
                 "SystemCreatorFileName": "concrete_system_creator",
                 "SystemClassName": "BuiltEnvironment",
                 "SystemFileName": "built_environment",
-                "SystemConfigurationFile": "./Example 1/ThreeLocalitiesCommunity_SystemConfiguration.json"
+                "SystemConfigurationFile": "ThreeLocalitiesCommunity_SystemConfiguration.json"
             }
         }
 

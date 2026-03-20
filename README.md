@@ -40,12 +40,14 @@ pip install "pyrecodes[household]"
 pip install "pyrecodes[third_party_models]"
 ```
 
-**Full:**
+**Full (Example 7 — household agents + REWET + traffic):**
 ```bash
 pip install "pyrecodes[household,third_party_models]"
 ```
 
-> Third-party simulators require Python x86_64. See the [installation page](https://nikolablagojevic.github.io/pyrecodes/html/usage/installation.html) for details.
+> **Examples 5 and 7** require x86_64 Python — `wntrfr` and `pandana` do not provide arm64 wheels. On macOS with Apple Silicon, use the x86_64 Python installer from [python.org](https://www.python.org/downloads/) (runs via Rosetta 2), or a conda x86_64 environment. `third_party_models` also pins `numpy<2` due to a `pandana` binary compatibility constraint.
+>
+> See the [installation page](https://nikolablagojevic.github.io/pyrecodes/html/usage/installation.html) for full setup instructions.
 
 ---
 
@@ -54,10 +56,11 @@ pip install "pyrecodes[household,third_party_models]"
 ```python
 from pyrecodes import main
 
-system = main.run(folder='Example 1/', file_name='NorthEast_SF_Main.json')
+# run from the repository root folder
+system = main.run('Example 1', 'ThreeLocalitiesCommunity_Main.json')
 ```
 
-All examples are Jupyter notebooks available in the `Example 1/` – `Example 7/` folders.
+All examples are Jupyter notebooks in the `Example 1/` – `Example 7/` folders. **Run notebooks from the repository root** — input files are resolved using relative paths.
 
 ---
 
@@ -69,9 +72,9 @@ All examples are Jupyter notebooks available in the `Example 1/` – `Example 7/
 | [Example 2](https://nikolablagojevic.github.io/pyrecodes/html/usage/examples/example_2.html) | Virtual community with complex infrastructure interdependencies |
 | [Example 3](https://nikolablagojevic.github.io/pyrecodes/html/usage/examples/example_3.html) | R2DTool integration — regional risk assessment pipeline |
 | [Example 4](https://nikolablagojevic.github.io/pyrecodes/html/usage/examples/example_4.html) | Interdependent infrastructure interfaces |
-| [Example 5](https://nikolablagojevic.github.io/pyrecodes/html/usage/examples/example_5.html) | REWET and traffic simulator APIs |
-| [Example 6](https://nikolablagojevic.github.io/pyrecodes/html/usage/examples/example_6.html) | LLM household agent validation against US Census Household Pulse Survey |
-| [Example 7](https://nikolablagojevic.github.io/pyrecodes/html/usage/examples/example_7.html) | Socio-technical recovery with LLM-driven household displacement |
+| [Example 5](https://nikolablagojevic.github.io/pyrecodes/html/usage/examples/example_5.html) | REWET and traffic simulator APIs — requires `[third_party_models]`, x86_64 |
+| [Example 6](https://nikolablagojevic.github.io/pyrecodes/html/usage/examples/example_6.html) | LLM household agent validation against US Census Household Pulse Survey — requires `[household]`, notebook-only |
+| [Example 7](https://nikolablagojevic.github.io/pyrecodes/html/usage/examples/example_7.html) | Socio-technical recovery with LLM-driven household displacement — requires `[household,third_party_models]`, x86_64 |
 
 ---
 

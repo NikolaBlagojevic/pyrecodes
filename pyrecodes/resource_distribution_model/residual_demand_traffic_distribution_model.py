@@ -50,7 +50,8 @@ class ResidualDemandTrafficDistributionModel(AbstractResourceDistributionModel):
     def get_travel_time_change(self) -> None:
         self.travel_time_change = []
         for agent_pre_disaster, agent_now in zip(self.travel_times[0].iterrows(), self.travel_times[-1].iterrows()):
-            travel_time_change_factor = agent_now[1]['travel_time_used'] / agent_pre_disaster[1]['travel_time_used']
+            pre_disaster_time = agent_pre_disaster[1]['travel_time_used']
+            travel_time_change_factor = agent_now[1]['travel_time_used'] / pre_disaster_time if pre_disaster_time > 0 else float('inf')
             self.travel_time_change.append({'agent_id': agent_pre_disaster[1]['agent_id'], 'origin_nid': agent_pre_disaster[1]['origin_nid'],
                                             'stop_nid': agent_pre_disaster[1]['stop_nid'], 'travel_time_change': travel_time_change_factor})
 

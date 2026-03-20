@@ -288,8 +288,12 @@ class BuiltEnvironment(System):
         Args:
             savename (str, optional): The name of the pickle file to save the system object. Defaults to './system_object.pickle'.
         """
-        with open(savename, 'wb') as file: 
-            pickle.dump(self, file) 
+        data = {
+            'components': self.components,
+            'resilience_calculators': self.resilience_calculators
+        }
+        with open(savename, 'wb') as file:
+            pickle.dump(data, file)
     
     def load_as_pickle(self, loadname='./system_object.pickle') -> None:
         """
@@ -302,5 +306,7 @@ class BuiltEnvironment(System):
             BuiltEnvironmentSystem: The loaded system object.
         """
         with open(loadname, 'rb') as file:
-            system = pickle.load(file) 
-        return system 
+            data = pickle.load(file)
+        self.components = data['components']
+        self.resilience_calculators = data['resilience_calculators']
+        return self

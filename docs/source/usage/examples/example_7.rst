@@ -81,45 +81,104 @@ The figure below shows the number of households at each location (at home, with 
 
    Number of households at each location over time.
 
-The notebook also prints the full LLM chat history for a selected household. The excerpt below shows how an agent reasons about its situation and makes a relocation decision:
+The notebook also prints the full LLM chat history for a selected household. The excerpt below shows how the recovery agent is initialized with context and socioeconomic characteristics, and then makes weekly relocation decisions as the recovery progresses:
 
 .. code-block:: text
 
-    --- DEVELOPER ---
+    --- SYSTEM ---
+    # Context:
+     - You are a household in a city hit by an earthquake.
+     - In the following your household socioeconomic characteristics will be
+    provided first, followed by a description of your situation at different
+    times during city's recovery.
+     - Based on your socioeconomic characteristics and your current situation
+    you need to inform us about your needs and decisions on where to stay in
+    the future as the recovery progresses.
+     Instructions:
+    - You must behave consistently across time steps.
+     - Your preferences and constraints do not change unless explicitly stated.
+
+    --- SYSTEM ---
     Socioeconomic characteristics of your household:
-     - You are Renter of the building you live in.
-     - Your household income level is Medium.
-     - There are 6 people in your household. Out of those 0 are children and 0 are elderly.
-     - 6 of household members are employed.
-     - Your immigration status is US born.
-     - You have 1 friends in this town.
+     - You are Owner of the building you live in.
+     - Your household income level is High.
+     - There are 4 people in your household. Out of those 0 are children and
+    4 are elderly.
+     - 1 of household members are employed.
+     - Your immigration status is foreign born.
+     - You have 2 friends in this town.
+
+    --- SYSTEM ---
+     # Resource needs of the household:
+     - These are the average per person resource needs for your household:
+    {'PotableWater': 1050}. Take them into account when assessing the needs
+    of the entire household.
 
     --- USER ---
      Your current situation:
-     - It's now 4 weeks after the disaster.
-     - You are currently staying out of town.
+     - It's now 1 weeks after the disaster.
+     - You are currently staying at home.
      - Your friend with ID 1 is not in their home.
-     - The building where you lived before the disaster is completely damaged.
-     - At your current location, your needs for Shelter are completely satisfied.
-     - At your current location, your needs for PotableWater are completely satisfied.
-     Your past experience: You moved to your friend's house one week after the earthquake
-     because your previous home could not provide shelter and potable water. After staying
-     with your friend for another week, you decided to leave town as neither location met
-     your basic needs. Finally, at three weeks post-earthquake, you chose to stay out of
-     town since your needs were satisfied, making it the safest option until conditions improved.
+     - Your friend with ID 2 is not in their home.
+     - All households are still in your neighborhood.
+     - At your current location, your needs for Shelter are not satisfied.
+     - At your current location, your needs for PotableWater are not satisfied.
 
      Task:
-     Based on the current situation described above, choose where to stay tomorrow:
-     ReturnHome, StayOutOfTown, MoveToFriend_1.
+     Based on the current situation described above, choose where to stay
+    tomorrow: StayAtHome, LeaveTown, MoveToFriend_1, MoveToFriend_2.
 
     --- ASSISTANT ---
-    1. The relevant facts: It has been 4 weeks since the earthquake, and I am currently
-    staying out of town with my needs for shelter and potable water completely satisfied.
-    My previous building is completely damaged. My friend is not in their home.
+    Relevant facts influencing my decision:
+    1. It has been one week since the earthquake, and my household's needs
+    for shelter and potable water are not being satisfied at home.
+    2. Both of my friends are currently not at their homes, meaning I cannot
+    seek shelter there at this moment.
+    3. Leaving town would disconnect us from local resources and support
+    networks, including potential housing assistance.
 
-    2. Returning home is not an option because my previous building is completely damaged.
-    Moving to my friend's house is not feasible, as they are not in their home. Staying
-    out of town remains the best option, as my needs are currently met, and it offers
-    stability while I wait for conditions to improve in the city.
+    Reasoning: Given the dire situation of lacking both shelter and potable
+    water at my current home, it is essential to find a better living
+    arrangement. Since my friends are not at their homes, moving to either
+    of their places is not an option right now. Staying at home is not
+    feasible due to the unmet basic needs. Therefore, the most reasonable
+    decision is to leave town temporarily until I can ensure proper shelter
+    and supplies for my household.
 
-    3. StayOutOfTown.
+    LeaveTown
+
+    --- USER ---
+     Your current situation:
+     - It's now 2 weeks after the disaster.
+     - You are currently staying out of town.
+     - Your friend with ID 1 is not in their home.
+     - Your friend with ID 2 is not in their home.
+     - The building where you lived before the disaster is completely damaged.
+     - No households remain in your original neighborhood.
+     - At your current location, your needs for Shelter are completely satisfied.
+     - At your current location, your needs for PotableWater are completely
+    satisfied.
+    Your past experience:
+     - Week 1: I am leaving town temporarily due to unmet needs for shelter
+    and potable water at home, and with my friends currently unavailable
+    for support.
+
+     Task:
+     Based on the current situation described above, choose where to stay
+    tomorrow: ReturnHome, StayOutOfTown, MoveToFriend_1, MoveToFriend_2.
+
+    --- ASSISTANT ---
+    Relevant facts influencing my decision:
+    1. My building has been completely damaged, and no households remain in
+    my original neighborhood.
+    2. I am out of town, where my needs for shelter and potable water are
+    fully satisfied.
+    3. My friends are unavailable; I cannot move to either of their
+    residences as they are not in their homes.
+
+    Reasoning: Given that my building is completely damaged and those who I
+    might have turned to for support are currently unavailable, returning
+    home is not an option as it is uninhabitable. Remaining out of town
+    where my needs are satisfied is the most viable decision.
+
+    StayOutOfTown

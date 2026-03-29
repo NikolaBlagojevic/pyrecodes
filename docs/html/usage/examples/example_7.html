@@ -465,47 +465,160 @@
 <p><span class="caption-text">Number of households at each location over time.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
-<p>The notebook also prints the full LLM chat history for a selected household. The excerpt below shows how an agent reasons about its situation and makes a relocation decision:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>--- DEVELOPER ---
+<p>The animation below shows the spatial distribution of household occupancy over the recovery period. Each building is colored according to occupancy: green indicates occupied buildings and red indicates vacant buildings. As buildings are repaired and water service is restored, households return and buildings transition from red to green.</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/example_7_household_recovery.gif"><img alt="Household recovery animation" src="../../_images/example_7_household_recovery.gif" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Animated geo-visualization of household locations during recovery.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<section id="comparison-across-prompting-strategies">
+<h3>Comparison across prompting strategies<a class="headerlink" href="#comparison-across-prompting-strategies" title="Link to this heading">¶</a></h3>
+<p>The figure below compares household location dynamics across all four agent prompting strategies. Each panel shows the stacked area plot of households at home, with a friend, or out of town over the recovery period. The baseline and GPT-5 Mini agents show similar recovery trajectories, while the literature-informed and ruleset-constrained agents produce distinct displacement and return patterns shaped by their additional guidance.</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../../_images/example_7_household_movement_combined.png"><img alt="Household movement comparison across prompting strategies" src="../../_images/example_7_household_movement_combined.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Household location dynamics for (a) baseline, (b) ruleset-constrained, (c) literature-informed, and (d) GPT-5 Mini agents.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="chat-history">
+<h3>Chat history<a class="headerlink" href="#chat-history" title="Link to this heading">¶</a></h3>
+<p>The notebook prints the full LLM chat history for a selected household. The excerpt below shows how the agent is initialized with context and socioeconomic characteristics, and then makes weekly relocation decisions as the recovery progresses:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>--- SYSTEM ---
+# Context:
+ - You are a household in a city hit by an earthquake.
+ - In the following your household socioeconomic characteristics will be
+provided first, followed by a description of your situation at different
+times during city&#39;s recovery.
+ - Based on your socioeconomic characteristics and your current situation
+you need to inform us about your needs and decisions on where to stay in
+the future as the recovery progresses.
+ Instructions:
+- You must behave consistently across time steps.
+ - Your preferences and constraints do not change unless explicitly stated.
+
+--- SYSTEM ---
 Socioeconomic characteristics of your household:
- - You are Renter of the building you live in.
- - Your household income level is Medium.
- - There are 6 people in your household. Out of those 0 are children and 0 are elderly.
- - 6 of household members are employed.
- - Your immigration status is US born.
- - You have 1 friends in this town.
+ - You are Owner of the building you live in.
+ - Your household income level is High.
+ - There are 4 people in your household. Out of those 0 are children and
+4 are elderly.
+ - 1 of household members are employed.
+ - Your immigration status is foreign born.
+ - You have 2 friends in this town.
+
+--- SYSTEM ---
+ # Resource needs of the household:
+ - These are the average per person resource needs for your household:
+{&#39;PotableWater&#39;: 1050}. Take them into account when assessing the needs
+of the entire household.
 
 --- USER ---
  Your current situation:
- - It&#39;s now 4 weeks after the disaster.
- - You are currently staying out of town.
+ - It&#39;s now 1 weeks after the disaster.
+ - You are currently staying at home.
  - Your friend with ID 1 is not in their home.
- - The building where you lived before the disaster is completely damaged.
- - At your current location, your needs for Shelter are completely satisfied.
- - At your current location, your needs for PotableWater are completely satisfied.
- Your past experience: You moved to your friend&#39;s house one week after the earthquake
- because your previous home could not provide shelter and potable water. After staying
- with your friend for another week, you decided to leave town as neither location met
- your basic needs. Finally, at three weeks post-earthquake, you chose to stay out of
- town since your needs were satisfied, making it the safest option until conditions improved.
+ - Your friend with ID 2 is not in their home.
+ - All households are still in your neighborhood.
+ - At your current location, your needs for Shelter are not satisfied.
+ - At your current location, your needs for PotableWater are not satisfied.
 
  Task:
- Based on the current situation described above, choose where to stay tomorrow:
- ReturnHome, StayOutOfTown, MoveToFriend_1.
+ Based on the current situation described above, choose where to stay
+tomorrow: StayAtHome, LeaveTown, MoveToFriend_1, MoveToFriend_2.
 
 --- ASSISTANT ---
-1. The relevant facts: It has been 4 weeks since the earthquake, and I am currently
-staying out of town with my needs for shelter and potable water completely satisfied.
-My previous building is completely damaged. My friend is not in their home.
+Relevant facts influencing my decision:
+1. It has been one week since the earthquake, and my household&#39;s needs
+for shelter and potable water are not being satisfied at home.
+2. Both of my friends are currently not at their homes, meaning I cannot
+seek shelter there at this moment.
+3. Leaving town would disconnect us from local resources and support
+networks, including potential housing assistance.
 
-2. Returning home is not an option because my previous building is completely damaged.
-Moving to my friend&#39;s house is not feasible, as they are not in their home. Staying
-out of town remains the best option, as my needs are currently met, and it offers
-stability while I wait for conditions to improve in the city.
+Reasoning: Given the dire situation of lacking both shelter and potable
+water at my current home, it is essential to find a better living
+arrangement. Since my friends are not at their homes, moving to either
+of their places is not an option right now. Staying at home is not
+feasible due to the unmet basic needs. Therefore, the most reasonable
+decision is to leave town temporarily until I can ensure proper shelter
+and supplies for my household.
 
-3. StayOutOfTown.
+LeaveTown
+
+--- USER ---
+ Your current situation:
+ - It&#39;s now 2 weeks after the disaster.
+ - You are currently staying out of town.
+ - Your friend with ID 1 is not in their home.
+ - Your friend with ID 2 is not in their home.
+ - The building where you lived before the disaster is completely damaged.
+ - No households remain in your original neighborhood.
+ - At your current location, your needs for Shelter are completely satisfied.
+ - At your current location, your needs for PotableWater are completely
+satisfied.
+Your past experience:
+ - Week 1: I am leaving town temporarily due to unmet needs for shelter
+and potable water at home, and with my friends currently unavailable
+for support.
+
+ Task:
+ Based on the current situation described above, choose where to stay
+tomorrow: ReturnHome, StayOutOfTown, MoveToFriend_1, MoveToFriend_2.
+
+--- ASSISTANT ---
+Relevant facts influencing my decision:
+1. My building has been completely damaged, and no households remain in
+my original neighborhood.
+2. I am out of town, where my needs for shelter and potable water are
+fully satisfied.
+3. My friends are unavailable; I cannot move to either of their
+residences as they are not in their homes.
+
+Reasoning: Given that my building is completely damaged and those who I
+might have turned to for support are currently unavailable, returning
+home is not an option as it is uninhabitable. Remaining out of town
+where my needs are satisfied is the most viable decision.
+
+StayOutOfTown
+
+--- USER ---
+ Your current situation:
+ - It&#39;s now 5 weeks after the disaster.
+ - You are currently staying out of town.
+ - Your friend with ID 1 is back in their home.
+ - Your friend with ID 2 is not in their home.
+ - The building where you lived before the disaster is still damaged.
+ - Some households have returned to your original neighborhood.
+ - At your current location, your needs for Shelter are completely satisfied.
+ - At your current location, your needs for PotableWater are completely
+satisfied.
+Your past experience:
+ - Weeks 1-4: Staying out of town because my building is completely
+damaged and basic needs were unmet at home.
+
+ Task:
+ Based on the current situation described above, choose where to stay
+tomorrow: ReturnHome, StayOutOfTown, MoveToFriend_1, MoveToFriend_2.
+
+--- ASSISTANT ---
+Relevant facts influencing my decision:
+1. My building is still damaged, so returning home is not yet viable.
+2. Friend 1 is back in their home and could potentially host us.
+3. Some neighbors have returned, suggesting partial recovery in the area.
+
+Reasoning: Although my building remains damaged, friend 1 has returned
+home. Moving to their place would bring me closer to my neighborhood
+and allow me to monitor the repair progress on my building. As an
+owner, I want to be nearby when repairs are completed.
+
+MoveToFriend_1
 </pre></div>
 </div>
+</section>
 </section>
 </section>
 
@@ -569,7 +682,11 @@ stability while I wait for conditions to improve in the city.
 <li><a class="reference internal" href="#technical-systems">Technical systems</a></li>
 <li><a class="reference internal" href="#household-generative-agents">Household generative agents</a></li>
 <li><a class="reference internal" href="#prompting-strategies">Prompting strategies</a></li>
-<li><a class="reference internal" href="#results">Results</a></li>
+<li><a class="reference internal" href="#results">Results</a><ul>
+<li><a class="reference internal" href="#comparison-across-prompting-strategies">Comparison across prompting strategies</a></li>
+<li><a class="reference internal" href="#chat-history">Chat history</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

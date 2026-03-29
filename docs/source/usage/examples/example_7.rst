@@ -81,7 +81,31 @@ The figure below shows the number of households at each location (at home, with 
 
    Number of households at each location over time.
 
-The notebook also prints the full LLM chat history for a selected household. The excerpt below shows how the recovery agent is initialized with context and socioeconomic characteristics, and then makes weekly relocation decisions as the recovery progresses:
+The animation below shows the spatial distribution of household occupancy over the recovery period. Each building is colored according to occupancy: green indicates occupied buildings and red indicates vacant buildings. As buildings are repaired and water service is restored, households return and buildings transition from red to green.
+
+.. figure:: /figures/example_7_household_recovery.gif
+   :alt: Household recovery animation
+   :align: center
+   :width: 80%
+
+   Animated geo-visualization of household locations during recovery.
+
+Comparison across prompting strategies
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The figure below compares household location dynamics across all four agent prompting strategies. Each panel shows the stacked area plot of households at home, with a friend, or out of town over the recovery period. The baseline and GPT-5 Mini agents show similar recovery trajectories, while the literature-informed and ruleset-constrained agents produce distinct displacement and return patterns shaped by their additional guidance.
+
+.. figure:: /figures/example_7_household_movement_combined.png
+   :alt: Household movement comparison across prompting strategies
+   :align: center
+   :width: 100%
+
+   Household location dynamics for (a) baseline, (b) ruleset-constrained, (c) literature-informed, and (d) GPT-5 Mini agents.
+
+Chat history
+^^^^^^^^^^^^
+
+The notebook prints the full LLM chat history for a selected household. The excerpt below shows how the agent is initialized with context and socioeconomic characteristics, and then makes weekly relocation decisions as the recovery progresses:
 
 .. code-block:: text
 
@@ -182,3 +206,35 @@ The notebook also prints the full LLM chat history for a selected household. The
     where my needs are satisfied is the most viable decision.
 
     StayOutOfTown
+
+    --- USER ---
+     Your current situation:
+     - It's now 5 weeks after the disaster.
+     - You are currently staying out of town.
+     - Your friend with ID 1 is back in their home.
+     - Your friend with ID 2 is not in their home.
+     - The building where you lived before the disaster is still damaged.
+     - Some households have returned to your original neighborhood.
+     - At your current location, your needs for Shelter are completely satisfied.
+     - At your current location, your needs for PotableWater are completely
+    satisfied.
+    Your past experience:
+     - Weeks 1-4: Staying out of town because my building is completely
+    damaged and basic needs were unmet at home.
+
+     Task:
+     Based on the current situation described above, choose where to stay
+    tomorrow: ReturnHome, StayOutOfTown, MoveToFriend_1, MoveToFriend_2.
+
+    --- ASSISTANT ---
+    Relevant facts influencing my decision:
+    1. My building is still damaged, so returning home is not yet viable.
+    2. Friend 1 is back in their home and could potentially host us.
+    3. Some neighbors have returned, suggesting partial recovery in the area.
+
+    Reasoning: Although my building remains damaged, friend 1 has returned
+    home. Moving to their place would bring me closer to my neighborhood
+    and allow me to monitor the repair progress on my building. As an
+    owner, I want to be nearby when repairs are completed.
+
+    MoveToFriend_1

@@ -401,6 +401,11 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.component.r2d_building_with_households.</span></span><span class="sig-name descname"><span class="pre">R2DBuildingWithHouseholds</span></span><a class="headerlink" href="#pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="component_r2d_component_docs.html#pyrecodes.component.r2d_component.R2DBuilding" title="pyrecodes.component.r2d_component.R2DBuilding"><code class="xref py py-class docutils literal notranslate"><span class="pre">R2DBuilding</span></code></a></p>
 <dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.async_initialize_households">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">async_initialize_households</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.async_initialize_households" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.component_represents_friends_house">
 <span class="sig-name descname"><span class="pre">component_represents_friends_house</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">household</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.component_represents_friends_house" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -436,6 +441,11 @@
 <dd><p>Move households to the component that they decided to move to.
 Make a copy of the households list to avoid modifying the original list while iterating over it. If a household moves, it is removed from the original list and then the loop will skip the next household.</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.initialize_households">
+<span class="sig-name descname"><span class="pre">initialize_households</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.initialize_households" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.map_buildings_to_households">
@@ -522,6 +532,7 @@ Make a copy of the households list to avoid modifying the original list while it
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyrecodes.component.r2d_building_with_households.</span></span><span class="sig-name descname"><span class="pre">R2DTown</span></span><a class="headerlink" href="#pyrecodes.component.r2d_building_with_households.R2DTown" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds" title="pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds"><code class="xref py py-class docutils literal notranslate"><span class="pre">R2DBuildingWithHouseholds</span></code></a></p>
 <p>Component representing a town where households can move to if they decide to leave their home.</p>
+<p>Starts with no households.</p>
 <p>Assume all resources are available in the town.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyrecodes.component.r2d_building_with_households.R2DTown.update_supply_based_on_unmet_demand">
@@ -592,6 +603,7 @@ Make a copy of the households list to avoid modifying the original list while it
             <ul>
 <li><a class="reference internal" href="#">r2d_building_with_households</a><ul>
 <li><a class="reference internal" href="#pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds"><code class="docutils literal notranslate"><span class="pre">R2DBuildingWithHouseholds</span></code></a><ul>
+<li><a class="reference internal" href="#pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.async_initialize_households"><code class="docutils literal notranslate"><span class="pre">R2DBuildingWithHouseholds.async_initialize_households()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.component_represents_friends_house"><code class="docutils literal notranslate"><span class="pre">R2DBuildingWithHouseholds.component_represents_friends_house()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.component_represents_home"><code class="docutils literal notranslate"><span class="pre">R2DBuildingWithHouseholds.component_represents_home()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.component_represents_out_of_town"><code class="docutils literal notranslate"><span class="pre">R2DBuildingWithHouseholds.component_represents_out_of_town()</span></code></a></li>
@@ -599,6 +611,7 @@ Make a copy of the households list to avoid modifying the original list while it
 <li><a class="reference internal" href="#pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.create_households"><code class="docutils literal notranslate"><span class="pre">R2DBuildingWithHouseholds.create_households()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.households_decide"><code class="docutils literal notranslate"><span class="pre">R2DBuildingWithHouseholds.households_decide()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.households_move"><code class="docutils literal notranslate"><span class="pre">R2DBuildingWithHouseholds.households_move()</span></code></a></li>
+<li><a class="reference internal" href="#pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.initialize_households"><code class="docutils literal notranslate"><span class="pre">R2DBuildingWithHouseholds.initialize_households()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.map_buildings_to_households"><code class="docutils literal notranslate"><span class="pre">R2DBuildingWithHouseholds.map_buildings_to_households()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.print_household_ids"><code class="docutils literal notranslate"><span class="pre">R2DBuildingWithHouseholds.print_household_ids()</span></code></a></li>
 <li><a class="reference internal" href="#pyrecodes.component.r2d_building_with_households.R2DBuildingWithHouseholds.recover"><code class="docutils literal notranslate"><span class="pre">R2DBuildingWithHouseholds.recover()</span></code></a></li>

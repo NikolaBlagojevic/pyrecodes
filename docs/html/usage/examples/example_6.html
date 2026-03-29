@@ -457,6 +457,82 @@
 <p><span class="caption-text">Confusion matrix for the ruleset-constrained generative agent (<code class="docutils literal notranslate"><span class="pre">'ReadRuleset'</span></code> strategy).</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
+<p>The notebook prints the full prompt–answer exchange for each household. The excerpt below shows a single agent run — from disaster context through the final displacement decision:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>════════════════════════════════════════════════════════════════════════════════
+  HOUSEHOLD 1 / 1
+════════════════════════════════════════════════════════════════════════════════
+
+┌─ PROMPT — DISASTER CONTEXT ──────────────────────────────────────────────────
+│  # Context
+│  You are a household in a home that experienced a Hurricane.
+│  - In the following your household socioeconomic characteristics will be
+│  provided first, followed by a description of your current situation.
+│  - Based on your socioeconomic characteristics and your current situation
+│  you need to inform us about your estimate on how long you will be
+│  displaced from home.
+│  Important:
+│  - This message is context only. Do not produce output yet.
+└───────────────────────────────────────────────────────────────────────────────
+
+┌─ ANSWER — DISASTER CONTEXT ──────────────────────────────────────────────────
+│  Understood. I will wait for the socioeconomic characteristics and
+│  current situation details before providing my estimate.
+└───────────────────────────────────────────────────────────────────────────────
+
+┌─ PROMPT — SOCIOECONOMIC PROFILE ─────────────────────────────────────────────
+│  Socioeconomic characteristics of your household:
+│  - You are in Florida Miami-Fort Lauderdale-Pompano Beach, FL.
+│  - You are Owner of the building you live in.
+│  - Your household income level is $100,000 - $149,999.
+│  - There are 2 people in your household. Out of those 0 are children
+│  below 5 years of age, 0 are children between 5 and 11 years of age,
+│  and 0 are children between 12 and 17 years of age.
+│  - Your household members are employed.
+│  Important:
+│  - This message is context only. Do not produce output yet.
+└───────────────────────────────────────────────────────────────────────────────
+
+┌─ ANSWER — SOCIOECONOMIC PROFILE ─────────────────────────────────────────────
+│  Understood. I will wait for the description of my current situation
+│  before providing my displacement estimate.
+└───────────────────────────────────────────────────────────────────────────────
+
+┌─ PROMPT — SITUATION NARRATIVE ────────────────────────────────────────────────
+│  Your current situation:
+│  - Due to the Hurricane, your property and your possessions experienced
+│  some damage.
+│  - In the first month after the Hurricane, you experience always having
+│  access to water.
+│  - In the first month after the Hurricane, you experience always having
+│  electricity.
+│  - In the first month after the Hurricane, you experience always having
+│  enough food to eat.
+│  - In the first month after the Hurricane, you experience never living
+│  in unsanitary conditions.
+│
+│  Task:
+│  Based on the current situation described above, which one of the
+│  following do you believe will be your most likely displacement duration:
+│  LeaveHomeForLessThanAWeek, LeaveHomeForMoreThanAWeek.
+└───────────────────────────────────────────────────────────────────────────────
+
+┌─ ANSWER — AGENT DECISION ─────────────────────────────────────────────────────
+│  1. Relevant facts: My property experienced some damage from the
+│  Hurricane. I am an owner in Miami. I always had access to water,
+│  electricity, food, and never lived in unsanitary conditions.
+│
+│  2. Since the damage to my property is only &quot;some damage&quot; and all
+│  essential services remained available, the disruption to daily life is
+│  relatively minor. As a homeowner with stable income and no dependents,
+│  I can manage temporary displacement quickly.
+│
+│  LeaveHomeForLessThanAWeek
+└───────────────────────────────────────────────────────────────────────────────
+
+  Agent decision:                  LeaveHomeForLessThanAWeek
+  Actual displacement duration:    Less than a week  ✓
+</pre></div>
+</div>
 </section>
 <section id="results">
 <h2>Results<a class="headerlink" href="#results" title="Link to this heading">¶</a></h2>

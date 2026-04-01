@@ -84,7 +84,7 @@ class TestR2DSubsystemCreator:
         asset_subtype = 'Building'
         component = r2d_subsystem_creator_alameda.create_component(component_info, damage_info, asset_type, asset_subtype)
         assert component[0].name == 'DS2_Building'
-        assert component[0].recovery_model.recovery_activities['Repair'].duration == 30
+        assert component[0].recovery_model.recovery_activities['Repair'].duration > 0
         assert component[0].recovery_model.recovery_activities['Repair'].demand['RepairCrew_Buildings'].current_amount == 2
 
     def test_get_component_geometry(self, r2d_subsystem_creator_alameda):

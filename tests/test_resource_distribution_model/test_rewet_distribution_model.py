@@ -226,7 +226,7 @@ class TestREWETDistributionModel:
 
         # recover system and then check demand
         system.start_resilience_assessment()
-        rewet_distribution_model.distribute(32)
+        rewet_distribution_model.distribute(system.time_step)
         assert math.isclose(rewet_distribution_model.get_total_supply(), 1.5)
 
     def test_get_water_demand(self, system, rewet_distribution_model):
@@ -242,7 +242,7 @@ class TestREWETDistributionModel:
 
         # assign damage and test the demand
         system.time_step = 0 # just to add the met_demand_tracker list in the components
-        system.update() 
+        system.update()
         system.time_step = 1
         system.set_initial_damage()
         system.update()
@@ -251,7 +251,7 @@ class TestREWETDistributionModel:
         system.time_step = 2
         system.recover()
         system.update()
-        assert math.isclose(rewet_distribution_model.get_total_demand(), 1.5 * 1/30)
+        assert math.isclose(rewet_distribution_model.get_total_demand(), 1.5 * 1/15)
 
         # recover system and then check demand
         system.start_resilience_assessment()
@@ -281,7 +281,7 @@ class TestREWETDistributionModel:
 
         # recover system and then check demand
         system.start_resilience_assessment()
-        rewet_distribution_model.distribute(32)
+        rewet_distribution_model.distribute(system.time_step)
         assert math.isclose(rewet_distribution_model.get_total_consumption(), 1.5)
 
 

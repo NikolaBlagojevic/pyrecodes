@@ -101,7 +101,7 @@ class TestHouseholdGPT:
         assert household_gpt.home_id == HOUSEHOLD_PARAMETERS["SocioEconomicParameters"]["Home"]
         assert household_gpt.llm.chat_history[0] == {
         "role": "developer",
-        "content": "Socioeconomic characteristics of your household: \n - You are Renter of the building you live in.\n - Your household income level is High. \n - There are 5 people in your household. Out of those 0 are children and 0 are elderly. \n - 5 of household members are employed. \n - Your immigration status is US born. \n - You have 2 friends in this town.  \n Important: \n - Do not respond to this prompt."
+        "content": "Socioeconomic characteristics of your household: \n - You are Renter of the building you live in.\n - Your household income level is High. \n - There are 5 people in your household. Out of those 0 are children and 0 are elderly. \n - 5 of household members are employed. \n - Your immigration status is US born. \n - You have 2 friends in this neighborhood.  \n Important: \n - This message is context only. Do not produce output yet."
     }
 
     def test_set_resource_demand_parameters(self, household_gpt):
@@ -109,7 +109,7 @@ class TestHouseholdGPT:
         household_gpt.set_resource_demand_parameters(HOUSEHOLD_PARAMETERS)
         assert household_gpt.llm.chat_history[0] == {
             "role": "developer",
-            "content": " # Resource needs of the household \n - These are the average per person resource needs for your household: {'PotableWater': 150}. Take them into account when assessing the needs of the entire household. You might require more or less of each resource at different times after a disaster due to different needs.  \n Important: \n - Do not respond to this prompt."
+            "content": " # Resource needs of the household: \n - These are the average per person resource needs for your household: {'PotableWater': 150}. Take them into account when assessing the needs of the entire household. You might require more or less of each resource at different times after a disaster due to different needs.  \n Important: \n - This message is context only. Do not produce output yet."
         }
 
     def test_map_buildings_to_households(self, household_gpt, built_environment):
@@ -368,11 +368,11 @@ class TestHouseholdGPT:
                 household.staying_at = ['Home']
         household_gpt.update(10, household_gpt.buildings_map['Home'][0], [10, 10])
         time_step_narrative = household_gpt.time_step_narrative_creator.get_narrative()
-        assert time_step_narrative.replace(' ','') == "\n Your current situation: \n - It's now 10 weeks after the disaster. \n - You are currently staying at home.  \n - Your friend with ID 1 is in their home.  \n - Your friend with ID 2 is not in their home.  \n - All other households are in town. ".replace(' ','')
+        assert time_step_narrative.replace(' ','') == "\n Your current situation: \n - It's now 10 weeks after the disaster. \n - You are currently staying at home.  \n - Your friend with ID 1 is in their home.  \n - Your friend with ID 2 is not in their home.  \n - The building you are currently in has no damage. \n - 100% of the households that lived in your neighborhood before the disaster are still there or have returned. ".replace(' ','')
 
         household_gpt.update(15, household_gpt.buildings_map['Friend'][0], [10, 3])
         time_step_narrative = household_gpt.time_step_narrative_creator.get_narrative()
-        assert time_step_narrative.replace(' ','') == "\n Your current situation: \n - It's now 15 weeks after the disaster. \n - You are currently staying with friend 1.  \n - Your friend with ID 1 is in their home.  \n - Your friend with ID 2 is not in their home.  \n - The building where you lived before the disaster has no damage. \n - Less than half of other households are in town. ".replace(' ','')
+        assert time_step_narrative.replace(' ','') == "\n Your current situation: \n - It's now 15 weeks after the disaster. \n - You are currently staying with friend 1.  \n - Your friend with ID 1 is in their home.  \n - Your friend with ID 2 is not in their home.  \n - The building where you lived before the disaster has no damage. \n - 30% of the households that lived in your neighborhood before the disaster are still there or have returned. ".replace(' ','')
 
     def test_update_where_household_is_staying(self, household_gpt, built_environment):
         household_gpt.set_parameters(HOUSEHOLD_PARAMETERS)
@@ -405,11 +405,11 @@ class TestHouseholdGPT:
 
         household_gpt.create_time_step_narrative(5, 'at home. ', [10, 10])
         time_step_narrative = household_gpt.time_step_narrative_creator.get_narrative()
-        assert time_step_narrative == "\n Your current situation: \n - It's now 5 weeks after the disaster. \n - You are currently staying at home.  \n - Your friend with ID 1 is in their home.  \n - Your friend with ID 2 is not in their home.  \n - All other households are in town. "
+        assert time_step_narrative == "\n Your current situation: \n - It's now 5 weeks after the disaster. \n - You are currently staying at home.  \n - Your friend with ID 1 is in their home.  \n - Your friend with ID 2 is not in their home.  \n - The building you are currently in has no damage. \n - 100% of the households that lived in your neighborhood before the disaster are still there or have returned. "
 
         household_gpt.create_time_step_narrative(50, 'with a friend. ', [10, 0])
         time_step_narrative = household_gpt.time_step_narrative_creator.get_narrative()
-        assert time_step_narrative == "\n Your current situation: \n - It's now 50 weeks after the disaster. \n - You are currently staying with a friend.  \n - Your friend with ID 1 is in their home.  \n - Your friend with ID 2 is not in their home.  \n - The building where you lived before the disaster has no damage. \n - There are no other households in town. "
+        assert time_step_narrative == "\n Your current situation: \n - It's now 50 weeks after the disaster. \n - You are currently staying with a friend.  \n - Your friend with ID 1 is in their home.  \n - Your friend with ID 2 is not in their home.  \n - The building where you lived before the disaster has no damage. \n - 0% of the households that lived in your neighborhood before the disaster are still there or have returned. "
 
     def test_get_decision(self, household_gpt):
         decision_string = "StayAtHome"

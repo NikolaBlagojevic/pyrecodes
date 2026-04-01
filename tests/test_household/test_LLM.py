@@ -22,29 +22,46 @@ class TestLLM:
     def test_add_to_relevant_prompts(self, llm):
         pass
 
-    def add_to_past_experience(self, llm):
-        pass
+    def test_add_to_past_experience(self, llm):
+        llm.add_to_past_experience("I decided to stay at home.")
+        assert len(llm.past_experience) == 1
 
-    def test_summarize_past_experience(self, llm):
-        dummy_description_prompt = {
+    def test_get_past_experience_string_empty(self, llm):
+        assert llm.get_past_experience_string() == ""
+
+    def test_get_past_experience_string(self, llm):
+        llm.past_experience = [
+            "I stayed at home in week 1 because my building had no damage. In week 2, I left town because water was not available.",
+        ]
+        result = llm.get_past_experience_string()
+        assert "Your past experience:" in result
+        assert "I stayed at home in week 1" in result
+
+    def test_update_past_experience_with_summarization(self, llm):
+        dummy_prompt = {
             "role": "user",
-            "content": "Task: \n Summarize decisions below. Just write what comes after the 'Decision X'."
+            "content": "Compress past experience and latest decision. \n\n PAST_EXPERIENCE \n\n LATEST_ANSWER"
         }
-        summary = llm.summarize_past_experience(dummy_description_prompt)
-        assert summary == ''
+        llm.update_past_experience(dummy_prompt, "I stayed home because building was fine.")
+        assert len(llm.past_experience) == 1
+        assert isinstance(llm.past_experience[0], str)
 
-        llm.past_experience = [
-            {"role": "assistant", "content": "\n Decision 1: \n Test summary."},
-        ]
-        summary = llm.summarize_past_experience(dummy_description_prompt)
-        assert self.remove_blank_lines_and_spaces(summary) == self.remove_blank_lines_and_spaces("\nDecision 1: Test summary.")
+    def test_update_past_experience_without_summarization(self):
+        llm = LLM(api_key_filename="./openai_api_key.json", temperature=0.0, summarize_experience=False)
+        dummy_prompt = {
+            "role": "user",
+            "content": "Compress past experience and latest decision. \n\n PAST_EXPERIENCE \n\n LATEST_ANSWER"
+        }
+        llm.update_past_experience(dummy_prompt, "I stayed home because building was fine.")
+        llm.update_past_experience(dummy_prompt, "I left town because water was unavailable.")
+        assert len(llm.past_experience) == 2
+        assert llm.past_experience[0] == "I stayed home because building was fine."
+        assert llm.past_experience[1] == "I left town because water was unavailable."
 
-        llm.past_experience = [
-            {"role": "assistant", "content": "\n Decision 1: \n Test summary."},
-            {"role": "assistant", "content": "\n Decision 2: \n Another test summary."},
-        ]
-        summary = llm.summarize_past_experience(dummy_description_prompt)
-        assert self.remove_blank_lines_and_spaces(summary) == self.remove_blank_lines_and_spaces("\nDecision 1: Test summary.  \nDecision 2: Another test summary.")
-    
+    def test_get_past_experience_string_without_summarization(self):
+        llm = LLM(api_key_filename="./openai_api_key.json", temperature=0.0, summarize_experience=False)
+        llm.past_experience = ["Stayed home.", "Left town."]
+        result = llm.get_past_experience_string()
+        assert "Decision 1: Stayed home." in result
+        assert "Decision 2: Left town." in result
 
-    

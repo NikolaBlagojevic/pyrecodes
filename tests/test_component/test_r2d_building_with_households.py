@@ -23,6 +23,7 @@ class TestR2DBuildingWithHouseholds:
         r2d_building_with_households_with_households = R2DBuildingWithHouseholds()
         r2d_building_with_households_with_households.construct('R2DBuildingWithHouseholds', BUILDING_WITH_HOUSEHOLDS_COMPONENT_LIBRARY_PARAMETERS)
         r2d_building_with_households_with_households.create_households(BUILDING_WITH_HOUSEHOLDS_PARAMETERS['Households'])
+        r2d_building_with_households_with_households.initialize_households()
         r2d_building_with_households_with_households.general_information = BUILDING_WITH_HOUSEHOLDS_PARAMETERS
         return r2d_building_with_households_with_households
     

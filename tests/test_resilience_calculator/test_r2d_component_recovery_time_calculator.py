@@ -30,7 +30,7 @@ class TestR2DComponentRecoveryTimeCalculator():
                                                                   {'BaseTransceiverStation_2 | AIM ID: None': 0},
                                                                   {'DS0_Pipe | AIM ID: 3': 0},
                                                                   {'DS2_Pipe | AIM ID: 4': 21},                                                                  
-                                                                  {'DS1_Building | AIM ID: 1': 30},
+                                                                  {'DS1_Building | AIM ID: 1': 10},
                                                                   {'SuperLink | AIM ID: None': 0},
                                                                   {'SuperLink | AIM ID: None': 0}
                                                                 ]   

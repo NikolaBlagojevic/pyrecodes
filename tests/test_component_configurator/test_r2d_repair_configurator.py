@@ -41,13 +41,13 @@ class TestR2DRepairConfigurator:
         pass
 
     def test_set_repair_time(self, repair_configurator: R2DRepairConfigurator):
-        repair_configurator.set_repair_time(R2D_COMPONENT_DATA)
+        repair_configurator.set_repair_time(R2D_COMPONENT_DATA, use_R2D=True)
         assert repair_configurator.component.recovery_model.recovery_activities['Repair'].duration == R2D_COMPONENT_DATA['Loss']['Repair']['Time']['LF.IND2-LF.W1.MC']
 
-    def test_get_repair_time(self, repair_configurator: R2DRepairConfigurator):
+    def test_get_repair_time_from_R2D(self, repair_configurator: R2DRepairConfigurator):
         component_data_no_repair_time = {'Loss': {}}
-        assert repair_configurator.get_repair_time(component_data_no_repair_time) == None
-        assert repair_configurator.get_repair_time(R2D_COMPONENT_DAMAGE_DATA) == 30.0
+        assert repair_configurator.get_repair_time_from_R2D(component_data_no_repair_time) == None
+        assert repair_configurator.get_repair_time_from_R2D(R2D_COMPONENT_DAMAGE_DATA) == 30.0
 
     def test_get_repair_cost(self, repair_configurator: R2DRepairConfigurator):
         assert repair_configurator.get_repair_cost(R2D_COMPONENT_DATA) == R2D_COMPONENT_DATA['Loss']['Repair']['Cost']['LF.IND2-LF.W1.MC'] * R2D_COMPONENT_DATA['Information']['GeneralInformation']['ReplacementCost']

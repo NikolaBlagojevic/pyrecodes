@@ -31,10 +31,5 @@ class Household:
     def map_buildings_to_households(self, built_environment: System):
         pass
 
-    @abstractmethod
-    def get_relocation_factors(self):
-        pass
-
-    
 
     

@@ -49,10 +49,18 @@ class HouseholdGPT(Household, HouseholdGPTBase):
         self.staying_at = []
         self.time_step_narrative_creator = TimeStepNarrativeCreator(self.prompts)
 
-    def set_parameters(self, parameters: dict, api_key_filename: str = "./openai_api_key.json", temperature: float = 1.0, llm_model: str = 'GPT') -> None:
+    def set_parameters(self, parameters: dict, api_key_filename: str = "./openai_api_key.json", temperature: float = 1.0, llm_model: str = 'GPT', summarize_experience: bool = True) -> None:
         self.set_household_id(parameters['HouseholdID'])
-        self.create_llm(api_key_filename, temperature, llm_model)
+        self.create_llm(api_key_filename, temperature, llm_model, summarize_experience)
         self.inform_gpt(parameters.get('InformGPTMethod', None))
+        self.set_context()
+        self.set_socioeconomic_parameters(parameters)
+        self.set_resource_demand_parameters(parameters)
+
+    async def async_set_parameters(self, parameters: dict, api_key_filename: str = "./openai_api_key.json", temperature: float = 1.0, llm_model: str = 'GPT', summarize_experience: bool = True) -> None:
+        self.set_household_id(parameters['HouseholdID'])
+        self.create_llm(api_key_filename, temperature, llm_model, summarize_experience)
+        await self.async_inform_gpt(parameters.get('InformGPTMethod', None))
         self.set_context()
         self.set_socioeconomic_parameters(parameters)
         self.set_resource_demand_parameters(parameters)
@@ -104,17 +112,33 @@ class HouseholdGPT(Household, HouseholdGPTBase):
 
     def decide(self, component_where_household_is_staying: Component) -> None:
         household_options = self.get_household_options(component_where_household_is_staying)
-        self.time_step_narrative_creator.summarize_past_experience(self.llm)
+        self.time_step_narrative_creator.add_past_experience(self.llm)
         self.time_step_narrative_creator.update_household_options(household_options)
         time_step_narrative = self.time_step_narrative_creator.get_narrative()
-        answer = self.prompt_llm({'role': 'user', 'content': time_step_narrative}, print_answer=False, add_to_past_experience=True)
+        answer = self.prompt_llm({'role': 'user', 'content': time_step_narrative}, print_answer=False)
         while True:
             decision = self.get_decision(answer)
             if decision is not None:
                 break
             print(f"\n Decision not recognized. Trying again. \n Full answer: \n {answer}")
-            answer = self.prompt_llm({'role': 'user', 'content': time_step_narrative}, print_answer=False, add_to_past_experience=True)
+            answer = self.prompt_llm({'role': 'user', 'content': time_step_narrative}, print_answer=False)
         self.decisions.append(decision)
+        self.llm.update_past_experience(self.prompts['SummarizePastExperience'], answer)
+
+    async def async_decide(self, component_where_household_is_staying: Component) -> None:
+        household_options = self.get_household_options(component_where_household_is_staying)
+        self.time_step_narrative_creator.add_past_experience(self.llm)
+        self.time_step_narrative_creator.update_household_options(household_options)
+        time_step_narrative = self.time_step_narrative_creator.get_narrative()
+        answer = await self.async_prompt_llm({'role': 'user', 'content': time_step_narrative}, print_answer=False)
+        while True:
+            decision = self.get_decision(answer)
+            if decision is not None:
+                break
+            print(f"\n Decision not recognized. Trying again. \n Full answer: \n {answer}")
+            answer = await self.async_prompt_llm({'role': 'user', 'content': time_step_narrative}, print_answer=False)
+        self.decisions.append(decision)
+        await self.llm.update_past_experience_async(self.prompts['SummarizePastExperience'], answer)
 
     def add_move_to_friend_options(self, component_where_household_is_staying=None) -> list:
         return [
@@ -170,6 +194,7 @@ class HouseholdGPT(Household, HouseholdGPTBase):
         component.households.remove(self)
 
     def update(self, time_step: int, component: Component, households_in_town: list) -> None:
+        self.current_time_step = time_step
         location, location_string = self.update_where_household_is_staying(component)
         self.staying_at.append(location[0])
         self.moved_at_time_step = False
@@ -198,19 +223,13 @@ class HouseholdGPT(Household, HouseholdGPTBase):
     def get_supply(self):
         pass
 
-    def get_relocation_factors(self) -> dict:
-        summary = self.llm.summarize_past_experience(self.prompts['SummarizePastExperience'])
-        content = self.prompts['GetRelocationFactors']['content'].replace('PAST_EXPERIENCE', summary)
-        answer = self.prompt_llm({'role': 'user', 'content': content}, print_answer=False)
-        return self.string_to_dict(answer.lower())
-
-
 class TimeStepNarrativeCreator:
     """Builds the per-time-step prompt for simulation household agents."""
 
     def __init__(self, prompts: dict) -> None:
         self.prompts = prompts
         self.narrative = ""
+        self.home_was_damaged = False
 
     def create(self, time_step: int, location_update: str, households_in_town: list, buildings_map: dict, find_friend_id) -> None:
         self.start_the_time_step_narrative()
@@ -236,6 +255,8 @@ class TimeStepNarrativeCreator:
     def update_household_on_recovery_state_of_their_predisaster_home(self, location_string: str, buildings_map: dict) -> None:
         if location_string != LOCATION_STRING_MAPPING['Home']:
             self.provide_information_on_building_recovery(buildings_map['Home'][0].recovery_model, 'building where you lived before the disaster')
+        else:
+            self.provide_information_on_building_recovery(buildings_map['Home'][0].recovery_model, 'building you are currently in')
 
     def provide_information_on_building_recovery(self, recovery_model: RecoveryModel, household_location_string: str) -> None:
         recovery_info = self.format_recovery_info(recovery_model, household_location_string)
@@ -244,7 +265,10 @@ class TimeStepNarrativeCreator:
     def format_recovery_info(self, recovery_model: RecoveryModel, household_location_string: str) -> str:
         building_functionality_level = recovery_model.get_functionality_level()
         if building_functionality_level == 1:
+            if self.home_was_damaged:
+                return "Your home has been repaired and is now safe to return to."
             return self.prompts['BuildingHasNoDamage']['content'].replace('HOUSEHOLD_LOCATION_STRING', household_location_string)
+        self.home_was_damaged = True
         damage_indicator = self.get_building_damage_indicator(building_functionality_level)
         return self.prompts['BuildingHasDamage']['content'].replace('HOUSEHOLD_LOCATION_STRING', household_location_string).replace('DAMAGE_INDICATOR', damage_indicator)
 
@@ -267,16 +291,13 @@ class TimeStepNarrativeCreator:
 
     def update_household_on_other_households_in_town(self, households_in_town: list, location_string: str) -> None:
         ratio = households_in_town[-1] / households_in_town[0]
-        if ratio == 0:
-            prompt = '\n - There are no other households in your neighborhood.'
-        elif ratio < 0.5:
-            prompt = '\n - Less than half of other households are in your neighborhood.'
-        elif ratio < 1:
-            prompt = '\n - More than half of other households are in your neighborhood.'
-        else:
-            prompt = '\n - All other households are in your neighborhood.'
-        # always provide information on other households in town, as it might be relevant for the decision even if the household is in town
-        # if location_string != LOCATION_STRING_MAPPING['OutOfTown']:
+        is_home = location_string != LOCATION_STRING_MAPPING['OutOfTown']
+
+        place = "your neighborhood" if is_home else "your original neighborhood"
+
+        percent = round(ratio * 100)
+        prompt = f'\n - {percent}% of the households that lived in {place} before the disaster are still there or have returned.'
+            
         self.add_to_narrative(prompt)
 
     def update_resource_demand_fulfilment_status(self, percent_of_met_demand: float, resource_name: str) -> None:
@@ -305,8 +326,8 @@ class TimeStepNarrativeCreator:
     def update_household_options(self, household_options: str) -> None:
         self.add_to_narrative(self.prompts['MakeDecision']['content'].replace('HOUSEHOLD_OPTIONS', household_options))
 
-    def summarize_past_experience(self, llm: LLM) -> None:
-        self.add_to_narrative(llm.summarize_past_experience(self.prompts['SummarizePastExperience']))
+    def add_past_experience(self, llm: LLM) -> None:
+        self.add_to_narrative(llm.get_past_experience_string())
 
     def get_narrative(self) -> str:
         return self.narrative

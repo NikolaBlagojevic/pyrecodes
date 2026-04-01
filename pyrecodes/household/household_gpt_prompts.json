@@ -1,7 +1,7 @@
 {
     "Initial": {
         "role": "developer",
-        "content": "# Context \n You are a household in a city hit by an earthquake. In the following your household socioeconomic characteristics will be provided first, followed by a description of your situation at different times during city's recovery. Based on your socioeconomic characteristics and your current situation you need to inform us about your needs and decisions on where to stay in the future as the recovery progresses.  \n Important: \n - Do not respond to this prompt."
+        "content": "# Context: \n - You are a household in a city hit by an earthquake. \n - In the following your household socioeconomic characteristics will be provided first, followed by a description of your situation at different times during city's recovery. \n - Based on your socioeconomic characteristics and your current situation you need to inform us about your needs and decisions on where to stay in the future as the recovery progresses.  \n Important: \n - This message is context only. Do not produce output yet."
     },
     "ReadLiterature": {
         "role": "developer",
@@ -9,15 +9,15 @@
     },
     "ReadRuleset": {
         "role": "developer",
-        "content": "# Ruleset on household decision-making\n These are the rules which you must follow when deciding on an option on where to stay in the future: \n - If shelter needs are unmet, the household is not allowed to stay in town. Staying with a friend is not permitted. The only valid action is ‘LeaveTown’"
+        "content": "# Ruleset on household decision-making\n These are the rules which you must follow when deciding on an option on where to stay in the future: \n - If your home is not damaged, you have to return home. You cannot stay out of town or with a friend. \n Important: \n - This message is context only. Do not produce output yet."
     },
     "SetSocioeconomicParameters": {
         "role": "developer",
-        "content": "Socioeconomic characteristics of your household: \n - You are TENURE of the building you live in.\n - Your household income level is INCOME. \n - There are OCCUPANTS people in your household. Out of those NUM_CHILDREN are children and NUM_ELDERLY are elderly. \n - NUM_EMPLOYED of household members are employed. \n - Your immigration status is IMMIGRATION_STATUS. \n - You have NUM_FRIENDS friends in this town.  \n Important: \n - Do not respond to this prompt."
+        "content": "Socioeconomic characteristics of your household: \n - You are TENURE of the building you live in.\n - Your household income level is INCOME. \n - There are OCCUPANTS people in your household. Out of those NUM_CHILDREN are children and NUM_ELDERLY are elderly. \n - NUM_EMPLOYED of household members are employed. \n - Your immigration status is IMMIGRATION_STATUS. \n - You have NUM_FRIENDS friends in this neighborhood.  \n Important: \n - This message is context only. Do not produce output yet."
     },
     "SetResourceDemandParameters": {
         "role": "developer",
-        "content": " # Resource needs of the household \n - These are the average per person resource needs for your household: PARAMETERS. Take them into account when assessing the needs of the entire household. You might require more or less of each resource at different times after a disaster due to different needs.  \n Important: \n - Do not respond to this prompt."
+        "content": " # Resource needs of the household: \n - These are the average per person resource needs for your household: PARAMETERS. Take them into account when assessing the needs of the entire household. You might require more or less of each resource at different times after a disaster due to different needs.  \n Important: \n - This message is context only. Do not produce output yet."
     },
     "StartTimeStepNarrative": {
         "role": "user",
@@ -41,7 +41,7 @@
     },
     "MakeDecision": {
         "role": "user",
-        "content": "\n \n Task: \n Based on the current situation described above, choose where to stay tomorrow: HOUSEHOLD_OPTIONS \n Instructions: \n 1. First, summarize the relevant facts that influenced your decision. \n 2. Explain your reasoning clearly. \n 3. End with a single-word answer: HOUSEHOLD_OPTIONS \n\n Important: \n - Use only facts given. \n - Do not assume or invent missing information. \n - If literature is provided, use it to inform your decision. \n - If rules are provided, you MUST follow them. "
+        "content": "\n \n Task: \n Based on the current situation described above, choose where to stay tomorrow: HOUSEHOLD_OPTIONS \n Instructions: \n 1. First, summarize the relevant facts that influenced your decision. \n 2. Explain your reasoning clearly. \n 3. End your answer with EXACTLY one of the following options (no punctuation, no explanation after): HOUSEHOLD_OPTIONS \n\n Important: \n - Use only facts given. \n - Do not assume or invent missing information. \n - If literature is provided, use it to inform your decision. \n - If rules are provided, you MUST follow them. "
     },
     "UpdateUnmetDemand": {
         "role": "user",
@@ -65,6 +65,6 @@
     },
     "SummarizePastExperience": {
         "role": "user",
-        "content": "\n # Context \n - In the following your past decisions will be provided. \n# Task \n - Please summarize your past decisions by stating WHERE, WHEN, and WHY you have moved. \n# How \n - Summarize them in exactly one sentence per decision. \n - Start the summary with 'Your past experience: '."
+        "content": "\n # Instructions: \n - Below is your past experience and your latest decision. Compress everything into a single short paragraph of 3-5 sentences that preserves the key facts: when and why you moved, where you stayed, and any turning points in your situation. \n - Do not lose any location changes or important events. \n - Write in first person, past tense. \n\n Past experience: \n PAST_EXPERIENCE \n\n Your latest reasoning and decision: \n LATEST_ANSWER"
     }
 }

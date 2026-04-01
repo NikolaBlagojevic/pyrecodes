@@ -1,10 +1,42 @@
-from copyreg import pickle
+import asyncio
+import pickle
+import threading
 from pyrecodes.component.r2d_component import R2DBuilding
 from pyrecodes.household.household_gpt import HouseholdGPT
 from pyrecodes.system.built_environment import BuiltEnvironment
 from pyrecodes.utilities import unpack_time_stepping_rules
 from pyrecodes.component.r2d_building_with_households import R2DBuildingWithHouseholds
 from pyrecodes.system.recovery_target_checker import NoDamageRecoveryTargetWithExtraTimeChecker
+
+# Set to True to run all household decisions in parallel (faster with many households).
+# Works in both scripts and Jupyter notebooks.
+ASYNC_MODE = True
+
+def _run_coroutine(coro):
+    """Run a coroutine from any context: plain script or Jupyter notebook.
+
+    Jupyter already has a running event loop, so asyncio.run() cannot be called
+    directly. In that case the coroutine is dispatched to a worker thread that
+    owns its own fresh event loop.
+    """
+    try:
+        asyncio.get_running_loop()
+        result = [None]
+        exc = [None]
+        def _target():
+            try:
+                result[0] = asyncio.run(coro)
+            except Exception as e:
+                exc[0] = e
+        t = threading.Thread(target=_target)
+        t.start()
+        t.join()
+        if exc[0] is not None:
+            raise exc[0]
+        return result[0]
+    except RuntimeError:
+        return asyncio.run(coro)
+
 
 class BuiltEnvironmentWithHouseholds(BuiltEnvironment):
 
@@ -17,9 +49,27 @@ class BuiltEnvironmentWithHouseholds(BuiltEnvironment):
         super().create_system()
         self.recovery_target_checker = NoDamageRecoveryTargetWithExtraTimeChecker()
         self.set_household_decision_making_time_steps()
+        self._initialize_households()
         # has to be called after the system is created so all components are created
         self.map_buildings_to_households()
         self.register_hook('post_time_step', self._household_step)
+
+    def _initialize_households(self) -> None:
+        """Initialize all household agents (sync or async depending on ASYNC_MODE)."""
+        if ASYNC_MODE:
+            _run_coroutine(self._initialize_households_async())
+        else:
+            for component in self.components:
+                if hasattr(component, 'initialize_households'):
+                    component.initialize_households()
+
+    async def _initialize_households_async(self) -> None:
+        tasks = [
+            component.async_initialize_households()
+            for component in self.components
+            if hasattr(component, 'async_initialize_households')
+        ]
+        await asyncio.gather(*tasks)
 
     def set_household_decision_making_time_steps(self) -> None:
         """
@@ -55,13 +105,23 @@ class BuiltEnvironmentWithHouseholds(BuiltEnvironment):
             if hasattr(component, 'households'):
                 component.households_move()
         
-    def households_decide(self) -> dict:
-        """
-        Households decide what to do based on the current situation.
-        """
-        for component in self.components:
-            if hasattr(component, 'households'):
-                component.households_decide()
+    def households_decide(self) -> None:
+        """Run household decisions, sequentially or in parallel depending on ASYNC_MODE."""
+        if ASYNC_MODE:
+            _run_coroutine(self._households_decide_async())
+        else:
+            for component in self.components:
+                if hasattr(component, 'households'):
+                    component.households_decide()
+
+    async def _households_decide_async(self) -> None:
+        tasks = [
+            household.async_decide(component)
+            for component in self.components
+            if hasattr(component, 'households')
+            for household in component.households
+        ]
+        await asyncio.gather(*tasks)
 
     def update_households_to_move(self, households_to_move: dict):
         for key, value in households_to_move.items():

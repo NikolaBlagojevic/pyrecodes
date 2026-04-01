@@ -63,7 +63,7 @@ class NoDamageRecoveryTargetWithExtraTimeChecker(RecoveryTargetChecker):
     def __init__(self):
         self.damage_free_time_step = None
 
-    def recovery_target_met(self, system: System, extra_time_steps=10) -> bool:
+    def recovery_target_met(self, system: System, extra_time_steps=24) -> bool:
         """
         Check whether the recovery target has been met for the given system.
 

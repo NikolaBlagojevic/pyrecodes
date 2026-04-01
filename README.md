@@ -25,6 +25,26 @@ Starting from v0.3, pyrecodes also supports **LLM-driven household agents** that
 
 ## Installation
 
+**Don't have Python?** Download and install Python 3.9+ from [python.org](https://www.python.org/downloads/). On macOS, you can also use `brew install python`. On Windows, make sure to check "Add Python to PATH" during installation.
+
+**Quick setup (virtual environment + install) — run in terminal:**
+
+macOS / Linux:
+```bash
+python -m venv env && source env/bin/activate && pip install pyrecodes
+python -m venv env && source env/bin/activate && pip install "pyrecodes[household]"
+python -m venv env && source env/bin/activate && pip install "pyrecodes[third_party_models]"
+python -m venv env && source env/bin/activate && pip install "pyrecodes[household,third_party_models]"
+```
+
+Windows:
+```bash
+python -m venv env && env\Scripts\activate && pip install pyrecodes
+python -m venv env && env\Scripts\activate && pip install "pyrecodes[household]"
+python -m venv env && env\Scripts\activate && pip install "pyrecodes[third_party_models]"
+python -m venv env && env\Scripts\activate && pip install "pyrecodes[household,third_party_models]"
+```
+
 **Core:**
 ```bash
 pip install pyrecodes

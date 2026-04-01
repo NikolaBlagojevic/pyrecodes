@@ -1,6 +1,6 @@
 ; Filename: /Users/nikola/pyrecodes/Example 7/water_distribution_network/waterNetwork.inp
 ; WNTR: 1.1.0.1.2
-; Created: 2026-03-18 10:02:09
+; Created: 2026-03-26 22:43:22
 [TITLE]
 
 [JUNCTIONS]
@@ -1433,16 +1433,12 @@
  node_1428                          0               0                            ;
  node_1429                          0    3.2465677873                            ;
  node_1430                          0    3.2465677873                            ;
- 6TH_breakA_1                       0               0                            ;
- 6TH_breakB_1                       0               0                            ;
 
 [RESERVOIRS]
 ;ID                                   Head                  Pattern
  res_1                            164                            ;
  res_2                   164.04199475                            ;
  res_3                   164.04199475                            ;
- 6TH_breakA_1_nn                    0                            ;
- 6TH_breakB_1_nn                    0                            ;
 
 [TANKS]
 ;ID                              Elevation           Init Level            Min Level            Max Level             Diameter           Min Volume Volume Curve         Overflow            
@@ -1486,7 +1482,7 @@
  5TH_7                node_758             node_650                 329.5611162               6             100               0                 Open   ;
  5TH_8                node_783             node_758                281.66720708               6             100               0                 Open   ;
  5TH_9                node_558             node_1232               604.68678864               6             100               0                 Open   ;
- 6TH                  node_85              6TH_breakA_1            66.295532155               6             100               0                 Open   ;
+ 6TH                  node_85              node_86                 265.18212862               6             100               0                 Open   ;
  6TH_1                node_430             node_976                383.10105334               6             100               0                 Open   ;
  6TH_2                node_664             node_1102               332.94691794               6             100               0                 Open   ;
  6TH_3                node_1102            node_430                347.68800985               6             100               0                 Open   ;
@@ -3471,9 +3467,6 @@
  from_res_1           res_1                node_1                   32.80839895    944.88188976             100               0                   CV   ;
  from_res_2           res_2                node_685                 32.80839895    472.44094488             100               0                   CV   ;
  from_res_3           res_3                node_8                   32.80839895    629.92125984             100               0                   CV   ;
- 6TH_Break_1          6TH_breakB_1         node_86                 198.88659647               6             100               0                 Open   ;
- 6TH_breakA_1-rlk     6TH_breakA_1         6TH_breakA_1_nn          3.280839895               6         1000000               1                   CV   ;
- 6TH_breakB_1-rlk     6TH_breakB_1         6TH_breakB_1_nn          3.280839895               6         1000000               1                   CV   ;
 
 [PUMPS]
 ;ID                   Node1                Node2                Properties          
@@ -4996,10 +4989,6 @@ node_1430        -122.244000000         37.775000000
 res_1            -122.273000000         37.788000000
 res_2            -122.234000000         37.771000000
 res_3            -122.231000000         37.769000000
-6TH_breakA_1       -122.279000000         37.772000000
-6TH_breakB_1       -122.279000000         37.772000000
-6TH_breakA_1_nn       -121.279000000         38.772000000
-6TH_breakB_1_nn       -121.279000000         38.772000000
 
 [VERTICES]
 ;Link      X-Coord    Y-Coord   

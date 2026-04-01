@@ -18,7 +18,36 @@
             ]
     },
     "Content": {
-        "Locality 2": {
+        "Locality 0": {
+            "Coordinates": {
+                "GeoJSON": {
+                    "Filename": "{folder}/Alameda TAZ/Alameda_TravelAnalysisZone_948.geojson"
+                }
+            },
+            "Components": {
+                "BuildingStock": [
+                    {
+                        "Buildings": {
+                            "CreatorClassName": "R2DSubsystemCreatorWithHouseholds",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "Shelter"
+                                ],
+                                "R2DJSONFile_Info": "{folder}/Alameda_Exposure_With_Households_TAZ964.json",
+                                "SubsystemNameInR2DJSON": "Buildings",
+                                "AssetTypes": [
+                                    "Building"
+                                ],
+                                "MaxNumComponents": 1,
+                                "MaxNumHouseholds": 0
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "Locality 1": {
             "Coordinates": {
                 "GeoJSON": {
                     "Filename": "{folder}/Alameda TAZ/Alameda_TravelAnalysisZone_964.geojson"

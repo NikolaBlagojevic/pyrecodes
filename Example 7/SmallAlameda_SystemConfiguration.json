@@ -1,7 +1,7 @@
 {
     "Constants": {
         "START_TIME_STEP": 0,
-        "MAX_TIME_STEP": 2,
+        "MAX_TIME_STEP": 40,
         "DISASTER_TIME_STEP": 1,
         "HOUSING_RESOURCES": [
             "Shelter"
@@ -18,7 +18,36 @@
             ]
     },
     "Content": {
-        "Locality 2": {
+        "Locality 0": {
+            "Coordinates": {
+                "GeoJSON": {
+                    "Filename": "{folder}/Alameda TAZ/Alameda_TravelAnalysisZone_948.geojson"
+                }
+            },
+            "Components": {
+                "BuildingStock": [
+                    {
+                        "Buildings": {
+                            "CreatorClassName": "R2DSubsystemCreatorWithHouseholds",
+                            "CreatorFileName": "r2d_subsystem_creator",
+                            "Parameters": {
+                                "Resource": [
+                                    "Shelter"
+                                ],
+                                "R2DJSONFile_Info": "{folder}/Alameda_Exposure_With_Households_TAZ964.json",
+                                "SubsystemNameInR2DJSON": "Buildings",
+                                "AssetTypes": [
+                                    "Building"
+                                ],
+                                "MaxNumComponents": 1,
+                                "MaxNumHouseholds": 0
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "Locality 1": {
             "Coordinates": {
                 "GeoJSON": {
                     "Filename": "{folder}/Alameda TAZ/Alameda_TravelAnalysisZone_964.geojson"
@@ -59,7 +88,7 @@
                                     "Building"
                                 ],
                                 "MaxNumComponents": 100000,
-                                "MaxNumHouseholds": 5
+                                "MaxNumHouseholds": 3
                             }
                         }
                     }
@@ -105,7 +134,7 @@
             "FileName": "recodes_calculator",
             "ClassName": "ReCoDeSCalculator",
             "Parameters": {
-                "Scope": "All",
+                "Scope": "Locality 1",
                 "Resources": [
                     "Shelter",
                     "PotableWater"

@@ -19,7 +19,7 @@ class R2DRepairConfigurator(RepairConfigurator):
         repair_demand = self.get_repair_demand(component_DS)            
         recovery_demand_setter(self.component, 'Repair', repair_resource_name, repair_demand)
     
-    def set_repair_time(self, component_data: dict, use_R2D=False) -> None:
+    def set_repair_time(self, component_data: dict, use_R2D: bool = False) -> None:
         """
         | Method sets the repair duration of the component as deterministic by default. 
         | It is assumed that the uncertainty is captured in the R2D output files.

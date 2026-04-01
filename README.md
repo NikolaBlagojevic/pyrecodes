@@ -31,18 +31,20 @@ Starting from v0.3, pyrecodes also supports **LLM-driven household agents** that
 
 macOS / Linux:
 ```bash
-python -m venv env && source env/bin/activate && pip install pyrecodes
-python -m venv env && source env/bin/activate && pip install "pyrecodes[household]"
-python -m venv env && source env/bin/activate && pip install "pyrecodes[third_party_models]"
-python -m venv env && source env/bin/activate && pip install "pyrecodes[household,third_party_models]"
+python -m venv env && source env/bin/activate && pip install pyrecodes                              # Core only (Examples 1–4)
+python -m venv env && source env/bin/activate && pip install "pyrecodes[household]"                  # + LLM household agents (Example 6)
+python -m venv env && source env/bin/activate && pip install "pyrecodes[third_party_models]"         # + REWET & traffic simulators (Example 5)
+python -m venv env && source env/bin/activate && pip install "pyrecodes[household,third_party_models]" # Full install (Example 7)
 ```
 
-Windows:
+Windows (run each line separately in Command Prompt):
 ```bash
-python -m venv env && env\Scripts\activate && pip install pyrecodes
-python -m venv env && env\Scripts\activate && pip install "pyrecodes[household]"
-python -m venv env && env\Scripts\activate && pip install "pyrecodes[third_party_models]"
-python -m venv env && env\Scripts\activate && pip install "pyrecodes[household,third_party_models]"
+python -m venv env
+env\Scripts\activate
+pip install pyrecodes                                # Core only (Examples 1–4)
+pip install "pyrecodes[household]"                   # + LLM household agents (Example 6)
+pip install "pyrecodes[third_party_models]"          # + REWET & traffic simulators (Example 5)
+pip install "pyrecodes[household,third_party_models]" # Full install (Example 7)
 ```
 
 **Core:**

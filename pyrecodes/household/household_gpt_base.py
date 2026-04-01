@@ -125,7 +125,12 @@ class LLM:
         self.temperature = temperature
         self.summarize_experience = summarize_experience
         self.set_llm_model(llm_model, api_key_filename)
-        self._lock = asyncio.Lock()
+        self._lock = None
+
+    def _get_lock(self) -> asyncio.Lock:
+        if self._lock is None:
+            self._lock = asyncio.Lock()
+        return self._lock
 
     def set_llm_model(self, llm_model: str, api_key_filename: str) -> None:
         if llm_model != 'GPT':
@@ -151,7 +156,7 @@ class LLM:
         return answer
 
     async def prompt_async(self, prompt: dict, print_answer: bool = False, add_to_past_experience: bool = False) -> str:
-        async with self._lock:
+        async with self._get_lock():
             self.add_to_chat_history(prompt)
             messages = copy.deepcopy(self.relevant_prompts + [prompt])
         messages = self._sanitize_messages(messages)
@@ -160,7 +165,7 @@ class LLM:
             print('--' * 20)
             print(answer)
             print('--' * 20)
-        async with self._lock:
+        async with self._get_lock():
             self.add_to_relevant_prompts(prompt)
             self.add_to_chat_history({'content': answer, 'role': 'assistant'})
             if add_to_past_experience:

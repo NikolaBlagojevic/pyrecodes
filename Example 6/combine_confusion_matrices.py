@@ -3,6 +3,7 @@
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
+FOLDER_NAME = './Example 6/'
 IMAGES = [
     'confusion_matrix_baseline.png',
     'confusion_matrix_ruleset.png',
@@ -15,7 +16,7 @@ OUTPUT = 'confusion_matrices_combined.png'
 fig, axes = plt.subplots(2, 2, figsize=(14, 12))
 
 for ax, filename, label in zip(axes.flat, IMAGES, LABELS):
-    img = mpimg.imread(filename)
+    img = mpimg.imread(FOLDER_NAME + filename)
     ax.imshow(img)
     ax.axis('off')
     ax.text(
@@ -27,5 +28,5 @@ for ax, filename, label in zip(axes.flat, IMAGES, LABELS):
     )
 
 plt.tight_layout(h_pad=2, w_pad=1)
-plt.savefig(OUTPUT, dpi=300, bbox_inches='tight')
-print(f'Saved to {OUTPUT}')
+plt.savefig(FOLDER_NAME + OUTPUT, dpi=300, bbox_inches='tight')
+print(f'Saved to {FOLDER_NAME + OUTPUT}')

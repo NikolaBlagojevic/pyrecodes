@@ -1,7 +1,8 @@
+import asyncio
+import copy
 from pyrecodes.component.r2d_component import R2DBuilding
 from pyrecodes.utilities import get_class
 from pyrecodes.component.component import SupplyOrDemand
-import copy
 
 class R2DBuildingWithHouseholds(R2DBuilding):
 
@@ -16,10 +17,22 @@ class R2DBuildingWithHouseholds(R2DBuilding):
         self.household_object = target_household_class()
 
     def create_households(self, households: list):
-        for household_data in households:
+        self._household_init_data = households
+        for _ in households:
             household = copy.deepcopy(self.household_object)
-            household.set_parameters(household_data)
             self.households.append(household)
+
+    def initialize_households(self) -> None:
+        if len(self.households) > 0:
+            for household, household_data in zip(self.households, self._household_init_data):
+                household.set_parameters(household_data)
+
+    async def async_initialize_households(self) -> None:
+        if len(self.households) > 0:
+            await asyncio.gather(*[
+                household.async_set_parameters(household_data)
+                for household, household_data in zip(self.households, self._household_init_data)
+            ])
 
     def set_initial_damage_level(self, damage_level: float) -> None:
         super().set_initial_damage_level(damage_level)
@@ -129,6 +142,8 @@ class R2DBuildingWithHouseholds(R2DBuilding):
 class R2DTown(R2DBuildingWithHouseholds):
     """
     Component representing a town where households can move to if they decide to leave their home.
+
+    Starts with no households.
 
     Assume all resources are available in the town.
     """

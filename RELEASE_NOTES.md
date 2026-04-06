@@ -9,13 +9,10 @@
   A new `household` module introduces agent-based household models (`Household` abstract class, `R2DBuildingWithHouseholds` component). Households can make relocation decisions, track displacement, and participate in the regional recovery simulation. The `BuiltEnvironmentWithHouseholds` system class integrates household dynamics into the main simulation loop via an observer pattern.
 
 - **LLM-Driven Household Agents**:
-  `HouseholdGPTBase` and `HouseholdGPT` enable GPT- or Llama-backed household agents that make relocation decisions based on damage state, available resources, and social factors. Agents can be informed by academic literature summaries or rule sets prior to simulation. Both synchronous and asynchronous (async) prompting modes are supported.
+  `HouseholdGPTBase` and `HouseholdGPT` enable GPT-backed household agents that make relocation decisions based on damage state, available resources, and social factors. Agents can be informed by academic literature summaries or rule sets prior to simulation. Both synchronous and asynchronous (async) prompting modes are supported.
 
 - **Survey-Based Household Agents**:
-  `HouseholdSurveyGPT` allows household relocation decisions to be driven by survey data (US Census Household Pulse Survey), with GPT used to map survey responses to structured decisions.
-
-- **New Recovery Target Checker**:
-  A new `RecoveryTargetChecker` abstraction (`NoDamageRecoveryTargetChecker`) makes the condition for ending the simulation explicit and configurable.
+  `HouseholdSurveyGPT` compares simualted household relocation decisions to survey data (US Census Household Pulse Survey), with GPT used to map survey responses to structured decisions.
 
 - **Observer Pattern in `BuiltEnvironment`**:
   The core simulation loop now supports `register_hook(event, callback)` / `_notify(event)` hooks, allowing subclasses and extensions to inject behavior at each time step without subclassing the main loop.
@@ -30,7 +27,7 @@
   The entry-point `run()` function now accepts a folder path in addition to a direct file path, simplifying batch simulation workflows.
 
 - **New Examples (6 and 7)**:
-  Example 6 demonstrates LLM-driven household relocation decisions in a small Alameda community, including comparison of GPT responses against baseline, literature-informed, and rule-based strategies. Example 7 covers a multi-system community recovery scenario.
+  Example 6 presents a benchmark comparing household GPT agents to reported household disaster displacement behavior reported in the US Census Household Pulse Survey. Example 7 demonstrates LLM-driven household relocation decisions in a small Alameda community, including comparison of GPT responses against baseline, literature-informed, and rule-based strategies.
 
 ---
 

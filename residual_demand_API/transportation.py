@@ -63,10 +63,11 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 import geopandas as gpd
 import numpy as np
-import pandana.network as pdna
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from scipy.spatial.distance import cdist
+from scipy.sparse import csr_matrix
+from scipy.sparse.csgraph import dijkstra
 from shapely.wkt import loads
 import warnings
 # from brails.utils.geoTools import haversine_dist
@@ -104,6 +105,140 @@ def calculate_road_capacity(nlanes: int,
         of lanes and the traffic volume per lane.
     """
     return nlanes * traffic_volume_per_lane
+
+class ScipyNetwork:
+    """Drop-in replacement for ``pandana.Network`` using ``scipy.sparse.csgraph``.
+
+    Implements the subset of the ``pandana.Network`` API used by
+    :mod:`residual_demand_API.transportation`:
+
+    - constructor ``(node_x, node_y, edge_from, edge_to, edge_weights, twoway)``
+    - ``node_ids`` attribute (ordered array of node identifiers)
+    - ``set(values)`` — accepted for API compatibility; no-op here because the
+      caller never uses pandana's node-level aggregation results
+    - ``shortest_paths(origins, destinations) -> list[list[node_id]]``
+    - ``shortest_path_lengths(origins, destinations) -> list[float]``
+
+    Behavior notes:
+    - Node identifiers are taken from ``node_x.index`` (matches pandana).
+    - If an OD pair is unreachable, ``shortest_paths`` returns ``[]`` and
+      ``shortest_path_lengths`` returns ``inf`` for that pair.
+    - If origin == destination, ``shortest_paths`` returns ``[node_id]`` and
+      the length is ``0.0``.
+    - When multiple parallel edges share a ``(from, to)`` pair, the minimum
+      weight is retained (matching the "shortest edge" intent).
+    """
+
+    _NO_PREDECESSOR = -9999  # scipy sentinel for unreachable nodes
+
+    def __init__(self, node_x, node_y, edge_from, edge_to, edge_weights,
+                 twoway=False):
+        self.node_ids = np.asarray(node_x.index)
+        self._id_to_idx = {nid: i for i, nid in enumerate(self.node_ids)}
+        num_nodes = len(self.node_ids)
+
+        # ``edge_weights`` is a DataFrame with a single weight column
+        # (pandana convention). Extract it as a flat float array.
+        if hasattr(edge_weights, 'iloc'):
+            weights = np.asarray(edge_weights.iloc[:, 0], dtype=float)
+        else:
+            weights = np.asarray(edge_weights, dtype=float).reshape(-1)
+
+        edge_from = np.asarray(list(edge_from))
+        edge_to = np.asarray(list(edge_to))
+        from_idx = np.fromiter(
+            (self._id_to_idx[f] for f in edge_from), dtype=np.int64,
+            count=len(edge_from),
+        )
+        to_idx = np.fromiter(
+            (self._id_to_idx[t] for t in edge_to), dtype=np.int64,
+            count=len(edge_to),
+        )
+
+        # Deduplicate parallel edges by keeping the minimum weight per
+        # (from, to) pair. ``csr_matrix`` would otherwise sum duplicates,
+        # which would artificially inflate shortest-path costs.
+        if len(weights) > 0:
+            order = np.lexsort((weights, to_idx, from_idx))
+            from_idx = from_idx[order]
+            to_idx = to_idx[order]
+            weights = weights[order]
+            keep = np.ones(len(weights), dtype=bool)
+            if len(weights) > 1:
+                keep[1:] = ~(
+                    (from_idx[1:] == from_idx[:-1])
+                    & (to_idx[1:] == to_idx[:-1])
+                )
+            from_idx = from_idx[keep]
+            to_idx = to_idx[keep]
+            weights = weights[keep]
+
+        self._graph = csr_matrix(
+            (weights, (from_idx, to_idx)), shape=(num_nodes, num_nodes),
+        )
+        self._directed = not twoway
+        self._dijkstra_cache = {}
+
+    def set(self, values):  # noqa: ARG002
+        """Accept an aggregation vector for API compatibility; not used."""
+        return None
+
+    def _dijkstra_from(self, source_idx):
+        cached = self._dijkstra_cache.get(source_idx)
+        if cached is not None:
+            return cached
+        dist, pred = dijkstra(
+            csgraph=self._graph,
+            directed=self._directed,
+            indices=source_idx,
+            return_predecessors=True,
+        )
+        self._dijkstra_cache[source_idx] = (dist, pred)
+        return dist, pred
+
+    def shortest_path_lengths(self, origins, destinations):
+        """Return the cost of the shortest path for each (origin, dest) pair."""
+        lengths = []
+        for origin, dest in zip(origins, destinations):
+            src_idx = self._id_to_idx.get(origin)
+            dst_idx = self._id_to_idx.get(dest)
+            if src_idx is None or dst_idx is None:
+                lengths.append(np.inf)
+                continue
+            dist, _ = self._dijkstra_from(src_idx)
+            lengths.append(float(dist[dst_idx]))
+        return lengths
+
+    def shortest_paths(self, origins, destinations):
+        """Return the node-id sequence of the shortest path per OD pair."""
+        paths = []
+        for origin, dest in zip(origins, destinations):
+            src_idx = self._id_to_idx.get(origin)
+            dst_idx = self._id_to_idx.get(dest)
+            if src_idx is None or dst_idx is None:
+                paths.append([])
+                continue
+            if src_idx == dst_idx:
+                paths.append([self.node_ids[src_idx]])
+                continue
+            _, pred = self._dijkstra_from(src_idx)
+            if pred[dst_idx] == self._NO_PREDECESSOR:
+                paths.append([])
+                continue
+            path_idx = [dst_idx]
+            while path_idx[-1] != src_idx:
+                prev = int(pred[path_idx[-1]])
+                if prev == self._NO_PREDECESSOR:
+                    path_idx = None
+                    break
+                path_idx.append(prev)
+            if path_idx is None:
+                paths.append([])
+            else:
+                path_idx.reverse()
+                paths.append([self.node_ids[i] for i in path_idx])
+        return paths
+
 
 class TransportationPerformance(ABC):  # noqa: B024
     """
@@ -522,7 +657,7 @@ class TransportationPerformance(ABC):  # noqa: B024
         # open_edges_df = weighted_edges_df.loc[weighted_edges_df['fft'] < 36000]
         open_edges_df = weighted_edges_df
 
-        net = pdna.Network(
+        net = ScipyNetwork(
             nodes_df['x'],
             nodes_df['y'],
             open_edges_df['start_nid'],
@@ -809,45 +944,15 @@ class TransportationPerformance(ABC):  # noqa: B024
         open_edges_df = edges_df[
             ~edges_df['uniqueid'].isin(closed_links['uniqueid'].to_numpy())
         ]
-        # Redirect the output from pdna to a tmp file and then delete the file
-        # if self.tmp_dir is not None:
-        #     output_file = Path(self.tmp_dir) / 'pandana_stdout.txt'
-        #     original_stdout_fd = sys.stdout.fileno()
-        #     with Path.open(output_file, 'w') as file:
-        #         os.dup2(file.fileno(), original_stdout_fd)
-        #         net = pdna.Network(
-        #             nodes_df['x'],
-        #             nodes_df['y'],
-        #             open_edges_df['start_nid'],
-        #             open_edges_df['end_nid'],
-        #             open_edges_df[['fft']],
-        #             twoway=two_way_edges,
-        #         )
-        #         # The file is automatically closed when exiting the with block
-        #         # `sys.stdout` is automatically restored to its original state because
-        #         # we duplicated the original descriptor to `stdout`.
-        #     if getattr(self, 'save_pandana', True):
-        #         Path.unlink(output_file)
-        # else:
-        #     net = pdna.Network(
-        #             nodes_df['x'],
-        #             nodes_df['y'],
-        #             open_edges_df['start_nid'],
-        #             open_edges_df['end_nid'],
-        #             open_edges_df[['fft']],
-        #             twoway=two_way_edges,
-        #         )
 
-        # Nikola: have issues with this way of redirecting output
-        # different way of supressing the print statements
-        net = pdna.Network(
-                    nodes_df['x'],
-                    nodes_df['y'],
-                    open_edges_df['start_nid'],
-                    open_edges_df['end_nid'],
-                    open_edges_df[['fft']],
-                    twoway=two_way_edges,
-                )
+        net = ScipyNetwork(
+            nodes_df['x'],
+            nodes_df['y'],
+            open_edges_df['start_nid'],
+            open_edges_df['end_nid'],
+            open_edges_df[['fft']],
+            twoway=two_way_edges,
+        )
         net.set(pd.Series(net.node_ids))
         paths = net.shortest_paths(orig, dest)
         no_path_ind = [i for i in range(len(paths)) if len(paths[i]) == 0]
@@ -1419,9 +1524,7 @@ class pyrecodes_residual_demand(TransportationPerformance):
         r2d_dict,
         two_way_edges=False,  # noqa: FBT002
     ):
-        # Default not save pandana output
         self.tmp_dir = Path.cwd()
-        self.save_pandana = False
         # Prepare edges and nodes files
         edges_gdf = gpd.read_file(edges_file)
         if 'length' not in edges_gdf.columns:
